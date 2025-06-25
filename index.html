@@ -115,7 +115,7 @@
           }
 
           const cost = document.createElement("p");
-          cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
+          cost.innerHTML = `<strong>Cost:</strong> loading...`;
           div.appendChild(cost);
 
           if (entry.link) {
@@ -127,6 +127,27 @@
           }
 
           resultsDiv.appendChild(div);
+
+          // Update cost field if it's a TP:id pattern
+          const match = entry.cost.match(/^TP:(\d+)$/);
+          if (match) {
+            const itemId = match[1];
+            fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`)
+              .then(res => res.json())
+              .then(data => {
+                const copper = data.sells.unit_price % 100;
+                const silver = Math.floor((data.sells.unit_price / 100) % 100);
+                const gold = Math.floor(data.sells.unit_price / 10000);
+                cost.innerHTML = `<strong>Cost:</strong> ${gold}<img src='https://wiki.guildwars2.com/images/d/d1/Gold_coin.png' style='height:1em;'> ` +
+                                 `${silver}<img src='https://wiki.guildwars2.com/images/3/3c/Silver_coin.png' style='height:1em;'> ` +
+                                 `${copper}<img src='https://wiki.guildwars2.com/images/c/c0/Copper_coin.png' style='height:1em;'>`;
+              })
+              .catch(() => {
+                cost.innerHTML = `<strong>Cost:</strong> (price unavailable)`;
+              });
+          } else {
+            cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
+          }
         });
       }
     });
