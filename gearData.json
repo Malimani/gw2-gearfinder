@@ -1,5 +1,5 @@
 {
-  "Chest": {
+  "Coat": {
     "Viper": [
       {
         "method": "Crafting",
@@ -15,13 +15,33 @@
       }
     ]
   },
-  "1H Sword": {
+  "Sword": {
     "Marauder": [
       {
-        "method": "Vendor (WvW badge)",
-        "description": "Rank vendors in Borderlands",
+        "method": "WvW Vendor",
+        "description": "Purchased with Badges of Honor",
         "cost": "250 Badges of Honor",
         "link": "https://wiki.guildwars2.com/wiki/Marauder_weapon"
+      }
+    ]
+  },
+  "Rune": {
+    "Rune of the Flame Legion": [
+      {
+        "method": "Trading Post",
+        "description": "Buy from the TP",
+        "cost": "approx. 20 silver",
+        "link": "https://wiki.guildwars2.com/wiki/Rune_of_the_Flame_Legion"
+      }
+    ]
+  },
+  "Relic": {
+    "Relic of the Thief": [
+      {
+        "method": "Story reward",
+        "description": "Unlocked during Secrets of the Obscure story",
+        "cost": "No cost",
+        "link": "https://wiki.guildwars2.com/wiki/Relic_of_the_Thief"
       }
     ]
   }
