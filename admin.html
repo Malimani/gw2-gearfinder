@@ -141,6 +141,7 @@
       const itemId = document.getElementById('itemId').value.trim();
       const iconImg = document.getElementById('iconPreview');
       const nameDisplay = document.getElementById('itemNameDisplay');
+      const slotSelect = document.getElementById('slot');
       if (!itemId) return;
 
       try {
@@ -153,6 +154,16 @@
           iconImg.style.display = 'inline';
         } else {
           iconImg.style.display = 'none';
+        }
+
+        // Try to autofill the slot
+        if (data.details && data.details.type) {
+          const type = data.details.type;
+          const options = Array.from(slotSelect.options);
+          const match = options.find(opt => opt.value.toLowerCase() === type.toLowerCase());
+          if (match) {
+            slotSelect.value = match.value;
+          }
         }
       } catch (err) {
         iconImg.style.display = 'none';
