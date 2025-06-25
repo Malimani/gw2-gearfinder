@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GW2 Gear Admin Tool</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f8f8;
+      padding: 2rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+    }
+    pre {
+      background: #eee;
+      padding: 1rem;
+      margin-top: 2rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>GW2 Gear Admin Tool</h1>
+  <p>Use this form to generate JSON entries for your <code>gearData.json</code>.</p>
+
+  <label for="slot">Slot</label>
+  <select id="slot">
+    <option value="">-- Select slot --</option>
+    <optgroup label="Armor">
+      <option>Helm</option>
+      <option>Shoulders</option>
+      <option>Coat</option>
+      <option>Gloves</option>
+      <option>Leggings</option>
+      <option>Boots</option>
+    </optgroup>
+    <optgroup label="Weapons">
+      <option>Axe</option>
+      <option>Dagger</option>
+      <option>Focus</option>
+      <option>Greatsword</option>
+      <option>Hammer</option>
+      <option>Harpoon Gun</option>
+      <option>Longbow</option>
+      <option>Mace</option>
+      <option>Pistol</option>
+      <option>Rifle</option>
+      <option>Scepter</option>
+      <option>Shield</option>
+      <option>Shortbow</option>
+      <option>Spear</option>
+      <option>Staff</option>
+      <option>Sword</option>
+      <option>Torch</option>
+      <option>Trident</option>
+      <option>Warhorn</option>
+    </optgroup>
+    <optgroup label="Trinkets">
+      <option>Backpiece</option>
+      <option>Amulet</option>
+      <option>Ring</option>
+      <option>Accessory</option>
+    </optgroup>
+    <optgroup label="Upgrades">
+      <option>Rune</option>
+      <option>Sigil</option>
+      <option>Relic</option>
+    </optgroup>
+  </select>
+
+  <label for="attribute">Attribute / Effect</label>
+  <select id="attribute">
+    <option value="">-- Select attribute / effect --</option>
+    <option>Viper</option>
+    <option>Marauder</option>
+    <option>Berserker</option>
+    <option>Celestial</option>
+    <option>Trailblazer</option>
+    <option>Rabid</option>
+    <option>Rune of the Flame Legion</option>
+    <option>Rune of the Scholar</option>
+    <option>Sigil of Energy</option>
+    <option>Sigil of Force</option>
+    <option>Relic of the Thief</option>
+    <option>Relic of the Warrior</option>
+  </select>
+
+  <label for="method">Method</label>
+  <input type="text" id="method" placeholder="e.g. Crafting">
+
+  <label for="description">Description</label>
+  <textarea id="description" rows="2" placeholder="Craftable with Weaponsmith 500"></textarea>
+
+  <label for="cost">Cost</label>
+  <input type="text" id="cost" placeholder="e.g. approx. 12 gold">
+
+  <label for="link">Link</label>
+  <input type="text" id="link" placeholder="e.g. https://wiki.guildwars2.com/...">
+
+  <button onclick="generateJSON()">Generate JSON</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    function generateJSON() {
+      const slot = document.getElementById('slot').value.trim();
+      const attribute = document.getElementById('attribute').value.trim();
+      const method = document.getElementById('method').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const cost = document.getElementById('cost').value.trim();
+      const link = document.getElementById('link').value.trim();
+
+      if (!slot || !attribute || !method) {
+        document.getElementById('output').textContent = 'Slot, attribute, and method are required.';
+        return;
+      }
+
+      const json = {
+        [slot]: {
+          [attribute]: [
+            {
+              method: method,
+              description: description,
+              cost: cost,
+              link: link
+            }
+          ]
+        }
+      };
+
+      document.getElementById('output').textContent = JSON.stringify(json, null, 2);
+    }
+  </script>
+</body>
+</html>
