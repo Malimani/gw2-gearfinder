@@ -1,0 +1,28 @@
+{
+  "Chest": {
+    "Viper": [
+      {
+        "method": "Crafting",
+        "description": "Craftable with Armorsmith 500",
+        "cost": "approx. 12 gold",
+        "link": "https://wiki.guildwars2.com/wiki/Viper's_Armor"
+      },
+      {
+        "method": "Fractals",
+        "description": "Reward chests from T3+",
+        "cost": "Account-bound, no gold cost",
+        "link": "https://wiki.guildwars2.com/wiki/Ascended_armor_(Fractals)"
+      }
+    ]
+  },
+  "1H Sword": {
+    "Marauder": [
+      {
+        "method": "Vendor (WvW badge)",
+        "description": "Rank vendors in Borderlands",
+        "cost": "250 Badges of Honor",
+        "link": "https://wiki.guildwars2.com/wiki/Marauder_weapon"
+      }
+    ]
+  }
+}
