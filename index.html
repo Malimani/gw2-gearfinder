@@ -1,156 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>GW2 Gear Finder</title>
-  <script>
-    let gearData = {};
-
-    function updateAttributes() {
-      const slot = document.getElementById('slotSelect').value;
-      const attributeSelect = document.getElementById('attributeSelect');
-      const resultsDiv = document.getElementById('results');
-      attributeSelect.innerHTML = '';
-      resultsDiv.innerHTML = '';
-
-      if (!slot || !gearData[slot]) {
-        const option = document.createElement('option');
-        option.value = '';
-        option.textContent = '-- No attributes available --';
-        attributeSelect.appendChild(option);
-
-        const warning = document.createElement('p');
-        warning.style.color = 'red';
-        warning.textContent = 'No attribute options found for the selected slot.';
-        resultsDiv.appendChild(warning);
-        return;
-      }
-
-      const defaultOption = document.createElement('option');
-      defaultOption.value = '';
-      defaultOption.textContent = '-- Select attribute --';
-      attributeSelect.appendChild(defaultOption);
-
-      Object.keys(gearData[slot]).forEach(attr => {
-        const option = document.createElement('option');
-        option.value = attr;
-        option.textContent = attr;
-        attributeSelect.appendChild(option);
-      });
-
-      updateResults();
-    }
-
-    function updateResults() {
-      const slot = document.getElementById('slotSelect').value;
-      const attr = document.getElementById('attributeSelect').value;
-      const resultsDiv = document.getElementById('results');
-      resultsDiv.innerHTML = '';
-
-      if (gearData[slot] && gearData[slot][attr]) {
-        gearData[slot][attr].forEach(entry => {
-          const block = document.createElement('div');
-          block.className = 'result-block';
-          block.innerHTML = `
-            <h3>${entry.method}</h3>
-            <p>${entry.description}</p>
-            <p><strong>Cost:</strong> ${entry.cost}</p>
-            <a href="${entry.link}" target="_blank">More info</a>
-          `;
-          resultsDiv.appendChild(block);
-        });
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      fetch('gearData.json')
-        .then(response => response.json())
-        .then(data => {
-          gearData = data;
-        })
-        .catch(error => {
-          console.error('Error loading gear data:', error);
-        });
-    });
-  </script>
   <style>
     body {
       font-family: sans-serif;
+      background: #f0f0f0;
       padding: 2rem;
-      background: #f4f4f4;
     }
-    .result-block {
+    select {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      width: 100%;
+    }
+    .result {
       background: white;
       padding: 1rem;
       margin-top: 1rem;
       border-radius: 0.5rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     }
-    select {
-      padding: 0.5rem;
-      margin-right: 1rem;
+    .result img.icon {
+      height: 1.5em;
+      vertical-align: middle;
+      margin-right: 0.5em;
     }
-    .warning {
-      color: red;
-      margin-top: 1rem;
+    .result h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.2em;
     }
-    optgroup {
-      font-weight: bold;
-      color: #333;
+    .result p {
+      margin: 0.25rem 0;
+    }
+    .result a {
+      color: #0066cc;
     }
   </style>
 </head>
 <body>
-  <h1>Guild Wars 2: Efficient Gear Paths</h1>
-
-  <label for="slotSelect">Select slot:</label>
-  <select id="slotSelect" onchange="updateAttributes()">
-    <option value="">-- Select slot --</option>
-    <optgroup label="Armor">
-      <option>Helm</option>
-      <option>Shoulders</option>
-      <option>Coat</option>
-      <option>Gloves</option>
-      <option>Leggings</option>
-      <option>Boots</option>
-    </optgroup>
-    <optgroup label="Weapons">
-      <option>Axe</option>
-      <option>Dagger</option>
-      <option>Focus</option>
-      <option>Greatsword</option>
-      <option>Hammer</option>
-      <option>Harpoon Gun</option>
-      <option>Longbow</option>
-      <option>Mace</option>
-      <option>Pistol</option>
-      <option>Rifle</option>
-      <option>Scepter</option>
-      <option>Shield</option>
-      <option>Shortbow</option>
-      <option>Spear</option>
-      <option>Staff</option>
-      <option>Sword</option>
-      <option>Torch</option>
-      <option>Trident</option>
-      <option>Warhorn</option>
-    </optgroup>
-    <optgroup label="Trinkets">
-      <option>Backpiece</option>
-      <option>Amulet</option>
-      <option>Ring</option>
-      <option>Accessory</option>
-    </optgroup>
-    <optgroup label="Upgrades">
-      <option>Rune</option>
-      <option>Sigil</option>
-      <option>Relic</option>
-    </optgroup>
+  <h1>GW2 Gear Finder</h1>
+  <select id="slotSelect">
+    <option value="">-- Select Gear Slot --</option>
+  </select>
+  <select id="attributeSelect">
+    <option value="">-- Select Attribute / Effect --</option>
   </select>
 
-  <label for="attributeSelect">Select attribute / effect:</label>
-  <select id="attributeSelect" onchange="updateResults()"></select>
-
   <div id="results"></div>
+
+  <script>
+    let gearData;
+
+    fetch("gearData.json")
+      .then((res) => res.json())
+      .then((data) => {
+        gearData = data;
+        const slotSelect = document.getElementById("slotSelect");
+        for (const slot in data) {
+          const option = document.createElement("option");
+          option.value = slot;
+          option.textContent = slot;
+          slotSelect.appendChild(option);
+        }
+      })
+      .catch((err) => {
+        console.error("Error loading gear data:", err);
+      });
+
+    document.getElementById("slotSelect").addEventListener("change", function () {
+      const selectedSlot = this.value;
+      const attributeSelect = document.getElementById("attributeSelect");
+      attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
+      if (gearData[selectedSlot]) {
+        for (const attr in gearData[selectedSlot]) {
+          const option = document.createElement("option");
+          option.value = attr;
+          option.textContent = attr;
+          attributeSelect.appendChild(option);
+        }
+      }
+      document.getElementById("results").innerHTML = "";
+    });
+
+    document.getElementById("attributeSelect").addEventListener("change", function () {
+      const slot = document.getElementById("slotSelect").value;
+      const attr = this.value;
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+
+      if (slot && attr && gearData[slot] && gearData[slot][attr]) {
+        gearData[slot][attr].forEach((entry) => {
+          const div = document.createElement("div");
+          div.className = "result";
+
+          const title = document.createElement("h3");
+          if (entry.icon) {
+            const icon = document.createElement("img");
+            icon.src = entry.icon;
+            icon.className = "icon";
+            title.appendChild(icon);
+          }
+          title.appendChild(document.createTextNode(entry.name || "Unnamed Item"));
+          div.appendChild(title);
+
+          const method = document.createElement("p");
+          method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
+          div.appendChild(method);
+
+          if (entry.description) {
+            const desc = document.createElement("p");
+            desc.innerHTML = `<strong>Description:</strong> ${entry.description}`;
+            div.appendChild(desc);
+          }
+
+          const cost = document.createElement("p");
+          cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
+          div.appendChild(cost);
+
+          if (entry.link) {
+            const link = document.createElement("a");
+            link.href = entry.link;
+            link.textContent = "More info";
+            link.target = "_blank";
+            div.appendChild(link);
+          }
+
+          resultsDiv.appendChild(div);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
