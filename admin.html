@@ -139,27 +139,37 @@
       }
     }
 
-    async function checkTPPrice() {
-      const costField = document.getElementById('cost');
-      const livePriceDiv = document.getElementById('livePrice');
-      const value = costField.value.trim();
-      const match = value.match(/^TP:(\d+)$/);
+async function checkTPPrice() {
+  const costField = document.getElementById('cost');
+  const livePriceDiv = document.getElementById('livePrice');
+  const value = costField.value.trim();
+  const match = value.match(/^TP:(\d+)$/);
 
-      if (match) {
-        const itemId = match[1];
-        try {
-          const res = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
-          const data = await res.json();
-          const buyPrice = data.buys.unit_price / 100;
-          const sellPrice = data.sells.unit_price / 100;
-          livePriceDiv.textContent = `Buy: ${buyPrice.toFixed(2)}g | Sell: ${sellPrice.toFixed(2)}g`;
-        } catch (e) {
-          livePriceDiv.textContent = 'Item not found on TP or API error.';
-        }
-      } else {
-        livePriceDiv.textContent = '';
-      }
+  function formatPrice(price) {
+    const copper = price % 100;
+    const silver = Math.floor((price / 100) % 100);
+    const gold = Math.floor(price / 10000);
+    return `${gold}<img src='https://wiki.guildwars2.com/images/d/d1/Gold_coin.png' style='height:1em;'> ` +
+           `${silver}<img src='https://wiki.guildwars2.com/images/3/3c/Silver_coin.png' style='height:1em;'> ` +
+           `${copper}<img src='https://wiki.guildwars2.com/images/c/c0/Copper_coin.png' style='height:1em;'>`;
+  }
+
+  if (match) {
+    const itemId = match[1];
+    try {
+      const res = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
+      const data = await res.json();
+      const buyPrice = data.buys.unit_price;
+      const sellPrice = data.sells.unit_price;
+      livePriceDiv.innerHTML = `Buy: ${formatPrice(buyPrice)} | Sell: ${formatPrice(sellPrice)}`;
+    } catch (e) {
+      livePriceDiv.textContent = 'Item not found on TP or API error.';
     }
+  } else {
+    livePriceDiv.textContent = '';
+  }
+}
+
 
     function generateJSON() {
       const slot = document.getElementById('slot').value.trim();
