@@ -102,12 +102,12 @@
     <option>Relic of the Warrior</option>
   </select>
 
+  <label for="itemId">GW2 Item ID</label>
+  <input type="text" id="itemId" placeholder="e.g. 92779" oninput="fetchItemData()">
+  <img id="iconPreview" src="" alt="Icon preview" style="display: none;">
+
   <label for="itemName">Item Name</label>
   <input type="text" id="itemName" placeholder="e.g. Ice Golem's Helmet">
-
-  <label for="iconId">GW2 API Icon ID</label>
-  <input type="text" id="iconId" placeholder="e.g. 123456" oninput="updateIconPreview()">
-  <img id="iconPreview" src="" alt="Icon preview" style="display: none;">
 
   <label for="method">Method</label>
   <input type="text" id="method" placeholder="e.g. Crafting">
@@ -128,18 +128,30 @@
   <pre id="output"></pre>
 
   <script>
-    function updateIconPreview() {
-      const iconId = document.getElementById('iconId').value.trim();
-      const iconPreview = document.getElementById('iconPreview');
-      if (iconId) {
-        iconPreview.src = `https://render.guildwars2.com/file/${iconId}/256.png`;
-        iconPreview.style.display = 'block';
-      } else {
-        iconPreview.style.display = 'none';
+    async function fetchItemData() {
+      const itemId = document.getElementById('itemId').value.trim();
+      const nameField = document.getElementById('itemName');
+      const iconImg = document.getElementById('iconPreview');
+
+      if (!itemId) return;
+
+      try {
+        const res = await fetch(`https://api.guildwars2.com/v2/items/${itemId}`);
+        const data = await res.json();
+        nameField.value = data.name || '';
+        if (data.icon) {
+          iconImg.src = data.icon;
+          iconImg.style.display = 'block';
+        } else {
+          iconImg.style.display = 'none';
+        }
+      } catch (err) {
+        iconImg.style.display = 'none';
+        nameField.value = '';
       }
     }
 
-async function checkTPPrice() {
+    async function checkTPPrice() {
   const costField = document.getElementById('cost');
   const livePriceDiv = document.getElementById('livePrice');
   const value = costField.value.trim();
@@ -170,12 +182,11 @@ async function checkTPPrice() {
   }
 }
 
-
     function generateJSON() {
       const slot = document.getElementById('slot').value.trim();
       const attribute = document.getElementById('attribute').value.trim();
       const itemName = document.getElementById('itemName').value.trim();
-      const iconId = document.getElementById('iconId').value.trim();
+      const iconUrl = document.getElementById('iconPreview').src;
       const method = document.getElementById('method').value.trim();
       const description = document.getElementById('description').value.trim();
       const cost = document.getElementById('cost').value.trim();
@@ -188,7 +199,7 @@ async function checkTPPrice() {
 
       const entry = {
         name: itemName,
-        iconId: iconId || undefined,
+        icon: iconUrl || undefined,
         method: method,
         cost: cost,
         link: link
@@ -217,4 +228,3 @@ async function checkTPPrice() {
   </script>
 </body>
 </html>
-
