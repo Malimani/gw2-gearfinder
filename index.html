@@ -94,6 +94,10 @@
       color: red;
       margin-top: 1rem;
     }
+    optgroup {
+      font-weight: bold;
+      color: #333;
+    }
   </style>
 </head>
 <body>
@@ -102,38 +106,46 @@
   <label for="slotSelect">Select slot:</label>
   <select id="slotSelect" onchange="updateAttributes()">
     <option value="">-- Select slot --</option>
-    <option>Helm</option>
-    <option>Shoulders</option>
-    <option>Coat</option>
-    <option>Gloves</option>
-    <option>Leggings</option>
-    <option>Boots</option>
-    <option>Sword</option>
-    <option>Axe</option>
-    <option>Mace</option>
-    <option>Dagger</option>
-    <option>Pistol</option>
-    <option>Shield</option>
-    <option>Focus</option>
-    <option>Torch</option>
-    <option>Warhorn</option>
-    <option>Greatsword</option>
-    <option>Longbow</option>
-    <option>Shortbow</option>
-    <option>Hammer</option>
-    <option>Rifle</option>
-    <option>Staff</option>
-    <option>Scepter</option>
-    <option>Harpoon Gun</option>
-    <option>Spear</option>
-    <option>Trident</option>
-    <option>Backpiece</option>
-    <option>Amulet</option>
-    <option>Ring</option>
-    <option>Accessory</option>
-    <option>Rune</option>
-    <option>Sigil</option>
-    <option>Relic</option>
+    <optgroup label="Armor">
+      <option>Helm</option>
+      <option>Shoulders</option>
+      <option>Coat</option>
+      <option>Gloves</option>
+      <option>Leggings</option>
+      <option>Boots</option>
+    </optgroup>
+    <optgroup label="Weapons">
+      <option>Axe</option>
+      <option>Dagger</option>
+      <option>Focus</option>
+      <option>Greatsword</option>
+      <option>Hammer</option>
+      <option>Harpoon Gun</option>
+      <option>Longbow</option>
+      <option>Mace</option>
+      <option>Pistol</option>
+      <option>Rifle</option>
+      <option>Scepter</option>
+      <option>Shield</option>
+      <option>Shortbow</option>
+      <option>Spear</option>
+      <option>Staff</option>
+      <option>Sword</option>
+      <option>Torch</option>
+      <option>Trident</option>
+      <option>Warhorn</option>
+    </optgroup>
+    <optgroup label="Trinkets">
+      <option>Backpiece</option>
+      <option>Amulet</option>
+      <option>Ring</option>
+      <option>Accessory</option>
+    </optgroup>
+    <optgroup label="Upgrades">
+      <option>Rune</option>
+      <option>Sigil</option>
+      <option>Relic</option>
+    </optgroup>
   </select>
 
   <label for="attributeSelect">Select attribute / effect:</label>
