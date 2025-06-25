@@ -101,7 +101,20 @@
             icon.className = "icon";
             title.appendChild(icon);
           }
-          title.appendChild(document.createTextNode(entry.name || "Unnamed Item"));
+
+          const nameSpan = document.createElement("span");
+          nameSpan.textContent = `Loading item name...`;
+          title.appendChild(nameSpan);
+
+          fetch(`https://api.guildwars2.com/v2/items/${entry.name}?lang=en`)
+            .then((res) => res.json())
+            .then((itemData) => {
+              nameSpan.textContent = itemData.name;
+            })
+            .catch(() => {
+              nameSpan.textContent = `Item ID: ${entry.name}`;
+            });
+
           div.appendChild(title);
 
           const method = document.createElement("p");
@@ -128,7 +141,6 @@
 
           resultsDiv.appendChild(div);
 
-          // Update cost field if it's a TP:id pattern
           const match = entry.cost.match(/^TP:(\d+)$/);
           if (match) {
             const itemId = match[1];
