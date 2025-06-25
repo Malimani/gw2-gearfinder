@@ -24,6 +24,16 @@
       margin-top: 2rem;
       white-space: pre-wrap;
     }
+    #iconPreview {
+      margin-top: 0.5rem;
+      max-width: 64px;
+      height: auto;
+    }
+    #livePrice {
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: #333;
+    }
   </style>
 </head>
 <body>
@@ -92,51 +102,109 @@
     <option>Relic of the Warrior</option>
   </select>
 
+  <label for="itemName">Item Name</label>
+  <input type="text" id="itemName" placeholder="e.g. Ice Golem's Helmet">
+
+  <label for="iconId">GW2 API Icon ID</label>
+  <input type="text" id="iconId" placeholder="e.g. 123456" oninput="updateIconPreview()">
+  <img id="iconPreview" src="" alt="Icon preview" style="display: none;">
+
   <label for="method">Method</label>
   <input type="text" id="method" placeholder="e.g. Crafting">
 
-  <label for="description">Description</label>
-  <textarea id="description" rows="2" placeholder="Craftable with Weaponsmith 500"></textarea>
+  <label for="description">Description (optional)</label>
+  <textarea id="description" rows="2" placeholder="Craftable with Armorsmith 500"></textarea>
 
-  <label for="cost">Cost</label>
-  <input type="text" id="cost" placeholder="e.g. approx. 12 gold">
+  <label for="cost">Cost (manual or TP:item_id or Vendor:name)</label>
+  <input type="text" id="cost" placeholder="e.g. approx. 12 gold or TP:46789" oninput="checkTPPrice()">
+  <div id="livePrice"></div>
 
-  <label for="link">Link</label>
+  <label for="link">Wiki or Reference Link</label>
   <input type="text" id="link" placeholder="e.g. https://wiki.guildwars2.com/...">
 
   <button onclick="generateJSON()">Generate JSON</button>
+  <button onclick="copyJSON()">Copy to Clipboard</button>
 
   <pre id="output"></pre>
 
   <script>
+    function updateIconPreview() {
+      const iconId = document.getElementById('iconId').value.trim();
+      const iconPreview = document.getElementById('iconPreview');
+      if (iconId) {
+        iconPreview.src = `https://render.guildwars2.com/file/${iconId}/256.png`;
+        iconPreview.style.display = 'block';
+      } else {
+        iconPreview.style.display = 'none';
+      }
+    }
+
+    async function checkTPPrice() {
+      const costField = document.getElementById('cost');
+      const livePriceDiv = document.getElementById('livePrice');
+      const value = costField.value.trim();
+      const match = value.match(/^TP:(\d+)$/);
+
+      if (match) {
+        const itemId = match[1];
+        try {
+          const res = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
+          const data = await res.json();
+          const buyPrice = data.buys.unit_price / 100;
+          const sellPrice = data.sells.unit_price / 100;
+          livePriceDiv.textContent = `Buy: ${buyPrice.toFixed(2)}g | Sell: ${sellPrice.toFixed(2)}g`;
+        } catch (e) {
+          livePriceDiv.textContent = 'Item not found on TP or API error.';
+        }
+      } else {
+        livePriceDiv.textContent = '';
+      }
+    }
+
     function generateJSON() {
       const slot = document.getElementById('slot').value.trim();
       const attribute = document.getElementById('attribute').value.trim();
+      const itemName = document.getElementById('itemName').value.trim();
+      const iconId = document.getElementById('iconId').value.trim();
       const method = document.getElementById('method').value.trim();
       const description = document.getElementById('description').value.trim();
       const cost = document.getElementById('cost').value.trim();
       const link = document.getElementById('link').value.trim();
 
-      if (!slot || !attribute || !method) {
-        document.getElementById('output').textContent = 'Slot, attribute, and method are required.';
+      if (!slot || !attribute || !itemName || !method) {
+        document.getElementById('output').textContent = 'Slot, attribute, item name, and method are required.';
         return;
+      }
+
+      const entry = {
+        name: itemName,
+        iconId: iconId || undefined,
+        method: method,
+        cost: cost,
+        link: link
+      };
+      if (description) {
+        entry.description = description;
       }
 
       const json = {
         [slot]: {
-          [attribute]: [
-            {
-              method: method,
-              description: description,
-              cost: cost,
-              link: link
-            }
-          ]
+          [attribute]: [entry]
         }
       };
 
       document.getElementById('output').textContent = JSON.stringify(json, null, 2);
     }
+
+    function copyJSON() {
+      const output = document.getElementById('output');
+      if (output.textContent.trim() !== '') {
+        navigator.clipboard.writeText(output.textContent)
+          .then(() => alert('JSON copied to clipboard!'))
+          .catch(() => alert('Failed to copy JSON.'));
+      }
+    }
   </script>
 </body>
 </html>
+
