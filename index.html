@@ -11,14 +11,17 @@
       const attributeSelect = document.getElementById('attributeSelect');
       attributeSelect.innerHTML = '';
 
-      if (gearData[slot]) {
-        Object.keys(gearData[slot]).forEach(attr => {
-          const option = document.createElement('option');
-          option.value = attr;
-          option.textContent = attr;
-          attributeSelect.appendChild(option);
-        });
+      if (!slot || !gearData[slot]) {
+        return;
       }
+
+      Object.keys(gearData[slot]).forEach(attr => {
+        const option = document.createElement('option');
+        option.value = attr;
+        option.textContent = attr;
+        attributeSelect.appendChild(option);
+      });
+
       updateResults();
     }
 
@@ -48,7 +51,6 @@
         .then(response => response.json())
         .then(data => {
           gearData = data;
-          updateAttributes();
         })
         .catch(error => {
           console.error('Error loading gear data:', error);
@@ -79,6 +81,7 @@
 
   <label for="slotSelect">Select slot:</label>
   <select id="slotSelect" onchange="updateAttributes()">
+    <option value="">-- Select slot --</option>
     <option>Helm</option>
     <option>Shoulders</option>
     <option>Coat</option>
