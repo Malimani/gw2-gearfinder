@@ -28,6 +28,13 @@
       margin-top: 0.5rem;
       max-width: 64px;
       height: auto;
+      vertical-align: middle;
+    }
+    #itemNameDisplay {
+      display: inline-block;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+      font-weight: bold;
     }
     #livePrice {
       margin-top: 0.5rem;
@@ -104,7 +111,10 @@
 
   <label for="itemId">GW2 Item ID</label>
   <input type="text" id="itemId" placeholder="e.g. 92779" oninput="fetchItemData()">
-  <img id="iconPreview" src="" alt="Icon preview" style="display: none;">
+  <div>
+    <img id="iconPreview" src="" alt="Icon preview" style="display: none;">
+    <span id="itemNameDisplay"></span>
+  </div>
 
   <label for="method">Method</label>
   <input type="text" id="method" placeholder="e.g. Crafting">
@@ -130,20 +140,23 @@
     async function fetchItemData() {
       const itemId = document.getElementById('itemId').value.trim();
       const iconImg = document.getElementById('iconPreview');
+      const nameDisplay = document.getElementById('itemNameDisplay');
       if (!itemId) return;
 
       try {
         const res = await fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`);
         const data = await res.json();
         fetchedIcon = data.icon || "";
+        nameDisplay.textContent = data.name || "";
         if (fetchedIcon) {
           iconImg.src = fetchedIcon;
-          iconImg.style.display = 'block';
+          iconImg.style.display = 'inline';
         } else {
           iconImg.style.display = 'none';
         }
       } catch (err) {
         iconImg.style.display = 'none';
+        nameDisplay.textContent = "";
       }
     }
 
