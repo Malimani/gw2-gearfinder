@@ -39,7 +39,7 @@
   </style>
 </head>
 <body>
-  <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.0.1</small></h1>
+  <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.0.2</small></h1>
   <select id="slotSelect">
     <option value="">-- Select Gear Slot --</option>
   </select>
@@ -80,6 +80,13 @@
           attributeMap[attr.id.toString()] = attr.name;
         });
         attributesLoaded = true;
+
+        // If a slot was already selected, trigger the event manually
+        if (slotSelect.value) {
+          const event = new Event('change');
+          slotSelect.dispatchEvent(event);
+        }
+      });
       });
 
     slotSelect.addEventListener("change", function () {
