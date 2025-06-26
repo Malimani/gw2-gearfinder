@@ -90,7 +90,14 @@
         });
       }
 
-      Array.from(attrSet).forEach(id => {
+      // Sort IDs by corresponding attribute names
+      const sortedAttrIds = Array.from(attrSet).sort((a, b) => {
+        const nameA = attributeMap[a] || `Attribute ${a}`;
+        const nameB = attributeMap[b] || `Attribute ${b}`;
+        return nameA.localeCompare(nameB);
+      });
+
+      sortedAttrIds.forEach(id => {
         const option = document.createElement("option");
         option.value = id;
         option.textContent = attributeMap[id] || `Attribute ${id}`;
