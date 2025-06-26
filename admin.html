@@ -179,11 +179,13 @@
       }
 
       const json = {
-        [slot]: {}
+        [slot]: [
+          {
+            ...entry,
+            attributes: allAttributes
+          }
+        ]
       };
-      allAttributes.forEach(attr => {
-        json[slot][attr] = [entry];
-      });
 
       document.getElementById('output').textContent = JSON.stringify(json, null, 2);
     }
