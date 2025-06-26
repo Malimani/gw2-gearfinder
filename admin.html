@@ -57,11 +57,6 @@
   <label for="slot">Slot</label>
   <input type="text" id="slot" placeholder="Autofilled from API" readonly>
 
-  <label for="attribute">Attribute / Effect</label>
-  <select id="attribute">
-    <option value="">-- Loading from API --</option>
-  </select>
-
   <label for="method">Method</label>
   <input type="text" id="method" placeholder="e.g. Crafting">
 
@@ -82,13 +77,14 @@
 
   <script>
     let fetchedIcon = "";
+    let allAttributes = [];
 
     async function fetchItemData() {
       const itemId = document.getElementById('itemId').value.trim();
       const iconImg = document.getElementById('iconPreview');
       const nameDisplay = document.getElementById('itemNameDisplay');
       const slotInput = document.getElementById('slot');
-      const attributeSelect = document.getElementById('attribute');
+      allAttributes = [];
       if (!itemId) return;
 
       try {
@@ -113,20 +109,16 @@
           const statIds = data.details.stat_choices.join(',');
           const statRes = await fetch(`https://api.guildwars2.com/v2/itemstats?ids=${statIds}`);
           const statData = await statRes.json();
-          attributeSelect.innerHTML = '<option value="">-- Select attribute --</option>' +
-            statData.map(s => `<option>${s.name}</option>`).join('');
+          allAttributes = statData.map(s => s.name);
         } else if (data.details?.infix_upgrade?.attributes) {
-          const attributes = data.details.infix_upgrade.attributes.map(a => a.attribute);
-          attributeSelect.innerHTML = '<option value="">-- Select attribute --</option>' +
-            attributes.map(attr => `<option>${attr}</option>`).join('');
-        } else {
-          attributeSelect.innerHTML = '<option value="">-- No attributes found --</option>';
+          allAttributes = data.details.infix_upgrade.attributes.map(a => a.attribute);
         }
+
       } catch (err) {
         iconImg.style.display = 'none';
         nameDisplay.textContent = "";
         slotInput.value = '';
-        attributeSelect.innerHTML = '<option value="">-- Error loading attributes --</option>';
+        allAttributes = [];
       }
     }
 
@@ -163,7 +155,6 @@
 
     function generateJSON() {
       const slot = document.getElementById('slot').value.trim();
-      const attribute = document.getElementById('attribute').value.trim();
       const itemId = document.getElementById('itemId').value.trim();
       const iconUrl = document.getElementById('iconPreview').src;
       const method = document.getElementById('method').value.trim();
@@ -171,8 +162,8 @@
       const cost = document.getElementById('cost').value.trim();
       const link = document.getElementById('link').value.trim();
 
-      if (!slot || !attribute || !itemId || !method) {
-        document.getElementById('output').textContent = 'Slot, attribute, item ID, and method are required.';
+      if (!slot || !itemId || !method) {
+        document.getElementById('output').textContent = 'Slot, item ID, and method are required.';
         return;
       }
 
@@ -188,10 +179,11 @@
       }
 
       const json = {
-        [slot]: {
-          [attribute]: [entry]
-        }
+        [slot]: {}
       };
+      allAttributes.forEach(attr => {
+        json[slot][attr] = [entry];
+      });
 
       document.getElementById('output').textContent = JSON.stringify(json, null, 2);
     }
