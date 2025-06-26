@@ -109,7 +109,7 @@
           const statIds = data.details.stat_choices.join(',');
           const statRes = await fetch(`https://api.guildwars2.com/v2/itemstats?ids=${statIds}`);
           const statData = await statRes.json();
-          allAttributes = statData.map(s => s.name);
+          allAttributes = statData.map(s => s.id.toString());
         } else if (data.details?.infix_upgrade?.attributes) {
           allAttributes = data.details.infix_upgrade.attributes.map(a => a.attribute);
         }
