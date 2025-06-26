@@ -39,7 +39,7 @@
   </style>
 </head>
 <body>
-  <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.0.9</small></h1>
+  <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.0</small></h1>
   <select id="slotSelect">
     <option value="">-- Select Gear Slot --</option>
   </select>
@@ -90,8 +90,7 @@
     slotSelect.addEventListener("change", function () {
       const selectedSlot = this.value;
       attributeSelect.innerHTML = '<option value="">Loading attributes...</option>';
-      attributeSelect.style.display = 'none';
-      attributeSelect.style.display = 'none';
+      attributeSelect.style.display = 'block';
 
       if (!attributesLoaded || !gearData[selectedSlot]) return;
 
