@@ -111,7 +111,9 @@
           const statData = await statRes.json();
           allAttributes = statData.map(s => s.id.toString());
         } else if (data.details?.infix_upgrade?.attributes) {
-          allAttributes = data.details.infix_upgrade.attributes.map(a => a.attribute);
+          if (data.details.infix_upgrade?.id) {
+  allAttributes = [data.details.infix_upgrade.id.toString()];
+}
         }
 
       } catch (err) {
