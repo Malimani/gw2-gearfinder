@@ -51,6 +51,7 @@
 
   <script>
     let gearData;
+    const attributeMap = {};
 
     fetch("gearData.json")
       .then((res) => res.json())
@@ -68,29 +69,47 @@
         console.error("Error loading gear data:", err);
       });
 
+    // Fetch and cache attribute names
+    fetch("https://api.guildwars2.com/v2/attributes?ids=all&lang=en")
+      .then((res) => res.json())
+      .then((attrs) => {
+        attrs.forEach(attr => {
+          attributeMap[attr.id] = attr.name;
+        });
+      });
+
     document.getElementById("slotSelect").addEventListener("change", function () {
       const selectedSlot = this.value;
       const attributeSelect = document.getElementById("attributeSelect");
       attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
+
+      const attrSet = new Set();
       if (gearData[selectedSlot]) {
-        for (const attr in gearData[selectedSlot]) {
-          const option = document.createElement("option");
-          option.value = attr;
-          option.textContent = attr;
-          attributeSelect.appendChild(option);
-        }
+        gearData[selectedSlot].forEach(item => {
+          (item.attributes || []).forEach(attrId => attrSet.add(attrId));
+        });
       }
+
+      Array.from(attrSet).forEach(id => {
+        const option = document.createElement("option");
+        option.value = id;
+        option.textContent = attributeMap[id] || `Attribute ${id}`;
+        attributeSelect.appendChild(option);
+      });
+
       document.getElementById("results").innerHTML = "";
     });
 
     document.getElementById("attributeSelect").addEventListener("change", function () {
       const slot = document.getElementById("slotSelect").value;
-      const attr = this.value;
+      const attrId = this.value;
       const resultsDiv = document.getElementById("results");
       resultsDiv.innerHTML = "";
 
-      if (slot && attr && gearData[slot] && gearData[slot][attr]) {
-        gearData[slot][attr].forEach((entry) => {
+      if (slot && attrId && gearData[slot]) {
+        gearData[slot].forEach((entry) => {
+          if (!entry.attributes || !entry.attributes.includes(attrId)) return;
+
           const div = document.createElement("div");
           div.className = "result";
 
