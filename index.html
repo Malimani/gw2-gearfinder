@@ -39,7 +39,7 @@
   </style>
 </head>
 <body>
-  <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.0</small></h1>
+  <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.1</small></h1>
   <select id="slotSelect">
     <option value="">-- Select Gear Slot --</option>
   </select>
@@ -51,10 +51,49 @@
 
   <script>
     let gearData;
-    const attributeMap = {};
-    let attributesLoaded = false;
-
-    const slotSelect = document.getElementById("slotSelect");
+    const attributeMap = {
+      "153": "Assassin",
+      "154": "Cleric",
+      "155": "Viper",
+      "156": "Rampager",
+      "157": "Celestial",
+      "158": "Trailblazer",
+      "159": "Marauder",
+      "160": "Rabid",
+      "161": "Berserker",
+      "162": "Dire",
+      "559": "Minstrel",
+      "605": "Commander",
+      "616": "Grieving",
+      "628": "Marshal",
+      "686": "Plaguedoctor",
+      "700": "Diviner",
+      "753": "Dragon",
+      "754": "Ritualist",
+      "799": "Seraph",
+      "1026": "Harrier",
+      "1032": "Wanderer",
+      "1067": "Trailblazer",
+      "1224": "Celestial (alt)",
+      "1225": "Grieving (alt)",
+      "1226": "Marshal (alt)",
+      "1227": "Plaguedoctor (alt)",
+      "1228": "Diviner (alt)",
+      "1229": "Ritualist (alt)",
+      "1230": "Harrier (alt)",
+      "1231": "Wanderer (alt)",
+      "1232": "Seraph (alt)",
+      "1377": "Dragon (alt)",
+      "1378": "Vigilant",
+      "1379": "Crusader",
+      "1484": "Mender",
+      "1539": "Marshal (HoT)",
+      "1687": "Celestial (EoD)",
+      "1717": "Ritualist (SoTo)",
+      "1826": "Virtuoso"
+    };
+    let attributesLoaded = true;
+const slotSelect = document.getElementById("slotSelect");
     const attributeSelect = document.getElementById("attributeSelect");
 
     fetch("gearData.json")
@@ -73,12 +112,7 @@
       });
 
     // Fetch and cache attribute names
-    fetch("https://api.guildwars2.com/v2/attributes?ids=all&lang=en")
-      .then((res) => res.json())
-      .then((attrs) => {
-        attrs.forEach(attr => {
-          attributeMap[attr.id.toString()] = attr.name;
-        });
+    
         attributesLoaded = true;
         if (gearData && slotSelect.value) {
           const event = new Event("change");
