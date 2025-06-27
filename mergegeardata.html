@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Merge gearData.json with Overwrite</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f4f4f4;
+    }
+    textarea, pre, button {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 1rem;
+      font-family: monospace;
+    }
+    textarea {
+      height: 200px;
+    }
+    pre {
+      background: #eee;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Extend gearData.json (with overwrite by Item ID)</h1>
+  <p>Paste your existing gearData.json in the first box, and new blocks below. If an item with the same ID already exists, it will be replaced.</p>
+
+  <h3>Existing gearData.json</h3>
+  <textarea id="base" placeholder="Paste full existing gearData.json here..."></textarea>
+
+  <h3>New JSON Blocks</h3>
+  <textarea id="input" placeholder="Paste one or more new JSON blocks here..."></textarea>
+
+  <button onclick="mergeBlocks()">Merge and Overwrite</button>
+  <pre id="output"></pre>
+
+  <script>
+    function mergeBlocks() {
+      const base = document.getElementById('base').value.trim();
+      const input = document.getElementById('input').value.trim();
+      const output = document.getElementById('output');
+
+      try {
+        const baseData = JSON.parse(base);
+
+        const newBlocks = input
+          .split(/(?<=\})\s*(?=\{)/g) // try to split JSON objects
+          .map(b => JSON.parse(b));
+
+        for (const block of newBlocks) {
+          for (const slot in block) {
+            if (!baseData[slot]) baseData[slot] = [];
+
+            const existing = baseData[slot];
+            const updates = block[slot];
+
+            for (const newItem of updates) {
+              const index = existing.findIndex(e => e.name === newItem.name);
+              if (index >= 0) {
+                existing[index] = newItem; // overwrite existing
+              } else {
+                existing.push(newItem); // add new
+              }
+            }
+          }
+        }
+
+        output.textContent = JSON.stringify(baseData, null, 2);
+      } catch (e) {
+        output.textContent = '⚠️ Error merging data: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
