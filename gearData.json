@@ -64,7 +64,7 @@
       "name": "95380",
       "icon": "https://render.guildwars2.com/file/046C2DACF8C064D23BD8374C7895DA2F13AD146F/2449345.png",
       "method": "Achievement",
-      "cost": "",
+      "cost": "None",
       "link": "https://wiki.guildwars2.com/wiki/Prismatic_Champion%27s_Regalia",
       "attributes": [
         "584",
