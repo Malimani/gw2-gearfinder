@@ -39,7 +39,7 @@
   </style>
 </head>
 <body>
-  <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.4</small></h1>
+  <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.5</small></h1>
   <select id="slotSelect">
     <option value="">-- Select Gear Slot --</option>
   </select>
@@ -243,6 +243,8 @@ const slotSelect = document.getElementById("slotSelect");
           option.textContent = slot;
           slotSelect.appendChild(option);
         }
+        attributeSelect.style.display = 'none';
+        attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
       })
       .catch((err) => {
         console.error("Error loading gear data:", err);
@@ -251,8 +253,8 @@ const slotSelect = document.getElementById("slotSelect");
 
     slotSelect.addEventListener("change", function () {
       const selectedSlot = this.value;
-      attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
-      attributeSelect.style.display = 'block';
+      attributeSelect.innerHTML = '';
+      attributeSelect.style.display = 'none';
 
       if (!attributesLoaded || !gearData[selectedSlot]) return;
 
@@ -266,8 +268,8 @@ const slotSelect = document.getElementById("slotSelect");
         const nameB = attributeMap[b] || `Attribute ${b}`;
         return nameA.localeCompare(nameB);
       });
-      });
 
+      attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
       sortedAttrIds.forEach(id => {
         const option = document.createElement("option");
         option.value = id;
@@ -364,4 +366,3 @@ const slotSelect = document.getElementById("slotSelect");
   </script>
 </body>
 </html>
-
