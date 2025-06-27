@@ -261,10 +261,11 @@ const slotSelect = document.getElementById("slotSelect");
         (item.attributes || []).forEach(attrId => attrSet.add(attrId.toString()));
       });
 
-      const sortedAttrIds = Array.from(attrSet).sort((a, b) => {
+      const sortedAttrIds = Array.from(attrSet).filter(id => id !== "1826").sort((a, b) => {
         const nameA = attributeMap[a] || `Attribute ${a}`;
         const nameB = attributeMap[b] || `Attribute ${b}`;
         return nameA.localeCompare(nameB);
+      });
       });
 
       sortedAttrIds.forEach(id => {
@@ -363,3 +364,4 @@ const slotSelect = document.getElementById("slotSelect");
   </script>
 </body>
 </html>
+
