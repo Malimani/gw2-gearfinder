@@ -75,6 +75,7 @@
 
   <script>
     let fetchedIcon = "";
+let fetchedSlot = "";
     let allAttributes = [];
     let currentRarity = "";
     let currentWeight = "";
@@ -83,7 +84,7 @@
       const itemId = document.getElementById('itemId').value.trim();
       const iconImg = document.getElementById('iconPreview');
       const nameDisplay = document.getElementById('itemNameDisplay');
-      const slotInput = document.getElementById('slot');
+      // slotInput removed
       allAttributes = [];
       currentRarity = "";
       currentWeight = "";
@@ -110,9 +111,9 @@
         }
 
         if (data.details && data.details.type) {
-          slotInput.value = data.details.type;
+          fetchedSlot = data.details.type;
         } else {
-          slotInput.value = '';
+          fetchedSlot = '';
         }
 
         if (data.details?.stat_choices) {
@@ -168,7 +169,7 @@
     }
 
     function generateJSON() {
-      const slot = document.getElementById('slot').value.trim();
+      const slot = fetchedSlot;
       const itemId = document.getElementById('itemId').value.trim();
       const iconUrl = document.getElementById('iconPreview').src;
       const method = document.getElementById('method').value.trim();
