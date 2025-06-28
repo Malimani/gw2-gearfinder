@@ -5,7 +5,7 @@
       "icon": "https://render.guildwars2.com/file/3F43DAA7D2171B41B6F216804AC321E0B1B9A3AA/61083.png",
       "rarity": "Exotic",
       "weight_class": "Light",
-      "method": "achievement",
+      "method": "TP",
       "cost": "TP:2387",
       "link": "https://wiki.guildwars2.com/wiki/Zhed%27s_Mask",
       "attributes": [
