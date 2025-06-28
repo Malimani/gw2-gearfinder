@@ -86,7 +86,7 @@
     };
 
     const attributeMap = {
-  "137": "Mighty",
+        "137": "Mighty",
   "138": "Precise",
   "139": "Vital",
   "140": "Resilient",
@@ -443,24 +443,29 @@
 
       if (!attributesLoaded || !gearData[currentSlot]) return;
 
-      const attrSet = new Set();
+      const attrIdToLabel = new Map();
+      const labelToId = new Map();
+
       gearData[currentSlot].forEach(item => {
-        (item.attributes || []).forEach(attrId => attrSet.add(attrId.toString()));
+        (item.attributes || []).forEach(attrId => {
+          const id = attrId.toString();
+          const label = attributeMap[id] || `Attribute ${id}`;
+          if (!labelToId.has(label)) {
+            labelToId.set(label, id);
+          }
+        });
       });
 
-      const sortedAttrIds = Array.from(attrSet).filter(id => id !== "1826").sort((a, b) => {
-        const nameA = attributeMap[a] || `Attribute ${a}`;
-        const nameB = attributeMap[b] || `Attribute ${b}`;
-        return nameA.localeCompare(nameB);
-      });
+      const sortedLabels = Array.from(labelToId.keys()).sort((a, b) => a.localeCompare(b));
 
       attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
-      sortedAttrIds.forEach(id => {
+      sortedLabels.forEach(label => {
         const option = document.createElement("option");
-        option.value = id;
-        option.textContent = attributeMap[id] || `Attribute ${id}`;
+        option.value = labelToId.get(label);
+        option.textContent = label;
         attributeSelect.appendChild(option);
       });
+
       attributeSelect.style.display = 'block';
       filtersDiv.innerHTML = "";
       document.getElementById("results").innerHTML = "";
