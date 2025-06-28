@@ -25,7 +25,7 @@
   </style>
 </head>
 <body>
-  <h1>Extend gearData.json (with overwrite by Item ID)</h1>
+  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.0</small></h1>
   <p>Paste your existing gearData.json in the first box, and new blocks below. If an item with the same ID already exists, it will be replaced.</p>
 
   <h3>Existing gearData.json</h3>
@@ -35,6 +35,8 @@
   <textarea id="input" placeholder="Paste one or more new JSON blocks here..."></textarea>
 
   <button onclick="mergeBlocks()">Merge and Overwrite</button>
+  <button onclick="clearBaseField()">Clear Existing Data</button>
+  <button onclick="copyOutput()">Copy Merged JSON</button>
   <pre id="output"></pre>
 
   <script>
@@ -73,6 +75,18 @@
         output.textContent = '⚠️ Error merging data: ' + e.message;
       }
     }
-  </script>
+  function clearBaseField() {
+  document.getElementById('base').value = '';
+}
+
+function copyOutput() {
+  const output = document.getElementById('output').textContent;
+  if (output.trim() !== '') {
+    navigator.clipboard.writeText(output)
+      .then(() => alert('Merged JSON copied to clipboard!'))
+      .catch(() => alert('Failed to copy.'));
+  }
+}
+</script>
 </body>
 </html>
