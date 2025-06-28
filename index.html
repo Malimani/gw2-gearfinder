@@ -86,7 +86,7 @@
     };
 
     const attributeMap = {
-        "137": "Mighty",
+      "137": "Mighty",
   "138": "Precise",
   "139": "Vital",
   "140": "Resilient",
@@ -344,15 +344,20 @@
     }
 
     let currentSlot = "";
+let currentAttrLabel = "";
     let currentAttr = "";
 
     function renderItems() {
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
-      if (!currentSlot || !currentAttr || !gearData[currentSlot]) return;
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
+  if (!currentSlot || !currentAttrLabel || !gearData[currentSlot]) return;
+
+  const allAttrIds = Object.entries(attributeMap)
+    .filter(([, label]) => label === currentAttrLabel)
+    .map(([id]) => id);
 
       gearData[currentSlot].forEach((entry) => {
-        if (!entry.attributes || !entry.attributes.map(String).includes(currentAttr)) return;
+        if (!entry.attributes || !entry.attributes.some(attr => allAttrIds.includes(String(attr)))) return;
 
         if (filters.rarity.size && !filters.rarity.has(entry.rarity)) return;
         if (filters.weight_class.size && (!entry.weight_class || !filters.weight_class.has(entry.weight_class))) return;
@@ -472,17 +477,22 @@
     });
 
     attributeSelect.addEventListener("change", function () {
-      currentAttr = this.value;
-      filters.rarity.clear();
-      filters.weight_class.clear();
+  const selectedLabel = this.options[this.selectedIndex].textContent;
+  currentAttrLabel = selectedLabel;
+  filters.rarity.clear();
+  filters.weight_class.clear();
 
-      if (currentSlot && currentAttr && gearData[currentSlot]) {
-        const filtered = gearData[currentSlot].filter(item =>
-          item.attributes && item.attributes.map(String).includes(currentAttr)
-        );
-        renderFilters(filtered);
-      }
-      renderItems();
+  if (currentSlot && currentAttrLabel && gearData[currentSlot]) {
+    const allAttrIds = Object.entries(attributeMap)
+      .filter(([, label]) => label === currentAttrLabel)
+      .map(([id]) => id);
+
+    const filtered = gearData[currentSlot].filter(item =>
+      item.attributes && item.attributes.some(attr => allAttrIds.includes(String(attr)))
+    );
+    renderFilters(filtered);
+  }
+  renderItems();
     });
   </script>
 </body>
