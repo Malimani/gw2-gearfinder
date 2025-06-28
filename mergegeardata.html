@@ -47,7 +47,7 @@
         const baseData = JSON.parse(base);
 
         const newBlocks = input
-          .split(/(?<=\})\s*(?=\{)/g) // try to split JSON objects
+          .split(/(?<=\})\s*(?=\{)/g)
           .map(b => JSON.parse(b));
 
         for (const block of newBlocks) {
@@ -60,9 +60,9 @@
             for (const newItem of updates) {
               const index = existing.findIndex(e => e.name === newItem.name);
               if (index >= 0) {
-                existing[index] = newItem; // overwrite existing
+                existing[index] = newItem;
               } else {
-                existing.push(newItem); // add new
+                existing.push(newItem);
               }
             }
           }
