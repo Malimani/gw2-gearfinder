@@ -44,7 +44,7 @@
   </style>
 </head>
 <body>
-  <h1>GW2 Gear Admin Tool <small style="font-size: 0.6em; color: #666;">v1.1</small></h1>
+  <h1>GW2 Gear Admin Tool <small style="font-size: 0.6em; color: #666;">v1.2</small></h1>
   <p>Use this form to generate JSON entries for your <code>gearData.json</code>.</p>
 
   <label for="itemId">GW2 Item ID</label>
@@ -52,12 +52,10 @@
   <div>
     <img id="iconPreview" src="" alt="Icon preview" style="display: none;">
     <span id="itemNameDisplay"></span>
+<span id="itemDetails" style="margin-left: 1rem; color: #666; font-size: 0.9em;"></span>
   </div>
 
-  <label for="slot">Slot</label>
-  <input type="text" id="slot" placeholder="Autofilled from API" readonly>
-
-  <label for="method">Method</label>
+    <label for="method">Method</label>
   <input type="text" id="method" placeholder="e.g. Crafting">
 
   <label for="description">Description (optional)</label>
@@ -102,6 +100,8 @@
         }
 
         nameDisplay.textContent = data.name || "";
+        const itemDetails = document.getElementById('itemDetails');
+        itemDetails.textContent = `${currentRarity}${currentWeight ? ' • ' + currentWeight : ''}`;
         if (fetchedIcon) {
           iconImg.src = fetchedIcon;
           iconImg.style.display = 'inline';
