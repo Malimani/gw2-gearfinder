@@ -78,6 +78,8 @@
   <script>
     let fetchedIcon = "";
     let allAttributes = [];
+    let currentRarity = "";
+    let currentWeight = "";
 
     async function fetchItemData() {
       const itemId = document.getElementById('itemId').value.trim();
@@ -85,12 +87,20 @@
       const nameDisplay = document.getElementById('itemNameDisplay');
       const slotInput = document.getElementById('slot');
       allAttributes = [];
+      currentRarity = "";
+      currentWeight = "";
       if (!itemId) return;
 
       try {
         const res = await fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`);
         const data = await res.json();
+
         fetchedIcon = data.icon || "";
+        currentRarity = data.rarity || "";
+        if (data.details?.weight_class) {
+          currentWeight = data.details.weight_class;
+        }
+
         nameDisplay.textContent = data.name || "";
         if (fetchedIcon) {
           iconImg.src = fetchedIcon;
@@ -112,8 +122,8 @@
           allAttributes = statData.map(s => s.id.toString());
         } else if (data.details?.infix_upgrade?.attributes) {
           if (data.details.infix_upgrade?.id) {
-  allAttributes = [data.details.infix_upgrade.id.toString()];
-}
+            allAttributes = [data.details.infix_upgrade.id.toString()];
+          }
         }
 
       } catch (err) {
@@ -121,6 +131,8 @@
         nameDisplay.textContent = "";
         slotInput.value = '';
         allAttributes = [];
+        currentRarity = "";
+        currentWeight = "";
       }
     }
 
@@ -172,21 +184,22 @@
       const entry = {
         name: itemId,
         icon: iconUrl || undefined,
+        rarity: currentRarity || undefined,
+        weight_class: currentWeight || undefined,
         method: method,
         cost: cost,
-        link: link
+        link: link,
+        attributes: allAttributes
       };
       if (description) {
         entry.description = description;
       }
+      if (!entry.weight_class) {
+        delete entry.weight_class;
+      }
 
       const json = {
-        [slot]: [
-          {
-            ...entry,
-            attributes: allAttributes
-          }
-        ]
+        [slot]: [entry]
       };
 
       document.getElementById('output').textContent = JSON.stringify(json, null, 2);
