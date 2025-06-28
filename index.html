@@ -18,19 +18,10 @@
     header img {
       height: 48px;
     }
-    select, .filter-buttons button {
+    select {
       margin-bottom: 1rem;
       padding: 0.5rem;
       width: 100%;
-    }
-    .filter-buttons {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .filter-buttons button {
-      flex: 1;
     }
     .result {
       background: white;
@@ -59,7 +50,7 @@
 <body>
   <header>
     <img src="assets/logo.png" alt="Logo">
-    <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.7</small></h1>
+    <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.6</small></h1>
   </header>
   <select id="slotSelect">
     <option value="">-- Select Gear Slot --</option>
@@ -68,77 +59,191 @@
     <option value="">-- Select Attribute / Effect --</option>
   </select>
 
-  <div class="filter-buttons" id="filterButtons" style="display: none;"></div>
   <div id="results"></div>
 
   <script>
     let gearData;
-    let currentRarityFilter = null;
-    let currentWeightFilter = null;
     const attributeMap = {
-      "137": "Mighty",
-      "138": "Precise",
-      "139": "Vital",
-      "140": "Resilient",
-      "141": "Lingering",
-      "142": "Strong",
-      "144": "Ravaging",
-      "145": "Rejuvenating",
-      "146": "Vigorous",
-      "147": "Mending",
-      "148": "Stout",
-      "149": "Hearty",
-      "150": "Potent",
-      "151": "Penetrating",
-      "152": "Honed",
-      "153": "Shaman",
-      "1071": "Shaman",
-      "1097": "Shaman",
-      "154": "Rabid",
-      "585": "Rabid",
-      "594": "Rabid",
-      "1042": "Rabid",
-      "155": "Cleric",
-      "656": "Cleric",
-      "661": "Cleric",
-      "1044": "Cleric",
-      "1076": "Cleric",
-      "156": "Magi",
-      "1037": "Magi",
-      "157": "Valkyrie",
-      "1119": "Valkyrie",
-      "158": "Knight",
-      "657": "Knight",
-      "662": "Knight",
-      "1051": "Knight",
-      "159": "Rampager",
-      "658": "Rampager",
-      "663": "Rampager",
-      "1047": "Rampager",
-      "1078": "Rampager",
-      "160": "Carrion",
-      "1038": "Carrion",
-      "1075": "Carrion",
-      "161": "Berserker",
-      "584": "Berserker",
-      "599": "Berserker",
-      "1046": "Berserker",
-      "1077": "Berserker",
-      "162": "Soldier",
-      "586": "Soldier",
-      "601": "Soldier",
-      "1048": "Soldier",
-      "175": "Healing",
-      "176": "Malign",
-      "559": "Celestial",
-      "588": "Celestial",
-      "593": "Celestial",
-      "1052": "Celestial"
-    };
-
-    const slotSelect = document.getElementById("slotSelect");
+  "137": "Mighty",
+  "138": "Precise",
+  "139": "Vital",
+  "140": "Resilient",
+  "141": "Lingering",
+  "142": "Strong",
+  "144": "Ravaging",
+  "145": "Rejuvenating",
+  "146": "Vigorous",
+  "147": "Mending",
+  "148": "Stout",
+  "149": "Hearty",
+  "150": "Potent",
+  "151": "Penetrating",
+  "152": "Honed",
+  "153": "Shaman",
+  "1071": "Shaman",
+  "1097": "Shaman",
+  "154": "Rabid",
+  "585": "Rabid",
+  "594": "Rabid",
+  "1042": "Rabid",
+  "155": "Cleric",
+  "656": "Cleric",
+  "661": "Cleric",
+  "1044": "Cleric",
+  "1076": "Cleric",
+  "156": "Magi",
+  "1037": "Magi",
+  "157": "Valkyrie",
+  "1119": "Valkyrie",
+  "158": "Knight",
+  "657": "Knight",
+  "662": "Knight",
+  "1051": "Knight",
+  "159": "Rampager",
+  "658": "Rampager",
+  "663": "Rampager",
+  "1047": "Rampager",
+  "1078": "Rampager",
+  "160": "Carrion",
+  "1038": "Carrion",
+  "1075": "Carrion",
+  "161": "Berserker",
+  "584": "Berserker",
+  "599": "Berserker",
+  "1046": "Berserker",
+  "1077": "Berserker",
+  "162": "Soldier",
+  "586": "Soldier",
+  "601": "Soldier",
+  "1048": "Soldier",
+  "175": "Healing",
+  "176": "Malign",
+  "559": "Celestial",
+  "588": "Celestial",
+  "593": "Celestial",
+  "1052": "Celestial",
+  "581": "Dire and Rabid",
+  "596": "Dire and Rabid",
+  "583": "Cavalier",
+  "602": "Cavalier",
+  "616": "Cavalier",
+  "1050": "Cavalier",
+  "591": "Berserker and Valkyrie",
+  "600": "Berserker and Valkyrie",
+  "592": "Rabid and Apothecary",
+  "595": "Rabid and Apothecary",
+  "605": "Apothecary",
+  "659": "Apothecary",
+  "664": "Apothecary",
+  "1043": "Apothecary",
+  "627": "Giver",
+  "628": "Giver",
+  "629": "Giver",
+  "630": "Giver",
+  "631": "Giver",
+  "1030": "Giver",
+  "1031": "Giver",
+  "1070": "Giver",
+  "1430": "Giver",
+  "660": "Captain",
+  "665": "Captain",
+  "1041": "Captain",
+  "686": "Sentinel",
+  "1035": "Sentinel",
+  "690": "Settler",
+  "693": "Settler",
+  "700": "Settler",
+  "753": "Assassin",
+  "1040": "Assassin",
+  "1128": "Assassin",
+  "754": "Dire",
+  "756": "Dire",
+  "1073": "Dire",
+  "1114": "Dire",
+  "755": "Hunter",
+  "799": "Zealot",
+  "1163": "Zealot",
+  "1011": "Forsaken",
+  "1012": "Apostate",
+  "1013": "Survivor",
+  "1014": "Deserter",
+  "1015": "Vagabond",
+  "1026": "Nomad",
+  "1063": "Nomad",
+  "1066": "Nomad",
+  "1032": "Bringer",
+  "1436": "Bringer",
+  "1064": "Sinister",
+  "1065": "Sinister",
+  "1067": "Sinister",
+  "1085": "Trailblazer",
+  "1115": "Trailblazer",
+  "1229": "Trailblazer",
+  "1262": "Trailblazer",
+  "1098": "Crusader",
+  "1109": "Crusader",
+  "1232": "Crusader",
+  "1271": "Crusader",
+  "1111": "Marauder",
+  "1145": "Marauder",
+  "1231": "Marauder",
+  "1263": "Marauder",
+  "1118": "Vigilant",
+  "1139": "Vigilant",
+  "1228": "Vigilant",
+  "1264": "Vigilant",
+  "1123": "Minstrel",
+  "1134": "Minstrel",
+  "1226": "Minstrel",
+  "1265": "Minstrel",
+  "1125": "Commander",
+  "1131": "Commander",
+  "1227": "Commander",
+  "1267": "Commander",
+  "1130": "Viper",
+  "1153": "Viper",
+  "1224": "Viper",
+  "1268": "Viper",
+  "1140": "Wanderer",
+  "1162": "Wanderer",
+  "1225": "Wanderer",
+  "1270": "Wanderer",
+  "1220": "Seraph",
+  "1222": "Seraph",
+  "1230": "Seraph",
+  "1269": "Seraph",
+  "1329": "Grieving",
+  "1344": "Grieving",
+  "1366": "Grieving",
+  "1379": "Grieving",
+  "1337": "Marshal",
+  "1364": "Marshal",
+  "1374": "Marshal",
+  "1378": "Marshal",
+  "1345": "Harrier",
+  "1363": "Harrier",
+  "1367": "Harrier",
+  "1377": "Harrier",
+  "1484": "Plaguedoctor",
+  "1486": "Plaguedoctor",
+  "1549": "Plaguedoctor",
+  "1559": "Plaguedoctor",
+  "1538": "Diviner",
+  "1539": "Diviner",
+  "1556": "Diviner",
+  "1566": "Diviner",
+  "1681": "Dragon",
+  "1687": "Dragon",
+  "1691": "Dragon",
+  "1697": "Dragon",
+  "1686": "Ritualist",
+  "1694": "Ritualist",
+  "1706": "Ritualist",
+  "1717": "Ritualist"
+};
+    let attributesLoaded = true;
+const slotSelect = document.getElementById("slotSelect");
     const attributeSelect = document.getElementById("attributeSelect");
-    const filterButtons = document.getElementById("filterButtons");
 
     fetch("gearData.json")
       .then((res) => res.json())
@@ -150,78 +255,53 @@
           option.textContent = slot;
           slotSelect.appendChild(option);
         }
+        attributeSelect.style.display = 'none';
+        attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
       })
-      .catch((err) => console.error("Error loading gear data:", err));
+      .catch((err) => {
+        console.error("Error loading gear data:", err);
+      });
+        
 
-    slotSelect.addEventListener("change", () => {
-      const selectedSlot = slotSelect.value;
-      attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
-      filterButtons.innerHTML = '';
-      filterButtons.style.display = 'none';
+    slotSelect.addEventListener("change", function () {
+      const selectedSlot = this.value;
+      attributeSelect.innerHTML = '';
       attributeSelect.style.display = 'none';
-      currentRarityFilter = null;
-      currentWeightFilter = null;
 
-      if (!gearData[selectedSlot]) return;
+      if (!attributesLoaded || !gearData[selectedSlot]) return;
 
       const attrSet = new Set();
       gearData[selectedSlot].forEach(item => {
         (item.attributes || []).forEach(attrId => attrSet.add(attrId.toString()));
       });
 
-      const sortedAttrIds = Array.from(attrSet).filter(id => id !== "1826" && attributeMap[id]).sort((a, b) => {
-        return attributeMap[a].localeCompare(attributeMap[b]);
+      const sortedAttrIds = Array.from(attrSet).filter(id => id !== "1826").sort((a, b) => {
+        const nameA = attributeMap[a] || `Attribute ${a}`;
+        const nameB = attributeMap[b] || `Attribute ${b}`;
+        return nameA.localeCompare(nameB);
       });
 
+      attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
       sortedAttrIds.forEach(id => {
         const option = document.createElement("option");
         option.value = id;
-        option.textContent = attributeMap[id];
+        option.textContent = attributeMap[id] || `Attribute ${id}`;
         attributeSelect.appendChild(option);
       });
-
       attributeSelect.style.display = 'block';
 
-      // Rarity buttons
-      ['Exotic', 'Ascended', 'Legendary'].forEach(rarity => {
-        const btn = document.createElement("button");
-        btn.textContent = rarity;
-        btn.onclick = () => {
-          currentRarityFilter = (currentRarityFilter === rarity) ? null : rarity;
-          updateResults();
-        };
-        filterButtons.appendChild(btn);
-      });
-
-      // Armor-specific weight class buttons
-      if (["Helm", "Shoulders", "Coat", "Gloves", "Leggings", "Boots"].includes(selectedSlot)) {
-        ['Light', 'Medium', 'Heavy'].forEach(weight => {
-          const btn = document.createElement("button");
-          btn.textContent = weight;
-          btn.onclick = () => {
-            currentWeightFilter = (currentWeightFilter === weight) ? null : weight;
-            updateResults();
-          };
-          filterButtons.appendChild(btn);
-        });
-      }
-
-      filterButtons.style.display = 'flex';
+      document.getElementById("results").innerHTML = "";
     });
 
-    attributeSelect.addEventListener("change", updateResults);
-
-    function updateResults() {
+    attributeSelect.addEventListener("change", function () {
       const slot = slotSelect.value;
-      const attrId = attributeSelect.value;
+      const attrId = this.value;
       const resultsDiv = document.getElementById("results");
       resultsDiv.innerHTML = "";
 
       if (slot && attrId && gearData[slot]) {
         gearData[slot].forEach((entry) => {
           if (!entry.attributes || !entry.attributes.map(String).includes(attrId)) return;
-          if (currentRarityFilter && entry.rarity !== currentRarityFilter) return;
-          if (currentWeightFilter && entry.weight_class !== currentWeightFilter) return;
 
           const div = document.createElement("div");
           div.className = "result";
@@ -238,15 +318,6 @@
           nameSpan.textContent = `Loading item name...`;
           title.appendChild(nameSpan);
 
-          div.appendChild(title);
-
-          const details = document.createElement("p");
-          details.innerHTML = `<strong>Rarity:</strong> ${entry.rarity || 'Unknown'}`;
-          if (entry.weight_class) {
-            details.innerHTML += ` | <strong>Weight:</strong> ${entry.weight_class}`;
-          }
-          div.appendChild(details);
-
           fetch(`https://api.guildwars2.com/v2/items/${entry.name}?lang=en`)
             .then((res) => res.json())
             .then((itemData) => {
@@ -255,6 +326,8 @@
             .catch(() => {
               nameSpan.textContent = `Item ID: ${entry.name}`;
             });
+
+          div.appendChild(title);
 
           const method = document.createElement("p");
           method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
@@ -301,7 +374,7 @@
           }
         });
       }
-    }
+    });
   </script>
 </body>
 </html>
