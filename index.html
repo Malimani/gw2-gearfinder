@@ -20,15 +20,21 @@
       align-items: center;
       gap: 1rem;
       margin-bottom: 2rem;
+      flex-wrap: wrap;
     }
     header img {
       height: 48px;
+    }
+    header h1 {
+      flex: 1;
+      min-width: 200px;
+      max-width: 100%;
     }
     select {
       margin-bottom: 1rem;
       padding: 0.5rem;
       width: 100%;
-      max-width: 400px;
+      max-width: 700px;
     }
     .filters {
       margin-bottom: 1rem;
@@ -74,7 +80,7 @@
   <div class="container">
   <header>
     <img src="assets/logo.png" alt="Logo">
-    <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.6</small></h1>
+    <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.7</small></h1>
   </header>
   <select id="slotSelect">
     <option value="">-- Select Gear Slot --</option>
