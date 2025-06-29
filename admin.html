@@ -110,10 +110,12 @@ let fetchedSlot = "";
           iconImg.style.display = 'none';
         }
 
-        if (data.details && data.details.type) {
-          fetchedSlot = data.details.type;
+       if (data.details?.type) {
+        fetchedSlot = data.details.type;
+        } else if (data.type) {
+        fetchedSlot = data.type;
         } else {
-          fetchedSlot = '';
+        fetchedSlot = '';
         }
 
         if (data.details?.stat_choices) {
