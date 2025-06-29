@@ -294,22 +294,48 @@ let currentAttrLabel = "";
 
       if (!attributesLoaded || !gearData[currentSlot]) return;
 
-      const attrIdToLabel = new Map();
-      const labelToId = new Map();
+      const seenLabels = new Set();
+const validOptions = [];
+const unknownOptions = [];
 
-      gearData[currentSlot].forEach(item => {
-        (item.attributes || []).forEach(attrId => {
-          const id = attrId.toString();
-          const label = attributeMap[id] || `Attribute ${id}`;
-          if (!labelToId.has(label)) {
-            labelToId.set(label, id);
-          }
-        });
-      });
+attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
 
-      const sortedLabels = Array.from(labelToId.keys()).sort((a, b) => a.localeCompare(b));
+const attrIdsInSlot = new Set();
+gearData[currentSlot].forEach(item => {
+  (item.attributes || []).forEach(attrId => attrIdsInSlot.add(attrId.toString()));
+});
 
-      attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
+attrIdsInSlot.forEach(id => {
+  const label = attributeMap[id];
+  const option = document.createElement("option");
+  option.value = id;
+
+  if (label) {
+    if (!seenLabels.has(label)) {
+      seenLabels.add(label);
+      option.textContent = label;
+      validOptions.push(option);
+    }
+  } else {
+    option.textContent = `Attribute ${id}`;
+    option.disabled = true;
+    option.style.color = "#aaa";
+    unknownOptions.push(option);
+  }
+});
+
+[...validOptions.sort((a, b) => a.textContent.localeCompare(b.textContent)), ...unknownOptions.sort((a, b) => a.textContent.localeCompare(b.textContent))]
+  .forEach(option => attributeSelect.appendChild(option));
+
+Object.entries(attributeMap).forEach(([id, label]) => {
+  if (!seenLabels.has(label)) {
+    seenLabels.add(label);
+    const option = document.createElement("option");
+    option.value = id;
+    option.textContent = label;
+    attributeSelect.appendChild(option);
+  }
+});
       sortedLabels.forEach(label => {
         const option = document.createElement("option");
         option.value = labelToId.get(label);
