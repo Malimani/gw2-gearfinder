@@ -324,24 +324,12 @@ attrIdsInSlot.forEach(id => {
   }
 });
 
-[...validOptions.sort((a, b) => a.textContent.localeCompare(b.textContent)), ...unknownOptions.sort((a, b) => a.textContent.localeCompare(b.textContent))]
-  .forEach(option => attributeSelect.appendChild(option));
+[...validOptions.sort((a, b) => a.textContent.localeCompare(b.textContent)),
+ ...unknownOptions.sort((a, b) => a.textContent.localeCompare(b.textContent))]
+.forEach(option => attributeSelect.appendChild(option));
 
-Object.entries(attributeMap).forEach(([id, label]) => {
-  if (!seenLabels.has(label)) {
-    seenLabels.add(label);
-    const option = document.createElement("option");
-    option.value = id;
-    option.textContent = label;
-    attributeSelect.appendChild(option);
-  }
-});
-      sortedLabels.forEach(label => {
-        const option = document.createElement("option");
-        option.value = labelToId.get(label);
-        option.textContent = label;
-        attributeSelect.appendChild(option);
-      });
+
+      
 
       attributeSelect.style.display = 'block';
       filtersDiv.innerHTML = "";
