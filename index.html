@@ -8,6 +8,12 @@
       font-family: sans-serif;
       background: #f0f0f0;
       padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
     }
     header {
       display: flex;
@@ -22,6 +28,7 @@
       margin-bottom: 1rem;
       padding: 0.5rem;
       width: 100%;
+      max-width: 400px;
     }
     .filters {
       margin-bottom: 1rem;
@@ -64,6 +71,7 @@
   </style>
 </head>
 <body>
+  <div class="container">
   <header>
     <img src="assets/logo.png" alt="Logo">
     <h1>GW2 Gear Finder <small style="font-size: 0.6em; color: #666;">v1.1.6</small></h1>
@@ -85,184 +93,16 @@
       weight_class: new Set()
     };
 
-    const attributeMap = {
-      "137": "Mighty",
-  "138": "Precise",
-  "139": "Vital",
-  "140": "Resilient",
-  "141": "Lingering",
-  "142": "Strong",
-  "144": "Ravaging",
-  "145": "Rejuvenating",
-  "146": "Vigorous",
-  "147": "Mending",
-  "148": "Stout",
-  "149": "Hearty",
-  "150": "Potent",
-  "151": "Penetrating",
-  "152": "Honed",
-  "153": "Shaman",
-  "1071": "Shaman",
-  "1097": "Shaman",
-  "154": "Rabid",
-  "585": "Rabid",
-  "594": "Rabid",
-  "1042": "Rabid",
-  "155": "Cleric",
-  "656": "Cleric",
-  "661": "Cleric",
-  "1044": "Cleric",
-  "1076": "Cleric",
-  "156": "Magi",
-  "1037": "Magi",
-  "157": "Valkyrie",
-  "1119": "Valkyrie",
-  "158": "Knight",
-  "657": "Knight",
-  "662": "Knight",
-  "1051": "Knight",
-  "159": "Rampager",
-  "658": "Rampager",
-  "663": "Rampager",
-  "1047": "Rampager",
-  "1078": "Rampager",
-  "160": "Carrion",
-  "1038": "Carrion",
-  "1075": "Carrion",
-  "161": "Berserker",
-  "584": "Berserker",
-  "599": "Berserker",
-  "1046": "Berserker",
-  "1077": "Berserker",
-  "162": "Soldier",
-  "586": "Soldier",
-  "601": "Soldier",
-  "1048": "Soldier",
-  "175": "Healing",
-  "176": "Malign",
-  "559": "Celestial",
-  "588": "Celestial",
-  "593": "Celestial",
-  "1052": "Celestial",
-  "581": "Dire and Rabid",
-  "596": "Dire and Rabid",
-  "583": "Cavalier",
-  "602": "Cavalier",
-  "616": "Cavalier",
-  "1050": "Cavalier",
-  "591": "Berserker and Valkyrie",
-  "600": "Berserker and Valkyrie",
-  "592": "Rabid and Apothecary",
-  "595": "Rabid and Apothecary",
-  "605": "Apothecary",
-  "659": "Apothecary",
-  "664": "Apothecary",
-  "1043": "Apothecary",
-  "627": "Giver",
-  "628": "Giver",
-  "629": "Giver",
-  "630": "Giver",
-  "631": "Giver",
-  "1030": "Giver",
-  "1031": "Giver",
-  "1070": "Giver",
-  "1430": "Giver",
-  "660": "Captain",
-  "665": "Captain",
-  "1041": "Captain",
-  "686": "Sentinel",
-  "1035": "Sentinel",
-  "690": "Settler",
-  "693": "Settler",
-  "700": "Settler",
-  "753": "Assassin",
-  "1040": "Assassin",
-  "1128": "Assassin",
-  "754": "Dire",
-  "756": "Dire",
-  "1073": "Dire",
-  "1114": "Dire",
-  "755": "Hunter",
-  "799": "Zealot",
-  "1163": "Zealot",
-  "1011": "Forsaken",
-  "1012": "Apostate",
-  "1013": "Survivor",
-  "1014": "Deserter",
-  "1015": "Vagabond",
-  "1026": "Nomad",
-  "1063": "Nomad",
-  "1066": "Nomad",
-  "1032": "Bringer",
-  "1436": "Bringer",
-  "1064": "Sinister",
-  "1065": "Sinister",
-  "1067": "Sinister",
-  "1085": "Trailblazer",
-  "1115": "Trailblazer",
-  "1229": "Trailblazer",
-  "1262": "Trailblazer",
-  "1098": "Crusader",
-  "1109": "Crusader",
-  "1232": "Crusader",
-  "1271": "Crusader",
-  "1111": "Marauder",
-  "1145": "Marauder",
-  "1231": "Marauder",
-  "1263": "Marauder",
-  "1118": "Vigilant",
-  "1139": "Vigilant",
-  "1228": "Vigilant",
-  "1264": "Vigilant",
-  "1123": "Minstrel",
-  "1134": "Minstrel",
-  "1226": "Minstrel",
-  "1265": "Minstrel",
-  "1125": "Commander",
-  "1131": "Commander",
-  "1227": "Commander",
-  "1267": "Commander",
-  "1130": "Viper",
-  "1153": "Viper",
-  "1224": "Viper",
-  "1268": "Viper",
-  "1140": "Wanderer",
-  "1162": "Wanderer",
-  "1225": "Wanderer",
-  "1270": "Wanderer",
-  "1220": "Seraph",
-  "1222": "Seraph",
-  "1230": "Seraph",
-  "1269": "Seraph",
-  "1329": "Grieving",
-  "1344": "Grieving",
-  "1366": "Grieving",
-  "1379": "Grieving",
-  "1337": "Marshal",
-  "1364": "Marshal",
-  "1374": "Marshal",
-  "1378": "Marshal",
-  "1345": "Harrier",
-  "1363": "Harrier",
-  "1367": "Harrier",
-  "1377": "Harrier",
-  "1484": "Plaguedoctor",
-  "1486": "Plaguedoctor",
-  "1549": "Plaguedoctor",
-  "1559": "Plaguedoctor",
-  "1538": "Diviner",
-  "1539": "Diviner",
-  "1556": "Diviner",
-  "1566": "Diviner",
-  "1681": "Dragon",
-  "1687": "Dragon",
-  "1691": "Dragon",
-  "1697": "Dragon",
-  "1686": "Ritualist",
-  "1694": "Ritualist",
-  "1706": "Ritualist",
-  "1717": "Ritualist"
-    };
+    let attributeMap = {};
+fetch("attributeMap.json")
+  .then(res => res.json())
+  .then(data => {
+    attributeMap = data;
+    attributesLoaded = true;
+  })
+  .catch(err => {
+    console.error("Error loading attribute map:", err);
+  });
 
     let attributesLoaded = true;
     const slotSelect = document.getElementById("slotSelect");
@@ -495,5 +335,6 @@ let currentAttrLabel = "";
   renderItems();
     });
   </script>
+  </div>
 </body>
 </html>
