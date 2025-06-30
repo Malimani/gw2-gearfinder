@@ -207,7 +207,7 @@
         btn.addEventListener("click", () => {
           if (filters[type].has(label)) filters[type].delete(label);
           else filters[type].add(label);
-          renderItems(filtered);
+          renderItems(items);
           renderFilters(items);
         });
         return btn;
@@ -222,7 +222,7 @@
         resetBtn.addEventListener("click", () => {
           filters.rarity.clear();
           filters.weight_class.clear();
-          renderItems(filtered);
+          renderItems(items);
           renderFilters(items);
         });
         filtersDiv.appendChild(resetBtn);
@@ -351,7 +351,7 @@
           item.attributes && item.attributes.some(attr => attrIds.includes(String(attr)))
         );
         renderFilters(filtered);
-        renderItems(filtered);
+        renderItems(items);
       }
     });
 
