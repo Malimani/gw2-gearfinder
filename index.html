@@ -284,8 +284,14 @@
         }
 
         div.appendChild(title);
-        div.innerHTML += `<p><strong>Method:</strong> ${entry.method}</p>`;
-        if (entry.description) div.innerHTML += `<p><strong>Description:</strong> ${entry.description}</p>`;
+        const method = document.createElement("p");
+        method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
+        div.appendChild(method);
+        if (entry.description) {
+          const desc = document.createElement("p");
+          desc.innerHTML = `<strong>Description:</strong> ${entry.description}`;
+          div.appendChild(desc);
+        }
 
         const cost = document.createElement("p");
         cost.innerHTML = `<strong>Cost:</strong> loading...`;
