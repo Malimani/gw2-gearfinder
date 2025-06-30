@@ -205,11 +205,15 @@
         btn.textContent = label;
         btn.className = filters[type].has(label) ? "active" : "";
         btn.addEventListener("click", () => {
-          if (filters[type].has(label)) filters[type].delete(label);
-          else filters[type].add(label);
-          renderItems(filtered);
-          renderFilters(items);
-        });
+  if (filters[type].has(label)) filters[type].delete(label);
+  else filters[type].add(label);
+  const filteredItems = items.filter(entry =>
+    (!filters.rarity.size || filters.rarity.has(entry.rarity)) &&
+    (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class)))
+  );
+  renderItems(filteredItems);
+  renderFilters(items);
+});
         return btn;
       };
 
@@ -220,11 +224,11 @@
         const resetBtn = document.createElement("button");
         resetBtn.textContent = "Reset Filters";
         resetBtn.addEventListener("click", () => {
-          filters.rarity.clear();
-          filters.weight_class.clear();
-          renderItems(filtered);
-          renderFilters(items);
-        });
+  filters.rarity.clear();
+  filters.weight_class.clear();
+  renderItems(items);
+  renderFilters(items);
+});
         filtersDiv.appendChild(resetBtn);
       }
     }
@@ -351,7 +355,7 @@
           item.attributes && item.attributes.some(attr => attrIds.includes(String(attr)))
         );
         renderFilters(filtered);
-        renderItems(items);
+        renderItems(filtered);
       }
     });
 
