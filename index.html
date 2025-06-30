@@ -231,7 +231,7 @@
 
     function renderItems() {
       resultsDiv.innerHTML = "";
-      if (!currentSlot || !currentAttrLabel || !gearData[currentSlot]) return;
+      if (!currentSlot || !gearData[currentSlot]) return;
 
       const attrIds = Object.entries(attributeMap)
         .filter(([, label]) => label === currentAttrLabel)
