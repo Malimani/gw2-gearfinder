@@ -222,7 +222,7 @@
         resetBtn.addEventListener("click", () => {
           filters.rarity.clear();
           filters.weight_class.clear();
-          renderItems(items);
+          renderItems(filtered);
           renderFilters(items);
         });
         filtersDiv.appendChild(resetBtn);
