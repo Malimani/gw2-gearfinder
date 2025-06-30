@@ -1065,6 +1065,110 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "26152",
+      "icon": "https://render.guildwars2.com/file/ACF64BCDEEA67430B47759CCBC9957D2A31BF705/340677.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:26152",
+      "link": "https://wiki.guildwars2.com/wiki/Usoku%27s_Needle",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100960",
+      "icon": "https://render.guildwars2.com/file/49CC801C4D99D6F9DF16650EF70BF4ADDF3331D0/3122873.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100960",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Dagger",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101973",
+      "icon": "https://render.guildwars2.com/file/3D02A252F97802015146F30B7B7C0B26ECFE07B8/3321772.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101973",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Dagger",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100476",
+      "icon": "https://render.guildwars2.com/file/C79279CFE41ABCAC582096E4AC76E4F84BFFA874/3187664.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100476",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Dagger",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99416",
+      "icon": "https://render.guildwars2.com/file/71F15F6D68033302D631D253C252ECEF5551BBC5/3004924.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103909",
+      "icon": "https://render.guildwars2.com/file/093D6172FA37540E3F3FB23875D50D5650E3CBAA/3442150.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103909",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Dagger",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
     }
   ],
   "Scepter": [
@@ -1124,6 +1228,121 @@
       "method": "Wizard's Vault",
       "cost": "600 Astral_Acclaim",
       "link": "https://wiki.guildwars2.com/wiki/Natural_Wand",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "26395",
+      "icon": "https://render.guildwars2.com/file/D80A221C06B180CC0C117605144B69B902F9A63A/798255.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:26395",
+      "link": "https://wiki.guildwars2.com/wiki/Anura",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "26380",
+      "icon": "https://render.guildwars2.com/file/EB9049EEA0175DC00AC314C109083B940DDF57C5/434508.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:26380",
+      "link": "https://wiki.guildwars2.com/wiki/Hypnotic_Scepter",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100042",
+      "icon": "https://render.guildwars2.com/file/1D5EB7989AD02451FAEF0F4B311D144201543808/3122944.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100042",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Scepter",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101995",
+      "icon": "https://render.guildwars2.com/file/080715EC0FC2A2D7E252CD02B51B76D1ED923C5F/3321828.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101995",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Scepter",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100770",
+      "icon": "https://render.guildwars2.com/file/9C47B977B5DD6812A3B24E5E4DD1AF7E621A6E0A/3187740.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100770",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Scepter",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99469",
+      "icon": "https://render.guildwars2.com/file/192E0C72BD777D7917107FECAEF5E21AB499727D/3004996.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103936",
+      "icon": "https://render.guildwars2.com/file/9F55E4C030983415E29B47A645B2F2C058060429/3442223.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103936",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Scepter",
       "attributes": [
         "161",
         "155",
@@ -1265,6 +1484,110 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "26541",
+      "icon": "https://render.guildwars2.com/file/1BE4CD716FD90AFAB753AA3D427FF792215844A7/434004.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:26541",
+      "link": "https://wiki.guildwars2.com/wiki/Kryta%27s_Embrace",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100088",
+      "icon": "https://render.guildwars2.com/file/C293AA02CB591ADE039EE145F196F01971C7224B/3122954.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100088",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Shield",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101981",
+      "icon": "https://render.guildwars2.com/file/D1800DD9F14AF1B37C96984CBBDDA267EEC6A5E6/3321836.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101981",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Shield",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100281",
+      "icon": "https://render.guildwars2.com/file/10C93464A3B51DEB61902002AB67CD38ADAB68DD/3187750.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100281",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Shield",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99482",
+      "icon": "https://render.guildwars2.com/file/22AE03E970B02418EB71A39F3BCD56C4635EC404/3005006.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103761",
+      "icon": "https://render.guildwars2.com/file/B70DAEB101CD4467F77A764AC573C3337E437FEC/3442233.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103761",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Shield",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
     }
   ],
   "Sword": [
@@ -1324,6 +1647,132 @@
       "method": "Wizard's Vault",
       "cost": "600 Astral_Acclaim",
       "link": "https://wiki.guildwars2.com/wiki/Natural_Blade",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "44960",
+      "icon": "https://render.guildwars2.com/file/D913BFBC01B55DD0D7E44542C4224BE772680EBC/619719.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:44960",
+      "link": "https://wiki.guildwars2.com/wiki/Bonetti%27s_Rapier",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "26234",
+      "icon": "https://render.guildwars2.com/file/9D05BBF52A172CE1E4700BC355613AB8ADF83860/779909.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:26234",
+      "link": "https://wiki.guildwars2.com/wiki/Twin_Sisters",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "44969",
+      "icon": "https://render.guildwars2.com/file/AE24BF41DF9212382DC0A87C374F6976D479E0DC/619753.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:44969",
+      "link": "https://wiki.guildwars2.com/wiki/Lord_Taeres%27s_Shadow",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100756",
+      "icon": "https://render.guildwars2.com/file/7805D726A0275A284ED87899272E3604567906B1/3122984.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100756",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Sword",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "102024",
+      "icon": "https://render.guildwars2.com/file/AC54F609267FB402EB94DC9125BC3703ECD90D52/3321871.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:102024",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Sword",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100551",
+      "icon": "https://render.guildwars2.com/file/FE09E764EF01150B71EDC5003A0838971132AD5B/3187783.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100551",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Sword",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99386",
+      "icon": "https://render.guildwars2.com/file/7927C3B4CECC35ABC0FD6F214BFAA7A4934B0711/3005038.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "104010",
+      "icon": "https://render.guildwars2.com/file/B420A7D546A6FF01002BE548F157FAF2F214136D/3442275.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:104010",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Sword",
       "attributes": [
         "161",
         "155",
@@ -1465,6 +1914,110 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "27328",
+      "icon": "https://render.guildwars2.com/file/F7B7ECFA56A55434245E4D311516A2C7771204B4/780577.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:27328",
+      "link": "https://wiki.guildwars2.com/wiki/Ebonblade",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100493",
+      "icon": "https://render.guildwars2.com/file/0347064693F27AA1572422085D2D1ED3A4DCD772/3122894.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100493",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Greatsword",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101997",
+      "icon": "https://render.guildwars2.com/file/BE45C2E10DE73A5D5BB165A0BBC466EB94929250/3321788.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101997",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Greatsword",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100121",
+      "icon": "https://render.guildwars2.com/file/EB7219AFA563E3DE530C31166122A80602ECF618/3187688.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100121",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Greatsword",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99421",
+      "icon": "https://render.guildwars2.com/file/5F935108A1B143DA9DEBBCD44DCDC9AAB0386A76/3004943.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103806",
+      "icon": "https://render.guildwars2.com/file/7AD572527427E40EFF15671C5A120A802D15DC13/3442172.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103806",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Greatsword",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
     }
   ],
   "Focus": [
@@ -1475,6 +2028,121 @@
       "method": "Wizard's Vault",
       "cost": "600 Astral_Acclaim",
       "link": "https://wiki.guildwars2.com/wiki/Natural_Artifact",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "27020",
+      "icon": "https://render.guildwars2.com/file/A8926FCCDA06D3AB2C4568CDFF2731CCD2D4A5E4/1861988.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:27020",
+      "link": "https://wiki.guildwars2.com/wiki/Adam",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100953",
+      "icon": "https://render.guildwars2.com/file/980508DD1401B7A3054F9B4C2C0F56E50C18A2CE/3122884.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100953",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Focus",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "92745",
+      "icon": "https://render.guildwars2.com/file/5AE652D83942C12CA6F527033531FB012BFBB6DD/2247474.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:92745",
+      "link": "https://wiki.guildwars2.com/wiki/Boneskinner%27s_Totem",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "102039",
+      "icon": "https://render.guildwars2.com/file/4BA62B7501DAB1D658E5F1FB610B08292D18F21F/3321780.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:102039",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Focus",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100868",
+      "icon": "https://render.guildwars2.com/file/E10D4E6126BFBC04BB0804AB15E75C72470DE120/3187677.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100868",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Focus",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99526",
+      "icon": "https://render.guildwars2.com/file/F3971BD0145E6EB1D1FB3CF39C117ADFAD314A05/3004935.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "104050",
+      "icon": "https://render.guildwars2.com/file/A16F056FEE44404E1F77CA0CA90D90DDAC089378/3442161.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:104050",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Focus",
       "attributes": [
         "161",
         "155",
@@ -1567,6 +2235,110 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "27171",
+      "icon": "https://render.guildwars2.com/file/CE4D39C3961B275156A72E2311384411C1052722/780576.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:27171",
+      "link": "https://wiki.guildwars2.com/wiki/Combustion",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100667",
+      "icon": "https://render.guildwars2.com/file/FF1A79A1F60A73ED221B2D425BF6E75A4F9BC6A1/3122999.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100667",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Torch",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "102023",
+      "icon": "https://render.guildwars2.com/file/090F04AE6562040FC37F43E458C09E06E1E73234/3321879.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:102023",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Torch",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100054",
+      "icon": "https://render.guildwars2.com/file/2CF24091FFCD74A3C8D3FA4AA829B05C7F80F7D0/3187794.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100054",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Torch",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99483",
+      "icon": "https://render.guildwars2.com/file/6FECBE3222F2AC65F1AEDDFF5D91160E73A04C7A/3005048.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103965",
+      "icon": "https://render.guildwars2.com/file/2D174598F608FE9DE4300F1694C4D599D9B774BB/3442285.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103965",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Torch",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
     }
   ],
   "Mace": [
@@ -1577,6 +2349,110 @@
       "method": "Wizard's Vault",
       "cost": "600 Astral_Acclaim",
       "link": "https://wiki.guildwars2.com/wiki/Natural_Flanged_Mace",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "25990",
+      "icon": "https://render.guildwars2.com/file/790BD1C755427AEAA1366045373290C7665217C2/534098.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:25990",
+      "link": "https://wiki.guildwars2.com/wiki/Serpentstone",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "99979",
+      "icon": "https://render.guildwars2.com/file/7C79221F311548549559FB729E67B8780CFCB9E3/3122914.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:99979",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Mace",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101994",
+      "icon": "https://render.guildwars2.com/file/D0121270B24B1C95C62A7054155D00651010D901/3321804.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101994",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Mace",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100474",
+      "icon": "https://render.guildwars2.com/file/FC9D0E276AD5B7E9400AB1EC3BC24D9E47B1C809/3187709.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100474",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Mace",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99410",
+      "icon": "https://render.guildwars2.com/file/4472FB9E2E461B35B509D5BADFDE0A5D01ADD7DC/3004965.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103777",
+      "icon": "https://render.guildwars2.com/file/4AD57601C20560B79D5F3E045FEF7FC36AF17B03/3442193.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103777",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Mace",
       "attributes": [
         "161",
         "155",
@@ -1669,6 +2545,110 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "28272",
+      "icon": "https://render.guildwars2.com/file/4847F8E50BA378B265031C9115764160A212FBA0/340704.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:28272",
+      "link": "https://wiki.guildwars2.com/wiki/Eir%27s_Longbow",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100885",
+      "icon": "https://render.guildwars2.com/file/E63DF50ACE542E30C2317DA622CD1808FC915ABE/3122863.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100885",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Longbow",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "102003",
+      "icon": "https://render.guildwars2.com/file/3045759736B8F0DEBE2DA8F2DD20080506C21AEE/3321763.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:102003",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Longbow",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100967",
+      "icon": "https://render.guildwars2.com/file/023C03BE0C08FB02DAE5C7D41C0A4F746E9F5F1C/3187653.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100967",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Longbow",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99542",
+      "icon": "https://render.guildwars2.com/file/A677279CB257789F3F6D0340AC2999D694004D9D/3004910.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "104014",
+      "icon": "https://render.guildwars2.com/file/100004044D3148B3F8CEA9EBC19CC809C6D6EFE6/3442140.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:104014",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Longbow",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
     }
   ],
   "Speargun": [
@@ -1720,6 +2700,17 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "28122",
+      "icon": "https://render.guildwars2.com/file/BE1EBD35734D30120ABF042F0D049702DE0520B5/780587.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:28122",
+      "link": "https://wiki.guildwars2.com/wiki/The_Stingray",
+      "attributes": [
+        "161"
+      ]
     }
   ],
   "Warhorn": [
@@ -1730,6 +2721,110 @@
       "method": "Wizard's Vault",
       "cost": "600 Astral_Acclaim",
       "link": "https://wiki.guildwars2.com/wiki/Natural_Herald",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "26874",
+      "icon": "https://render.guildwars2.com/file/D4E67179F5360252E5161968F6B1389853E290E8/780574.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:26874",
+      "link": "https://wiki.guildwars2.com/wiki/Kodanroar",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100085",
+      "icon": "https://render.guildwars2.com/file/E70132B4B1A13A46587F691AD06A4B695D7A1B69/3123009.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100085",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Warhorn",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101976",
+      "icon": "https://render.guildwars2.com/file/9E5027DAAD0FBF4BBC175A086E55D01FE4C9E566/3321887.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101976",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Warhorn",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100572",
+      "icon": "https://render.guildwars2.com/file/8058BC20B3F6A6702D23ED05087572D004E49747/3187804.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100572",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Warhorn",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99512",
+      "icon": "https://render.guildwars2.com/file/927216F20D54BE7EF76DB976970614FF200F53B7/3005058.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103816",
+      "icon": "https://render.guildwars2.com/file/62C6B39EF80AB3A4C9636F97DB64DBE3C3996226/3442295.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103816",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Warhorn",
       "attributes": [
         "161",
         "155",
@@ -1822,6 +2917,88 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "44976",
+      "icon": "https://render.guildwars2.com/file/D86A5BB60316B1E2A779A103089BC95B023C067F/619789.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:44976",
+      "link": "https://wiki.guildwars2.com/wiki/Impaler",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "28591",
+      "icon": "https://render.guildwars2.com/file/43739471DDD204906503E041D7127F0BF208045E/779870.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:28591",
+      "link": "https://wiki.guildwars2.com/wiki/Rhongomyniad",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101996",
+      "icon": "https://render.guildwars2.com/file/97383C36F1D94EA9C7C9027C6C9416BD362A53CD/3321852.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101996",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Spear",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "103987",
+      "icon": "https://render.guildwars2.com/file/7F2108D17028670F497FCC2C72EFD6256846134E/3442253.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103987",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Spear",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
     }
   ],
   "Rifle": [
@@ -1832,6 +3009,121 @@
       "method": "Wizard's Vault",
       "cost": "600 Astral_Acclaim",
       "link": "https://wiki.guildwars2.com/wiki/Natural_Musket",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "27955",
+      "icon": "https://render.guildwars2.com/file/FD22561DF9C608CCC66B7413C436C41045C5BC95/780583.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:27955",
+      "link": "https://wiki.guildwars2.com/wiki/Charrzooka_(weapon)",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "44974",
+      "icon": "https://render.guildwars2.com/file/4543ACE20693C60C91B041B4D0CE267FB736C297/619778.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:44974",
+      "link": "https://wiki.guildwars2.com/wiki/Exterminator",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100674",
+      "icon": "https://render.guildwars2.com/file/50B2DC5EF6F5CF1D95037C1ECE6C0FFAD19BD1A4/3122934.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100674",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Rifle",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101968",
+      "icon": "https://render.guildwars2.com/file/BBDECB2ED1B4B206BEBB42EDE1BE5C035E21E03A/3321820.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101968",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Rifle",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100428",
+      "icon": "https://render.guildwars2.com/file/354DCA0897C373667020C045093EABA1030F9AE0/3187730.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100428",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Rifle",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99516",
+      "icon": "https://render.guildwars2.com/file/652EE95F12490646287DB394ABF61833FFF64B2A/3004986.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103905",
+      "icon": "https://render.guildwars2.com/file/566E01B53594534DCDF9D4B808B431A834EB36C9/3442213.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103905",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Rifle",
       "attributes": [
         "161",
         "155",
@@ -1924,6 +3216,110 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "25971",
+      "icon": "https://render.guildwars2.com/file/BB3C0E583628B1D8C3C942923AEBEC0F4E5A22ED/534295.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:25971",
+      "link": "https://wiki.guildwars2.com/wiki/Maw_of_the_Damned",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100776",
+      "icon": "https://render.guildwars2.com/file/12969BD853C81408B11B610C5FB336902ED46434/3122850.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100776",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Axe",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "102050",
+      "icon": "https://render.guildwars2.com/file/5A500B54DD91750666D5080FAA0B33371CD2716F/3321755.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:102050",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Axe",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100494",
+      "icon": "https://render.guildwars2.com/file/A394311B3F39EA629646935D23FDCFCE11B9C615/3187643.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100494",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Axe",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "96830",
+      "icon": "https://render.guildwars2.com/file/2F761CA41F75FA411FA452C8720306D8FF9190BE/2596310.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103870",
+      "icon": "https://render.guildwars2.com/file/0D10493D3329753E99329C6AF277D8F5790C03E3/3442130.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103870",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Axe",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
     }
   ],
   "Pistol": [
@@ -1934,6 +3330,110 @@
       "method": "Wizard's Vault",
       "cost": "600 Astral_Acclaim",
       "link": "https://wiki.guildwars2.com/wiki/Natural_Revolver",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "26700",
+      "icon": "https://render.guildwars2.com/file/54F1B16B6909C85161CB317CE13A6104220DB655/534099.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:26700",
+      "link": "https://wiki.guildwars2.com/wiki/Venomstriker",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100615",
+      "icon": "https://render.guildwars2.com/file/35E527BF64C92FB2B35AB6169FC8B20755FE2BB4/3122924.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100615",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Pistol",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101963",
+      "icon": "https://render.guildwars2.com/file/C9F0E84690D5DD0897565D955701529C26001000/3321812.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101963",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Pistol",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100173",
+      "icon": "https://render.guildwars2.com/file/E50BEB34A7D41902FE0DBC6B0572EFBFEDF5DD52/3187720.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100173",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Pistol",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99556",
+      "icon": "https://render.guildwars2.com/file/3ED8B517B7CD9849C9991635215AF809669FE2DC/3004976.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103798",
+      "icon": "https://render.guildwars2.com/file/CCC143FCAC2970D9157E46F4CEA516D737BA58D2/3442203.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103798",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Pistol",
       "attributes": [
         "161",
         "155",
@@ -2026,6 +3526,110 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "27802",
+      "icon": "https://render.guildwars2.com/file/FC0A7010DEC899B7BF0CF2B3E1E24E5A090A0CD9/434664.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:27802",
+      "link": "https://wiki.guildwars2.com/wiki/Eir%27s_Short_Bow",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100156",
+      "icon": "https://render.guildwars2.com/file/0DFCED3C0BD1B163EAF7C3615A480A9AE8DB0933/3122964.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100156",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Short_Bow",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "101962",
+      "icon": "https://render.guildwars2.com/file/5FB6CC0C3D98AEB5F3C3A6DC0F262622F8B2EA50/3321844.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:101962",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Short_Bow",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100092",
+      "icon": "https://render.guildwars2.com/file/6BAA17DF5C3B350BCD31193CB70B0ADFA980474C/3187760.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100092",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Short_Bow",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99537",
+      "icon": "https://render.guildwars2.com/file/F1313DC15AE56FD5363674F2EED8724DF90EA033/3005016.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103837",
+      "icon": "https://render.guildwars2.com/file/0FA8BD73DA51E9AEBEA4CAD0EE4A6640681DEF4D/3442243.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103837",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Short_Bow",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
     }
   ],
   "Staff": [
@@ -2036,6 +3640,110 @@
       "method": "Wizard's Vault",
       "cost": "600 Astral_Acclaim",
       "link": "https://wiki.guildwars2.com/wiki/Natural_Spire",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "27485",
+      "icon": "https://render.guildwars2.com/file/E71D9046C7F9C55299552D19D540E6C359AD9077/68218.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:27485",
+      "link": "https://wiki.guildwars2.com/wiki/Deathwish",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100330",
+      "icon": "https://render.guildwars2.com/file/03955D49CB7CF11F7148477D28D7A43C75A3E914/3122974.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100330",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Staff",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "102014",
+      "icon": "https://render.guildwars2.com/file/F6B83A6EC536E2D001442775F5A774FBF9514C9E/3321862.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:102014",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Staff",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100866",
+      "icon": "https://render.guildwars2.com/file/CA97C7309BE2326FEF10DD07179426A6A17AB8CC/3187772.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100866",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Staff",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99477",
+      "icon": "https://render.guildwars2.com/file/DD0D64217E9FD49C47C6A0762BF0AF67ED140470/3005028.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "104021",
+      "icon": "https://render.guildwars2.com/file/0BC8B4D6CBDA1B45121AC47DFD1813B2E6CAEF71/3442265.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:104021",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Staff",
       "attributes": [
         "161",
         "155",
@@ -2128,6 +3836,17 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "28430",
+      "icon": "https://render.guildwars2.com/file/790BD144AC98471C6B2C260DDD750CB954077B0C/780589.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:28430",
+      "link": "https://wiki.guildwars2.com/wiki/Peasant%27s_Solution",
+      "attributes": [
+        "161"
+      ]
     }
   ],
   "Hammer": [
@@ -2138,6 +3857,110 @@
       "method": "Wizard's Vault",
       "cost": "600 Astral_Acclaim",
       "link": "https://wiki.guildwars2.com/wiki/Natural_Warhammer",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "27644",
+      "icon": "https://render.guildwars2.com/file/2F4509F15B48B1A9F1579D08539F4109972A31A4/65162.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:27644",
+      "link": "https://wiki.guildwars2.com/wiki/Ironfist",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100188",
+      "icon": "https://render.guildwars2.com/file/4C4505B1DCB20763763438E6C5B6D17379F51A20/3122904.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100188",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Shattered_Hammer",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "102011",
+      "icon": "https://render.guildwars2.com/file/523A1F432AD6FFBF071FF524A1197EC85149C5C0/3321796.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:102011",
+      "link": "https://wiki.guildwars2.com/wiki/Berserker%27s_Serpent%27s_Wrath_Hammer",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "100584",
+      "icon": "https://render.guildwars2.com/file/331C7820152753D6F45442B6BBF426A696E71C0C/3187698.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:100584",
+      "link": "https://wiki.guildwars2.com/wiki/Viper%27s_Abomination_Hammer",
+      "attributes": [
+        "1153"
+      ]
+    },
+    {
+      "name": "99540",
+      "icon": "https://render.guildwars2.com/file/FE47652E4D52A1F89AC657F180919D65A24A561F/3004955.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:97435",
+      "link": "https://wiki.guildwars2.com/wiki/Luxon_Hunter%27s_Weapon_Cache",
+      "attributes": [
+        "1686"
+      ]
+    },
+    {
+      "name": "103797",
+      "icon": "https://render.guildwars2.com/file/C6B202C5DB7CFB170B060F09434C0480E45AB85B/3442182.png",
+      "rarity": "Exotic",
+      "method": "TP",
+      "cost": "TP:103797",
+      "link": "https://wiki.guildwars2.com/wiki/Blood_Moon_Hammer",
       "attributes": [
         "161",
         "155",
