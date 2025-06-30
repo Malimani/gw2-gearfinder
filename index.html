@@ -234,10 +234,13 @@
       if (!currentSlot || !gearData[currentSlot]) return;
 
       const attrIds = Object.entries(attributeMap)
-        .filter(([, label]) => label === currentAttrLabel)
+        .filter(([, label]) => label.trim() === currentAttrLabel.trim())
         .map(([id]) => id);
 
       gearData[currentSlot].forEach(entry => {
+        console.log("Checking entry with ID:", entry.name);
+        console.log("Current attribute label:", currentAttrLabel);
+        console.log("Matching attribute IDs:", attrIds);
         if (currentAttrLabel && (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id))))) return;
         if (filters.rarity.size && !filters.rarity.has(entry.rarity)) return;
         if (filters.weight_class.size && (!entry.weight_class || !filters.weight_class.has(entry.weight_class))) return;
