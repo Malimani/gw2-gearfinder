@@ -117,23 +117,27 @@
     let currentSlot = "";
     let currentAttrLabel = "";
 
-    const slotTypeMap = {
-      "Helm": "Armor", "Shoulders": "Armor", "Coat": "Armor", "Gloves": "Armor", "Leggings": "Armor", "Boots": "Armor",
-      "Back": "Trinkets", "Amulet": "Trinkets", "Ring": "Trinkets", "Accessory": "Trinkets",
-      "Sword": "Weapons", "Dagger": "Weapons", "Greatsword": "Weapons", "Axe": "Weapons", "Mace": "Weapons",
-      "Staff": "Weapons", "Pistol": "Weapons", "Rifle": "Weapons", "Scepter": "Weapons", "Focus": "Weapons",
-      "Shield": "Weapons", "Torch": "Weapons", "Warhorn": "Weapons", "Hammer": "Weapons",
-      "Shortbow": "Weapons", "Longbow": "Weapons", "Harpoon Gun": "Weapons", "Trident": "Weapons", "Spear": "Weapons"
-    };
+    let slotTypeMap = {};
+
+    async function loadSlotTypeMap() {
+      try {
+        const res = await fetch("slotTypeMap.json");
+        slotTypeMap = await res.json();
+      } catch (err) {
+        console.error("Error loading slotTypeMap:", err);
+      }
+    }
 
     async function initialize() {
       try {
-        const [attrRes, gearRes] = await Promise.all([
+        const [attrRes, gearRes, slotMapRes] = await Promise.all([
           fetch("attributeMap.json"),
-          fetch("gearData.json")
+          fetch("gearData.json"),
+          fetch("slotTypeMap.json")
         ]);
         attributeMap = await attrRes.json();
         gearData = await gearRes.json();
+        slotTypeMap = await slotMapRes.json();
         buildSlotDropdown();
       } catch (err) {
         console.error("Initialization error:", err);
