@@ -79,155 +79,144 @@
 </head>
 <body>
   <div class="container">
-  <header>
-    <img src="assets/logo.png" alt="Logo">
-    <h1>Good Ways 2 Gear <small style="font-size: 0.6em; color: #666;">v1.1.9</small></h1>
-    <p style="margin-top: -1rem; font-size: 0.9em; color: #444;">
-      Inspired by <a href="https://wiki.guildwars2.com/wiki/User:Tanetris/So_You_Want_To_Gear_a_Character" target="_blank" style="color: #0066cc; text-decoration: underline;">Tanetris's in depth guide: <em>So You Want To Gear a Character</em></a>
-    </p>
-  </header>
-  <select id="slotSelect">
-    <option value="">-- Select Gear Slot --</option>
-  </select>
-  <select id="attributeSelect" style="display: none;">
-    <option value="">-- Select Attribute / Effect --</option>
-  </select>
+    <header>
+      <img src="assets/logo.png" alt="Logo">
+      <h1>Good Ways 2 Gear <small style="font-size: 0.6em; color: #666;">v1.2.0</small></h1>
+      <p style="margin-top: -1rem; font-size: 0.9em; color: #444;">
+        Inspired by <a href="https://wiki.guildwars2.com/wiki/User:Tanetris/So_You_Want_To_Gear_a_Character" target="_blank" style="color: #0066cc; text-decoration: underline;">Tanetris's in depth guide: <em>So You Want To Gear a Character</em></a>
+      </p>
+    </header>
 
-  <div class="filters" id="filters"></div>
-  <div id="results"></div>
+    <select id="slotSelect">
+      <option value="">-- Select Gear Slot --</option>
+    </select>
+    <select id="attributeSelect" style="display: none;"></select>
+    <div class="filters" id="filters"></div>
+    <div id="results"></div>
+
+    <footer style="margin-top: 3rem; font-size: 0.8em; color: #777; text-align: center;">
+      <p>
+        <a href="impressum.html">Impressum</a> |
+        <a href="datenschutz.html">Datenschutz</a> |
+        Fan project – not affiliated with ArenaNet
+      </p>
+    </footer>
+  </div>
 
   <script>
-    let gearData;
-    let filters = {
-      rarity: new Set(),
-      weight_class: new Set()
-    };
-
-    let attributeMap = {};
-fetch("attributeMap.json")
-  .then(res => res.json())
-  .then(data => {
-    attributeMap = data;
-    attributesLoaded = true;
-  })
-  .catch(err => {
-    console.error("Error loading attribute map:", err);
-  });
-
-    let attributesLoaded = true;
     const slotSelect = document.getElementById("slotSelect");
     const attributeSelect = document.getElementById("attributeSelect");
     const filtersDiv = document.getElementById("filters");
+    const resultsDiv = document.getElementById("results");
 
-    fetch("gearData.json")
-  .then((res) => res.json())
-  .then((data) => {
-    gearData = data;
+    let gearData = {};
+    let attributeMap = {};
+    let filters = { rarity: new Set(), weight_class: new Set() };
+    let currentSlot = "";
+    let currentAttrLabel = "";
+
     const slotTypeMap = {
-      "Helm": "Armor",
-      "Shoulders": "Armor",
-      "Coat": "Armor",
-      "Gloves": "Armor",
-      "Leggings": "Armor",
-      "Boots": "Armor",
-      "Back": "Trinkets",
-      "Amulet": "Trinkets",
-      "Ring": "Trinkets",
-      "Accessory": "Trinkets",
-      "Sword": "Weapons",
-      "Dagger": "Weapons",
-      "Greatsword": "Weapons",
-      "Axe": "Weapons",
-      "Mace": "Weapons",
-      "Staff": "Weapons",
-      "Pistol": "Weapons",
-      "Rifle": "Weapons",
-      "Scepter": "Weapons",
-      "Focus": "Weapons",
-      "Shield": "Weapons",
-      "Torch": "Weapons",
-      "Warhorn": "Weapons",
-      "Hammer": "Weapons",
-      "Shortbow": "Weapons",
-      "Longbow": "Weapons",
-      "Harpoon Gun": "Weapons",
-      "Trident": "Weapons",
-      "Spear": "Weapons"
+      "Helm": "Armor", "Shoulders": "Armor", "Coat": "Armor", "Gloves": "Armor", "Leggings": "Armor", "Boots": "Armor",
+      "Back": "Trinkets", "Amulet": "Trinkets", "Ring": "Trinkets", "Accessory": "Trinkets",
+      "Sword": "Weapons", "Dagger": "Weapons", "Greatsword": "Weapons", "Axe": "Weapons", "Mace": "Weapons",
+      "Staff": "Weapons", "Pistol": "Weapons", "Rifle": "Weapons", "Scepter": "Weapons", "Focus": "Weapons",
+      "Shield": "Weapons", "Torch": "Weapons", "Warhorn": "Weapons", "Hammer": "Weapons",
+      "Shortbow": "Weapons", "Longbow": "Weapons", "Harpoon Gun": "Weapons", "Trident": "Weapons", "Spear": "Weapons"
     };
 
-    const groupedSlots = {};
-    for (const slot in data) {
-      const group = slotTypeMap[slot] || "Other";
-      if (!groupedSlots[group]) groupedSlots[group] = [];
-      groupedSlots[group].push(slot);
+    async function initialize() {
+      try {
+        const [attrRes, gearRes] = await Promise.all([
+          fetch("attributeMap.json"),
+          fetch("gearData.json")
+        ]);
+        attributeMap = await attrRes.json();
+        gearData = await gearRes.json();
+        buildSlotDropdown();
+      } catch (err) {
+        console.error("Initialization error:", err);
+      }
     }
 
-    for (const group of Object.keys(groupedSlots).sort()) {
-      const optgroup = document.createElement("optgroup");
-      optgroup.label = group;
-      groupedSlots[group].sort().forEach(slot => {
+    function buildSlotDropdown() {
+      const groupedSlots = {};
+      for (const slot in gearData) {
+        const group = slotTypeMap[slot] || "Other";
+        if (!groupedSlots[group]) groupedSlots[group] = [];
+        groupedSlots[group].push(slot);
+      }
+      for (const group of Object.keys(groupedSlots).sort()) {
+        const optgroup = document.createElement("optgroup");
+        optgroup.label = group;
+        groupedSlots[group].sort().forEach(slot => {
+          const option = document.createElement("option");
+          option.value = slot;
+          option.textContent = slot;
+          optgroup.appendChild(option);
+        });
+        slotSelect.appendChild(optgroup);
+      }
+    }
+
+    function buildAttributeDropdown(slot) {
+      const seenLabels = new Set();
+      const validOptions = [];
+      const unknownOptions = [];
+      attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
+      const attrIds = new Set();
+      gearData[slot].forEach(item => (item.attributes || []).forEach(id => attrIds.add(id.toString())));
+
+      attrIds.forEach(id => {
+        const label = attributeMap[id];
         const option = document.createElement("option");
-        option.value = slot;
-        option.textContent = slot;
-        optgroup.appendChild(option);
+        option.value = id;
+        if (label) {
+          if (!seenLabels.has(label)) {
+            seenLabels.add(label);
+            option.textContent = label;
+            validOptions.push(option);
+          }
+        } else {
+          option.textContent = `Attribute ${id}`;
+          option.disabled = true;
+          option.style.color = "#aaa";
+          unknownOptions.push(option);
+        }
       });
-      slotSelect.appendChild(optgroup);
-    }
 
-    
-    console.error("Error loading gear data:", err);
-  });
-        attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
-      })
-      .catch((err) => {
-        console.error("Error loading gear data:", err);
-      });
+      [...validOptions.sort((a, b) => a.textContent.localeCompare(b.textContent)),
+       ...unknownOptions.sort((a, b) => a.textContent.localeCompare(b.textContent))]
+        .forEach(option => attributeSelect.appendChild(option));
+
+      attributeSelect.style.display = 'block';
+    }
 
     function renderFilters(items) {
       filtersDiv.innerHTML = "";
       const rarities = new Set();
       const weights = new Set();
-
       items.forEach(item => {
         if (item.rarity) rarities.add(item.rarity);
         if (item.weight_class) weights.add(item.weight_class);
       });
 
+      const createButton = (label, type) => {
+        const btn = document.createElement("button");
+        btn.textContent = label;
+        btn.className = filters[type].has(label) ? "active" : "";
+        btn.addEventListener("click", () => {
+          if (filters[type].has(label)) filters[type].delete(label);
+          else filters[type].add(label);
+          renderItems();
+          renderFilters(items);
+        });
+        return btn;
+      };
+
+      rarities.forEach(r => filtersDiv.appendChild(createButton(r, "rarity")));
+      weights.forEach(w => filtersDiv.appendChild(createButton(w, "weight_class")));
+
       if (rarities.size || weights.size) {
-        if (rarities.size) {
-          rarities.forEach(rarity => {
-            const btn = document.createElement("button");
-            btn.textContent = rarity;
-            btn.className = filters.rarity.has(rarity) ? "active" : "";
-            btn.addEventListener("click", () => {
-              if (filters.rarity.has(rarity)) {
-                filters.rarity.delete(rarity);
-              } else {
-                filters.rarity.add(rarity);
-              }
-              renderItems();
-              renderFilters(items);
-            });
-            filtersDiv.appendChild(btn);
-          });
-        }
-        if (weights.size) {
-          weights.forEach(weight => {
-            const btn = document.createElement("button");
-            btn.textContent = weight;
-            btn.className = filters.weight_class.has(weight) ? "active" : "";
-            btn.addEventListener("click", () => {
-              if (filters.weight_class.has(weight)) {
-                filters.weight_class.delete(weight);
-              } else {
-                filters.weight_class.add(weight);
-              }
-              renderItems();
-              renderFilters(items);
-            });
-            filtersDiv.appendChild(btn);
-          });
-        }
         const resetBtn = document.createElement("button");
         resetBtn.textContent = "Reset Filters";
         resetBtn.addEventListener("click", () => {
@@ -240,29 +229,23 @@ fetch("attributeMap.json")
       }
     }
 
-    let currentSlot = "";
-let currentAttrLabel = "";
-    let currentAttr = "";
-
     function renderItems() {
-  const resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = "";
-  if (!currentSlot || !currentAttrLabel || !gearData[currentSlot]) return;
+      resultsDiv.innerHTML = "";
+      if (!currentSlot || !currentAttrLabel || !gearData[currentSlot]) return;
 
-  const allAttrIds = Object.entries(attributeMap)
-    .filter(([, label]) => label === currentAttrLabel)
-    .map(([id]) => id);
+      const attrIds = Object.entries(attributeMap)
+        .filter(([, label]) => label === currentAttrLabel)
+        .map(([id]) => id);
 
-      gearData[currentSlot].forEach((entry) => {
-        if (!entry.attributes || !entry.attributes.some(attr => allAttrIds.includes(String(attr)))) return;
-
+      gearData[currentSlot].forEach(entry => {
+        if (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id)))) return;
         if (filters.rarity.size && !filters.rarity.has(entry.rarity)) return;
         if (filters.weight_class.size && (!entry.weight_class || !filters.weight_class.has(entry.weight_class))) return;
 
         const div = document.createElement("div");
         div.className = "result";
-
         const title = document.createElement("h3");
+
         if (entry.icon) {
           const icon = document.createElement("img");
           icon.src = entry.icon;
@@ -282,25 +265,13 @@ let currentAttrLabel = "";
         title.appendChild(meta);
 
         fetch(`https://api.guildwars2.com/v2/items/${entry.name}?lang=en`)
-          .then((res) => res.json())
-          .then((itemData) => {
-            nameSpan.textContent = itemData.name;
-          })
-          .catch(() => {
-            nameSpan.textContent = `Item ID: ${entry.name}`;
-          });
+          .then(res => res.json())
+          .then(data => nameSpan.textContent = data.name)
+          .catch(() => nameSpan.textContent = `Item ID: ${entry.name}`);
 
         div.appendChild(title);
-
-        const method = document.createElement("p");
-        method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
-        div.appendChild(method);
-
-        if (entry.description) {
-          const desc = document.createElement("p");
-          desc.innerHTML = `<strong>Description:</strong> ${entry.description}`;
-          div.appendChild(desc);
-        }
+        div.innerHTML += `<p><strong>Method:</strong> ${entry.method}</p>`;
+        if (entry.description) div.innerHTML += `<p><strong>Description:</strong> ${entry.description}</p>`;
 
         const cost = document.createElement("p");
         cost.innerHTML = `<strong>Cost:</strong> loading...`;
@@ -318,101 +289,51 @@ let currentAttrLabel = "";
 
         const match = entry.cost.match(/^TP:(\d+)$/);
         if (match) {
-          const itemId = match[1];
-          fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`)
+          fetch(`https://api.guildwars2.com/v2/commerce/prices/${match[1]}`)
             .then(res => res.json())
             .then(data => {
               const copper = data.sells.unit_price % 100;
               const silver = Math.floor((data.sells.unit_price / 100) % 100);
               const gold = Math.floor(data.sells.unit_price / 10000);
-              cost.innerHTML = `<strong>Cost:</strong> ${gold}<img src='assets/gold.png' style='height:1em;'> ` +
-                               `${silver}<img src='assets/silver.png' style='height:1em;'> ` +
-                               `${copper}<img src='assets/copper.png' style='height:1em;'>`;
+              cost.innerHTML = `<strong>Cost:</strong> ${gold}<img src='assets/gold.png' style='height:1em;'> ${silver}<img src='assets/silver.png' style='height:1em;'> ${copper}<img src='assets/copper.png' style='height:1em;'>`;
             })
-            .catch(() => {
-              cost.innerHTML = `<strong>Cost:</strong> (price unavailable)`;
-            });
+            .catch(() => cost.innerHTML = `<strong>Cost:</strong> (price unavailable)`);
         } else {
           cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
         }
       });
     }
 
-    slotSelect.addEventListener("change", function () {
-      currentSlot = this.value;
+    slotSelect.addEventListener("change", () => {
+      currentSlot = slotSelect.value;
+      currentAttrLabel = "";
       attributeSelect.innerHTML = '';
-      attributeSelect.style.display = 'none';
-
-      if (!attributesLoaded || !gearData[currentSlot]) return;
-
-      const seenLabels = new Set();
-const validOptions = [];
-const unknownOptions = [];
-
-attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
-
-const attrIdsInSlot = new Set();
-gearData[currentSlot].forEach(item => {
-  (item.attributes || []).forEach(attrId => attrIdsInSlot.add(attrId.toString()));
-});
-
-attrIdsInSlot.forEach(id => {
-  const label = attributeMap[id];
-  const option = document.createElement("option");
-  option.value = id;
-
-  if (label) {
-    if (!seenLabels.has(label)) {
-      seenLabels.add(label);
-      option.textContent = label;
-      validOptions.push(option);
-    }
-  } else {
-    option.textContent = `Attribute ${id}`;
-    option.disabled = true;
-    option.style.color = "#aaa";
-    unknownOptions.push(option);
-  }
-});
-
-[...validOptions.sort((a, b) => a.textContent.localeCompare(b.textContent)),
- ...unknownOptions.sort((a, b) => a.textContent.localeCompare(b.textContent))]
-.forEach(option => attributeSelect.appendChild(option));
-
-
-      
-
-      attributeSelect.style.display = 'block';
       filtersDiv.innerHTML = "";
-      document.getElementById("results").innerHTML = "";
+      resultsDiv.innerHTML = "";
+
+      if (gearData[currentSlot]) buildAttributeDropdown(currentSlot);
     });
 
-    attributeSelect.addEventListener("change", function () {
-  const selectedLabel = this.options[this.selectedIndex].textContent;
-  currentAttrLabel = selectedLabel;
-  filters.rarity.clear();
-  filters.weight_class.clear();
+    attributeSelect.addEventListener("change", () => {
+      const selectedLabel = attributeSelect.options[attributeSelect.selectedIndex].textContent;
+      currentAttrLabel = selectedLabel;
+      filters.rarity.clear();
+      filters.weight_class.clear();
 
-  if (currentSlot && currentAttrLabel && gearData[currentSlot]) {
-    const allAttrIds = Object.entries(attributeMap)
-      .filter(([, label]) => label === currentAttrLabel)
-      .map(([id]) => id);
+      if (currentSlot && currentAttrLabel && gearData[currentSlot]) {
+        const attrIds = Object.entries(attributeMap)
+          .filter(([, label]) => label === currentAttrLabel)
+          .map(([id]) => id);
 
-    const filtered = gearData[currentSlot].filter(item =>
-      item.attributes && item.attributes.some(attr => allAttrIds.includes(String(attr)))
-    );
-    renderFilters(filtered);
-  }
-  renderItems();
+        const filtered = gearData[currentSlot].filter(item =>
+          item.attributes && item.attributes.some(attr => attrIds.includes(String(attr)))
+        );
+        renderFilters(filtered);
+        renderItems();
+      }
     });
+
+    initialize();
   </script>
-      <footer style="margin-top: 3rem; font-size: 0.8em; color: #777; text-align: center;">
-      <p>
-        <a href="impressum.html">Impressum</a> |
-        <a href="datenschutz.html">Datenschutz</a> |
-        Fan project – not affiliated with ArenaNet
-      </p>
-    </footer>
-  </div>
 </body>
 </html>
