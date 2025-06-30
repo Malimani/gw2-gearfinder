@@ -123,11 +123,56 @@ fetch("attributeMap.json")
       .then((res) => res.json())
       .then((data) => {
         gearData = data;
-        for (const slot in data) {
-          const option = document.createElement("option");
-          option.value = slot;
-          option.textContent = slot;
-          slotSelect.appendChild(option);
+        const slotTypeMap = {
+  "Helm": "Armor",
+  "Shoulders": "Armor",
+  "Coat": "Armor",
+  "Gloves": "Armor",
+  "Leggings": "Armor",
+  "Boots": "Armor",
+  "Back": "Trinkets",
+  "Amulet": "Trinkets",
+  "Ring": "Trinkets",
+  "Accessory": "Trinkets",
+  "Sword": "Weapons",
+  "Dagger": "Weapons",
+  "Greatsword": "Weapons",
+  "Axe": "Weapons",
+  "Mace": "Weapons",
+  "Staff": "Weapons",
+  "Pistol": "Weapons",
+  "Rifle": "Weapons",
+  "Scepter": "Weapons",
+  "Focus": "Weapons",
+  "Shield": "Weapons",
+  "Torch": "Weapons",
+  "Warhorn": "Weapons",
+  "Hammer": "Weapons",
+  "Shortbow": "Weapons",
+  "Longbow": "Weapons",
+  "Harpoon Gun": "Weapons",
+  "Trident": "Weapons",
+  "Spear": "Weapons"
+};
+
+const groupedSlots = {};
+for (const slot in data) {
+  const group = slotTypeMap[slot] || "Other";
+  if (!groupedSlots[group]) groupedSlots[group] = [];
+  groupedSlots[group].push(slot);
+}
+
+for (const group of Object.keys(groupedSlots).sort()) {
+  const optgroup = document.createElement("optgroup");
+  optgroup.label = group;
+  groupedSlots[group].sort().forEach(slot => {
+    const option = document.createElement("option");
+    option.value = slot;
+    option.textContent = slot;
+    optgroup.appendChild(option);
+  });
+  slotSelect.appendChild(optgroup);
+}
         }
         attributeSelect.style.display = 'none';
         attributeSelect.innerHTML = '<option value="">-- Select Attribute / Effect --</option>';
