@@ -207,7 +207,7 @@
         btn.addEventListener("click", () => {
           if (filters[type].has(label)) filters[type].delete(label);
           else filters[type].add(label);
-          renderItems(items);
+          renderItems(filtered);
           renderFilters(items);
         });
         return btn;
