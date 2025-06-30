@@ -105,6 +105,7 @@
 
   <script>
     const itemNameCache = {}; // ✅ Cache für Itemnamen
+    const tpPriceCache = {};  // ✅ Cache für TP-Preise
     const slotSelect = document.getElementById("slotSelect");
     const attributeSelect = document.getElementById("attributeSelect");
     const filtersDiv = document.getElementById("filters");
@@ -318,15 +319,24 @@
 
         const match = entry.cost.match(/^TP:(\d+)$/);
         if (match) {
-          fetch(`https://api.guildwars2.com/v2/commerce/prices/${match[1]}`)
-            .then(res => res.json())
-            .then(data => {
-              const copper = data.sells.unit_price % 100;
-              const silver = Math.floor((data.sells.unit_price / 100) % 100);
-              const gold = Math.floor(data.sells.unit_price / 10000);
-              cost.innerHTML = `<strong>Cost:</strong> ${gold}<img src='assets/gold.png' style='height:1em;'> ${silver}<img src='assets/silver.png' style='height:1em;'> ${copper}<img src='assets/copper.png' style='height:1em;'>`;
-            })
-            .catch(() => cost.innerHTML = `<strong>Cost:</strong> (price unavailable)`);
+          const tpId = match[1];
+          if (tpPriceCache[tpId]) {
+            cost.innerHTML = tpPriceCache[tpId];
+          } else {
+            fetch(`https://api.guildwars2.com/v2/commerce/prices/${tpId}`)
+              .then(res => res.json())
+              .then(data => {
+                const copper = data.sells.unit_price % 100;
+                const silver = Math.floor((data.sells.unit_price / 100) % 100);
+                const gold = Math.floor(data.sells.unit_price / 10000);
+                const priceHTML = `<strong>Cost:</strong> ${gold}<img src='assets/gold.png' style='height:1em;'> ${silver}<img src='assets/silver.png' style='height:1em;'> ${copper}<img src='assets/copper.png' style='height:1em;'>`;
+                tpPriceCache[tpId] = priceHTML;
+                cost.innerHTML = priceHTML;
+              })
+              .catch(() => {
+                cost.innerHTML = `<strong>Cost:</strong> (price unavailable)`;
+              });
+          }
         } else {
           cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
         }
