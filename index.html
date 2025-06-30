@@ -207,7 +207,7 @@
         btn.addEventListener("click", () => {
           if (filters[type].has(label)) filters[type].delete(label);
           else filters[type].add(label);
-          renderItems();
+          renderItems(filtered);
           renderFilters(items);
         });
         return btn;
@@ -222,14 +222,14 @@
         resetBtn.addEventListener("click", () => {
           filters.rarity.clear();
           filters.weight_class.clear();
-          renderItems();
+          renderItems(filtered);
           renderFilters(items);
         });
         filtersDiv.appendChild(resetBtn);
       }
     }
 
-    function renderItems() {
+    function renderItems(items = gearData[currentSlot]) {
       resultsDiv.innerHTML = "";
       if (!currentSlot || !gearData[currentSlot]) return;
 
@@ -237,7 +237,7 @@
         .filter(([, label]) => label.trim() === currentAttrLabel.trim())
         .map(([id]) => id);
 
-      gearData[currentSlot].forEach(entry => {
+      items.forEach(entry => {
         console.log("Checking entry with ID:", entry.name);
         console.log("Current attribute label:", currentAttrLabel);
         console.log("Matching attribute IDs:", attrIds);
@@ -345,7 +345,7 @@
           item.attributes && item.attributes.some(attr => attrIds.includes(String(attr)))
         );
         renderFilters(filtered);
-        renderItems();
+        renderItems(filtered);
       }
     });
 
