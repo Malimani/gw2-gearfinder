@@ -5,10 +5,6 @@
   "Gloves": "Armor",
   "Leggings": "Armor",
   "Boots": "Armor",
-  "Back": "Trinkets",
-  "Amulet": "Trinkets",
-  "Ring": "Trinkets",
-  "Accessory": "Trinkets",
   "Sword": "Weapons",
   "Dagger": "Weapons",
   "Greatsword": "Weapons",
@@ -27,5 +23,9 @@
   "LongBow": "Weapons",
   "Speargun": "Weapons",
   "Trident": "Weapons",
-  "Harpoon": "Weapons"
+  "Harpoon": "Weapons",
+  "Back": "Trinkets",
+  "Amulet": "Trinkets",
+  "Ring": "Trinkets",
+  "Accessory": "Trinkets"
 }
