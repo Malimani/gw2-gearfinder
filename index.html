@@ -238,7 +238,7 @@
         .map(([id]) => id);
 
       gearData[currentSlot].forEach(entry => {
-        if (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id)))) return;
+        if (currentAttrLabel && (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id))))) return;
         if (filters.rarity.size && !filters.rarity.has(entry.rarity)) return;
         if (filters.weight_class.size && (!entry.weight_class || !filters.weight_class.has(entry.weight_class))) return;
 
