@@ -264,10 +264,21 @@
         meta.textContent = `(${entry.rarity}${entry.weight_class ? ", " + entry.weight_class : ""})`;
         title.appendChild(meta);
 
-        fetch(`https://api.guildwars2.com/v2/items/${entry.name}?lang=en`)
+        const itemId = parseInt(entry.name);
+        if (!isNaN(itemId)) {
+          fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
           .then(res => res.json())
-          .then(data => nameSpan.textContent = data.name)
+          .then(data => {
+            if (data && data.name) {
+              nameSpan.textContent = data.name;
+            } else {
+              nameSpan.textContent = `Item ID: ${entry.name}`;
+            }
+          })
           .catch(() => nameSpan.textContent = `Item ID: ${entry.name}`);
+        } else {
+          nameSpan.textContent = entry.name;
+        }
 
         div.appendChild(title);
         div.innerHTML += `<p><strong>Method:</strong> ${entry.method}</p>`;
