@@ -104,6 +104,7 @@
   </div>
 
   <script>
+    const itemNameCache = {}; // ✅ Cache für Itemnamen
     const slotSelect = document.getElementById("slotSelect");
     const attributeSelect = document.getElementById("attributeSelect");
     const filtersDiv = document.getElementById("filters");
@@ -273,16 +274,20 @@
 
         const itemId = parseInt(entry.name);
         if (!isNaN(itemId)) {
-          fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
-          .then(res => res.json())
-          .then(data => {
-            if (data && data.name) {
-              nameSpan.textContent = data.name;
-            } else {
-              nameSpan.textContent = `Item ID: ${entry.name}`;
-            }
-          })
-          .catch(() => nameSpan.textContent = `Item ID: ${entry.name}`);
+          if (itemNameCache[itemId]) {
+            nameSpan.textContent = itemNameCache[itemId];
+          } else {
+            fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
+              .then(res => res.json())
+              .then(data => {
+                const name = data && data.name ? data.name : `Item ID: ${entry.name}`;
+                itemNameCache[itemId] = name;
+                nameSpan.textContent = name;
+              })
+              .catch(() => {
+                nameSpan.textContent = `Item ID: ${entry.name}`;
+              });
+          }
         } else {
           nameSpan.textContent = entry.name;
         }
