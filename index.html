@@ -322,7 +322,10 @@
       filtersDiv.innerHTML = "";
       resultsDiv.innerHTML = "";
 
-      if (gearData[currentSlot]) buildAttributeDropdown(currentSlot);
+      if (gearData[currentSlot]) {
+        buildAttributeDropdown(currentSlot);
+        renderItems();
+      }
     });
 
     attributeSelect.addEventListener("change", () => {
