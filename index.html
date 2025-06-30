@@ -351,7 +351,7 @@
           item.attributes && item.attributes.some(attr => attrIds.includes(String(attr)))
         );
         renderFilters(filtered);
-        renderItems(items);
+        renderItems(filtered);
       }
     });
 
