@@ -319,14 +319,7 @@ function formatCurrency(input) {
       }
       return cost;
     }
-
-console.log("Slot:", currentSlot);
-console.log("Selected attribute label:", currentAttrLabel);
-console.log("Resolved attrIds:", attrIds);
-console.log("Filtered items:", gearData[currentSlot].filter(item =>
-  item.attributes && item.attributes.some(attr => attrIds.includes(String(attr)))
-));
-    
+  
 async function renderItems(items = gearData[currentSlot]) {
   resultsDiv.innerHTML = "";
   if (!currentSlot || !gearData[currentSlot]) return;
@@ -509,7 +502,6 @@ async function renderItems(items = gearData[currentSlot]) {
   }
 }
 
-
     function formatPrice(copper) {
   const c = copper % 100;
   const s = Math.floor((copper / 100) % 100);
@@ -535,9 +527,17 @@ async function renderItems(items = gearData[currentSlot]) {
       filters.rarity.clear();
       filters.weight_class.clear();
 
-      if (currentSlot && currentAttrLabel && gearData[currentSlot]) {
-        renderFilters(gearData[currentSlot]);
-        renderItems();
+     if (currentSlot && currentAttrLabel && gearData[currentSlot]) {
+    const attrIds = Object.entries(attributeMap)
+      .filter(([, label]) => label === currentAttrLabel)
+      .map(([id]) => id);
+
+    console.log("Slot:", currentSlot);
+    console.log("Selected attribute label:", currentAttrLabel);
+    console.log("Resolved attrIds:", attrIds);
+
+    renderFilters(gearData[currentSlot]);
+    renderItems();
       }
     });
 
