@@ -168,7 +168,14 @@
       "rarity": "Ascended",
       "weight_class": "Light",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -218,7 +225,14 @@
       "rarity": "Ascended",
       "weight_class": "Heavy",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -268,7 +282,14 @@
       "rarity": "Ascended",
       "weight_class": "Medium",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -342,7 +363,18 @@
       "rarity": "Exotic",
       "weight_class": "Light",
       "method": "Vendor",
-      "cost": "72s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 7200
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Light_Helm",
       "attributes": [
         "161",
@@ -392,7 +424,18 @@
       "rarity": "Exotic",
       "weight_class": "Medium",
       "method": "Vendor",
-      "cost": "72s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 7200
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Medium_Helm",
       "attributes": [
         "161",
@@ -442,7 +485,18 @@
       "rarity": "Exotic",
       "weight_class": "Heavy",
       "method": "Vendor",
-      "cost": "72s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 7200
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Heavy_Helm",
       "attributes": [
         "161",
@@ -493,7 +547,7 @@
       "icon": "https://render.guildwars2.com/file/046C2DACF8C064D23BD8374C7895DA2F13AD146F/2449345.png",
       "rarity": "Legendary",
       "method": "achievement",
-      "cost": "none",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Prismatic_Champion%27s_Regalia",
       "attributes": [
         "584",
@@ -546,7 +600,18 @@
       "icon": "https://render.guildwars2.com/file/68A33EB8B3F3DD280F31FF0D5290101D02AE12F4/2220513.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "56000 Karma, 375 Eternal Ice Shard",
+      "cost": [
+        [
+          {
+            "currency": "Karma",
+            "amount": 56000
+          },
+          {
+            "currency": "Eternal_Ice_Shard",
+            "amount": 375
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Asgeir%27s_Amulet",
       "attributes": [
         "584",
@@ -599,7 +664,18 @@
       "icon": "https://render.guildwars2.com/file/4D9C6F58C20F052359BA5D1D10B9E4B97ED5F012/66791.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 50 Badge of Honour",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Amulet",
       "attributes": [
         "161",
@@ -648,7 +724,18 @@
       "icon": "https://render.guildwars2.com/file/20561249471D0AE8A4EB5678301248A4BB1F3750/2140411.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "3000 Volatile_Magic, 125 Mistborn_Mote",
+      "cost": [
+        [
+          {
+            "currency": "Volatile_Magic",
+            "amount": 3000
+          },
+          {
+            "currency": "Mistborn_Mote",
+            "amount": 125
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Scion-Spike_Amulet",
       "attributes": [
         "584",
@@ -701,7 +788,34 @@
       "icon": "https://render.guildwars2.com/file/014DB599B81FAF2010BDF25928C178EA96465E73/534251.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "30 Laurel / 20 Laurel, 250 Badge_of_Honour / 150 Magnetite_Shard, 10g",
+      "cost": [
+        [
+          {
+            "currency": "Laurel",
+            "amount": 30
+          }
+        ],
+        [
+          {
+            "currency": "Laurel",
+            "amount": 20
+          },
+          {
+            "currency": "Badge_of_Honour",
+            "amount": 250
+          }
+        ],
+        [
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 150
+          },
+          {
+            "currency": "Coin",
+            "amount": 100000
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Call_of_the_Wild_(Amulet)",
       "attributes": [
         "584"
@@ -714,7 +828,18 @@
       "icon": "https://render.guildwars2.com/file/F6F5C1AAF51EC9D1DA1562D012D4D52347016D4E/2247406.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "56000 Karma, 375 Eternal Ice Shard",
+      "cost": [
+        [
+          {
+            "currency": "Karma",
+            "amount": 56000
+          },
+          {
+            "currency": "Eternal_Ice_Shard",
+            "amount": 375
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Asgeir%27s_Talisman",
       "attributes": [
         "584",
@@ -767,7 +892,18 @@
       "icon": "https://render.guildwars2.com/file/5C4AB920ED4699394F2973A4160B53AA5B9161C2/1601395.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "4000 Unbound_Magic, 300 Fresh_Winterberry",
+      "cost": [
+        [
+          {
+            "currency": "Unbound_Magic",
+            "amount": 4000
+          },
+          {
+            "currency": "Fresh_Winterberry",
+            "amount": 300
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Black_Ice_Earring",
       "attributes": [
         "584",
@@ -820,7 +956,18 @@
       "icon": "https://render.guildwars2.com/file/1B7704D732C72D3FE8ADCFF6131934D76CB6240A/543887.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "4000 Volatile_Magic, 150 Mistborn_Mote",
+      "cost": [
+        [
+          {
+            "currency": "Volatile_Magic",
+            "amount": 4000
+          },
+          {
+            "currency": "Mistborn_Mote",
+            "amount": 150
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Mists-Charged_Treasure",
       "attributes": [
         "584",
@@ -873,7 +1020,38 @@
       "icon": "https://render.guildwars2.com/file/0E4C0C67CA06D97FD9E93C08BC600103D15AAF6A/543880.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "12 Guild_Commendation, 5g / 40 Laurel, 50 Glob_of_Ectoplasm / 200 Magnetite_Shard, 10g",
+      "cost": [
+        [
+          {
+            "currency": "Guild_Commendation",
+            "amount": 12
+          },
+          {
+            "currency": "Coin",
+            "amount": 50000
+          }
+        ],
+        [
+          {
+            "currency": "Laurel",
+            "amount": 40
+          },
+          {
+            "currency": "Glob_of_Ectoplasm",
+            "amount": 50
+          }
+        ],
+        [
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 200
+          },
+          {
+            "currency": "Coin",
+            "amount": 100000
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Althea%27s_Ashes",
       "attributes": [
         "584"
@@ -884,7 +1062,38 @@
       "icon": "https://render.guildwars2.com/file/59943B48509FD07DDD96D1A8674ADCCEEDBF2665/543879.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "12 Guild_Commendation, 5g / 40 Laurel, 50 Glob_of_Ectoplasm / 200 Magnetite_Shard, 10g",
+      "cost": [
+        [
+          {
+            "currency": "Guild_Commendation",
+            "amount": 12
+          },
+          {
+            "currency": "Coin",
+            "amount": 50000
+          }
+        ],
+        [
+          {
+            "currency": "Laurel",
+            "amount": 40
+          },
+          {
+            "currency": "Glob_of_Ectoplasm",
+            "amount": 50
+          }
+        ],
+        [
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 200
+          },
+          {
+            "currency": "Coin",
+            "amount": 100000
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Magister%27s_Field_Journal",
       "attributes": [
         "584"
@@ -895,7 +1104,7 @@
       "icon": "https://render.guildwars2.com/file/3E90092940235D982637AE4B59DB1D73A2AA5577/2594215.png",
       "rarity": "Exotic",
       "method": "Drop",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Mechanist%27s_Trinket",
       "attributes": [
         "161",
@@ -944,7 +1153,7 @@
       "icon": "https://render.guildwars2.com/file/76B1904E733A77C51A45A7B8FFA3CA31D6A6691E/2594231.png",
       "rarity": "Exotic",
       "method": "Drop",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Untamed%27s_Trinket",
       "attributes": [
         "161",
@@ -993,7 +1202,7 @@
       "icon": "https://render.guildwars2.com/file/4E03DD0B2AA6CBE73D4EAF34E63216FA265BECA0/2594235.png",
       "rarity": "Exotic",
       "method": "Drop",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Vindicator%27s_Trinket",
       "attributes": [
         "161",
@@ -1042,7 +1251,7 @@
       "icon": "https://render.guildwars2.com/file/0CA61E9AFF0921A3DE19FAE19EE9D2AEDE3AA34A/2594211.png",
       "rarity": "Exotic",
       "method": "Drop",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Catalyst%27s_Trinket",
       "attributes": [
         "161",
@@ -1091,7 +1300,7 @@
       "icon": "https://render.guildwars2.com/file/085764F360032231B36F15ADFEE0E0190EDC584E/2594239.png",
       "rarity": "Exotic",
       "method": "Drop",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Specter%27s_Trinket",
       "attributes": [
         "161",
@@ -1140,7 +1349,7 @@
       "icon": "https://render.guildwars2.com/file/32C1D96ACF08906CB9FDCCC1C81410A104423B6B/2594223.png",
       "rarity": "Exotic",
       "method": "Drop",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Virtuoso%27s_Trinket",
       "attributes": [
         "161",
@@ -1189,7 +1398,7 @@
       "icon": "https://render.guildwars2.com/file/1B522F3C00FD7D7B41BA3D030D9FB1287ED70CAE/2594219.png",
       "rarity": "Exotic",
       "method": "Drop",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Willbender%27s_Trinket",
       "attributes": [
         "161",
@@ -1238,7 +1447,7 @@
       "icon": "https://render.guildwars2.com/file/9E784C900EB2C8AE5D4573D406CA1C0FA6684BAD/2594227.png",
       "rarity": "Exotic",
       "method": "Drop",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Harbinger%27s_Trinket",
       "attributes": [
         "161",
@@ -1287,7 +1496,14 @@
       "icon": "https://render.guildwars2.com/file/CDDF73900103A210E601307076EF0D14F6BCC829/2594243.png",
       "rarity": "Exotic",
       "method": "Drop",
-      "cost": "396 Research_Note",
+      "cost": [
+        [
+          {
+            "currency": "Research_Note",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Bladesworn%27s_Trinket",
       "attributes": [
         "161",
@@ -1336,7 +1552,18 @@
       "icon": "https://render.guildwars2.com/file/F4486E0A6651C27F5D720CFF30D8A9CA33A855C7/66808.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "80s, 45 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 45
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Accessory",
       "attributes": [
         "161",
@@ -1387,7 +1614,18 @@
       "icon": "https://render.guildwars2.com/file/A03B0B4F1E155707082C726A180A65F8C1E371E2/1601410.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "5000 Unbound_Magic, 400 Fresh_Winterberry",
+      "cost": [
+        [
+          {
+            "currency": "Unbound_Magic",
+            "amount": 5000
+          },
+          {
+            "currency": "Fresh_Winterberry",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Icebrood_Horn_Backpack",
       "attributes": [
         "584",
@@ -1441,7 +1679,22 @@
       "rarity": "Ascended",
       "weight_class": "Medium",
       "method": "Mystic Forge",
-      "cost": "1 Vial_of_Condensed_Mists_Essence, 240_Philosopher's_Stone, 50 Glob_of_Ectoplasm, 250 Vicious_Claw",
+      "cost": [
+        [
+          {
+            "currency": "Vial_of_Condensed_Mists_Essence",
+            "amount": 1
+          },
+          {
+            "currency": "Glob_of_Ectoplasm",
+            "amount": 50
+          },
+          {
+            "currency": "Vicious_Claw",
+            "amount": 250
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Quiver_of_a_Thousand_Arrows",
       "attributes": [
         "584",
@@ -1494,7 +1747,26 @@
       "icon": "https://render.guildwars2.com/file/EF6661AF5FEDDA022D2DBD9F18E41DDDFF1AD202/1202359.png",
       "rarity": "Ascended",
       "method": "Crafting",
-      "cost": "1 Solution:_Finite_Result, 1 Pristine_Mist_Essence, 1 Finite_Wings, 1 First_Order_Mist_Frame",
+      "cost": [
+        [
+          {
+            "currency": "Solution:_Finite_Result",
+            "amount": 1
+          },
+          {
+            "currency": "Pristine_Mist_Essence",
+            "amount": 1
+          },
+          {
+            "currency": "Finite_Wings",
+            "amount": 1
+          },
+          {
+            "currency": "First_Order_Mist_Frame",
+            "amount": 1
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Finite_Result",
       "attributes": [
         "584",
@@ -1547,7 +1819,26 @@
       "icon": "https://render.guildwars2.com/file/C85CAF09039309D9612314534B56623F365278FA/1313064.png",
       "rarity": "Ascended",
       "method": "Mystic Forge",
-      "cost": "1 Recruit's_Wings_of_Glory, 1 Veteran's_Wings_of Glory, 1 Champion's_Wings_of_Glory, 1 Elite's_Wings_of_Glory",
+      "cost": [
+        [
+          {
+            "currency": "Recruit's_Wings_of_Glory",
+            "amount": 1
+          },
+          {
+            "currency": "Veteran's_Wings_of_Glory",
+            "amount": 1
+          },
+          {
+            "currency": "Champion's_Wings_of_Glory",
+            "amount": 1
+          },
+          {
+            "currency": "Elite's_Wings_of_Glory",
+            "amount": 1
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wings_of_Ascension",
       "attributes": [
         "584",
@@ -1600,7 +1891,26 @@
       "icon": "https://render.guildwars2.com/file/73E4EF2CBF9578A528311B01D8D4302FF8CF1DF7/1701095.png",
       "rarity": "Ascended",
       "method": "Mystic Forge",
-      "cost": "1 Recruit's_Wings_of_War, 1 Soldier's_Wings_of_War, 1 General's_Wings_of_War, 1 Commander's_Wings_of_War",
+      "cost": [
+        [
+          {
+            "currency": "Recruit's_Wings_of_War",
+            "amount": 1
+          },
+          {
+            "currency": "Soldier's_Wings_of_War",
+            "amount": 1
+          },
+          {
+            "currency": "General's_Wings_of_War",
+            "amount": 1
+          },
+          {
+            "currency": "Commander's_Wings_of_War",
+            "amount": 1
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Warcry",
       "attributes": [
         "584",
@@ -1653,7 +1963,18 @@
       "icon": "https://render.guildwars2.com/file/03B65C435B15EB2C10E04F3454B03718AAF3AE90/61004.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "60s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 6000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Strong_Back_Brace",
       "attributes": [
         "161",
@@ -1704,7 +2025,18 @@
       "icon": "https://render.guildwars2.com/file/ABA374A30ADC99376BBAF811CFDF0E72E1B36050/1601394.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "2000 Unbound_Magic, 200 Fresh_Winterberry",
+      "cost": [
+        [
+          {
+            "currency": "Unbound_Magic",
+            "amount": 2000
+          },
+          {
+            "currency": "Fresh_Winterberry",
+            "amount": 200
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Black_Ice_Band",
       "attributes": [
         "584",
@@ -1757,7 +2089,18 @@
       "icon": "https://render.guildwars2.com/file/1A55C204E901D644FE3397EB16A6371DCED71FF1/543888.png",
       "rarity": "Ascended",
       "method": "Vendor",
-      "cost": "2000 Volatile_Magic, 100 Mistborn_Mote",
+      "cost": [
+        [
+          {
+            "currency": "Volatile_Magic",
+            "amount": 2000
+          },
+          {
+            "currency": "Mistborn_Mote",
+            "amount": 100
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Mistborn_Band",
       "attributes": [
         "584",
@@ -1810,7 +2153,40 @@
       "icon": "https://render.guildwars2.com/file/3B1CC13C0A3747B4A00277113E6ACD64D522B1D1/511816.png",
       "rarity": "Ascended",
       "method": "Vendor, Drops",
-      "cost": "35 Laurel / 25 Laurel, 250 Badge_of_Honour / 10g, 175 Magnetide_Shard / 10 Pristine_Fractal_Relic",
+      "cost": [
+        [
+          {
+            "currency": "Laurel",
+            "amount": 35
+          }
+        ],
+        [
+          {
+            "currency": "Laurel",
+            "amount": 25
+          },
+          {
+            "currency": "Badge_of_Honour",
+            "amount": 250
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Magnetide_Shard",
+            "amount": 175
+          }
+        ],
+        [
+          {
+            "currency": "Pristine_Fractal_Relic",
+            "amount": 10
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Crystalline_Band",
       "attributes": [
         "584"
@@ -1822,7 +2198,40 @@
       "icon": "https://render.guildwars2.com/file/B155B37AD048CA9054F749043C3E4E99973DF8DF/511826.png",
       "rarity": "Ascended",
       "method": "Vendor, Drops",
-      "cost": "35 Laurel / 25 Laurel, 250 Badge_of_Honour / 10g, 175 Magnetide_Shard / 10 Pristine_Fractal_Relic",
+      "cost": [
+        [
+          {
+            "currency": "Laurel",
+            "amount": 35
+          }
+        ],
+        [
+          {
+            "currency": "Laurel",
+            "amount": 25
+          },
+          {
+            "currency": "Badge_of_Honour",
+            "amount": 250
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Magnetide_Shard",
+            "amount": 175
+          }
+        ],
+        [
+          {
+            "currency": "Pristine_Fractal_Relic",
+            "amount": 10
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Ring_of_Red_Death",
       "attributes": [
         "584"
@@ -1834,7 +2243,14 @@
       "icon": "https://render.guildwars2.com/file/089272F992DB68220903A79F80FC09D15096F95D/2594232.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "396 Research_Notes",
+      "cost": [
+        [
+          {
+            "currency": "Research_Notes",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Untamed%27s_Ring",
       "attributes": [
         "161",
@@ -1883,7 +2299,14 @@
       "icon": "https://render.guildwars2.com/file/765223034E14F057057DDB03AE940E4CCEAA4E35/2594236.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "396 Research_Note",
+      "cost": [
+        [
+          {
+            "currency": "Research_Note",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Vindicator%27s_Ring",
       "attributes": [
         "161",
@@ -1932,7 +2355,14 @@
       "icon": "https://render.guildwars2.com/file/BF74BF9D0378A5334DE8FB9FF513A3DD3B7937CB/2594212.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "396 Research_Note",
+      "cost": [
+        [
+          {
+            "currency": "Research_Note",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Catalyst%27s_Ring",
       "attributes": [
         "161",
@@ -1981,7 +2411,14 @@
       "icon": "https://render.guildwars2.com/file/32272D2D44D4A023D9D6BFC40CA1AEF3535D09F8/2594216.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "396 Research_Note",
+      "cost": [
+        [
+          {
+            "currency": "Research_Note",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Mechanist%27s_Ring",
       "attributes": [
         "161",
@@ -2030,7 +2467,14 @@
       "icon": "https://render.guildwars2.com/file/1EDAA8FB3336F628FE806306B3F99DFC953B7B7E/2594240.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "396 Research_Note",
+      "cost": [
+        [
+          {
+            "currency": "Research_Note",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Specter%27s_Ring",
       "attributes": [
         "161",
@@ -2079,7 +2523,14 @@
       "icon": "https://render.guildwars2.com/file/4E3BB6AFD6407922DF05CE910DD2ACED38261E2D/2594224.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "396 Research_Note",
+      "cost": [
+        [
+          {
+            "currency": "Research_Note",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Virtuoso%27s_Ring",
       "attributes": [
         "161",
@@ -2128,7 +2579,14 @@
       "icon": "https://render.guildwars2.com/file/E44A42E629C102204BA2AEB1161946B70AB52FDF/2594220.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "396 Research_Note",
+      "cost": [
+        [
+          {
+            "currency": "Research_Note",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Willbender%27s_Ring",
       "attributes": [
         "161",
@@ -2177,7 +2635,14 @@
       "icon": "https://render.guildwars2.com/file/EB38CDE417974C120B7E666B1A46CF7E037B1CE9/2594228.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "396 Research_Note",
+      "cost": [
+        [
+          {
+            "currency": "Research_Note",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Harbinger%27s_Ring",
       "attributes": [
         "161",
@@ -2226,7 +2691,14 @@
       "icon": "https://render.guildwars2.com/file/7EEE4D51294ACB6553C0715A920B7C2C3EFA75EF/2594244.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "396 Research_Note",
+      "cost": [
+        [
+          {
+            "currency": "Research_Note",
+            "amount": 396
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Bladesworn%27s_Ring",
       "attributes": [
         "161",
@@ -2275,7 +2747,18 @@
       "icon": "https://render.guildwars2.com/file/0A402568104F5BE5BC644665653302005F6266CF/66800.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "80s, 45 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 45
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Ring",
       "attributes": [
         "161",
@@ -2326,7 +2809,7 @@
       "icon": "https://render.guildwars2.com/file/C03706E12A6703F307A14DB4B3CA09E0C4CB1CD4/1653649.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Caladbolg_Solana",
       "attributes": [
         "161",
@@ -2375,7 +2858,14 @@
       "icon": "https://render.guildwars2.com/file/93EEC907DF91C0915F48D95F35749934FB9025EB/632192.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Razor",
       "attributes": [
         "161",
@@ -2528,7 +3018,7 @@
       "icon": "https://render.guildwars2.com/file/CDC75B532255C7B8B0ADB36858F9C31E0443314B/1766537.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Fang_of_Mok%C3%A8l%C3%A9",
       "attributes": [
         "1364",
@@ -2541,7 +3031,7 @@
       "icon": "https://render.guildwars2.com/file/ABA8DB49C342BDF3947FD16977ED167C15CF7B18/1766559.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Silence_of_a_Thousand_Years",
       "attributes": [
         "753",
@@ -2554,7 +3044,7 @@
       "icon": "https://render.guildwars2.com/file/540BF70C975D742405053A1715022937D16A7195/2595994.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Prima_Donna",
       "attributes": [
         "1717",
@@ -2567,7 +3057,18 @@
       "icon": "https://render.guildwars2.com/file/4C630DEC23FB5D92D60F00F4330B6891FDD5C858/66724.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Dagger",
       "attributes": [
         "161",
@@ -2618,7 +3119,7 @@
       "icon": "https://render.guildwars2.com/file/E2B37D591A73CDD1A9DD7503006BC5012219100C/1653677.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Caladbolg_Iridi",
       "attributes": [
         "161",
@@ -2667,7 +3168,14 @@
       "icon": "https://render.guildwars2.com/file/7C479668765F5DB60924FC474C72DD2DB1A7562E/632242.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Wand",
       "attributes": [
         "161",
@@ -2831,7 +3339,7 @@
       "icon": "https://render.guildwars2.com/file/09FD1D4453613757B09A724703FD58694E4AB0E8/2596052.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Possession",
       "attributes": [
         "1717",
@@ -2844,7 +3352,18 @@
       "icon": "https://render.guildwars2.com/file/F6DAAD0C2CA7B7AB3EBAB419EA03CA123CDD57F9/66740.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Scepter",
       "attributes": [
         "161",
@@ -2895,7 +3414,7 @@
       "icon": "https://render.guildwars2.com/file/2C61F1E9F9E5415EE7ECB0ACE3BC3B572364716A/1653679.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Caladbolg_Astera",
       "attributes": [
         "161",
@@ -2944,7 +3463,14 @@
       "icon": "https://render.guildwars2.com/file/7C38933F59A258573408BB6CE8B5062BDEC43C75/632248.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Bastion",
       "attributes": [
         "161",
@@ -3097,7 +3623,18 @@
       "icon": "https://render.guildwars2.com/file/ED77E5309C046F0E4C2CBDDC064AE5CAE01B7D79/66741.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "80s, 40 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 40
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Shield",
       "attributes": [
         "161",
@@ -3148,7 +3685,7 @@
       "icon": "https://render.guildwars2.com/file/CE6C1E0B28D30F7C7A184B4E050CD870D72E04A6/1653681.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Caladbolg_Rosa",
       "attributes": [
         "161",
@@ -3197,7 +3734,14 @@
       "icon": "https://render.guildwars2.com/file/947B56CA047800BADA9994AF5800CFA0E726AD74/632270.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Blade",
       "attributes": [
         "161",
@@ -3372,7 +3916,7 @@
       "icon": "https://render.guildwars2.com/file/30340933E8D155DC630509F6A6464703E9B60B05/1767423.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/The_Cutting_Edge",
       "attributes": [
         "161",
@@ -3385,7 +3929,7 @@
       "icon": "https://render.guildwars2.com/file/A70AD0D8B15F07BFDEC1B6E209606D019C0C2B3B/1767411.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Warpblade",
       "attributes": [
         "1344",
@@ -3398,7 +3942,7 @@
       "icon": "https://render.guildwars2.com/file/977E95F247CC0C63E3F0D3B8ACD1D10B0831E8B7/2595982.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Purifier",
       "attributes": [
         "1717",
@@ -3411,7 +3955,18 @@
       "icon": "https://render.guildwars2.com/file/F5250BCB0AA66105730CAA97E21FD62E9E1F1DB4/66744.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Sword",
       "attributes": [
         "161",
@@ -3462,7 +4017,7 @@
       "icon": "https://render.guildwars2.com/file/04052512C8726E51F10A92274702CDF4341BB4E3/1653657.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Caladbolg_Orchida",
       "attributes": [
         "161",
@@ -3511,7 +4066,14 @@
       "icon": "https://render.guildwars2.com/file/0B953AC7C922D32B9A4E7336ABF230E419F14FD0/632204.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Claymore",
       "attributes": [
         "161",
@@ -3664,7 +4226,7 @@
       "icon": "https://render.guildwars2.com/file/430FC642B5B85B15F224105CAFBCDE3AAFFF7745/2596030.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Dichotomy",
       "attributes": [
         "1687",
@@ -3677,7 +4239,18 @@
       "icon": "https://render.guildwars2.com/file/F420E407B7FE087204E10619B140E440FF3FEDF7/63052.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "1g, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 10000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Greatsword",
       "attributes": [
         "161",
@@ -3728,7 +4301,14 @@
       "icon": "https://render.guildwars2.com/file/AEA6BF97AA7C9200F5E4B50063C357C5290B1507/632198.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Artifact",
       "attributes": [
         "161",
@@ -3892,7 +4472,18 @@
       "icon": "https://render.guildwars2.com/file/920324A8CC464AC205D62208E75C70CF7FE6A492/63483.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "80s, 40 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 40
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Focus",
       "attributes": [
         "161",
@@ -3943,7 +4534,14 @@
       "icon": "https://render.guildwars2.com/file/FB7FE0C2E94BFBE07FD4364B091302C721170697/632276.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Brazier",
       "attributes": [
         "161",
@@ -4096,7 +4694,7 @@
       "icon": "https://render.guildwars2.com/file/41BC3EABC6F8B01C9D4FCF1DE7F6DF7E4FEE076B/1767498.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Guide_for_the_Lost",
       "attributes": [
         "160",
@@ -4109,7 +4707,18 @@
       "icon": "https://render.guildwars2.com/file/0DBB98F2690B1A744E49CAD4E5BE940D661299B1/63131.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "80s, 40 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 40
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Torch",
       "attributes": [
         "161",
@@ -4160,7 +4769,14 @@
       "icon": "https://render.guildwars2.com/file/0FA30AC0DF69C20352464B412DAC1C06435CC867/632228.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Flanged_Mace",
       "attributes": [
         "161",
@@ -4313,7 +4929,7 @@
       "icon": "https://render.guildwars2.com/file/55EEEBC7B04919E9920B54C56934AEF67C5429B3/2595964.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Percussive_Maintenance",
       "attributes": [
         "1681",
@@ -4326,7 +4942,18 @@
       "icon": "https://render.guildwars2.com/file/0A4FEE0807022155A961E23AD31BC3CFD62D5674/66737.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Mace",
       "attributes": [
         "161",
@@ -4377,7 +5004,14 @@
       "icon": "https://render.guildwars2.com/file/A3BF62E595D692E613C904DD345E653C06265EE5/632222.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Greatbow",
       "attributes": [
         "161",
@@ -4530,7 +5164,18 @@
       "icon": "https://render.guildwars2.com/file/2060A7375FF7047DEBA8B937E905B541910A71BD/66736.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "1g, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 10000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Longbow",
       "attributes": [
         "161",
@@ -4581,7 +5226,14 @@
       "icon": "https://render.guildwars2.com/file/E263E15A5A081B5E4F0D3A1AD6A0D8B39A3D5C7E/632260.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Harpoon_Gun",
       "attributes": [
         "161",
@@ -4641,7 +5293,18 @@
       "icon": "https://render.guildwars2.com/file/AB777F09D729BBAD795256E5CFE51365B8AAB4E9/779883.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 60 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 60
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Harpoon_Gun",
       "attributes": [
         "161",
@@ -4692,7 +5355,14 @@
       "icon": "https://render.guildwars2.com/file/7FA419E5626101B7390BD66C554C6D1994D06B3B/632287.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Herald",
       "attributes": [
         "161",
@@ -4845,7 +5515,18 @@
       "icon": "https://render.guildwars2.com/file/365E2BE425E494E30CDAF9099D1C39B2FA37331C/66751.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "80s, 40 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 40
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Warhorn",
       "attributes": [
         "161",
@@ -4896,7 +5577,14 @@
       "icon": "https://render.guildwars2.com/file/4102A9BC0630DD4B42ADA8E95E5A5FC3A4B2B6D9/632216.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Impaler",
       "attributes": [
         "161",
@@ -5027,7 +5715,18 @@
       "icon": "https://render.guildwars2.com/file/1F4AE44A43DDE0AD93903E6DBC9EB75C677B0AA7/779899.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 60 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 60
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Spear",
       "attributes": [
         "161",
@@ -5078,7 +5777,14 @@
       "icon": "https://render.guildwars2.com/file/95D92770CE0AD06F0536717DFE3A08F19BCFCFB0/632238.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Musket",
       "attributes": [
         "161",
@@ -5242,7 +5948,7 @@
       "icon": "https://render.guildwars2.com/file/96AC78C5B00B0FBF4C03CD7308FF415170271A73/1767262.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Cursed_Flintlock",
       "attributes": [
         "753",
@@ -5255,7 +5961,18 @@
       "icon": "https://render.guildwars2.com/file/1ABCE2FD2BB41590BC1A6654624305A39CBC1626/66739.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "1g, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 10000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Rifle",
       "attributes": [
         "161",
@@ -5306,7 +6023,14 @@
       "icon": "https://render.guildwars2.com/file/08357D68B43146C5B309EC9A327DBEF35F0FE57A/632186.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Reaver",
       "attributes": [
         "161",
@@ -5459,7 +6183,7 @@
       "icon": "https://render.guildwars2.com/file/423D19FB95455BE7A1C2F095B0BA01AF294D54A6/1765903.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Expurgation",
       "attributes": [
         "1153",
@@ -5472,7 +6196,7 @@
       "icon": "https://render.guildwars2.com/file/BD6ADDD3A0766D52E73B7B1DFDF4CD04F4DDE32D/1765922.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Veilrender",
       "attributes": [
         "160",
@@ -5485,7 +6209,18 @@
       "icon": "https://render.guildwars2.com/file/B13970797CB3ED515913ECC855EC697AC30D4EF1/66723.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Axe",
       "attributes": [
         "161",
@@ -5536,7 +6271,14 @@
       "icon": "https://render.guildwars2.com/file/33F89C1701090008BCF01F2798FADC3060796D0A/632234.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Revolver",
       "attributes": [
         "161",
@@ -5689,7 +6431,7 @@
       "icon": "https://render.guildwars2.com/file/EECB3F63E4580656720A423305320E6A3DEDA515/2595743.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Quietus",
       "attributes": [
         "1717",
@@ -5702,7 +6444,7 @@
       "icon": "https://render.guildwars2.com/file/D398A765066743D61E7FEB929FDB06774952B045/2596066.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/The_Keenest_Cut",
       "attributes": [
         "1687",
@@ -5715,7 +6457,18 @@
       "icon": "https://render.guildwars2.com/file/3B0702BD5B1956056D037604FB0707140B2C21B9/66738.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Pistol",
       "attributes": [
         "161",
@@ -5766,7 +6519,14 @@
       "icon": "https://render.guildwars2.com/file/9AF653F43AA8C3423CB23C5673BB20992933FAD5/632254.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Short_Bow",
       "attributes": [
         "161",
@@ -5919,7 +6679,7 @@
       "icon": "https://render.guildwars2.com/file/972D13DCA85859E778D60A6446E3923D53404ABD/1766110.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "None",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Guerrilla_Arc",
       "attributes": [
         "559",
@@ -5932,7 +6692,18 @@
       "icon": "https://render.guildwars2.com/file/F5BDB6EACB072894E577079D6457F40C72927E08/66742.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "1g, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 10000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Short_Bow",
       "attributes": [
         "161",
@@ -5983,7 +6754,14 @@
       "icon": "https://render.guildwars2.com/file/4B4DC34295B71AAEC6F55134BA05510AAA0901C9/632264.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Spire",
       "attributes": [
         "161",
@@ -6136,7 +6914,18 @@
       "icon": "https://render.guildwars2.com/file/6426AC91389A582D7A0F02F641DDDAD6F8F87F4F/66497.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "1g, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 10000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Staff",
       "attributes": [
         "161",
@@ -6187,7 +6976,14 @@
       "icon": "https://render.guildwars2.com/file/1FC7B1F52AB19197A5019B59F4053AD0E0E6054A/632283.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Trident",
       "attributes": [
         "161",
@@ -6247,7 +7043,18 @@
       "icon": "https://render.guildwars2.com/file/02A4BA51C6161A995F33F322D25C3635AECDBF96/779879.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "90s, 60 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 9000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 60
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Trident",
       "attributes": [
         "161",
@@ -6298,7 +7105,14 @@
       "icon": "https://render.guildwars2.com/file/AB04075C7C96EA1C1340043FA7FD6C1A1EDF745F/632210.png",
       "rarity": "Ascended",
       "method": "Wizard's Vault",
-      "cost": "600 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 600
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Natural_Warhammer",
       "attributes": [
         "161",
@@ -6451,7 +7265,7 @@
       "icon": "https://render.guildwars2.com/file/1AD714ACE980DF69B7E5F1ACE9B10B0C5FB20A97/2596010.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Crushing_Weight_(achievement)",
       "attributes": [
         "1687",
@@ -6464,7 +7278,7 @@
       "icon": "https://render.guildwars2.com/file/41FF31D8F6F6035E157A93A891FE1E36B5A4BC4C/2595960.png",
       "rarity": "Ascended",
       "method": "Achievement",
-      "cost": "",
+      "cost": [],
       "link": "https://wiki.guildwars2.com/wiki/Gravity",
       "attributes": [
         "1687",
@@ -6477,7 +7291,18 @@
       "icon": "https://render.guildwars2.com/file/9F2A3E0B0459DECE750DD093742720B1F49E9F9A/66735.png",
       "rarity": "Exotic",
       "method": "Vendor",
-      "cost": "1g, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 10000
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Hammer",
       "attributes": [
         "161",
@@ -6529,7 +7354,14 @@
       "rarity": "Ascended",
       "weight_class": "Light",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -6579,7 +7411,14 @@
       "rarity": "Ascended",
       "weight_class": "Heavy",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -6629,7 +7468,14 @@
       "rarity": "Ascended",
       "weight_class": "Medium",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -6715,7 +7561,18 @@
       "rarity": "Exotic",
       "weight_class": "Light",
       "method": "Vendor",
-      "cost": "88s, 75 Badeg_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8800
+          },
+          {
+            "currency": "Badeg_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Light_Shoulders",
       "attributes": [
         "161",
@@ -6765,7 +7622,18 @@
       "rarity": "Exotic",
       "weight_class": "Medium",
       "method": "Vendor",
-      "cost": "88s, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8800
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Medium_Shoulders",
       "attributes": [
         "161",
@@ -6815,7 +7683,18 @@
       "rarity": "Exotic",
       "weight_class": "Heavy",
       "method": "Vendor",
-      "cost": "88s, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8800
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Heavy_Shoulders",
       "attributes": [
         "161",
@@ -6867,7 +7746,14 @@
       "rarity": "Ascended",
       "weight_class": "Light",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -6917,7 +7803,14 @@
       "rarity": "Ascended",
       "weight_class": "Heavy",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -6967,7 +7860,14 @@
       "rarity": "Ascended",
       "weight_class": "Medium",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -7053,7 +7953,14 @@
       "rarity": "Exotic",
       "weight_class": "Light",
       "method": "Vendor",
-      "cost": "1g 8s, 100 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 100
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Light_Chestguard",
       "attributes": [
         "161",
@@ -7103,7 +8010,14 @@
       "rarity": "Exotic",
       "weight_class": "Medium",
       "method": "Vendor",
-      "cost": "1g 8s, 100 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 100
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Medium_Chestguard",
       "attributes": [
         "161",
@@ -7153,7 +8067,14 @@
       "rarity": "Exotic",
       "weight_class": "Heavy",
       "method": "Vendor",
-      "cost": "1g 8s, 100 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 100
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Heavy_Chestguard",
       "attributes": [
         "161",
@@ -7205,7 +8126,14 @@
       "rarity": "Ascended",
       "weight_class": "Light",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -7255,7 +8183,14 @@
       "rarity": "Ascended",
       "weight_class": "Heavy",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -7305,7 +8240,14 @@
       "rarity": "Ascended",
       "weight_class": "Medium",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -7391,7 +8333,18 @@
       "rarity": "Exotic",
       "weight_class": "Light",
       "method": "Vendor",
-      "cost": "72s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 7200
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Light_Gloves",
       "attributes": [
         "161",
@@ -7441,7 +8394,18 @@
       "rarity": "Exotic",
       "weight_class": "Medium",
       "method": "Vendor",
-      "cost": "72s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 7200
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Medium_Gloves",
       "attributes": [
         "161",
@@ -7491,7 +8455,18 @@
       "rarity": "Exotic",
       "weight_class": "Heavy",
       "method": "Vendor",
-      "cost": "72s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 7200
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Heavy_Gloves",
       "attributes": [
         "161",
@@ -7543,7 +8518,14 @@
       "rarity": "Ascended",
       "weight_class": "Light",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -7593,7 +8575,14 @@
       "rarity": "Ascended",
       "weight_class": "Heavy",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -7643,7 +8632,14 @@
       "rarity": "Ascended",
       "weight_class": "Medium",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -7729,7 +8725,18 @@
       "rarity": "Exotic",
       "weight_class": "Light",
       "method": "Vendor",
-      "cost": "88s, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8800
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Light_Leggings",
       "attributes": [
         "161",
@@ -7779,7 +8786,18 @@
       "rarity": "Exotic",
       "weight_class": "Medium",
       "method": "Vendor",
-      "cost": "88s, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8800
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Medium_Leggings",
       "attributes": [
         "161",
@@ -7829,7 +8847,18 @@
       "rarity": "Exotic",
       "weight_class": "Heavy",
       "method": "Vendor",
-      "cost": "88s, 75 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 8800
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 75
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Heavy_Leggings",
       "attributes": [
         "161",
@@ -7881,7 +8910,14 @@
       "rarity": "Ascended",
       "weight_class": "Light",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -7931,7 +8967,14 @@
       "rarity": "Ascended",
       "weight_class": "Heavy",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -7981,7 +9024,14 @@
       "rarity": "Ascended",
       "weight_class": "Medium",
       "method": "Wizard's Vault",
-      "cost": "400 Astral_Acclaim",
+      "cost": [
+        [
+          {
+            "currency": "Astral_Acclaim",
+            "amount": 400
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Wizard%27s_Ascended_Armor_Chest",
       "attributes": [
         "161",
@@ -8067,7 +9117,18 @@
       "rarity": "Exotic",
       "weight_class": "Light",
       "method": "Vendor",
-      "cost": "72s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 7200
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Light_Boots",
       "attributes": [
         "161",
@@ -8117,7 +9178,18 @@
       "rarity": "Exotic",
       "weight_class": "Medium",
       "method": "Vendor",
-      "cost": "72s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 7200
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Medium_Boots",
       "attributes": [
         "161",
@@ -8167,7 +9239,18 @@
       "rarity": "Exotic",
       "weight_class": "Heavy",
       "method": "Vendor",
-      "cost": "72s, 50 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 7200
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 50
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Invader%27s_Heavy_Boots",
       "attributes": [
         "161",
@@ -8219,7 +9302,18 @@
       "rarity": "Exotic",
       "weight_class": "Heavy",
       "method": "Vendor",
-      "cost": "56s, 40 Badge_of_Honor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 5600
+          },
+          {
+            "currency": "Badge_of_Honor",
+            "amount": 40
+          }
+        ]
+      ],
       "link": "https://wiki.guildwars2.com/wiki/Metal_Aquabreather_(exotic)",
       "attributes": [
         "161",
