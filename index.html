@@ -293,16 +293,24 @@
     }
    
 function formatCurrency(input) {
-      const trimmed = input.trim();
-      const match = trimmed.match(/^([0-9]+)([gsc])$/);
-      if (match) {
-        const amount = match[1];
-        const unit = match[2];
-        const iconMap = { g: "gold", s: "silver", c: "copper" };
-        return `${amount}<img src='assets/${iconMap[unit]}.png' style='height:1em;'>`;
-      }
-      return trimmed.replaceAll("_", " ");
+  if (typeof input === "string") {
+    const trimmed = input.trim();
+    const match = trimmed.match(/^([0-9]+)([gsc])$/);
+    if (match) {
+      const amount = match[1];
+      const unit = match[2];
+      const iconMap = { g: "gold", s: "silver", c: "copper" };
+      return `${amount}<img src='assets/${iconMap[unit]}.png' style='height:1em;'>`;
     }
+    return trimmed.replaceAll("_", " ");
+  }
+
+  if (typeof input === "object" && input.currency && input.amount != null) {
+    return `${input.amount.toLocaleString()} ${input.currency.replaceAll("_", " ")}`;
+  }
+
+  return String(input);
+}
 
     function createCostElement(entry) {
       const cost = document.createElement("p");
