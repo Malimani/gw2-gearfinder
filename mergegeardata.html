@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Merge gearData.json with Stable Currency Warning</title>
+  <title>Merge gearData.json with Final Currency Debugging</title>
   <style>
     body {
       font-family: sans-serif;
@@ -25,7 +25,7 @@
   </style>
 </head>
 <body>
-  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v2.2</small></h1>
+  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v2.6</small></h1>
   <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Unknown currencies will be listed below.</p>
 
   <h3>Existing gearData.json</h3>
@@ -52,9 +52,24 @@
       const warnings = document.getElementById('warnings');
       warnings.textContent = "";
 
+      function extractCurrencies(value) {
+        const found = [];
+        if (Array.isArray(value)) {
+          value.forEach(v => found.push(...extractCurrencies(v)));
+        } else if (value && typeof value === 'object') {
+          if ('currency' in value) {
+            found.push(value);
+          } else {
+            for (const key in value) {
+              found.push(...extractCurrencies(value[key]));
+            }
+          }
+        }
+        return found;
+      }
+
       try {
         const baseData = JSON.parse(base);
-
         const rawBlocks = input.split(/(?<=\})\s*(?=\{)/g);
         const newBlocks = [];
         for (let i = 0; i < rawBlocks.length; i++) {
@@ -75,6 +90,7 @@
           if (!res.ok) throw new Error("HTTP " + res.status);
           const currencyMap = await res.json();
           knownCurrencies = new Set(Object.keys(currencyMap));
+          console.log("✅ Loaded known currencies:", [...knownCurrencies]);
         } catch (err) {
           warnings.textContent = "⚠️ Failed to load currencyIconMap.json: " + err.message;
         }
@@ -87,41 +103,16 @@
             const updates = block[slot];
 
             for (const newItem of updates) {
-              
-              // recursive currency scan
-              function extractCurrencies(value) {
-                const found = [];
-                if (Array.isArray(value)) {
-                  value.forEach(v => found.push(...extractCurrencies(v)));
-                } else if (value && typeof value === 'object') {
-                  if ('currency' in value) {
-                    found.push(value);
-                  } else {
-                    for (const key in value) {
-                      found.push(...extractCurrencies(value[key]));
+              const costData = extractCurrencies(newItem.cost);
+              for (const c of costData) {
+                if (c && typeof c === 'object' && 'currency' in c) {
+                  console.log("Detected currency:", c.currency, "in item", newItem.name);
+                  if (!knownCurrencies.has(c.currency)) {
+                    if (!unknownCurrencyMap[c.currency]) {
+                      unknownCurrencyMap[c.currency] = new Set();
                     }
+                    unknownCurrencyMap[c.currency].add(newItem.name);
                   }
-                }
-                return found;
-              }
-
-              // robust currency check
-    
-              if (newItem.cost) {
-                try {
-                  const costData = extractCurrencies(newItem.cost);
-                  for (const c of costData) {
-                    if (c && typeof c === 'object' && 'currency' in c) {
-                      if (!knownCurrencies.has(c.currency)) {
-                        if (!unknownCurrencyMap[c.currency]) {
-                          unknownCurrencyMap[c.currency] = new Set();
-                        }
-                        unknownCurrencyMap[c.currency].add(newItem.name);
-                      }
-                    }
-                  }
-                } catch (e) {
-                  console.warn("Error in cost processing:", e);
                 }
               }
 
@@ -141,6 +132,8 @@
           warnings.textContent = "⚠️ Unknown currencies used:\n" + unknowns
             .map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`)
             .join("\n");
+        } else {
+          warnings.textContent = "✅ Currency check completed. No unknown currencies found.";
         }
 
         output.textContent = JSON.stringify(baseData, null, 2);
