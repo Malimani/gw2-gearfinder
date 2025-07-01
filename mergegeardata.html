@@ -25,8 +25,8 @@
   </style>
 </head>
 <body>
-  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.4</small></h1>
-  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Currencies will be validated live from GitHub.</p>
+  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.5</small></h1>
+  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Currencies will be validated live.</p>
 
   <h3>Existing gearData.json</h3>
   <textarea id="base" placeholder="Paste full existing gearData.json here..."></textarea>
@@ -47,15 +47,20 @@
 
       try {
         const baseData = JSON.parse(base);
-        const newBlocks = input
-          .split(/(?<=\})\s*(?=\{)/g)
-          .map(b => JSON.parse(b));
 
-        // 🔄 Load currencyIconMap.json from GitHub
+        let newBlocks;
+        try {
+          const single = JSON.parse(input);
+          newBlocks = [single];
+        } catch {
+          newBlocks = input
+            .split(/(?<=\})\s*(?=\{)/g)
+            .map(b => JSON.parse(b));
+        }
+
         const currencyMapUrl = "https://raw.githubusercontent.com/Malimani/gw2gear/main/currencyIconMap.json";
         const currencyMap = await fetch(currencyMapUrl).then(res => res.json());
         const knownCurrencies = new Set(Object.keys(currencyMap));
-
         const unknownCurrencyMap = {};
 
         for (const block of newBlocks) {
