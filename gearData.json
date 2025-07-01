@@ -792,16 +792,10 @@
         [
           {
             "currency": "Laurel",
-            "amount": 30
-          }
-        ],
-        [
-          {
-            "currency": "Laurel",
             "amount": 20
           },
           {
-            "currency": "Badge_of_Honour",
+            "currency": "Badge_of_Honor",
             "amount": 250
           }
         ],
@@ -814,9 +808,15 @@
             "currency": "Coin",
             "amount": 100000
           }
+        ],
+        [
+          {
+            "currency": "Laurel",
+            "amount": 30
+          }
         ]
       ],
-      "link": "https://wiki.guildwars2.com/wiki/Call_of_the_Wild_(Amulet)",
+      "link": "https://wiki.guildwars2.com/wiki/Call_of_the_Wild",
       "attributes": [
         "584"
       ]
@@ -2152,32 +2152,32 @@
       "name": "37075",
       "icon": "https://render.guildwars2.com/file/3B1CC13C0A3747B4A00277113E6ACD64D522B1D1/511816.png",
       "rarity": "Ascended",
-      "method": "Vendor, Drops",
+      "method": "Vendor",
       "cost": [
-        [
-          {
-            "currency": "Laurel",
-            "amount": 35
-          }
-        ],
         [
           {
             "currency": "Laurel",
             "amount": 25
           },
           {
-            "currency": "Badge_of_Honour",
+            "currency": "Badge_of_Honor",
             "amount": 250
           }
         ],
         [
           {
-            "currency": "Coin",
-            "amount": 100000
+            "currency": "Magnetite_Shard",
+            "amount": 175
           },
           {
-            "currency": "Magnetide_Shard",
-            "amount": 175
+            "currency": "Coin",
+            "amount": 100000
+          }
+        ],
+        [
+          {
+            "currency": "Laurel",
+            "amount": 35
           }
         ],
         [
@@ -2191,38 +2191,38 @@
       "attributes": [
         "584"
       ],
-      "description": "Can drop in Daily T1,T2 Fractals\nIs sold by a multitude of vendors"
+      "description": "can be contained in fractal daily chests T1,T2"
     },
     {
       "name": "37086",
       "icon": "https://render.guildwars2.com/file/B155B37AD048CA9054F749043C3E4E99973DF8DF/511826.png",
       "rarity": "Ascended",
-      "method": "Vendor, Drops",
+      "method": "Vendor",
       "cost": [
-        [
-          {
-            "currency": "Laurel",
-            "amount": 35
-          }
-        ],
         [
           {
             "currency": "Laurel",
             "amount": 25
           },
           {
-            "currency": "Badge_of_Honour",
+            "currency": "Badge_of_Honor",
             "amount": 250
           }
         ],
         [
           {
-            "currency": "Coin",
-            "amount": 100000
+            "currency": "Magnetite_Shard",
+            "amount": 175
           },
           {
-            "currency": "Magnetide_Shard",
-            "amount": 175
+            "currency": "Coin",
+            "amount": 100000
+          }
+        ],
+        [
+          {
+            "currency": "Laurel",
+            "amount": 35
           }
         ],
         [
@@ -2236,7 +2236,7 @@
       "attributes": [
         "584"
       ],
-      "description": "Can drop in Daily T1,T2 Fractals\nIs sold by a multitude of vendors"
+      "description": "can be contained in fractal daily chests T1,T2"
     },
     {
       "name": "97659",
@@ -2246,7 +2246,7 @@
       "cost": [
         [
           {
-            "currency": "Research_Notes",
+            "currency": "Research_Note",
             "amount": 396
           }
         ]
@@ -7568,7 +7568,7 @@
             "amount": 8800
           },
           {
-            "currency": "Badeg_of_Honor",
+            "currency": "Badge_of_Honor",
             "amount": 75
           }
         ]
