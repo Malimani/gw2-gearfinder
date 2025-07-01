@@ -36,15 +36,27 @@
       vertical-align: middle;
       font-weight: bold;
     }
-    #livePrice {
-      margin-top: 0.5rem;
-      font-weight: bold;
-      color: #333;
+    .currency-entry {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+    .currency-entry input {
+      flex: 1;
+    }
+    .currency-entry button {
+      flex: 0 0 auto;
+    }
+    .currency-group {
+      margin-bottom: 1rem;
+      border: 1px dashed #ccc;
+      padding: 0.5rem;
+      background: #fdfdfd;
     }
   </style>
 </head>
 <body>
-  <h1>GW2 Gear Admin Tool <small style="font-size: 0.6em; color: #666;">v1.2</small></h1>
+  <h1>GW2 Gear Admin Tool <small style="font-size: 0.6em; color: #666;">v1.3</small></h1>
   <p>Use this form to generate JSON entries for your <code>gearData.json</code>.</p>
 
   <label for="itemId">GW2 Item ID</label>
@@ -52,30 +64,38 @@
   <div>
     <img id="iconPreview" src="" alt="Icon preview" style="display: none;">
     <span id="itemNameDisplay"></span>
-<span id="itemDetails" style="margin-left: 1rem; color: #666; font-size: 0.9em;"></span>
+    <span id="itemDetails" style="margin-left: 1rem; color: #666; font-size: 0.9em;"></span>
   </div>
 
-    <label for="method">Method</label>
+  <label for="method">Method</label>
   <input type="text" id="method" placeholder="e.g. Crafting">
 
   <label for="description">Description (optional)</label>
   <textarea id="description" rows="2" placeholder="Craftable with Armorsmith 500"></textarea>
 
-  <label for="cost">Cost (manual or TP:item_id or Vendor:name)</label>
-  <input type="text" id="cost" placeholder="e.g. approx. 12 gold or TP:46789" oninput="checkTPPrice()">
-  <div id="livePrice"></div>
-
   <label for="link">Wiki or Reference Link</label>
   <input type="text" id="link" placeholder="e.g. https://wiki.guildwars2.com/...">
+
+  <label>Cost (complex format)</label>
+  <div id="costBuilder"></div>
+  <button type="button" onclick="addCurrencyGroup()">+ Add Cost Option</button>
 
   <button onclick="generateJSON()">Generate JSON</button>
   <button onclick="copyJSON()">Copy to Clipboard</button>
 
   <pre id="output"></pre>
 
+  <template id="currencyTemplate">
+    <div class="currency-entry">
+      <input type="text" placeholder="Currency (e.g. Coin)" class="currency">
+      <input type="number" placeholder="Amount" class="amount">
+      <button type="button" onclick="removeCurrency(this)">×</button>
+    </div>
+  </template>
+
   <script>
     let fetchedIcon = "";
-let fetchedSlot = "";
+    let fetchedSlot = "";
     let allAttributes = [];
     let currentRarity = "";
     let currentWeight = "";
@@ -84,7 +104,6 @@ let fetchedSlot = "";
       const itemId = document.getElementById('itemId').value.trim();
       const iconImg = document.getElementById('iconPreview');
       const nameDisplay = document.getElementById('itemNameDisplay');
-      // slotInput removed
       allAttributes = [];
       currentRarity = "";
       currentWeight = "";
@@ -110,12 +129,12 @@ let fetchedSlot = "";
           iconImg.style.display = 'none';
         }
 
-       if (data.details?.type) {
-        fetchedSlot = data.details.type;
+        if (data.details?.type) {
+          fetchedSlot = data.details.type;
         } else if (data.type) {
-        fetchedSlot = data.type;
+          fetchedSlot = data.type;
         } else {
-        fetchedSlot = '';
+          fetchedSlot = '';
         }
 
         if (data.details?.stat_choices) {
@@ -128,46 +147,38 @@ let fetchedSlot = "";
             allAttributes = [data.details.infix_upgrade.id.toString()];
           }
         }
-
       } catch (err) {
         iconImg.style.display = 'none';
         nameDisplay.textContent = "";
-        slotInput.value = '';
         allAttributes = [];
         currentRarity = "";
         currentWeight = "";
       }
     }
 
-    async function checkTPPrice() {
-      const costField = document.getElementById('cost');
-      const livePriceDiv = document.getElementById('livePrice');
-      const value = costField.value.trim();
-      const match = value.match(/^TP:(\d+)$/);
+    function addCurrencyGroup() {
+      const container = document.getElementById("costBuilder");
+      const groupDiv = document.createElement("div");
+      groupDiv.className = "currency-group";
 
-      function formatPrice(price) {
-        const copper = price % 100;
-        const silver = Math.floor((price / 100) % 100);
-        const gold = Math.floor(price / 10000);
-        return `${gold}<img src='assets/gold.png' style='height:1em;'> ` +
-               `${silver}<img src='assets/silver.png' style='height:1em;'> ` +
-               `${copper}<img src='assets/copper.png' style='height:1em;'>`;
-      }
+      const addBtn = document.createElement("button");
+      addBtn.textContent = "+ Currency";
+      addBtn.type = "button";
+      addBtn.onclick = () => addCurrencyEntry(groupDiv);
 
-      if (match) {
-        const itemId = match[1];
-        try {
-          const res = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
-          const data = await res.json();
-          const buyPrice = data.buys.unit_price;
-          const sellPrice = data.sells.unit_price;
-          livePriceDiv.innerHTML = `Buy: ${formatPrice(buyPrice)} | Sell: ${formatPrice(sellPrice)}`;
-        } catch (e) {
-          livePriceDiv.textContent = 'Item not found on TP or API error.';
-        }
-      } else {
-        livePriceDiv.textContent = '';
-      }
+      container.appendChild(groupDiv);
+      groupDiv.appendChild(addBtn);
+      addCurrencyEntry(groupDiv);
+    }
+
+    function addCurrencyEntry(groupDiv) {
+      const template = document.getElementById("currencyTemplate");
+      const clone = template.content.cloneNode(true);
+      groupDiv.insertBefore(clone, groupDiv.lastChild);
+    }
+
+    function removeCurrency(btn) {
+      btn.parentElement.remove();
     }
 
     function generateJSON() {
@@ -176,8 +187,18 @@ let fetchedSlot = "";
       const iconUrl = document.getElementById('iconPreview').src;
       const method = document.getElementById('method').value.trim();
       const description = document.getElementById('description').value.trim();
-      const cost = document.getElementById('cost').value.trim();
       const link = document.getElementById('link').value.trim();
+
+      const costGroups = Array.from(document.querySelectorAll('.currency-group')).map(group => {
+        const entries = Array.from(group.querySelectorAll('.currency-entry')).map(entry => {
+          const currency = entry.querySelector('.currency')?.value.trim();
+          const amount = parseInt(entry.querySelector('.amount')?.value, 10);
+          return (currency && !isNaN(amount)) ? { currency, amount } : null;
+        }).filter(Boolean);
+        return entries.length > 0 ? entries : null;
+      }).filter(Boolean);
+
+      const cost = costGroups.length > 0 ? costGroups : undefined;
 
       if (!slot || !itemId || !method) {
         document.getElementById('output').textContent = 'Slot, item ID, and method are required.';
