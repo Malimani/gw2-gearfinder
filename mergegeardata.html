@@ -25,7 +25,7 @@
   </style>
 </head>
 <body>
-  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.7</small></h1>
+  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.8</small></h1>
   <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Currency will be validated live.</p>
 
   <h3>Existing gearData.json</h3>
@@ -67,7 +67,7 @@
         const unknownCurrencyMap = {};
 
         try {
-          const currencyMapUrl = "https://raw.githubusercontent.com/Malimani/gw2gear/main/currencyIconMap.json";
+          const currencyMapUrl = "./currencyIconMap.json";
           const res = await fetch(currencyMapUrl);
           if (!res.ok) throw new Error("HTTP " + res.status);
           const currencyMap = await res.json();
