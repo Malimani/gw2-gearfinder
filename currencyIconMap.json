@@ -1,0 +1,10 @@
+{
+  "Coin": { "type": "copper", "special": true },
+  "Badge_of_Honor": "badge.png",
+  "Laurel": "laurel.png",
+  "Magnetite_Shard": "magnetite.png",
+  "Unbound_Magic": "unbound_magic.png",
+  "Volatile_Magic": "volatile_magic.png",
+  "Research_Note": "research_note.png",
+  "Astral_Acclaim": "astral.png"
+}
