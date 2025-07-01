@@ -4,22 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Legal Notice | GW2Gear</title>
+  <style>
+    #tmg-content {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    #toggle-tmg {
+      cursor: pointer;
+      color: #0066cc;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      font: inherit;
+      padding: 0;
+    }
+  </style>
 </head>
 <body>
   <main style="max-width: 800px; margin: auto; padding: 2rem; font-family: sans-serif; line-height: 1.6;">
     <h1>Legal Notice / Impressum</h1>
-    
-    <h2>Information according to § 5 TMG</h2>
-    <p>
-      Karsten Schlutius<br>
-      Buchenhain 25<br>
-      51491 Overath<br>
-      Germany
-    </p>
 
-    <p>
-      Email: kontakt@gw2gear.com
-    </p>
+    <h2>Information according to § 5 TMG</h2>
+    <button id="toggle-tmg">Show name</button>
+    <div id="tmg-content">
+      <p>
+        Karsten Schlutius<br>
+        Buchenhain 25<br>
+        51491 Overath<br>
+        Germany
+      </p>
+
+      <p>
+        Email: kontakt@gw2gear.com
+      </p>
+    </div>
 
     <h2>Disclaimer</h2>
     <h3>Liability for Content</h3>
@@ -66,5 +84,18 @@
       Last updated: July 1, 2025
     </p>
   </main>
+
+  <script>
+    document.getElementById("toggle-tmg").addEventListener("click", function () {
+      const content = document.getElementById("tmg-content");
+      if (content.style.display === "none") {
+        content.style.display = "block";
+        this.textContent = "Hide name";
+      } else {
+        content.style.display = "none";
+        this.textContent = "Show name";
+      }
+    });
+  </script>
 </body>
 </html>
