@@ -93,7 +93,10 @@
                   const costData = Array.isArray(newItem.cost) ? newItem.cost.flat() : [newItem.cost];
                   for (const c of costData) {
                     if (c && typeof c === 'object' && 'currency' in c) {
+                      
+                      console.log("Detected currency:", c.currency);
                       if (!knownCurrencies.has(c.currency)) {
+    
                         if (!unknownCurrencyMap[c.currency]) {
                           unknownCurrencyMap[c.currency] = new Set();
                         }
@@ -118,7 +121,10 @@
         }
 
         const unknowns = Object.entries(unknownCurrencyMap);
+        
+        warnings.textContent = "✅ Currency check completed.";
         if (unknowns.length > 0) {
+    
           warnings.textContent = "⚠️ Unknown currencies used:\n" + unknowns
             .map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`)
             .join("\n");
