@@ -104,7 +104,7 @@
 
             for (const newItem of updates) {
               const costData = extractCurrencies(newItem.cost);
-              for (const c of costData) {
+              // per-item currency check moved to merged scan
                 if (c && typeof c === 'object' && 'currency' in c) {
                   console.log("Detected currency:", c.currency, "in item", newItem.name);
                   if (!knownCurrencies.has(c.currency)) {
@@ -127,7 +127,7 @@
           }
         }
 
-        const unknowns = Object.entries(unknownCurrencyMap);
+        const unknowns = scanMergedDataForUnknowns(baseData, knownCurrencies);
         if (unknowns.length > 0) {
           warnings.textContent = "⚠️ Unknown currencies used:\n" + unknowns
             .map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`)
