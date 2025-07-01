@@ -8017,6 +8017,10 @@
       "cost": [
         [
           {
+            "currency": "Coin",
+            "amount": 10800
+          },
+          {
             "currency": "Badge_of_Honor",
             "amount": 100
           }
