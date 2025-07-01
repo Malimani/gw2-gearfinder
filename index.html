@@ -341,7 +341,7 @@ async function renderItems(items = gearData[currentSlot]) {
   const legendaryItems = [];
 
   for (const entry of filteredItems) {
-    const isTP = entry.cost.startsWith("TP:");
+    const isTP = typeof entry.cost === "string" && entry.cost.startsWith("TP:");
     if (entry.rarity === "Exotic" && isTP) {
       tpItems.push(entry);
     } else if (entry.rarity === "Exotic") {
