@@ -90,7 +90,19 @@
             const updates = block[slot];
 
             for (const newItem of updates) {
-              if (Array.isArray(newItem.cost)) {
+              
+              if (newItem.cost) {
+                const flatCosts = Array.isArray(newItem.cost) ? newItem.cost.flat() : [newItem.cost];
+                for (const c of flatCosts) {
+                  if (c && typeof c === 'object' && c.currency && !knownCurrencies.has(c.currency)) {
+                    if (!unknownCurrencyMap[c.currency]) {
+                      unknownCurrencyMap[c.currency] = new Set();
+                    }
+                    unknownCurrencyMap[c.currency].add(newItem.name);
+                  }
+                }
+              }
+    
                 newItem.cost.flat().forEach(c => {
                   if (c.currency && !knownCurrencies.has(c.currency)) {
                     if (!unknownCurrencyMap[c.currency]) {
