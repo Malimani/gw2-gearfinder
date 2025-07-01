@@ -32,13 +32,13 @@
       max-width: 100%;
     }
     h2 {
-  font-size: 1.2em;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  color: #333;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 0.25rem;
-}
+      font-size: 1.2em;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.25rem;
+    }
     select {
       margin-bottom: 1rem;
       padding: 0.5rem;
@@ -77,47 +77,40 @@
       color: #0066cc;
     }
     .result {
-    background: white;
-    padding: 1rem;
-    margin-top: 0.75rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    border-left: 6px solid transparent;
-    transition: transform 0.2s, box-shadow 0.2s;
+      background: white;
+      padding: 1rem;
+      margin-top: 0.75rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-left: 6px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-
     .result:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
-
     .result h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.2em;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
     }
-
-.result h3 .icon {
-  height: 1.5em;
-  vertical-align: middle;
-}
-
-.result p {
-  margin: 0.3rem 0;
-}
-
-.result a {
-  color: #0066cc;
-  text-decoration: none;
-}
-
-.result a:hover {
-  text-decoration: underline;
-}
-
+    .result h3 .icon {
+      height: 1.5em;
+      vertical-align: middle;
+    }
+    .result p {
+      margin: 0.3rem 0;
+    }
+    .result a {
+      color: #0066cc;
+    text-decoration: none;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -271,15 +264,15 @@
         btn.textContent = label;
         btn.className = filters[type].has(label) ? "active" : "";
         btn.addEventListener("click", () => {
-  if (filters[type].has(label)) filters[type].delete(label);
-  else filters[type].add(label);
-  const filteredItems = items.filter(entry =>
-    (!filters.rarity.size || filters.rarity.has(entry.rarity)) &&
-    (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class)))
-  );
-  renderItems(filteredItems);
-  renderFilters(items);
-});
+        if (filters[type].has(label)) filters[type].delete(label);
+        else filters[type].add(label);
+        const filteredItems = items.filter(entry =>
+          (!filters.rarity.size || filters.rarity.has(entry.rarity)) &&
+          (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class)))
+        );
+        renderItems(filteredItems);
+        renderFilters(items);
+        });
         return btn;
       };
 
@@ -290,11 +283,11 @@
         const resetBtn = document.createElement("button");
         resetBtn.textContent = "Reset Filters";
         resetBtn.addEventListener("click", () => {
-  filters.rarity.clear();
-  filters.weight_class.clear();
-  renderItems(items);
-  renderFilters(items);
-});
+        filters.rarity.clear();
+        filters.weight_class.clear();
+        renderItems(items);
+        renderFilters(items);
+      });
         filtersDiv.appendChild(resetBtn);
       }
     }
