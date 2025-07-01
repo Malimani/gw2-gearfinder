@@ -1,8 +1,6 @@
 {
   "Astral_Acclaim": "astral_acclaim.png",
-  "Badeg_of_Honor": "badeg_of_honor.png",
   "Badge_of_Honor": "badge_of_honor.png",
-  "Badge_of_Honour": "badge_of_honour.png",
   "Champion's_Wings_of_Glory": "champion's_wings_of_glory.png",
   "Coin": {
     "type": "copper",
@@ -19,7 +17,6 @@
   "Guild_Commendation": "guild_commendation.png",
   "Karma": "karma.png",
   "Laurel": "laurel.png",
-  "Magnetide_Shard": "magnetide_shard.png",
   "Magnetite_Shard": "magnetite_shard.png",
   "Mistborn_Mote": "mistborn_mote.png",
   "Pristine_Fractal_Relic": "pristine_fractal_relic.png",
@@ -27,9 +24,8 @@
   "Recruit's_Wings_of_Glory": "recruit's_wings_of_glory.png",
   "Recruit's_Wings_of_War": "recruit's_wings_of_war.png",
   "Research_Note": "research_note.png",
-  "Research_Notes": "research_notes.png",
   "Soldier's_Wings_of_War": "soldier's_wings_of_war.png",
-  "Solution:_Finite_Result": "solution:_finite_result.png",
+  "Solution:_Finite_Result": "solution_finite_result.png",
   "Unbound_Magic": "unbound_magic.png",
   "Veteran's_Wings_of_Glory": "veteran's_wings_of_glory.png",
   "Vial_of_Condensed_Mists_Essence": "vial_of_condensed_mists_essence.png",
