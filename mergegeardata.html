@@ -25,8 +25,8 @@
   </style>
 </head>
 <body>
-  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.0</small></h1>
-  <p>Paste your existing gearData.json in the first box, and new blocks below. If an item with the same ID already exists, it will be replaced.</p>
+  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.1</small></h1>
+  <p>Paste your existing gearData.json in the first box, and new blocks below. If an item with the same ID already exists, it will be fully replaced (including field removal).</p>
 
   <h3>Existing gearData.json</h3>
   <textarea id="base" placeholder="Paste full existing gearData.json here..."></textarea>
@@ -62,7 +62,12 @@
             for (const newItem of updates) {
               const index = existing.findIndex(e => e.name === newItem.name);
               if (index >= 0) {
-                existing[index] = newItem;
+                // Remove all keys from the existing object before assigning new ones
+                for (const key in existing[index]) {
+                  delete existing[index][key];
+                }
+                // Apply all new keys (overwrite fully)
+                Object.assign(existing[index], newItem);
               } else {
                 existing.push(newItem);
               }
@@ -75,18 +80,19 @@
         output.textContent = '⚠️ Error merging data: ' + e.message;
       }
     }
-  function clearBaseField() {
-  document.getElementById('base').value = '';
-}
 
-function copyOutput() {
-  const output = document.getElementById('output').textContent;
-  if (output.trim() !== '') {
-    navigator.clipboard.writeText(output)
-      .then(() => alert('Merged JSON copied to clipboard!'))
-      .catch(() => alert('Failed to copy.'));
-  }
-}
-</script>
+    function clearBaseField() {
+      document.getElementById('base').value = '';
+    }
+
+    function copyOutput() {
+      const output = document.getElementById('output').textContent;
+      if (output.trim() !== '') {
+        navigator.clipboard.writeText(output)
+          .then(() => alert('Merged JSON copied to clipboard!'))
+          .catch(() => alert('Failed to copy.'));
+      }
+    }
+  </script>
 </body>
 </html>
