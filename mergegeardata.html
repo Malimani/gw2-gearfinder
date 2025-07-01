@@ -45,7 +45,48 @@
   <pre id="warnings" style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba;"></pre>
 
   <script>
+    
+    // global helper to scan merged gearData for unknown currencies
+    function scanMergedDataForUnknowns(baseData, knownCurrencies) {
+      const unknownCurrencyMap = {};
+      function extractCurrencies(value) {
+        const found = [];
+        if (Array.isArray(value)) {
+          value.forEach(v => found.push(...extractCurrencies(v)));
+        } else if (value && typeof value === 'object') {
+          if ('currency' in value) {
+            found.push(value);
+          } else {
+            for (const key in value) {
+              found.push(...extractCurrencies(value[key]));
+            }
+          }
+        }
+        return found;
+      }
+
+      for (const slot in baseData) {
+        for (const item of baseData[slot]) {
+          const costData = extractCurrencies(item.cost);
+          for (const c of costData) {
+            if (c && typeof c === 'object' && 'currency' in c) {
+              console.log("Detected currency:", c.currency, "in item", item.name);
+              if (!knownCurrencies.has(c.currency)) {
+                if (!unknownCurrencyMap[c.currency]) {
+                  unknownCurrencyMap[c.currency] = new Set();
+                }
+                unknownCurrencyMap[c.currency].add(item.name);
+              }
+            }
+          }
+        }
+      }
+
+      return Object.entries(unknownCurrencyMap);
+    }
+
     async function mergeBlocks() {
+
       const base = document.getElementById('base').value.trim();
       const input = document.getElementById('input').value.trim();
       const output = document.getElementById('output');
