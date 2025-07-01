@@ -157,8 +157,8 @@
     let filters = { rarity: new Set(), weight_class: new Set() };
     let currentSlot = "";
     let currentAttrLabel = "";
-
     let slotTypeMap = {};
+    let currencyIconMap = {};
 
     async function loadSlotTypeMap() {
       try {
@@ -171,14 +171,16 @@
 
     async function initialize() {
       try {
-        const [attrRes, gearRes, slotMapRes] = await Promise.all([
+        const [attrRes, gearRes, slotMapRes, currencyRes] = await Promise.all([
           fetch("attributeMap.json"),
           fetch("gearData.json"),
-          fetch("slotTypeMap.json")
+          fetch("slotTypeMap.json"),
+          fetch("currencyIconMap.json")
         ]);
         attributeMap = await attrRes.json();
         gearData = await gearRes.json();
         slotTypeMap = await slotMapRes.json();
+        currencyIconMap = await currencyRes.json();  // ⬅️
         buildSlotDropdown();
         updateItemCounter();
       } catch (err) {
@@ -319,6 +321,15 @@ function formatCurrency(input) {
 
       return parts.join(" ");
     }
+    else if (currencyIconMap[input.currency]) {
+  const icon = typeof currencyIconMap[input.currency] === "string"
+    ? currencyIconMap[input.currency]
+    : currencyIconMap[input.currency].icon;
+
+  return `${input.amount.toLocaleString()} <img src='assets/${icon}' title='${input.currency.replaceAll("_", " ")}' style='height:1em; vertical-align:middle;'>`;
+} else {
+  return `${input.amount.toLocaleString()} ${input.currency.replaceAll("_", " ")}`;
+}
 
     return `${input.amount.toLocaleString()} ${input.currency.replaceAll("_", " ")}`;
   }
