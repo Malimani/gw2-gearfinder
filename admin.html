@@ -56,7 +56,7 @@
   </style>
 </head>
 <body>
-  <h1>GW2 Gear Admin Tool <small style="font-size: 0.6em; color: #666;">v1.3</small></h1>
+  <h1>GW2 Gear Admin Tool <small style="font-size: 0.6em; color: #666;">v1.4</small></h1>
   <p>Use this form to generate JSON entries for your <code>gearData.json</code>.</p>
 
   <label for="itemId">GW2 Item ID</label>
@@ -73,12 +73,13 @@
   <label for="description">Description (optional)</label>
   <textarea id="description" rows="2" placeholder="Craftable with Armorsmith 500"></textarea>
 
-  <label for="link">Wiki or Reference Link</label>
-  <input type="text" id="link" placeholder="e.g. https://wiki.guildwars2.com/...">
-
   <label>Cost (complex format)</label>
   <div id="costBuilder"></div>
   <button type="button" onclick="addCurrencyGroup()">+ Add Cost Option</button>
+  <button type="button" onclick="addTPEntry()">+ Use TP:<Item ID> as cost</button>
+
+  <label for="link">Wiki or Reference Link</label>
+  <input type="text" id="link" placeholder="Auto-fetched or enter manually">
 
   <button onclick="generateJSON()">Generate JSON</button>
   <button onclick="copyJSON()">Copy to Clipboard</button>
@@ -142,101 +143,4 @@
           const statRes = await fetch(`https://api.guildwars2.com/v2/itemstats?ids=${statIds}`);
           const statData = await statRes.json();
           allAttributes = statData.map(s => s.id.toString());
-        } else if (data.details?.infix_upgrade?.attributes) {
-          if (data.details.infix_upgrade?.id) {
-            allAttributes = [data.details.infix_upgrade.id.toString()];
-          }
-        }
-      } catch (err) {
-        iconImg.style.display = 'none';
-        nameDisplay.textContent = "";
-        allAttributes = [];
-        currentRarity = "";
-        currentWeight = "";
-      }
-    }
-
-    function addCurrencyGroup() {
-      const container = document.getElementById("costBuilder");
-      const groupDiv = document.createElement("div");
-      groupDiv.className = "currency-group";
-
-      const addBtn = document.createElement("button");
-      addBtn.textContent = "+ Currency";
-      addBtn.type = "button";
-      addBtn.onclick = () => addCurrencyEntry(groupDiv);
-
-      container.appendChild(groupDiv);
-      groupDiv.appendChild(addBtn);
-      addCurrencyEntry(groupDiv);
-    }
-
-    function addCurrencyEntry(groupDiv) {
-      const template = document.getElementById("currencyTemplate");
-      const clone = template.content.cloneNode(true);
-      groupDiv.insertBefore(clone, groupDiv.lastChild);
-    }
-
-    function removeCurrency(btn) {
-      btn.parentElement.remove();
-    }
-
-    function generateJSON() {
-      const slot = fetchedSlot;
-      const itemId = document.getElementById('itemId').value.trim();
-      const iconUrl = document.getElementById('iconPreview').src;
-      const method = document.getElementById('method').value.trim();
-      const description = document.getElementById('description').value.trim();
-      const link = document.getElementById('link').value.trim();
-
-      const costGroups = Array.from(document.querySelectorAll('.currency-group')).map(group => {
-        const entries = Array.from(group.querySelectorAll('.currency-entry')).map(entry => {
-          const currency = entry.querySelector('.currency')?.value.trim();
-          const amount = parseInt(entry.querySelector('.amount')?.value, 10);
-          return (currency && !isNaN(amount)) ? { currency, amount } : null;
-        }).filter(Boolean);
-        return entries.length > 0 ? entries : null;
-      }).filter(Boolean);
-
-      const cost = costGroups.length > 0 ? costGroups : undefined;
-
-      if (!slot || !itemId || !method) {
-        document.getElementById('output').textContent = 'Slot, item ID, and method are required.';
-        return;
-      }
-
-      const entry = {
-        name: itemId,
-        icon: iconUrl || undefined,
-        rarity: currentRarity || undefined,
-        weight_class: currentWeight || undefined,
-        method: method,
-        cost: cost,
-        link: link,
-        attributes: allAttributes
-      };
-      if (description) {
-        entry.description = description;
-      }
-      if (!entry.weight_class) {
-        delete entry.weight_class;
-      }
-
-      const json = {
-        [slot]: [entry]
-      };
-
-      document.getElementById('output').textContent = JSON.stringify(json, null, 2);
-    }
-
-    function copyJSON() {
-      const output = document.getElementById('output');
-      if (output.textContent.trim() !== '') {
-        navigator.clipboard.writeText(output.textContent)
-          .then(() => alert('JSON copied to clipboard!'))
-          .catch(() => alert('Failed to copy JSON.'));
-      }
-    }
-  </script>
-</body>
-</html>
+        } else if
