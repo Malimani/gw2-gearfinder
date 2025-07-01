@@ -306,7 +306,6 @@ async function renderItems(items = gearData[currentSlot]) {
     .filter(([, label]) => label.trim() === currentAttrLabel.trim())
     .map(([id]) => id);
 
-  // Filter Items vorab nach Attribut & Filter-Buttons
   const filteredItems = items.filter(entry => {
     if (currentAttrLabel && (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id))))) return false;
     if (filters.rarity.size && !filters.rarity.has(entry.rarity)) return false;
@@ -314,7 +313,6 @@ async function renderItems(items = gearData[currentSlot]) {
     return true;
   });
 
-  // 💰 Preis-Fetch vorbereiten
   const pricePromises = filteredItems.map(entry => {
     const match = entry.cost.match(/^TP:(\d+)$/);
     if (match) {
@@ -343,16 +341,26 @@ async function renderItems(items = gearData[currentSlot]) {
     }
   });
 
-  // 🕐 Auf alle Preis-Fetches warten
   await Promise.all(pricePromises);
 
-  // 🔢 Jetzt sortieren
   filteredItems.sort((a, b) => a._priceCopper - b._priceCopper);
 
-  // 🔁 Jetzt rendern
-  filteredItems.forEach(entry => {
-    const div = document.createElement("div");
-    div.className = "result";
+filteredItems.forEach(entry => {
+  const div = document.createElement("div");
+  div.className = "result";
+
+  const rarityColorMap = {
+    Junk: "#aaa",
+    Basic: "#aaa",
+    Fine: "#62a4da",
+    Masterwork: "#1a9306",
+    Rare: "#fcd00b",
+    Exotic: "#ffa405",
+    Ascended: "#fb3e8d",
+    Legendary: "#4c139d"
+  };
+  div.style.borderLeftColor = rarityColorMap[entry.rarity] || "#ccc";
+
     const title = document.createElement("h3");
 
     if (entry.icon) {
@@ -435,19 +443,6 @@ async function renderItems(items = gearData[currentSlot]) {
 
     resultsDiv.appendChild(div);
   });
-  const rarityColorMap = {
-  Junk: "#aaa",
-  Basic: "#aaa",
-  Fine: "#62a4da",
-  Masterwork: "#1a9306",
-  Rare: "#fcd00b",
-  Exotic: "#ffa405",
-  Ascended: "#fb3e8d",
-  Legendary: "#4c139d"
-};
-
-div.style.borderLeftColor = rarityColorMap[entry.rarity] || "#ccc";
-
 }
 
     function formatPrice(copper) {
