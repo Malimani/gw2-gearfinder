@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Merge gearData.json with Detailed Currency Check</title>
+  <title>Merge gearData.json with Live Currency Check</title>
   <style>
     body {
       font-family: sans-serif;
@@ -25,8 +25,8 @@
   </style>
 </head>
 <body>
-  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.3</small></h1>
-  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Unknown currencies and their IDs will be reported.</p>
+  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.4</small></h1>
+  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Currencies will be validated live from GitHub.</p>
 
   <h3>Existing gearData.json</h3>
   <textarea id="base" placeholder="Paste full existing gearData.json here..."></textarea>
@@ -40,39 +40,7 @@
   <pre id="output"></pre>
 
   <script>
-    const knownCurrencies = {
-      "Astral_Acclaim": true,
-      "Badge_of_Honor": true,
-      "Champion's_Wings_of_Glory": true,
-      "Coin": true,
-      "Commander's_Wings_of_War": true,
-      "Elite's_Wings_of_Glory": true,
-      "Eternal_Ice_Shard": true,
-      "Finite_Wings": true,
-      "First_Order_Mist_Frame": true,
-      "Fresh_Winterberry": true,
-      "General's_Wings_of_War": true,
-      "Glob_of_Ectoplasm": true,
-      "Guild_Commendation": true,
-      "Karma": true,
-      "Laurel": true,
-      "Magnetite_Shard": true,
-      "Mistborn_Mote": true,
-      "Pristine_Fractal_Relic": true,
-      "Pristine_Mist_Essence": true,
-      "Recruit's_Wings_of_Glory": true,
-      "Recruit's_Wings_of_War": true,
-      "Research_Note": true,
-      "Soldier's_Wings_of_War": true,
-      "Solution:_Finite_Result": true,
-      "Unbound_Magic": true,
-      "Veteran's_Wings_of_Glory": true,
-      "Vial_of_Condensed_Mists_Essence": true,
-      "Vicious_Claw": true,
-      "Volatile_Magic": true
-    };
-
-    function mergeBlocks() {
+    async function mergeBlocks() {
       const base = document.getElementById('base').value.trim();
       const input = document.getElementById('input').value.trim();
       const output = document.getElementById('output');
@@ -82,6 +50,11 @@
         const newBlocks = input
           .split(/(?<=\})\s*(?=\{)/g)
           .map(b => JSON.parse(b));
+
+        // 🔄 Load currencyIconMap.json from GitHub
+        const currencyMapUrl = "https://raw.githubusercontent.com/Malimani/gw2gear/main/currencyIconMap.json";
+        const currencyMap = await fetch(currencyMapUrl).then(res => res.json());
+        const knownCurrencies = new Set(Object.keys(currencyMap));
 
         const unknownCurrencyMap = {};
 
@@ -95,7 +68,7 @@
             for (const newItem of updates) {
               if (Array.isArray(newItem.cost)) {
                 newItem.cost.flat().forEach(c => {
-                  if (c.currency && !knownCurrencies[c.currency]) {
+                  if (c.currency && !knownCurrencies.has(c.currency)) {
                     if (!unknownCurrencyMap[c.currency]) {
                       unknownCurrencyMap[c.currency] = new Set();
                     }
@@ -106,9 +79,7 @@
 
               const index = existing.findIndex(e => e.name === newItem.name);
               if (index >= 0) {
-                for (const key in existing[index]) {
-                  delete existing[index][key];
-                }
+                for (const key in existing[index]) delete existing[index][key];
                 Object.assign(existing[index], newItem);
               } else {
                 existing.push(newItem);
