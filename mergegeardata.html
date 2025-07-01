@@ -87,16 +87,32 @@
             const updates = block[slot];
 
             for (const newItem of updates) {
+              
+              // recursive currency scan
+              function extractCurrencies(value) {
+                const found = [];
+                if (Array.isArray(value)) {
+                  value.forEach(v => found.push(...extractCurrencies(v)));
+                } else if (value && typeof value === 'object') {
+                  if ('currency' in value) {
+                    found.push(value);
+                  } else {
+                    for (const key in value) {
+                      found.push(...extractCurrencies(value[key]));
+                    }
+                  }
+                }
+                return found;
+              }
+
               // robust currency check
+    
               if (newItem.cost) {
                 try {
-                  const costData = Array.isArray(newItem.cost) ? newItem.cost.flat() : [newItem.cost];
+                  const costData = extractCurrencies(newItem.cost);
                   for (const c of costData) {
                     if (c && typeof c === 'object' && 'currency' in c) {
-                      
-                      console.log("Detected currency:", c.currency);
                       if (!knownCurrencies.has(c.currency)) {
-    
                         if (!unknownCurrencyMap[c.currency]) {
                           unknownCurrencyMap[c.currency] = new Set();
                         }
@@ -121,10 +137,7 @@
         }
 
         const unknowns = Object.entries(unknownCurrencyMap);
-        
-        warnings.textContent = "✅ Currency check completed.";
         if (unknowns.length > 0) {
-    
           warnings.textContent = "⚠️ Unknown currencies used:\n" + unknowns
             .map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`)
             .join("\n");
