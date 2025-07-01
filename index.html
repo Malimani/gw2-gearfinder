@@ -256,117 +256,151 @@
       }
     }
 
-    function renderItems(items = gearData[currentSlot]) {
-      resultsDiv.innerHTML = "";
-      if (!currentSlot || !gearData[currentSlot]) return;
+async function renderItems(items = gearData[currentSlot]) {
+  resultsDiv.innerHTML = "";
+  if (!currentSlot || !gearData[currentSlot]) return;
 
-      const attrIds = Object.entries(attributeMap)
-        .filter(([, label]) => label.trim() === currentAttrLabel.trim())
-        .map(([id]) => id);
+  const attrIds = Object.entries(attributeMap)
+    .filter(([, label]) => label.trim() === currentAttrLabel.trim())
+    .map(([id]) => id);
 
-      items.forEach(entry => {
-        if (currentAttrLabel && (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id))))) return;
-        if (filters.rarity.size && !filters.rarity.has(entry.rarity)) return;
-        if (filters.weight_class.size && (!entry.weight_class || !filters.weight_class.has(entry.weight_class))) return;
+  // Filter Items vorab nach Attribut & Filter-Buttons
+  const filteredItems = items.filter(entry => {
+    if (currentAttrLabel && (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id))))) return false;
+    if (filters.rarity.size && !filters.rarity.has(entry.rarity)) return false;
+    if (filters.weight_class.size && (!entry.weight_class || !filters.weight_class.has(entry.weight_class))) return false;
+    return true;
+  });
 
-        const div = document.createElement("div");
-        div.className = "result";
-        const title = document.createElement("h3");
-
-        if (entry.icon) {
-          const icon = document.createElement("img");
-          icon.src = entry.icon;
-          icon.className = "icon";
-          title.appendChild(icon);
-        }
-
-        const nameSpan = document.createElement("span");
-        nameSpan.textContent = `Loading item name...`;
-        title.appendChild(nameSpan);
-
-        const meta = document.createElement("span");
-        meta.style.fontSize = "0.9em";
-        meta.style.color = "#666";
-        meta.style.marginLeft = "0.5em";
-        meta.textContent = `(${entry.rarity}${entry.weight_class ? ", " + entry.weight_class : ""})`;
-        title.appendChild(meta);
-
-        const itemId = parseInt(entry.name);
-        if (!isNaN(itemId)) {
-          if (itemNameCache[itemId]) {
-            nameSpan.textContent = itemNameCache[itemId];
-          } else {
-            fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
-              .then(res => res.json())
-              .then(data => {
-                const name = data && data.name ? data.name : `Item ID: ${entry.name}`;
-                itemNameCache[itemId] = name;
-                nameSpan.textContent = name;
-              })
-              .catch(() => {
-                nameSpan.textContent = `Item ID: ${entry.name}`;
-              });
-          }
-        } else {
-          nameSpan.textContent = entry.name;
-        }
-
-        div.appendChild(title);
-        const method = document.createElement("p");
-        method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
-        div.appendChild(method);
-        if (entry.description) {
-          const desc = document.createElement("p");
-          desc.innerHTML = `<strong>Description:</strong> ${entry.description}`;
-          div.appendChild(desc);
-        }
-
-        const cost = document.createElement("p");
-        cost.innerHTML = `<strong>Cost:</strong> loading...`;
-        div.appendChild(cost);
-
-        if (entry.link) {
-          const link = document.createElement("a");
-          link.href = entry.link;
-          link.textContent = "More info";
-          link.target = "_blank";
-          const externalIcon = document.createElement("img");
-          externalIcon.src = "assets/external-link.png";
-          externalIcon.alt = "(external)";
-          externalIcon.style.height = "0.9em";
-          externalIcon.style.verticalAlign = "middle";
-          externalIcon.style.marginLeft = "0.3em";
-          link.appendChild(externalIcon);
-          div.appendChild(link);
-        }
-
-        resultsDiv.appendChild(div);
-
-        const match = entry.cost.match(/^TP:(\d+)$/);
-        if (match) {
-          const tpId = match[1];
-          if (tpPriceCache[tpId]) {
-            cost.innerHTML = tpPriceCache[tpId];
-          } else {
-            fetch(`https://api.guildwars2.com/v2/commerce/prices/${tpId}`)
-              .then(res => res.json())
-              .then(data => {
-                const copper = data.sells.unit_price % 100;
-                const silver = Math.floor((data.sells.unit_price / 100) % 100);
-                const gold = Math.floor(data.sells.unit_price / 10000);
-                const priceHTML = `<strong>Cost:</strong> ${gold}<img src='assets/gold.png' style='height:1em;'> ${silver}<img src='assets/silver.png' style='height:1em;'> ${copper}<img src='assets/copper.png' style='height:1em;'>`;
-                tpPriceCache[tpId] = priceHTML;
-                cost.innerHTML = priceHTML;
-              })
-              .catch(() => {
-                cost.innerHTML = `<strong>Cost:</strong> (price unavailable)`;
-              });
-          }
-        } else {
-          cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
-        }
-      });
+  // 💰 Preis-Fetch vorbereiten
+  const pricePromises = filteredItems.map(entry => {
+    const match = entry.cost.match(/^TP:(\d+)$/);
+    if (match) {
+      const tpId = match[1];
+      if (tpPriceCache[tpId]) {
+        entry._priceCopper = tpPriceCache[tpId].copperValue;
+        return Promise.resolve();
+      } else {
+        return fetch(`https://api.guildwars2.com/v2/commerce/prices/${tpId}`)
+          .then(res => res.json())
+          .then(data => {
+            const priceCopper = data.sells.unit_price;
+            entry._priceCopper = priceCopper;
+            tpPriceCache[tpId] = {
+              html: `<strong>Cost:</strong> ${formatPrice(priceCopper)}`,
+              copperValue: priceCopper
+            };
+          })
+          .catch(() => {
+            entry._priceCopper = Number.MAX_SAFE_INTEGER; // Bei Fehler ganz nach unten
+          });
+      }
+    } else {
+      entry._priceCopper = Number.MAX_SAFE_INTEGER; // Nicht-TP-Kosten landen unten
+      return Promise.resolve();
     }
+  });
+
+  // 🕐 Auf alle Preis-Fetches warten
+  await Promise.all(pricePromises);
+
+  // 🔢 Jetzt sortieren
+  filteredItems.sort((a, b) => a._priceCopper - b._priceCopper);
+
+  // 🔁 Jetzt rendern
+  filteredItems.forEach(entry => {
+    const div = document.createElement("div");
+    div.className = "result";
+    const title = document.createElement("h3");
+
+    if (entry.icon) {
+      const icon = document.createElement("img");
+      icon.src = entry.icon;
+      icon.className = "icon";
+      title.appendChild(icon);
+    }
+
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = `Loading item name...`;
+    title.appendChild(nameSpan);
+
+    const meta = document.createElement("span");
+    meta.style.fontSize = "0.9em";
+    meta.style.color = "#666";
+    meta.style.marginLeft = "0.5em";
+    meta.textContent = `(${entry.rarity}${entry.weight_class ? ", " + entry.weight_class : ""})`;
+    title.appendChild(meta);
+
+    const itemId = parseInt(entry.name);
+    if (!isNaN(itemId)) {
+      if (itemNameCache[itemId]) {
+        nameSpan.textContent = itemNameCache[itemId];
+      } else {
+        fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
+          .then(res => res.json())
+          .then(data => {
+            const name = data && data.name ? data.name : `Item ID: ${entry.name}`;
+            itemNameCache[itemId] = name;
+            nameSpan.textContent = name;
+          })
+          .catch(() => {
+            nameSpan.textContent = `Item ID: ${entry.name}`;
+          });
+      }
+    } else {
+      nameSpan.textContent = entry.name;
+    }
+
+    div.appendChild(title);
+
+    const method = document.createElement("p");
+    method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
+    div.appendChild(method);
+
+    if (entry.description) {
+      const desc = document.createElement("p");
+      desc.innerHTML = `<strong>Description:</strong> ${entry.description}`;
+      div.appendChild(desc);
+    }
+
+    const cost = document.createElement("p");
+    if (entry.cost.startsWith("TP:")) {
+      const tpId = entry.cost.slice(3);
+      if (tpPriceCache[tpId]) {
+        cost.innerHTML = tpPriceCache[tpId].html;
+      } else {
+        cost.innerHTML = `<strong>Cost:</strong> loading...`;
+      }
+    } else {
+      cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
+    }
+    div.appendChild(cost);
+
+    if (entry.link) {
+      const link = document.createElement("a");
+      link.href = entry.link;
+      link.textContent = "More info";
+      link.target = "_blank";
+      const externalIcon = document.createElement("img");
+      externalIcon.src = "assets/external-link.png";
+      externalIcon.alt = "(external)";
+      externalIcon.style.height = "0.9em";
+      externalIcon.style.verticalAlign = "middle";
+      externalIcon.style.marginLeft = "0.3em";
+      link.appendChild(externalIcon);
+      div.appendChild(link);
+    }
+
+    resultsDiv.appendChild(div);
+  });
+}
+
+    function formatPrice(copper) {
+  const c = copper % 100;
+  const s = Math.floor((copper / 100) % 100);
+  const g = Math.floor(copper / 10000);
+  return `${g}<img src='assets/gold.png' style='height:1em;'> ${s}<img src='assets/silver.png' style='height:1em;'> ${c}<img src='assets/copper.png' style='height:1em;'>`;
+}
 
     slotSelect.addEventListener("change", () => {
       currentSlot = slotSelect.value;
