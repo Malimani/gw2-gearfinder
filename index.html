@@ -319,6 +319,13 @@ function formatCurrency(input) {
       }
       return cost;
     }
+
+console.log("Slot:", currentSlot);
+console.log("Selected attribute label:", currentAttrLabel);
+console.log("Resolved attrIds:", attrIds);
+console.log("Filtered items:", gearData[currentSlot].filter(item =>
+  item.attributes && item.attributes.some(attr => attrIds.includes(String(attr)))
+));
     
 async function renderItems(items = gearData[currentSlot]) {
   resultsDiv.innerHTML = "";
