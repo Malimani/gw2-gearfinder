@@ -81,7 +81,12 @@
   <div class="container">
     <header>
       <img src="assets/logo.png" alt="Logo">
-      <h1>Good Ways 2 Gear <small style="font-size: 0.6em; color: #666;">v1.2.0</small></h1>
+      <h1>
+        Good Ways 2 Gear
+        <small style="font-size: 0.6em; color: #666;">v1.2.0 &nbsp;|&nbsp; <span id="itemCounter">Loading items...</span>
+      </small>
+      </h1>
+
       <p style="margin-top: -1rem; font-size: 0.9em; color: #444;">
         Inspired by Tanetris's in depth guide: <a href="https://wiki.guildwars2.com/wiki/User:Tanetris/So_You_Want_To_Gear_a_Character" target="_blank" style="color: #0066cc; text-decoration: underline;"><em>So You Want To Gear a Character</em> <img src="assets/external-link.png" alt="external link" style='height: 0.9em; vertical-align: middle; margin-left: 0.3em;'></a>
       </p>
@@ -139,8 +144,20 @@
         gearData = await gearRes.json();
         slotTypeMap = await slotMapRes.json();
         buildSlotDropdown();
+        updateItemCounter();
       } catch (err) {
         console.error("Initialization error:", err);
+      }
+    }
+
+    function updateItemCounter() {
+      let itemCount = 0;
+      for (const slot in gearData) {
+        itemCount += gearData[slot].length;
+        }
+      const counterEl = document.getElementById("itemCounter");
+      if (counterEl) {
+        counterEl.textContent = `${itemCount} items`;
       }
     }
 
