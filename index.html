@@ -306,6 +306,20 @@ function formatCurrency(input) {
   }
 
   if (typeof input === "object" && input.currency && input.amount != null) {
+    if (input.currency === "Coin") {
+      const copper = input.amount;
+      const g = Math.floor(copper / 10000);
+      const s = Math.floor((copper % 10000) / 100);
+      const c = copper % 100;
+
+      let result = "";
+      if (g > 0) result += `${g}<img src='assets/gold.png' style='height:1em;'> `;
+      if (g > 0 || s > 0) result += `${s}<img src='assets/silver.png' style='height:1em;'> `;
+      result += `${c}<img src='assets/copper.png' style='height:1em;'>`;
+
+      return result.trim();
+    }
+
     return `${input.amount.toLocaleString()} ${input.currency.replaceAll("_", " ")}`;
   }
 
