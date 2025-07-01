@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Merge gearData.json with Live Currency Check</title>
+  <title>Merge gearData.json with Final Robust Parsing</title>
   <style>
     body {
       font-family: sans-serif;
@@ -25,8 +25,8 @@
   </style>
 </head>
 <body>
-  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.5</small></h1>
-  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Currencies will be validated live.</p>
+  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.6</small></h1>
+  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Currency will be validated live. Works with single or multiple blocks.</p>
 
   <h3>Existing gearData.json</h3>
   <textarea id="base" placeholder="Paste full existing gearData.json here..."></textarea>
@@ -48,20 +48,28 @@
       try {
         const baseData = JSON.parse(base);
 
-        let newBlocks;
-        try {
-          const single = JSON.parse(input);
-          newBlocks = [single];
-        } catch {
-          newBlocks = input
-            .split(/(?<=\})\s*(?=\{)/g)
-            .map(b => JSON.parse(b));
-        }
-
+        // Lade currencyIconMap live
         const currencyMapUrl = "https://raw.githubusercontent.com/Malimani/gw2gear/main/currencyIconMap.json";
         const currencyMap = await fetch(currencyMapUrl).then(res => res.json());
         const knownCurrencies = new Set(Object.keys(currencyMap));
         const unknownCurrencyMap = {};
+
+        // Robust JSON block parser
+        const rawBlocks = input.split(/(?<=\})\s*(?=\{)/g);
+        const newBlocks = [];
+
+        for (let i = 0; i < rawBlocks.length; i++) {
+          try {
+            newBlocks.push(JSON.parse(rawBlocks[i]));
+          } catch (err) {
+            output.textContent = `⚠️ Error parsing block ${i + 1}:
+` + err.message + "
+
+Block content:
+" + rawBlocks[i];
+            return;
+          }
+        }
 
         for (const block of newBlocks) {
           for (const slot in block) {
@@ -104,7 +112,7 @@
 
         output.textContent = result;
       } catch (e) {
-        output.textContent = '⚠️ Error merging data: ' + e.message;
+        output.textContent = '⚠️ Fatal error merging data: ' + e.message;
       }
     }
 
