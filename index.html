@@ -529,15 +529,8 @@ async function renderItems(items = gearData[currentSlot]) {
       filters.weight_class.clear();
 
       if (currentSlot && currentAttrLabel && gearData[currentSlot]) {
-        const attrIds = Object.entries(attributeMap)
-          .filter(([, label]) => label === currentAttrLabel)
-          .map(([id]) => id);
-
-        const filtered = gearData[currentSlot].filter(item =>
-          item.attributes && item.attributes.some(attr => attrIds.includes(String(attr)))
-        );
-        renderFilters(filtered);
-        renderItems(filtered);
+        renderFilters(gearData[currentSlot]);
+        renderItems();
       }
     });
 
