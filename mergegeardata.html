@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Merge gearData.json with Error Reporting</title>
+  <title>Merge gearData.json with Stable Currency Warning</title>
   <style>
     body {
       font-family: sans-serif;
@@ -25,8 +25,8 @@
   </style>
 </head>
 <body>
-  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v1.8</small></h1>
-  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Currency will be validated live.</p>
+  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v2.2</small></h1>
+  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Unknown currencies will be listed below.</p>
 
   <h3>Existing gearData.json</h3>
   <textarea id="base" placeholder="Paste full existing gearData.json here..."></textarea>
@@ -37,26 +37,26 @@
   <button onclick="mergeBlocks()">Merge and Overwrite</button>
   <button onclick="clearBaseField()">Clear Existing Data</button>
   <button onclick="copyOutput()">Copy Merged JSON</button>
-  
+
+  <h3>Merged Output</h3>
   <pre id="output"></pre>
 
   <h3>Warnings</h3>
   <pre id="warnings" style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba;"></pre>
-    
 
   <script>
     async function mergeBlocks() {
       const base = document.getElementById('base').value.trim();
       const input = document.getElementById('input').value.trim();
       const output = document.getElementById('output');
+      const warnings = document.getElementById('warnings');
+      warnings.textContent = "";
 
       try {
         const baseData = JSON.parse(base);
 
-        // Robust JSON block parser
         const rawBlocks = input.split(/(?<=\})\s*(?=\{)/g);
         const newBlocks = [];
-
         for (let i = 0; i < rawBlocks.length; i++) {
           try {
             newBlocks.push(JSON.parse(rawBlocks[i]));
@@ -67,19 +67,16 @@
           }
         }
 
-        // Try loading currency map
         let knownCurrencies = new Set();
         const unknownCurrencyMap = {};
 
         try {
-          const currencyMapUrl = "./currencyIconMap.json";
-          const res = await fetch(currencyMapUrl);
+          const res = await fetch("./currencyIconMap.json");
           if (!res.ok) throw new Error("HTTP " + res.status);
           const currencyMap = await res.json();
           knownCurrencies = new Set(Object.keys(currencyMap));
         } catch (err) {
-          output.textContent = "⚠️ Failed to load currencyIconMap.json: " + err.message;
-          return;
+          warnings.textContent = "⚠️ Failed to load currencyIconMap.json: " + err.message;
         }
 
         for (const block of newBlocks) {
@@ -90,7 +87,7 @@
             const updates = block[slot];
 
             for (const newItem of updates) {
-              
+              // robust currency check
               if (newItem.cost) {
                 try {
                   const costData = Array.isArray(newItem.cost) ? newItem.cost.flat() : [newItem.cost];
@@ -105,18 +102,8 @@
                     }
                   }
                 } catch (e) {
-                  console.warn("Error while checking cost currencies:", e);
+                  console.warn("Error in cost processing:", e);
                 }
-              }
-    
-                newItem.cost.flat().forEach(c => {
-                  if (c.currency && !knownCurrencies.has(c.currency)) {
-                    if (!unknownCurrencyMap[c.currency]) {
-                      unknownCurrencyMap[c.currency] = new Set();
-                    }
-                    unknownCurrencyMap[c.currency].add(newItem.name);
-                  }
-                });
               }
 
               const index = existing.findIndex(e => e.name === newItem.name);
@@ -130,20 +117,14 @@
           }
         }
 
-        let result = JSON.stringify(baseData, null, 2);
         const unknowns = Object.entries(unknownCurrencyMap);
         if (unknowns.length > 0) {
-          result += "\n\n⚠️ Unknown currencies used:\n";
-          for (const [cur, ids] of unknowns) {
-            result += `- ${cur}: ${Array.from(ids).join(", ")}\n`;
-          }
+          warnings.textContent = "⚠️ Unknown currencies used:\n" + unknowns
+            .map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`)
+            .join("\n");
         }
 
-        output.textContent = result;
-const warnings = document.getElementById("warnings");
-warnings.textContent = unknowns.length > 0
-  ? "⚠️ Unknown currencies used:\n" + unknowns.map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`).join("\n")
-  : "";
+        output.textContent = JSON.stringify(baseData, null, 2);
       } catch (e) {
         output.textContent = '⚠️ Fatal error merging data: ' + e.message;
       }
