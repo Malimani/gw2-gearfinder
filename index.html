@@ -304,6 +304,22 @@ function formatCurrency(input) {
       return trimmed.replaceAll("_", " ");
     }
 
+    function createCostElement(entry) {
+      const cost = document.createElement("p");
+      if (typeof entry.cost === "string" && entry.cost.startsWith("TP:")) {
+        const tpId = entry.cost.slice(3);
+        cost.innerHTML = tpPriceCache[tpId]?.html || `<strong>Cost:</strong> loading...`;
+      } else if (Array.isArray(entry.cost)) {
+        const formattedOptions = entry.cost.map(optionArr =>
+          optionArr.map(fragment => formatCurrency(fragment)).join(" + ")
+        );
+        cost.innerHTML = `<strong>Cost:</strong> ${formattedOptions.join(" <span style='color:#666;'>/</span> ")}`;
+      } else {
+        cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
+      }
+      return cost;
+    }
+    
 async function renderItems(items = gearData[currentSlot]) {
   resultsDiv.innerHTML = "";
   if (!currentSlot || !gearData[currentSlot]) return;
@@ -430,19 +446,7 @@ async function renderItems(items = gearData[currentSlot]) {
       div.appendChild(desc);
     }
 
-     const cost = document.createElement("p");
-      if (typeof entry.cost === "string" && entry.cost.startsWith("TP:")) {
-        const tpId = entry.cost.slice(3);
-        cost.innerHTML = tpPriceCache[tpId]?.html || `<strong>Cost:</strong> loading...`;
-    } else if (Array.isArray(entry.cost)) {
-      const formattedOptions = entry.cost.map(optionArr =>
-        optionArr.map(fragment => formatCurrency(fragment)).join(" + ")
-      );
-      cost.innerHTML = `<strong>Cost:</strong> ${formattedOptions.join(" <span style='color:#666;'>/</span> ")}`;
-    } else {
-      cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
-    }
-    div.appendChild(cost);
+   div.appendChild(createCostElement(entry));
 
     if (entry.link) {
       const link = document.createElement("a");
