@@ -37,7 +37,12 @@
   <button onclick="mergeBlocks()">Merge and Overwrite</button>
   <button onclick="clearBaseField()">Clear Existing Data</button>
   <button onclick="copyOutput()">Copy Merged JSON</button>
+  
   <pre id="output"></pre>
+
+  <h3>Warnings</h3>
+  <pre id="warnings" style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba;"></pre>
+    
 
   <script>
     async function mergeBlocks() {
@@ -117,6 +122,10 @@
         }
 
         output.textContent = result;
+const warnings = document.getElementById("warnings");
+warnings.textContent = unknowns.length > 0
+  ? "⚠️ Unknown currencies used:\n" + unknowns.map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`).join("\n")
+  : "";
       } catch (e) {
         output.textContent = '⚠️ Fatal error merging data: ' + e.message;
       }
