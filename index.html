@@ -75,6 +75,48 @@
     .result a {
       color: #0066cc;
     }
+    .result {
+  background: white;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.result:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.result h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.result h3 .icon {
+  height: 1.5em;
+  vertical-align: middle;
+}
+
+.result p {
+  margin: 0.3rem 0;
+}
+
+.result a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.result a:hover {
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
@@ -393,6 +435,19 @@ async function renderItems(items = gearData[currentSlot]) {
 
     resultsDiv.appendChild(div);
   });
+  const rarityColorMap = {
+  Junk: "#aaa",
+  Basic: "#aaa",
+  Fine: "#62a4da",
+  Masterwork: "#1a9306",
+  Rare: "#fcd00b",
+  Exotic: "#ffa405",
+  Ascended: "#fb3e8d",
+  Legendary: "#4c139d"
+};
+
+div.style.borderLeftColor = rarityColorMap[entry.rarity] || "#ccc";
+
 }
 
     function formatPrice(copper) {
