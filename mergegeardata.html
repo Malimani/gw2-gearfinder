@@ -92,14 +92,20 @@
             for (const newItem of updates) {
               
               if (newItem.cost) {
-                const flatCosts = Array.isArray(newItem.cost) ? newItem.cost.flat() : [newItem.cost];
-                for (const c of flatCosts) {
-                  if (c && typeof c === 'object' && c.currency && !knownCurrencies.has(c.currency)) {
-                    if (!unknownCurrencyMap[c.currency]) {
-                      unknownCurrencyMap[c.currency] = new Set();
+                try {
+                  const costData = Array.isArray(newItem.cost) ? newItem.cost.flat() : [newItem.cost];
+                  for (const c of costData) {
+                    if (c && typeof c === 'object' && 'currency' in c) {
+                      if (!knownCurrencies.has(c.currency)) {
+                        if (!unknownCurrencyMap[c.currency]) {
+                          unknownCurrencyMap[c.currency] = new Set();
+                        }
+                        unknownCurrencyMap[c.currency].add(newItem.name);
+                      }
                     }
-                    unknownCurrencyMap[c.currency].add(newItem.name);
                   }
+                } catch (e) {
+                  console.warn("Error while checking cost currencies:", e);
                 }
               }
     
