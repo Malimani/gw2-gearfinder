@@ -565,10 +565,6 @@ async function renderItems(items = gearData[currentSlot]) {
       .filter(([, label]) => label === currentAttrLabel)
       .map(([id]) => id);
 
-    console.log("Slot:", currentSlot);
-    console.log("Selected attribute label:", currentAttrLabel);
-    console.log("Resolved attrIds:", attrIds);
-
     renderFilters(gearData[currentSlot]);
     renderItems();
       }
