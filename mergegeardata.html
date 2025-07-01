@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Merge gearData.json with Final Currency Debugging</title>
+  <title>Merge gearData.json with Full Validation</title>
   <style>
     body {
       font-family: sans-serif;
@@ -25,8 +25,8 @@
   </style>
 </head>
 <body>
-  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v2.6</small></h1>
-  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Unknown currencies will be listed below.</p>
+  <h1>Extend gearData.json <small style="font-size: 0.6em; color: #666;">v3.0</small></h1>
+  <p>Paste your existing gearData.json in the first box, and new blocks below. Items will be fully replaced. Entire dataset will be checked for unknown currencies.</p>
 
   <h3>Existing gearData.json</h3>
   <textarea id="base" placeholder="Paste full existing gearData.json here..."></textarea>
@@ -45,8 +45,6 @@
   <pre id="warnings" style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba;"></pre>
 
   <script>
-    
-    // global helper to scan merged gearData for unknown currencies
     function scanMergedDataForUnknowns(baseData, knownCurrencies) {
       const unknownCurrencyMap = {};
       function extractCurrencies(value) {
@@ -107,7 +105,6 @@
         }
 
         let knownCurrencies = new Set();
-
         try {
           const res = await fetch("./currencyIconMap.json");
           if (!res.ok) throw new Error("HTTP " + res.status);
@@ -138,102 +135,6 @@
         }
 
         const unknowns = scanMergedDataForUnknowns(baseData, knownCurrencies);
-        if (unknowns.length > 0) {
-          warnings.textContent = "⚠️ Unknown currencies used:\n" + unknowns
-            .map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`)
-            .join("\n");
-        } else {
-          warnings.textContent = "✅ Currency check completed. No unknown currencies found.";
-        }
-
-        output.textContent = JSON.stringify(baseData, null, 2);
-      } catch (e) {
-        output.textContent = '⚠️ Fatal error merging data: ' + e.message;
-      }
-    }
-    
-      const base = document.getElementById('base').value.trim();
-      const input = document.getElementById('input').value.trim();
-      const output = document.getElementById('output');
-      const warnings = document.getElementById('warnings');
-      warnings.textContent = "";
-
-      function extractCurrencies(value) {
-        const found = [];
-        if (Array.isArray(value)) {
-          value.forEach(v => found.push(...extractCurrencies(v)));
-        } else if (value && typeof value === 'object') {
-          if ('currency' in value) {
-            found.push(value);
-          } else {
-            for (const key in value) {
-              found.push(...extractCurrencies(value[key]));
-            }
-          }
-        }
-        return found;
-      }
-
-      try {
-        const baseData = JSON.parse(base);
-        const rawBlocks = input.split(/(?<=\})\s*(?=\{)/g);
-        const newBlocks = [];
-        for (let i = 0; i < rawBlocks.length; i++) {
-          try {
-            newBlocks.push(JSON.parse(rawBlocks[i]));
-          } catch (err) {
-            output.textContent = `⚠️ Error parsing block ${i + 1}:
-` + err.message + "\n\nBlock content:\n" + rawBlocks[i];
-            return;
-          }
-        }
-
-        let knownCurrencies = new Set();
-        const unknownCurrencyMap = {};
-
-        try {
-          const res = await fetch("./currencyIconMap.json");
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          const currencyMap = await res.json();
-          knownCurrencies = new Set(Object.keys(currencyMap));
-          console.log("✅ Loaded known currencies:", [...knownCurrencies]);
-        } catch (err) {
-          warnings.textContent = "⚠️ Failed to load currencyIconMap.json: " + err.message;
-        }
-
-        for (const block of newBlocks) {
-          for (const slot in block) {
-            if (!baseData[slot]) baseData[slot] = [];
-
-            const existing = baseData[slot];
-            const updates = block[slot];
-
-            for (const newItem of updates) {
-              const costData = extractCurrencies(newItem.cost);
-              for (const c of costData) {
-                if (c && typeof c === 'object' && 'currency' in c) {
-                  console.log("Detected currency:", c.currency, "in item", newItem.name);
-                  if (!knownCurrencies.has(c.currency)) {
-                    if (!unknownCurrencyMap[c.currency]) {
-                      unknownCurrencyMap[c.currency] = new Set();
-                    }
-                    unknownCurrencyMap[c.currency].add(newItem.name);
-                  }
-                }
-              }
-
-              const index = existing.findIndex(e => e.name === newItem.name);
-              if (index >= 0) {
-                for (const key in existing[index]) delete existing[index][key];
-                Object.assign(existing[index], newItem);
-              } else {
-                existing.push(newItem);
-              }
-            }
-          }
-        }
-
-        const unknowns = Object.entries(unknownCurrencyMap);
         if (unknowns.length > 0) {
           warnings.textContent = "⚠️ Unknown currencies used:\n" + unknowns
             .map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`)
