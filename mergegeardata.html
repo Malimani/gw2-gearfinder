@@ -86,7 +86,72 @@
     }
 
     async function mergeBlocks() {
+      const base = document.getElementById('base').value.trim();
+      const input = document.getElementById('input').value.trim();
+      const output = document.getElementById('output');
+      const warnings = document.getElementById('warnings');
+      warnings.textContent = "";
 
+      try {
+        const baseData = JSON.parse(base);
+        const rawBlocks = input.split(/(?<=\})\s*(?=\{)/g);
+        const newBlocks = [];
+        for (let i = 0; i < rawBlocks.length; i++) {
+          try {
+            newBlocks.push(JSON.parse(rawBlocks[i]));
+          } catch (err) {
+            output.textContent = `⚠️ Error parsing block ${i + 1}:
+` + err.message + "\n\nBlock content:\n" + rawBlocks[i];
+            return;
+          }
+        }
+
+        let knownCurrencies = new Set();
+
+        try {
+          const res = await fetch("./currencyIconMap.json");
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const currencyMap = await res.json();
+          knownCurrencies = new Set(Object.keys(currencyMap));
+          console.log("✅ Loaded known currencies:", [...knownCurrencies]);
+        } catch (err) {
+          warnings.textContent = "⚠️ Failed to load currencyIconMap.json: " + err.message;
+        }
+
+        for (const block of newBlocks) {
+          for (const slot in block) {
+            if (!baseData[slot]) baseData[slot] = [];
+
+            const existing = baseData[slot];
+            const updates = block[slot];
+
+            for (const newItem of updates) {
+              const index = existing.findIndex(e => e.name === newItem.name);
+              if (index >= 0) {
+                for (const key in existing[index]) delete existing[index][key];
+                Object.assign(existing[index], newItem);
+              } else {
+                existing.push(newItem);
+              }
+            }
+          }
+        }
+
+        const unknowns = scanMergedDataForUnknowns(baseData, knownCurrencies);
+        if (unknowns.length > 0) {
+          warnings.textContent = "⚠️ Unknown currencies used:\n" + unknowns
+            .map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`)
+            .join("\n");
+        } else {
+          warnings.textContent = "✅ Currency check completed. No unknown currencies found.";
+        }
+
+        output.textContent = JSON.stringify(baseData, null, 2);
+      } catch (e) {
+        output.textContent = '⚠️ Fatal error merging data: ' + e.message;
+      }
+    }
+    
       const base = document.getElementById('base').value.trim();
       const input = document.getElementById('input').value.trim();
       const output = document.getElementById('output');
@@ -145,7 +210,7 @@
 
             for (const newItem of updates) {
               const costData = extractCurrencies(newItem.cost);
-              // per-item currency check moved to merged scan
+              for (const c of costData) {
                 if (c && typeof c === 'object' && 'currency' in c) {
                   console.log("Detected currency:", c.currency, "in item", newItem.name);
                   if (!knownCurrencies.has(c.currency)) {
@@ -168,7 +233,7 @@
           }
         }
 
-        const unknowns = scanMergedDataForUnknowns(baseData, knownCurrencies);
+        const unknowns = Object.entries(unknownCurrencyMap);
         if (unknowns.length > 0) {
           warnings.textContent = "⚠️ Unknown currencies used:\n" + unknowns
             .map(([cur, ids]) => `- ${cur}: ${Array.from(ids).join(", ")}`)
