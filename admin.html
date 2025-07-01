@@ -71,7 +71,8 @@
   </style>
 </head>
 <body>
-  <h1>GW2 Gear Admin Tool <small style="font-size: 0.6em; color: #666;">v1.5</small></h1>
+  <h1>GW2 Gear Admin Tool</h1>
+
   <label for="itemId">GW2 Item ID</label>
   <input type="text" id="itemId" placeholder="e.g. 92779">
   <div>
@@ -79,19 +80,26 @@
     <span id="itemNameDisplay"></span>
     <span id="itemDetails" style="margin-left: 1rem; color: #666; font-size: 0.9em;"></span>
   </div>
+
   <label for="method">Method</label>
-  <input type="text" id="method" placeholder="e.g. Crafting">
+  <input type="text" id="method" placeholder="e.g. TP, Crafting, Vendor">
+
   <label for="description">Description (optional)</label>
   <textarea id="description" rows="2" placeholder="Craftable with Armorsmith 500"></textarea>
+
   <label>Cost (complex format)</label>
   <div id="costBuilder"></div>
   <button id="addGroupBtn" type="button">+ Add Cost Option</button>
   <button id="addTPBtn" type="button">+ Use TP:<Item ID> as cost</button>
+
   <label for="link">Wiki or Reference Link</label>
   <input type="text" id="link" placeholder="Auto-fetched or enter manually">
+
   <button id="generateBtn">Generate JSON</button>
   <button id="copyBtn">Copy to Clipboard</button>
+
   <pre id="output"></pre>
+
   <template id="currencyTemplate">
     <div class="currency-entry">
       <input type="text" placeholder="Currency (e.g. Coin)" class="currency">
@@ -99,6 +107,7 @@
       <button type="button" class="removeBtn">×</button>
     </div>
   </template>
+
   <script>
     let fetchedIcon = "";
     let fetchedSlot = "";
@@ -114,12 +123,15 @@
       currentRarity = "";
       currentWeight = "";
       if (!itemId) return;
+
       try {
         const res = await fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`);
         const data = await res.json();
+
         fetchedIcon = data.icon || "";
         currentRarity = data.rarity || "";
-        if (data.details?.weight_class) currentWeight = data.details.weight_class;
+        currentWeight = data.details?.weight_class || "";
+
         nameDisplay.textContent = data.name || "";
         const itemDetails = document.getElementById('itemDetails');
         itemDetails.textContent = `${currentRarity}${currentWeight ? ' • ' + currentWeight : ''}`;
@@ -129,32 +141,21 @@
         } else {
           iconImg.style.display = 'none';
         }
-        if (data.details?.type) {
-          fetchedSlot = data.details.type;
-        } else if (data.type) {
-          fetchedSlot = data.type;
-        } else {
-          fetchedSlot = '';
-        }
+
+        fetchedSlot = data.details?.type || data.type || "";
+
         if (data.details?.stat_choices) {
           const statIds = data.details.stat_choices.join(',');
           const statRes = await fetch(`https://api.guildwars2.com/v2/itemstats?ids=${statIds}`);
           const statData = await statRes.json();
           allAttributes = statData.map(s => s.id.toString());
-        } else if (data.details?.infix_upgrade?.attributes) {
-          if (data.details.infix_upgrade?.id) {
-            allAttributes = [data.details.infix_upgrade.id.toString()];
-          }
+        } else if (data.details?.infix_upgrade?.id) {
+          allAttributes = [data.details.infix_upgrade.id.toString()];
         }
+
         await autoFillWikiLink();
       } catch (err) {
         console.error("Item fetch failed:", err);
-        iconImg.style.display = 'none';
-        nameDisplay.textContent = "";
-        document.getElementById('itemDetails').textContent = "";
-        allAttributes = [];
-        currentRarity = "";
-        currentWeight = "";
       }
     }
 
@@ -249,7 +250,6 @@
       }
     }
 
-    
     function generateJSON() {
       const slot = fetchedSlot;
       const itemId = document.getElementById('itemId').value.trim();
@@ -301,23 +301,6 @@
       document.getElementById('output').textContent = JSON.stringify(json, null, 2);
     }
 
-      const entry = {
-        name: itemId,
-        icon: iconUrl || undefined,
-        rarity: currentRarity || undefined,
-        weight_class: currentWeight || undefined,
-        method: method,
-        cost: cost,
-        link: link,
-        attributes: allAttributes
-      };
-      if (description) entry.description = description;
-      if (!entry.weight_class) delete entry.weight_class;
-
-      const json = { [slot]: [entry] };
-      document.getElementById('output').textContent = JSON.stringify(json, null, 2);
-    }
-
     function copyJSON() {
       const output = document.getElementById('output');
       if (output.textContent.trim() !== '') {
@@ -328,7 +311,7 @@
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("itemId").addEventListener("change", fetchItemData);
+      document.getElementById("itemId").addEventListener("input", fetchItemData);
       document.getElementById("addGroupBtn").addEventListener("click", addCurrencyGroup);
       document.getElementById("addTPBtn").addEventListener("click", addTPEntry);
       document.getElementById("generateBtn").addEventListener("click", generateJSON);
