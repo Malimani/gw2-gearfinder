@@ -423,82 +423,84 @@ async function renderItems(items = gearData[currentSlot]) {
     Legendary: "#4c139d"
   };
 
-  const createEntryDiv = (entry) => {
-    const div = document.createElement("div");
-    div.className = "result";
-    div.style.borderLeftColor = rarityColorMap[entry.rarity] || "#ccc";
+const createEntryDiv = (entry) => {
+  const div = document.createElement("div");
+  div.className = "result";
+  div.style.borderLeftColor = rarityColorMap[entry.rarity] || "#ccc";
 
-    const title = document.createElement("h3");
+  const title = document.createElement("h3");
 
-    if (entry.icon) {
-      const icon = document.createElement("img");
-      icon.src = entry.icon;
-      icon.className = "icon";
-      title.appendChild(icon);
-    }
+  if (entry.icon) {
+    const icon = document.createElement("img");
+    icon.src = entry.icon;
+    icon.className = "icon";
+    title.appendChild(icon);
+  }
 
-    const nameSpan = document.createElement("span");
-    nameSpan.textContent = `Loading item name...`;
-    title.appendChild(nameSpan);
+  const nameSpan = document.createElement(entry.link ? "a" : "span");
+  nameSpan.textContent = `Loading item name...`;
+  if (entry.link) {
+    nameSpan.href = entry.link;
+    nameSpan.target = "_blank";
+    nameSpan.style.color = "#0066cc";
+    nameSpan.style.textDecoration = "none";
+    nameSpan.style.display = "inline-flex";
+    nameSpan.style.alignItems = "center";
 
-    const meta = document.createElement("span");
-    meta.style.fontSize = "0.9em";
-    meta.style.color = "#666";
-    meta.style.marginLeft = "0.5em";
-    meta.textContent = `(${entry.rarity}${entry.weight_class ? ", " + entry.weight_class : ""})`;
-    title.appendChild(meta);
+    const extIcon = document.createElement("img");
+    extIcon.src = "assets/external-link.png";
+    extIcon.alt = "(external)";
+    extIcon.style.height = "0.9em";
+    extIcon.style.verticalAlign = "middle";
+    extIcon.style.marginLeft = "0.3em";
+    nameSpan.appendChild(extIcon);
+  }
+  title.appendChild(nameSpan);
 
-    const itemId = parseInt(entry.name);
-    if (!isNaN(itemId)) {
-      if (itemNameCache[itemId]) {
-        nameSpan.textContent = itemNameCache[itemId];
-      } else {
-        fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
-          .then(res => res.json())
-          .then(data => {
-            const name = data?.name || `Item ID: ${entry.name}`;
-            itemNameCache[itemId] = name;
-            nameSpan.textContent = name;
-          })
-          .catch(() => {
-            nameSpan.textContent = `Item ID: ${entry.name}`;
-          });
-      }
+  const meta = document.createElement("span");
+  meta.style.fontSize = "0.9em";
+  meta.style.color = "#666";
+  meta.style.marginLeft = "0.5em";
+  meta.textContent = `(${entry.rarity}${entry.weight_class ? ", " + entry.weight_class : ""})`;
+  title.appendChild(meta);
+
+  const itemId = parseInt(entry.name);
+  if (!isNaN(itemId)) {
+    if (itemNameCache[itemId]) {
+      nameSpan.childNodes[0].nodeValue = itemNameCache[itemId];
     } else {
-      nameSpan.textContent = entry.name;
+      fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
+        .then(res => res.json())
+        .then(data => {
+          const name = data?.name || `Item ID: ${entry.name}`;
+          itemNameCache[itemId] = name;
+          nameSpan.childNodes[0].nodeValue = name;
+        })
+        .catch(() => {
+          nameSpan.childNodes[0].nodeValue = `Item ID: ${entry.name}`;
+        });
     }
+  } else {
+    nameSpan.childNodes[0].nodeValue = entry.name;
+  }
 
-    div.appendChild(title);
+  div.appendChild(title);
 
-    const method = document.createElement("p");
-    method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
-    div.appendChild(method);
+  const method = document.createElement("p");
+  method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
+  div.appendChild(method);
 
-    if (entry.description) {
-      const desc = document.createElement("p");
-      desc.innerHTML = `<strong>Description:</strong> ${entry.description}`;
-      div.appendChild(desc);
-    }
+  if (entry.description) {
+    const desc = document.createElement("p");
+    desc.innerHTML = `<strong>Description:</strong> ${entry.description}`;
+    div.appendChild(desc);
+  }
 
-   div.appendChild(createCostElement(entry));
+  div.appendChild(createCostElement(entry));
 
-    if (entry.link) {
-      const link = document.createElement("a");
-      link.href = entry.link;
-      link.textContent = "More info";
-      link.target = "_blank";
-      const externalIcon = document.createElement("img");
-      externalIcon.src = "assets/external-link.png";
-      externalIcon.alt = "(external)";
-      externalIcon.style.height = "0.9em";
-      externalIcon.style.verticalAlign = "middle";
-      externalIcon.style.marginLeft = "0.3em";
-      link.appendChild(externalIcon);
-      div.appendChild(link);
-    }
+  return div;
+};
 
-    return div;
-  };
 
   if (tpItems.length) {
     const h = document.createElement("h2");
