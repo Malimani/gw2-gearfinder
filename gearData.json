@@ -14119,7 +14119,9 @@
     },
     {
       "name": "91004",
-      "icon": "https://render.guildwars2.com/file/0D284759AF7E3E9454210A3E7DECF0000B7E5D7F/699203.png",
+      "icon": "https://render.guildwars2.com/file/089C3C370428039590EF055CA33AED03E99E7951/699215.png",
+      "rarity": "Ascended",
+      "weight_class": "Heavy",
       "method": "Strikes",
       "cost": [
         [
@@ -14133,8 +14135,26 @@
           }
         ]
       ],
-      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Mist-Touched_Leggings",
-      "attributes": []
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Mist-Touched_Tassets",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
     },
     {
       "name": "91129",
