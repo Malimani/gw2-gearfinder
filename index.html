@@ -537,16 +537,42 @@ const createEntryDiv = (entry) => {
     legendaryItems.forEach(entry => resultsDiv.appendChild(createEntryDiv(entry)));
   }
 
-  // ➕ Zeige auch Ascended Items ohne direktes Attribut-Match unter "Ascended via Stat changing"
-const isTrinketSlot =
-  slotTypeMap[currentSlot]?.toLowerCase() === "trinkets";
+function normalizeCostOption(option) {
+  return option
+    .map(c => typeof c === "string" ? c : `${c.currency}:${c.amount}`)
+    .sort()
+    .join("|");
+}
+
+function extractCostVariants(entry) {
+  if (typeof entry.cost === "string") {
+    return [entry.cost];
+  }
+  if (Array.isArray(entry.cost)) {
+    return entry.cost.map(normalizeCostOption);
+  }
+  return [];
+}
+
+function hasSameCostOption(entryA, entryB) {
+  const costA = new Set(extractCostVariants(entryA));
+  const costB = extractCostVariants(entryB);
+  return costB.some(variant => costA.has(variant));
+}
+
+// ➕ Ascended via Stat Changing (nur wenn Slot nicht Trinket ist und keine Dublette mit gleicher Cost existiert)
+const isTrinketSlot = slotTypeMap[currentSlot]?.toLowerCase() === "trinkets";
 
 if (currentAttrLabel && gearData[currentSlot] && !isTrinketSlot) {
-  const forgeableAscended = gearData[currentSlot]
-    .filter(entry =>
-      entry.rarity === "Ascended" &&
-      (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id))))
-    );
+  const existingAscendedItems = filteredItems.filter(
+    item => item.rarity === "Ascended"
+  );
+
+  const forgeableAscended = gearData[currentSlot].filter(entry =>
+    entry.rarity === "Ascended" &&
+    (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id)))) &&
+    !existingAscendedItems.some(existing => hasSameCostOption(existing, entry))
+  );
 
   if (forgeableAscended.length) {
     const h = document.createElement("h2");
@@ -564,6 +590,7 @@ if (currentAttrLabel && gearData[currentSlot] && !isTrinketSlot) {
     });
   }
 }
+
   
 }
 
