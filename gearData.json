@@ -3753,6 +3753,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "96057",
+      "icon": "https://render.guildwars2.com/file/AB264A586F0B706FBC4E425CEFDABCAD9AE969B9/2596462.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Dagger",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Scepter": [
@@ -4048,6 +4109,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "96969",
+      "icon": "https://render.guildwars2.com/file/1593020617DE2A1D086517E13D18462DD0BD0DE3/2596591.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Scepter",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Shield": [
@@ -4319,6 +4441,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "97878",
+      "icon": "https://render.guildwars2.com/file/01FC99BA3237D5E09ADB0E4495400E1A6C4F079C/2596612.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Shield",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Sword": [
@@ -4651,6 +4834,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "97307",
+      "icon": "https://render.guildwars2.com/file/EFC29658770E58CB24373942127D341CA4EB2B2B/2596648.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Sword",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Greatsword": [
@@ -4935,6 +5179,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "97326",
+      "icon": "https://render.guildwars2.com/file/9D4D9A5290FA657AE9A509684740D05FBC717522/2596500.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Greatsword",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Focus": [
@@ -5168,6 +5473,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "97357",
+      "icon": "https://render.guildwars2.com/file/3E40EB927B0909450608B1A21F74D439D6D66461/2596482.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Focus",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Torch": [
@@ -5403,6 +5769,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "97011",
+      "icon": "https://render.guildwars2.com/file/377FD8090628C8212DA6593B0E28C3F3356CA359/2596668.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Torch",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Mace": [
@@ -5638,6 +6065,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "97754",
+      "icon": "https://render.guildwars2.com/file/97B429EE09609E4714573430CF072E56167423C5/2596536.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Mace",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "LongBow": [
@@ -5860,6 +6348,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "95679",
+      "icon": "https://render.guildwars2.com/file/27039D0ECFF6AFD3A129CD21519A9D17B01B160B/2596441.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Longbow",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Speargun": [
@@ -6211,6 +6760,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "95717",
+      "icon": "https://render.guildwars2.com/file/26EC7AFF44FD5644AD5720B6AC2A29C242B398CB/2596688.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Warhorn",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Harpoon": [
@@ -6657,6 +7267,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "96840",
+      "icon": "https://render.guildwars2.com/file/CF2F99C360C66C61F2D2BD73B0069309910A4551/2596572.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Rifle",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Axe": [
@@ -6905,6 +7576,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "96753",
+      "icon": "https://render.guildwars2.com/file/ABBC17964D0AF3A1C40DEDF49E45F11F1031802D/2596408.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Axe",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Pistol": [
@@ -7153,6 +7885,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "96301",
+      "icon": "https://render.guildwars2.com/file/1DA046359ECB6C08AA0CD50F4C7903BB08E17175/2596554.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Pistol",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "ShortBow": [
@@ -7388,6 +8181,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "97039",
+      "icon": "https://render.guildwars2.com/file/FCFEFC67480F4FFDF7480CB343E79E735755332F/2596444.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Short_Bow",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Staff": [
@@ -7610,6 +8464,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "95891",
+      "icon": "https://render.guildwars2.com/file/D96968A6FA229A7412EDBA7272B208DB26637522/2596630.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Staff",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Trident": [
@@ -7987,6 +8902,67 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "96329",
+      "icon": "https://render.guildwars2.com/file/BF3F1BBB3CAF5949B3201CD5B5C4ECB302130427/2596518.png",
+      "rarity": "Ascended",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Living_Water_Hammer",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1687",
+        "1717",
+        "1826"
+      ],
+      "description": "Can also just drop from EoD Strike Mission rewards"
     }
   ],
   "Shoulders": [
