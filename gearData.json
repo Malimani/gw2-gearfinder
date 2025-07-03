@@ -11439,6 +11439,459 @@
         "1826"
       ],
       "description": "Final reward chest for the Bronze tier of the WvW skirmish reward track. (~1.5h for a fresh player)\nFinal reward chest for all tiers of the PvP League reward track."
+    },
+    {
+      "name": "91015",
+      "icon": "https://render.guildwars2.com/file/6E0C12721BAA5E343813DE9F2C7EFE064AECCE0A/699212.png",
+      "rarity": "Ascended",
+      "weight_class": "Light",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Mist-Touched_Doublet",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "91046",
+      "icon": "https://render.guildwars2.com/file/957B01535AB96230450BA110704557C9C607054F/699206.png",
+      "rarity": "Ascended",
+      "weight_class": "Medium",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Mist-Touched_Guise",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "91057",
+      "icon": "https://render.guildwars2.com/file/64725E0CEBDA22C75C16B70B0CDE58E4E6E7400A/699218.png",
+      "rarity": "Ascended",
+      "weight_class": "Heavy",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Mist-Touched_Breastplate",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "91119",
+      "icon": "https://render.guildwars2.com/file/6E0C12721BAA5E343813DE9F2C7EFE064AECCE0A/699212.png",
+      "rarity": "Ascended",
+      "weight_class": "Light",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Mist-Touched_Doublet",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
+    },
+    {
+      "name": "90971",
+      "icon": "https://render.guildwars2.com/file/957B01535AB96230450BA110704557C9C607054F/699206.png",
+      "rarity": "Ascended",
+      "weight_class": "Medium",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Mist-Touched_Guise",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
+    },
+    {
+      "name": "91078",
+      "icon": "https://render.guildwars2.com/file/64725E0CEBDA22C75C16B70B0CDE58E4E6E7400A/699218.png",
+      "rarity": "Ascended",
+      "weight_class": "Heavy",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Mist-Touched_Breastplate",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
+    },
+    {
+      "name": "90963",
+      "icon": "https://render.guildwars2.com/file/6E0C12721BAA5E343813DE9F2C7EFE064AECCE0A/699212.png",
+      "rarity": "Ascended",
+      "weight_class": "Light",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Mist-Touched_Doublet",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "91089",
+      "icon": "https://render.guildwars2.com/file/957B01535AB96230450BA110704557C9C607054F/699206.png",
+      "rarity": "Ascended",
+      "weight_class": "Medium",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Mist-Touched_Guise",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "91059",
+      "icon": "https://render.guildwars2.com/file/64725E0CEBDA22C75C16B70B0CDE58E4E6E7400A/699218.png",
+      "rarity": "Ascended",
+      "weight_class": "Heavy",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Mist-Touched_Breastplate",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "91130",
+      "icon": "https://render.guildwars2.com/file/6E0C12721BAA5E343813DE9F2C7EFE064AECCE0A/699212.png",
+      "rarity": "Ascended",
+      "weight_class": "Light",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Mist-Touched_Doublet",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "91113",
+      "icon": "https://render.guildwars2.com/file/957B01535AB96230450BA110704557C9C607054F/699206.png",
+      "rarity": "Ascended",
+      "weight_class": "Medium",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Mist-Touched_Guise",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "91065",
+      "icon": "https://render.guildwars2.com/file/64725E0CEBDA22C75C16B70B0CDE58E4E6E7400A/699218.png",
+      "rarity": "Ascended",
+      "weight_class": "Heavy",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 400
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Mist-Touched_Breastplate",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
     }
   ],
   "Gloves": [
@@ -13348,6 +13801,439 @@
         "1826"
       ],
       "description": "Final reward chest for the Bronze tier of the WvW skirmish reward track. (~1.5h for a fresh player)\nFinal reward chest for all tiers of the PvP League reward track."
+    },
+    {
+      "name": "91118",
+      "icon": "https://render.guildwars2.com/file/58F7090A0E429EA35DF1C9F36DBD281552CA12F9/699209.png",
+      "rarity": "Ascended",
+      "weight_class": "Light",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Mist-Touched_Breeches",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "90962",
+      "icon": "https://render.guildwars2.com/file/0D284759AF7E3E9454210A3E7DECF0000B7E5D7F/699203.png",
+      "rarity": "Ascended",
+      "weight_class": "Medium",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Mist-Touched_Leggings",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "90984",
+      "icon": "https://render.guildwars2.com/file/089C3C370428039590EF055CA33AED03E99E7951/699215.png",
+      "rarity": "Ascended",
+      "weight_class": "Heavy",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Mist-Touched_Tassets",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "91062",
+      "icon": "https://render.guildwars2.com/file/58F7090A0E429EA35DF1C9F36DBD281552CA12F9/699209.png",
+      "rarity": "Ascended",
+      "weight_class": "Light",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Mist-Touched_Breeches",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
+    },
+    {
+      "name": "90993",
+      "icon": "https://render.guildwars2.com/file/0D284759AF7E3E9454210A3E7DECF0000B7E5D7F/699203.png",
+      "rarity": "Ascended",
+      "weight_class": "Medium",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Mist-Touched_Leggings",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
+    },
+    {
+      "name": "91045",
+      "icon": "https://render.guildwars2.com/file/089C3C370428039590EF055CA33AED03E99E7951/699215.png",
+      "rarity": "Ascended",
+      "weight_class": "Heavy",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Mist-Touched_Tassets",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
+    },
+    {
+      "name": "91022",
+      "icon": "https://render.guildwars2.com/file/58F7090A0E429EA35DF1C9F36DBD281552CA12F9/699209.png",
+      "rarity": "Ascended",
+      "weight_class": "Light",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Mist-Touched_Breeches",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "91044",
+      "icon": "https://render.guildwars2.com/file/0D284759AF7E3E9454210A3E7DECF0000B7E5D7F/699203.png",
+      "rarity": "Ascended",
+      "weight_class": "Medium",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Mist-Touched_Leggings",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "91004",
+      "icon": "https://render.guildwars2.com/file/0D284759AF7E3E9454210A3E7DECF0000B7E5D7F/699203.png",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Mist-Touched_Leggings",
+      "attributes": []
+    },
+    {
+      "name": "91129",
+      "icon": "https://render.guildwars2.com/file/58F7090A0E429EA35DF1C9F36DBD281552CA12F9/699209.png",
+      "rarity": "Ascended",
+      "weight_class": "Light",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Mist-Touched_Breeches",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "91053",
+      "icon": "https://render.guildwars2.com/file/0D284759AF7E3E9454210A3E7DECF0000B7E5D7F/699203.png",
+      "rarity": "Ascended",
+      "weight_class": "Medium",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Mist-Touched_Leggings",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "91080",
+      "icon": "https://render.guildwars2.com/file/089C3C370428039590EF055CA33AED03E99E7951/699215.png",
+      "rarity": "Ascended",
+      "weight_class": "Heavy",
+      "method": "Strikes",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 100000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 275
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Mist-Touched_Tassets",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
     }
   ],
   "Boots": [
