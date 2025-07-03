@@ -538,11 +538,10 @@ const createEntryDiv = (entry) => {
   }
 
   // ➕ Zeige auch Ascended Items ohne direktes Attribut-Match unter "Ascended via Stat changing"
-if (currentAttrLabel && gearData[currentSlot]) {
-  const attrIds = Object.entries(attributeMap)
-    .filter(([, label]) => label === currentAttrLabel)
-    .map(([id]) => id);
+const isTrinketSlot =
+  slotTypeMap[currentSlot]?.toLowerCase() === "trinkets";
 
+if (currentAttrLabel && gearData[currentSlot] && !isTrinketSlot) {
   const forgeableAscended = gearData[currentSlot]
     .filter(entry =>
       entry.rarity === "Ascended" &&
@@ -565,7 +564,7 @@ if (currentAttrLabel && gearData[currentSlot]) {
     });
   }
 }
-
+  
 }
 
     function formatPrice(copper) {
