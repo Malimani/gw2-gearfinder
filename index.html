@@ -112,6 +112,53 @@
     .result a:hover {
       text-decoration: underline;
     }
+    .filter-group {
+  display: flex;
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: white;
+}
+.filter-button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  background: white;
+  color: #333;
+  font-weight: bold;
+  border-left: 1px solid #ddd;
+  transition: background 0.2s, color 0.2s;
+}
+.filter-button:first-child {
+  border-left: none;
+}
+.filter-button.active {
+  background: #0066cc;
+  color: white;
+}
+.filter-rarity {
+  border-left: 6px solid transparent;
+}
+.filter-rarity.ascended {
+  border-left-color: #fb3e8d;
+}
+.filter-rarity.exotic {
+  border-right: 6px solid #ffa405;
+}
+.filter-weight.light::after {
+  content: "🪶";
+  margin-left: 0.4em;
+}
+.filter-weight.medium::after {
+  content: "⚖️";
+  margin-left: 0.4em;
+}
+.filter-weight.heavy::after {
+  content: "🪨";
+  margin-left: 0.4em;
+}
   </style>
 </head>
 <body>
