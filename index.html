@@ -6,184 +6,184 @@
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <title>Good Ways 2 Gear</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background: #f0f0f0;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-    }
-    .container {
-      max-width: 700px;
-      width: 100%;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-    header img {
-      height: 48px;
-    }
-    header h1 {
-      flex: 1;
-      min-width: 200px;
-      max-width: 100%;
-    }
-    h2 {
-      font-size: 1.2em;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      color: #333;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 0.25rem;
-    }
-    select {
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      width: 100%;
-      max-width: 700px;
-    }
-    .filters {
-      margin-bottom: 1rem;
-    }
-    .filters button {
-      margin: 0rem 0.75rem 0rem 0rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid #ccc;
-      border-radius: 0.25rem;
-      background: #fff;
-      cursor: pointer;
-    }
-    .filters button.active {
-      background-color: #0066cc;
-      color: white;
-      border-color: #0066cc;
-    }
-    .result img.icon {
-      height: 1.5em;
-      vertical-align: middle;
-      margin-right: 0.5em;
-    }
-    .result h3 {
-      margin: 0 0 0.5rem 0;
-      font-size: 1.2em;
-    }
-    .result p {
-      margin: 0.25rem 0;
-    }
-    .result a {
-      color: #0066cc;
-    }
-    .result {
-      background: white;
-      padding: 1rem;
-      margin-top: 0.75rem;
-      border-radius: 0.75rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      border-left: 6px solid transparent;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .result:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-    .result h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.2em;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .result h3 .icon {
-      height: 1.5em;
-      vertical-align: middle;
-    }
-    .result p {
-      margin: 0.3rem 0;
-    }
-    .result a {
-      color: #0066cc;
+body {
+    font-family: sans-serif;
+    background: #f0f0f0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    max-width: 700px;
+    width: 100%;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  header img {
+    height: 48px;
+  }
+
+  header h1 {
+    flex: 1;
+    min-width: 200px;
+    max-width: 100%;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.25rem;
+  }
+
+  select {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .filter-group {
+    display: flex;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    background: white;
+  }
+
+  .filter-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    background: white;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+    transition: background 0.2s, color 0.2s;
+    min-width: 6em;
+  }
+
+  .filter-button:last-child {
+    border-right: none;
+  }
+
+  .filter-button.active {
+    background: #0066cc;
+    color: white;
+  }
+
+  .filter-rarity.ascended {
+    box-shadow: inset 6px 0 0 #fb3e8d;
+  }
+
+  .filter-rarity.exotic {
+    box-shadow: inset -6px 0 0 #ffa405;
+  }
+
+  .filter-weight.light::after {
+    content: " 🪶";
+    font-size: 1em;
+  }
+
+  .filter-weight.medium::after {
+    content: " ⚖️";
+    font-size: 1em;
+  }
+
+  .filter-weight.heavy::after {
+    content: " 🪨";
+    font-size: 1em;
+  }
+
+  .filter-group.filter-rarity .filter-button,
+  .filter-group.filter-weight .filter-button {
+    min-width: 6.5em;
+  }
+
+  .reset-button,
+  #filters > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5em;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid #ccc;
+    background: white;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    cursor: pointer;
+  }
+
+  .result {
+    background: white;
+    padding: 1rem;
+    margin-top: 0.75rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .result:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .result h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .result h3 .icon {
+    height: 1.5em;
+    vertical-align: middle;
+  }
+
+  .result p {
+    margin: 0.3rem 0;
+  }
+
+  .result a {
+    color: #0066cc;
     text-decoration: none;
-    }
-    .result a:hover {
-      text-decoration: underline;
-    }
-    .filter-group {
-  display: flex;
-  margin-bottom: 1rem;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  background: white;
-}
-    .filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.filter-button {
-  flex: 1;
-  padding: 0.5rem;
-  background: white;
-  color: #333;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  border-right: 1px solid #ddd;
-  box-sizing: border-box;
-  transition: background 0.2s, color 0.2s;
-}
-.filter-button:last-child {
-  border-right: none;
-}
-.filter-button.active {
-  background: #0066cc;
-  color: white;
-}
-.filter-rarity {
-  border-left: 6px solid transparent;
-}
-.filter-rarity.ascended {
-  box-shadow: inset 6px 0 0 #fb3e8d;
-}
-.filter-rarity.exotic {
-  box-shadow: inset -6px 0 0 #ffa405;
-}
-.filter-weight.light::after {
-  content: " 🪶";
-  vertical-align: middle;
-  font-size: 1em;
-}
-.filter-weight.medium::after {
-  content: " ⚖️";
-  vertical-align: middle;
-  font-size: 1em;
-}
-.filter-weight.heavy::after {
-  content: " 🪨";
-  vertical-align: middle;
-  font-size: 1em;
-}
-    .filter-group.filter-rarity .filter-button {
-  flex: unset;
-  width: 6.5em;
-}
-    #filters > button {
-  align-self: center;
-  height: 2.5em;
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.75rem;
-  border: 1px solid #ccc;
-  background: white;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  cursor: pointer;
-  margin-top: auto;
-}
+  }
+
+  .result a:hover {
+    text-decoration: underline;
+  }
+
+  .result img.icon {
+    height: 1.5em;
+    vertical-align: middle;
+    margin-right: 0.5em;
+  }
   </style>
 </head>
 <body>
