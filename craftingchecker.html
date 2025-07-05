@@ -57,12 +57,13 @@
   <div id="tree"></div>
   <button id="generateBtn">Generate JSON</button>
   <pre id="output"></pre>
+  <h2>Optimierte Kostenabschätzung</h2>
+  <div id="totalCost"></div>
 
   <script>
     let gearData = {};
     let treeRoot = null;
-    const checkboxMap = new Map();
-    const inputMap = new Map();
+    const priceMap = new Map();
 
     async function loadGearData() {
       const res = await fetch("gearData.json");
@@ -109,7 +110,8 @@
       wrapper.className = "node";
 
       const isExisting = isAlreadyDefined(node.id);
-      const name = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).then(d => d.name).catch(() => `Item ${node.id}`);
+      const itemData = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).catch(() => ({}));
+      const name = itemData.name || `Item ${node.id}`;
 
       const tp = await fetchTPPrice(node.id);
 
@@ -127,7 +129,7 @@
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.dataset.id = node.id;
-      checkbox.checked = !tp; // uncheck by default if TP available
+      checkbox.checked = !tp;
 
       const priceInput = document.createElement("input");
       priceInput.type = "number";
@@ -155,13 +157,11 @@
 
       wrapper.appendChild(row);
 
-      checkbox.addEventListener("change", () => {
-        document.querySelectorAll(`input[type='checkbox'][data-id='${node.id}']`).forEach(cb => cb.checked = checkbox.checked);
-      });
       priceInput.addEventListener("input", () => {
         document.querySelectorAll(`input.price-field[data-id='${node.id}']`).forEach(pi => {
           if (pi !== priceInput) pi.value = priceInput.value;
         });
+        updateTotalCost();
       });
 
       const childContainer = document.createElement("div");
@@ -175,6 +175,30 @@
       }
     }
 
+    function updateTotalCost() {
+      const inputs = [...document.querySelectorAll("input.price-field")];
+      let total = 0;
+
+      inputs.forEach(input => {
+        const id = input.dataset.id;
+        const userVal = parseInt(input.value || "0", 10);
+        const tpElement = document.querySelector(`input[type='checkbox'][data-id='${id}']`).parentElement.querySelector(".tp-price");
+        const tpVal = tpElement?.textContent?.match(/TP: (\d+)g (\d+)s (\d+)c/);
+        let tpCopper = Number.MAX_SAFE_INTEGER;
+        if (tpVal) {
+          const [, g, s, c] = tpVal;
+          tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
+        }
+        const best = Math.min(userVal || Number.MAX_SAFE_INTEGER, tpCopper);
+        total += best;
+      });
+
+      const g = Math.floor(total / 10000);
+      const s = Math.floor((total % 10000) / 100);
+      const c = total % 100;
+      document.getElementById("totalCost").textContent = `${g}g ${s}s ${c}c (${total} copper)`;
+    }
+
     document.getElementById("loadBtn").addEventListener("click", async () => {
       const id = document.getElementById("itemId").value.trim();
       if (!id) return;
@@ -183,6 +207,7 @@
       const treeDiv = document.getElementById("tree");
       treeDiv.innerHTML = "";
       await renderNode(treeRoot, treeDiv);
+      updateTotalCost();
     });
 
     document.getElementById("generateBtn").addEventListener("click", () => {
