@@ -32,6 +32,14 @@
       font-size: 0.9em;
       color: #666;
     }
+    .toggle {
+      cursor: pointer;
+      margin-right: 0.25rem;
+      font-weight: bold;
+    }
+    .collapsed > .children {
+      display: none;
+    }
     pre {
       background: #eee;
       padding: 1rem;
@@ -53,6 +61,8 @@
   <script>
     let gearData = {};
     let treeRoot = null;
+    const checkboxMap = new Map();
+    const inputMap = new Map();
 
     async function loadGearData() {
       const res = await fetch("gearData.json");
@@ -95,20 +105,29 @@
     }
 
     async function renderNode(node, container, depth = 0) {
-      const div = document.createElement("div");
-      div.className = "node";
+      const wrapper = document.createElement("div");
+      wrapper.className = "node";
 
-      const label = document.createElement("label");
       const isExisting = isAlreadyDefined(node.id);
-
       const name = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).then(d => d.name).catch(() => `Item ${node.id}`);
-      label.textContent = name;
-      if (isExisting) label.classList.add("existing");
+
+      const tp = await fetchTPPrice(node.id);
+
+      const row = document.createElement("div");
+      row.className = isExisting ? "existing" : "";
+
+      const toggle = document.createElement("span");
+      toggle.textContent = node.children.length ? "+" : " ";
+      toggle.className = "toggle";
+      toggle.addEventListener("click", () => {
+        wrapper.classList.toggle("collapsed");
+        toggle.textContent = wrapper.classList.contains("collapsed") ? "+" : "−";
+      });
 
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
-      checkbox.checked = !isExisting;
       checkbox.dataset.id = node.id;
+      checkbox.checked = !tp; // uncheck by default if TP available
 
       const priceInput = document.createElement("input");
       priceInput.type = "number";
@@ -116,7 +135,9 @@
       priceInput.className = "price-field";
       priceInput.dataset.id = node.id;
 
-      const tp = await fetchTPPrice(node.id);
+      const label = document.createElement("label");
+      label.textContent = name;
+
       const tpSpan = document.createElement("span");
       tpSpan.className = "tp-price";
       if (tp) {
@@ -126,15 +147,31 @@
         tpSpan.textContent = `TP: ${g}g ${s}s ${c}c`;
       }
 
-      div.appendChild(checkbox);
-      div.appendChild(label);
-      div.appendChild(priceInput);
-      if (tp) div.appendChild(tpSpan);
+      row.appendChild(toggle);
+      row.appendChild(checkbox);
+      row.appendChild(label);
+      row.appendChild(priceInput);
+      if (tp) row.appendChild(tpSpan);
 
-      container.appendChild(div);
+      wrapper.appendChild(row);
+
+      checkbox.addEventListener("change", () => {
+        document.querySelectorAll(`input[type='checkbox'][data-id='${node.id}']`).forEach(cb => cb.checked = checkbox.checked);
+      });
+      priceInput.addEventListener("input", () => {
+        document.querySelectorAll(`input.price-field[data-id='${node.id}']`).forEach(pi => {
+          if (pi !== priceInput) pi.value = priceInput.value;
+        });
+      });
+
+      const childContainer = document.createElement("div");
+      childContainer.className = "children";
+      wrapper.appendChild(childContainer);
+
+      container.appendChild(wrapper);
 
       for (const child of node.children) {
-        await renderNode(child, div, depth + 1);
+        await renderNode(child, childContainer, depth + 1);
       }
     }
 
