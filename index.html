@@ -268,22 +268,39 @@
         if (item.weight_class) weights.add(item.weight_class);
       });
 
-      const createButton = (label, type) => {
-        const btn = document.createElement("button");
-        btn.textContent = label;
-        btn.className = filters[type].has(label) ? "active" : "";
-        btn.addEventListener("click", () => {
-        if (filters[type].has(label)) filters[type].delete(label);
-        else filters[type].add(label);
-        const filteredItems = items.filter(entry =>
-          (!filters.rarity.size || filters.rarity.has(entry.rarity)) &&
-          (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class)))
-        );
-        renderItems(filteredItems);
-        renderFilters(items);
-        });
-        return btn;
-      };
+const createButton = (label, type) => {
+  const btn = document.createElement("button");
+  btn.textContent = label;
+  btn.className = filters[type].has(label) ? "active" : "";
+
+  btn.addEventListener("click", () => {
+    const isExclusiveRarity = type === "rarity" && (label === "Ascended" || label === "Exotic");
+    const isExclusiveWeight = type === "weight_class" && ["Light", "Medium", "Heavy"].includes(label);
+
+    if (isExclusiveRarity || isExclusiveWeight) {
+      // Exklusives Verhalten
+      filters[type].clear();
+      if (!btn.classList.contains("active")) {
+        filters[type].add(label);
+      }
+    } else {
+      // Fallback: normal togglen
+      if (filters[type].has(label)) filters[type].delete(label);
+      else filters[type].add(label);
+    }
+
+    const filteredItems = items.filter(entry =>
+      (!filters.rarity.size || filters.rarity.has(entry.rarity)) &&
+      (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class)))
+    );
+
+    renderItems(filteredItems);
+    renderFilters(items);
+  });
+
+  return btn;
+};
+
 
       rarities.forEach(r => filtersDiv.appendChild(createButton(r, "rarity")));
       weights.forEach(w => filtersDiv.appendChild(createButton(w, "weight_class")));
