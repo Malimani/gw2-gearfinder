@@ -46,24 +46,29 @@
       margin-top: 2rem;
       white-space: pre-wrap;
     }
+    .warning {
+      color: red;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
   </style>
 </head>
 <body>
   <h1>Crafting Checker</h1>
-  <label for="itemId">Enter Item ID:</label>
+  <label for="itemId">Item ID:</label>
   <input type="text" id="itemId" placeholder="e.g. 19925">
   <button id="loadBtn">Load Tree</button>
 
   <div id="tree"></div>
   <button id="generateBtn">Generate JSON</button>
   <pre id="output"></pre>
-  <h2>Optimierte Kostenabschätzung</h2>
+  <h2>Estimated Total Cost</h2>
   <div id="totalCost"></div>
+  <div id="missingCostWarning" class="warning"></div>
 
   <script>
     let gearData = {};
     let treeRoot = null;
-    const priceMap = new Map();
 
     async function loadGearData() {
       const res = await fetch("gearData.json");
@@ -86,6 +91,27 @@
       } catch {
         return null;
       }
+    }
+
+    async function computeBestSubtreeCost(node) {
+      if (!node.children.length) return Number.MAX_SAFE_INTEGER;
+      let sum = 0;
+      for (const child of node.children) {
+        const priceField = document.querySelector(`input.price-field[data-id='${child.id}']`);
+        const userVal = parseInt(priceField?.value || "0", 10);
+        const tpElement = document.querySelector(`input[type='checkbox'][data-id='${child.id}']`)?.parentElement.querySelector(".tp-price");
+        let tpCopper = Number.MAX_SAFE_INTEGER;
+        if (tpElement) {
+          const tpVal = tpElement.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
+          if (tpVal) {
+            const [, g, s, c] = tpVal;
+            tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
+          }
+        }
+        const best = Math.min(userVal || Number.MAX_SAFE_INTEGER, tpCopper);
+        sum += best;
+      }
+      return sum;
     }
 
     async function buildTree(itemId, depth = 0, visited = new Set()) {
@@ -112,7 +138,6 @@
       const isExisting = isAlreadyDefined(node.id);
       const itemData = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).catch(() => ({}));
       const name = itemData.name || `Item ${node.id}`;
-
       const tp = await fetchTPPrice(node.id);
 
       const row = document.createElement("div");
@@ -129,7 +154,6 @@
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.dataset.id = node.id;
-      checkbox.checked = !tp;
 
       const priceInput = document.createElement("input");
       priceInput.type = "number";
@@ -157,12 +181,7 @@
 
       wrapper.appendChild(row);
 
-      priceInput.addEventListener("input", () => {
-        document.querySelectorAll(`input.price-field[data-id='${node.id}']`).forEach(pi => {
-          if (pi !== priceInput) pi.value = priceInput.value;
-        });
-        updateTotalCost();
-      });
+      priceInput.addEventListener("input", () => updateTotalCost());
 
       const childContainer = document.createElement("div");
       childContainer.className = "children";
@@ -173,16 +192,28 @@
       for (const child of node.children) {
         await renderNode(child, childContainer, depth + 1);
       }
+
+      const hasTP = tp !== null;
+      if (!hasTP && node.children.length > 0) {
+        const sum = await computeBestSubtreeCost(node);
+        if (isFinite(sum)) {
+          priceInput.value = sum;
+        }
+      }
+      checkbox.checked = hasTP ? false : (node.children.length === 0);
     }
 
     function updateTotalCost() {
       const inputs = [...document.querySelectorAll("input.price-field")];
       let total = 0;
+      let missing = [];
 
       inputs.forEach(input => {
         const id = input.dataset.id;
         const userVal = parseInt(input.value || "0", 10);
-        const tpElement = document.querySelector(`input[type='checkbox'][data-id='${id}']`).parentElement.querySelector(".tp-price");
+        const checkbox = document.querySelector(`input[type='checkbox'][data-id='${id}']`);
+        const parent = checkbox.parentElement;
+        const tpElement = parent.querySelector(".tp-price");
         const tpVal = tpElement?.textContent?.match(/TP: (\d+)g (\d+)s (\d+)c/);
         let tpCopper = Number.MAX_SAFE_INTEGER;
         if (tpVal) {
@@ -191,12 +222,20 @@
         }
         const best = Math.min(userVal || Number.MAX_SAFE_INTEGER, tpCopper);
         total += best;
+
+        const isLeaf = !parent.parentElement.querySelector(".children .price-field[data-id='" + id + "']");
+        if (isLeaf && !isFinite(best)) {
+          missing.push(id);
+        }
       });
 
       const g = Math.floor(total / 10000);
       const s = Math.floor((total % 10000) / 100);
       const c = total % 100;
       document.getElementById("totalCost").textContent = `${g}g ${s}s ${c}c (${total} copper)`;
+      document.getElementById("missingCostWarning").textContent = missing.length
+        ? `Warning: ${missing.length} base item(s) without TP or manual coin value.`
+        : "";
     }
 
     document.getElementById("loadBtn").addEventListener("click", async () => {
