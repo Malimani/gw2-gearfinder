@@ -203,7 +203,7 @@
       checkbox.checked = hasTP ? false : (node.children.length === 0);
     }
 
-    function updateTotalCost() {
+function updateTotalCost() {
   const inputs = [...document.querySelectorAll("input.price-field")];
   let total = 0;
   let missing = [];
@@ -231,6 +231,16 @@
         sum += best;
       });
       bestGuessMap.set(id, sum);
+
+      // Anzeige des Subpreises
+      const subInfo = nodeEl.querySelector(".subcost-info");
+      const g = Math.floor(sum / 10000);
+      const s = Math.floor((sum % 10000) / 100);
+      const c = sum % 100;
+      if (subInfo) {
+        subInfo.textContent = `Subcost: ${g}g ${s}s ${c}c`;
+        subInfo.style.color = "#888";
+      }
     }
   });
 
@@ -246,9 +256,26 @@
     }
 
     let best = Number.MAX_SAFE_INTEGER;
-    if (isFinite(uval) && uval > 0) best = uval;
-    if (tpCopper < best) best = tpCopper;
-    if (best === Number.MAX_SAFE_INTEGER && bestGuessMap.has(id)) best = bestGuessMap.get(id);
+    let source = "unknown";
+    if (isFinite(uval) && uval > 0) {
+      best = uval;
+      source = "coin";
+    }
+    if (tpCopper < best) {
+      best = tpCopper;
+      source = "tp";
+    }
+    if (best === Number.MAX_SAFE_INTEGER && bestGuessMap.has(id)) {
+      best = bestGuessMap.get(id);
+      source = "sub";
+    }
+
+    // Färbung je nach Quelle
+    const label = input.parentElement.querySelector("label");
+    if (label) {
+      label.style.fontWeight = "normal";
+      label.style.color = source === "coin" ? "black" : source === "tp" ? "green" : source === "sub" ? "blue" : "red";
+    }
 
     total += best;
 
@@ -264,7 +291,6 @@
     ? `Warning: ${missing.length} base item(s) without TP, coin or subcomponent value.`
     : "";
 }
-
 
     document.getElementById("loadBtn").addEventListener("click", async () => {
       const id = document.getElementById("itemId").value.trim();
