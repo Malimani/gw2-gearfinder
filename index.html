@@ -348,12 +348,34 @@ const createButton = (label, type) => {
   return btn;
 };
 
-      ["Ascended", "Exotic"].forEach(r => {
-  if (rarities.has(r)) filtersDiv.appendChild(createButton(r, "rarity"));
+// Rarity Group: Ascended + Exotic mit Farbbändern
+const rarityGroup = document.createElement("div");
+rarityGroup.className = "filter-group";
+
+["Ascended", "Exotic"].forEach(r => {
+  if (rarities.has(r)) {
+    const btn = createButton(r, "rarity");
+    btn.classList.add("filter-button", "filter-rarity");
+    if (r === "Ascended") btn.classList.add("ascended");
+    if (r === "Exotic") btn.classList.add("exotic");
+    rarityGroup.appendChild(btn);
+  }
 });
+filtersDiv.appendChild(rarityGroup);
+
+// Weight Class Group: Light + Medium + Heavy mit Symbolen
+const weightGroup = document.createElement("div");
+weightGroup.className = "filter-group";
+
 ["Light", "Medium", "Heavy"].forEach(w => {
-  if (weights.has(w)) filtersDiv.appendChild(createButton(w, "weight_class"));
+  if (weights.has(w)) {
+    const btn = createButton(w, "weight_class");
+    btn.classList.add("filter-button", "filter-weight", w.toLowerCase());
+    weightGroup.appendChild(btn);
+  }
 });
+filtersDiv.appendChild(weightGroup);
+
 
       if (rarities.size || weights.size) {
         const resetBtn = document.createElement("button");
