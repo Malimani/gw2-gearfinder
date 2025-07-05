@@ -587,8 +587,14 @@ function hasSameCostOption(entryA, entryB) {
 }
 
 const isTrinketSlot = slotTypeMap[currentSlot]?.toLowerCase() === "trinkets";
+const rarityFilter = filters.rarity;
 
-if (currentAttrLabel && gearData[currentSlot] && !isTrinketSlot) {
+if (
+  currentAttrLabel &&
+  gearData[currentSlot] &&
+  !isTrinketSlot &&
+  (!rarityFilter.size || rarityFilter.has("Ascended"))
+) {
   const existingAscendedItems = filteredItems.filter(
     item => item.rarity === "Ascended"
   );
