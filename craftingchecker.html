@@ -192,14 +192,23 @@
       for (const child of node.children) {
         await renderNode(child, childContainer, depth + 1);
       }
-
+    if (!hasTP && node.children.length > 0) {
+  const sum = await computeBestSubtreeCost(node);
+  if (isFinite(sum)) {
+    // Nur anzeigen, nicht ins Feld schreiben!
+    const subInfo = document.createElement("span");
+    subInfo.className = "subcost-info";
+    const g = Math.floor(sum / 10000);
+    const s = Math.floor((sum % 10000) / 100);
+    const c = sum % 100;
+    subInfo.textContent = `Subcost: ${g}g ${s}s ${c}c`;
+    subInfo.style.marginLeft = "0.5em";
+    subInfo.style.color = "#888";
+    row.appendChild(subInfo);
+  }
+}
       const hasTP = tp !== null;
-      if (!hasTP && node.children.length > 0) {
-        const sum = await computeBestSubtreeCost(node);
-        if (isFinite(sum)) {
-          priceInput.value = sum;
-        }
-      }
+    
       checkbox.checked = hasTP ? false : (node.children.length === 0);
     }
 
