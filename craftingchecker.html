@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crafting Checker</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    label, input, button {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+    .node {
+      margin-left: 1.5rem;
+      border-left: 2px dashed #ccc;
+      padding-left: 0.75rem;
+    }
+    .existing {
+      color: #aaa;
+    }
+    .price-field {
+      width: 6em;
+      margin-left: 0.5rem;
+    }
+    .tp-price {
+      margin-left: 0.5rem;
+      font-size: 0.9em;
+      color: #666;
+    }
+    pre {
+      background: #eee;
+      padding: 1rem;
+      margin-top: 2rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Crafting Checker</h1>
+  <label for="itemId">Enter Item ID:</label>
+  <input type="text" id="itemId" placeholder="e.g. 19925">
+  <button id="loadBtn">Load Tree</button>
+
+  <div id="tree"></div>
+  <button id="generateBtn">Generate JSON</button>
+  <pre id="output"></pre>
+
+  <script>
+    let gearData = {};
+    let treeRoot = null;
+
+    async function loadGearData() {
+      const res = await fetch("gearData.json");
+      gearData = await res.json();
+    }
+
+    function isAlreadyDefined(itemId) {
+      for (const slot in gearData) {
+        if (gearData[slot].some(e => e.name === String(itemId))) return true;
+      }
+      return false;
+    }
+
+    async function fetchTPPrice(itemId) {
+      try {
+        const res = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
+        if (!res.ok) return null;
+        const data = await res.json();
+        return data.sells.unit_price;
+      } catch {
+        return null;
+      }
+    }
+
+    async function buildTree(itemId, depth = 0, visited = new Set()) {
+      if (depth > 10 || visited.has(itemId)) return null;
+      visited.add(itemId);
+
+      const node = { id: itemId, children: [] };
+      const recipeRes = await fetch(`https://api.guildwars2.com/v2/recipes/search?output=${itemId}`);
+      const recipeIds = await recipeRes.json();
+      if (recipeIds.length > 0) {
+        const recipe = await fetch(`https://api.guildwars2.com/v2/recipes/${recipeIds[0]}`).then(r => r.json());
+        for (const ing of recipe.ingredients) {
+          const child = await buildTree(ing.item_id, depth + 1, new Set(visited));
+          if (child) node.children.push(child);
+        }
+      }
+      return node;
+    }
+
+    async function renderNode(node, container, depth = 0) {
+      const div = document.createElement("div");
+      div.className = "node";
+
+      const label = document.createElement("label");
+      const isExisting = isAlreadyDefined(node.id);
+
+      const name = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).then(d => d.name).catch(() => `Item ${node.id}`);
+      label.textContent = name;
+      if (isExisting) label.classList.add("existing");
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = !isExisting;
+      checkbox.dataset.id = node.id;
+
+      const priceInput = document.createElement("input");
+      priceInput.type = "number";
+      priceInput.placeholder = "Coin";
+      priceInput.className = "price-field";
+      priceInput.dataset.id = node.id;
+
+      const tp = await fetchTPPrice(node.id);
+      const tpSpan = document.createElement("span");
+      tpSpan.className = "tp-price";
+      if (tp) {
+        const g = Math.floor(tp / 10000);
+        const s = Math.floor((tp % 10000) / 100);
+        const c = tp % 100;
+        tpSpan.textContent = `TP: ${g}g ${s}s ${c}c`;
+      }
+
+      div.appendChild(checkbox);
+      div.appendChild(label);
+      div.appendChild(priceInput);
+      if (tp) div.appendChild(tpSpan);
+
+      container.appendChild(div);
+
+      for (const child of node.children) {
+        await renderNode(child, div, depth + 1);
+      }
+    }
+
+    document.getElementById("loadBtn").addEventListener("click", async () => {
+      const id = document.getElementById("itemId").value.trim();
+      if (!id) return;
+      await loadGearData();
+      treeRoot = await buildTree(parseInt(id));
+      const treeDiv = document.getElementById("tree");
+      treeDiv.innerHTML = "";
+      await renderNode(treeRoot, treeDiv);
+    });
+
+    document.getElementById("generateBtn").addEventListener("click", () => {
+      const checked = [...document.querySelectorAll("input[type='checkbox']:checked")];
+      const results = checked.map(box => {
+        const id = box.dataset.id;
+        const price = document.querySelector(`input.price-field[data-id='${id}']`).value;
+        return {
+          name: id,
+          method: "Vendor",
+          cost: [[{ currency: "Coin", amount: parseInt(price || "0", 10) }]],
+          description: "Manually entered via crafting checker"
+        };
+      });
+      document.getElementById("output").textContent = JSON.stringify(results, null, 2);
+    });
+  </script>
+</body>
+</html>
