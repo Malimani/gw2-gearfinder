@@ -301,9 +301,12 @@ const createButton = (label, type) => {
   return btn;
 };
 
-
-      rarities.forEach(r => filtersDiv.appendChild(createButton(r, "rarity")));
-      weights.forEach(w => filtersDiv.appendChild(createButton(w, "weight_class")));
+      ["Ascended", "Exotic"].forEach(r => {
+  if (rarities.has(r)) filtersDiv.appendChild(createButton(r, "rarity"));
+});
+["Light", "Medium", "Heavy"].forEach(w => {
+  if (weights.has(w)) filtersDiv.appendChild(createButton(w, "weight_class"));
+});
 
       if (rarities.size || weights.size) {
         const resetBtn = document.createElement("button");
