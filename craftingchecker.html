@@ -65,7 +65,13 @@
   <h2>Estimated Total Cost</h2>
   <div id="totalCost"></div>
   <div id="missingCostWarning" class="warning"></div>
-
+  <div style="margin-top:1em; font-size:0.9em;">
+  <strong>Legend:</strong>
+  <span style="color: black; margin-left: 1em;">■ manual Coin</span>
+  <span style="color: green; margin-left: 1em;">■ TP price</span>
+  <span style="color: blue; margin-left: 1em;">■ Subcomponent cost</span>
+  <span style="color: red; margin-left: 1em;">■ No cost found</span>
+  </div>
   <script>
     let gearData = {};
     let treeRoot = null;
@@ -108,7 +114,10 @@
             tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
           }
         }
-        const best = Math.min(userVal || Number.MAX_SAFE_INTEGER, tpCopper);
+        const best = Math.min(
+        isFinite(uval) ? uval : Number.MAX_SAFE_INTEGER,
+        tpCopper
+        );
         sum += best;
       }
       return sum;
@@ -155,12 +164,23 @@
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.dataset.id = node.id;
-
+      checkbox.addEventListener("change", () => {
+  document.querySelectorAll(`input[type='checkbox'][data-id='${node.id}']`).forEach(cb => {
+    if (cb !== checkbox) cb.checked = checkbox.checked;
+  });
+});
+      
       const priceInput = document.createElement("input");
       priceInput.type = "number";
       priceInput.placeholder = "Coin";
       priceInput.className = "price-field";
       priceInput.dataset.id = node.id;
+      priceInput.addEventListener("input", () => {
+      document.querySelectorAll(`input.price-field[data-id='${node.id}']`).forEach(pi => {
+        if (pi !== priceInput) pi.value = priceInput.value;
+      });
+      updateTotalCost();
+    });
 
       const label = document.createElement("label");
       label.textContent = name;
@@ -235,7 +255,10 @@ function updateTotalCost() {
           const [, g, s, c] = tp;
           tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
         }
-        const best = Math.min(uval || Number.MAX_SAFE_INTEGER, tpCopper);
+        const best = Math.min(
+        isFinite(uval) ? uval : Number.MAX_SAFE_INTEGER,
+        tpCopper
+        );
         sum += best;
       });
       bestGuessMap.set(id, sum);
