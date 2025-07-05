@@ -8090,6 +8090,18 @@
         "1826"
       ],
       "description": "Can also just drop from EoD Strike Mission rewards"
+    },
+    {
+      "name": "46759",
+      "icon": "https://render.guildwars2.com/file/AE4909124900E1A3006CEA394670603D5B0C15EE/631536.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": "craft:46759",
+      "link": "https://wiki.guildwars2.com/wiki/Zojja%27s_Reaver",
+      "attributes": [
+        "161"
+      ],
+      "description": "TEST ITEM FOR CRAFTING CALC"
     }
   ],
   "Pistol": [
