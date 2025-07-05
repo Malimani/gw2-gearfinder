@@ -154,16 +154,35 @@
   box-shadow: inset -6px 0 0 #ffa405;
 }
 .filter-weight.light::after {
-  content: "🪶";
-  margin-left: 0.4em;
+  content: " 🪶";
+  vertical-align: middle;
+  font-size: 1em;
 }
 .filter-weight.medium::after {
-  content: "⚖️";
-  margin-left: 0.4em;
+  content: " ⚖️";
+  vertical-align: middle;
+  font-size: 1em;
 }
 .filter-weight.heavy::after {
-  content: "🪨";
-  margin-left: 0.4em;
+  content: " 🪨";
+  vertical-align: middle;
+  font-size: 1em;
+}
+    .filter-group.filter-rarity .filter-button {
+  flex: unset;
+  width: 6.5em;
+}
+    #filters > button {
+  align-self: center;
+  height: 2.5em;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid #ccc;
+  background: white;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  cursor: pointer;
+  margin-top: auto;
 }
   </style>
 </head>
