@@ -248,7 +248,8 @@ function updateTotalCost() {
       let sum = 0;
       children.forEach(input => {
         const cid = input.dataset.id;
-        const uval = parseInt(input.value || "0", 10);
+        const uvalRaw = input.value;
+        const uval = parseInt(uvalRaw, 10);
         const tp = input.parentElement.querySelector(".tp-price")?.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
         let tpCopper = Number.MAX_SAFE_INTEGER;
         if (tp) {
@@ -256,8 +257,8 @@ function updateTotalCost() {
           tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
         }
         const best = Math.min(
-        isFinite(uval) ? uval : Number.MAX_SAFE_INTEGER,
-        tpCopper
+          isFinite(uval) ? uval : Number.MAX_SAFE_INTEGER,
+          tpCopper
         );
         sum += best;
       });
@@ -278,7 +279,8 @@ function updateTotalCost() {
   // Gesamtkosten berechnen
   inputs.forEach(input => {
     const id = input.dataset.id;
-    const uval = parseInt(input.value || "0", 10);
+    const uvalRaw = input.value;
+    const uval = parseInt(uvalRaw, 10);
     const tp = input.parentElement.querySelector(".tp-price")?.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
     let tpCopper = Number.MAX_SAFE_INTEGER;
     if (tp) {
@@ -288,7 +290,7 @@ function updateTotalCost() {
 
     let best = Number.MAX_SAFE_INTEGER;
     let source = "unknown";
-    if (isFinite(uval) && uval > 0) {
+    if (isFinite(uval)) {
       best = uval;
       source = "coin";
     }
@@ -322,6 +324,7 @@ function updateTotalCost() {
     ? `Warning: ${missing.length} base item(s) without TP, coin or subcomponent value.`
     : "";
 }
+
 
     document.getElementById("loadBtn").addEventListener("click", async () => {
       const id = document.getElementById("itemId").value.trim();
