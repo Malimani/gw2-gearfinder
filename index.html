@@ -251,6 +251,12 @@
         .forEach(option => attributeSelect.appendChild(option));
 
       attributeSelect.style.display = 'block';
+      for (let i = 0; i < attributeSelect.options.length; i++) {
+      if (attributeSelect.options[i].textContent === currentAttrLabel) {
+        attributeSelect.selectedIndex = i;
+        break;
+      }
+    }
     }
 
     function renderFilters(items) {
@@ -560,7 +566,6 @@ function hasSameCostOption(entryA, entryB) {
   return costB.some(variant => costA.has(variant));
 }
 
-// ➕ Ascended via Stat Changing (nur wenn Slot nicht Trinket ist und keine Dublette mit gleicher Cost existiert)
 const isTrinketSlot = slotTypeMap[currentSlot]?.toLowerCase() === "trinkets";
 
 if (currentAttrLabel && gearData[currentSlot] && !isTrinketSlot) {
@@ -603,7 +608,6 @@ if (currentAttrLabel && gearData[currentSlot] && !isTrinketSlot) {
 
     slotSelect.addEventListener("change", () => {
       currentSlot = slotSelect.value;
-      currentAttrLabel = "";
       attributeSelect.innerHTML = '';
       filtersDiv.innerHTML = "";
       resultsDiv.innerHTML = "";
