@@ -204,39 +204,67 @@
     }
 
     function updateTotalCost() {
-      const inputs = [...document.querySelectorAll("input.price-field")];
-      let total = 0;
-      let missing = [];
+  const inputs = [...document.querySelectorAll("input.price-field")];
+  let total = 0;
+  let missing = [];
 
-      inputs.forEach(input => {
-        const id = input.dataset.id;
-        const userVal = parseInt(input.value || "0", 10);
-        const checkbox = document.querySelector(`input[type='checkbox'][data-id='${id}']`);
-        const parent = checkbox.parentElement;
-        const tpElement = parent.querySelector(".tp-price");
-        const tpVal = tpElement?.textContent?.match(/TP: (\d+)g (\d+)s (\d+)c/);
+  const bestGuessMap = new Map();
+
+  // vorbereiten: geschätzte Werte für Items mit Unterkomponenten berechnen
+  const allNodes = document.querySelectorAll(".node");
+  allNodes.forEach(nodeEl => {
+    const id = nodeEl.querySelector("input.price-field")?.dataset.id;
+    const children = nodeEl.querySelectorAll(`.children .price-field[data-id]`);
+
+    if (id && children.length > 0) {
+      let sum = 0;
+      children.forEach(input => {
+        const cid = input.dataset.id;
+        const uval = parseInt(input.value || "0", 10);
+        const tp = input.parentElement.querySelector(".tp-price")?.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
         let tpCopper = Number.MAX_SAFE_INTEGER;
-        if (tpVal) {
-          const [, g, s, c] = tpVal;
+        if (tp) {
+          const [, g, s, c] = tp;
           tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
         }
-        const best = Math.min(userVal || Number.MAX_SAFE_INTEGER, tpCopper);
-        total += best;
-
-        const isLeaf = !parent.parentElement.querySelector(".children .price-field[data-id='" + id + "']");
-        if (isLeaf && !isFinite(best)) {
-          missing.push(id);
-        }
+        const best = Math.min(uval || Number.MAX_SAFE_INTEGER, tpCopper);
+        sum += best;
       });
-
-      const g = Math.floor(total / 10000);
-      const s = Math.floor((total % 10000) / 100);
-      const c = total % 100;
-      document.getElementById("totalCost").textContent = `${g}g ${s}s ${c}c (${total} copper)`;
-      document.getElementById("missingCostWarning").textContent = missing.length
-        ? `Warning: ${missing.length} base item(s) without TP or manual coin value.`
-        : "";
+      bestGuessMap.set(id, sum);
     }
+  });
+
+  // Gesamtkosten berechnen
+  inputs.forEach(input => {
+    const id = input.dataset.id;
+    const uval = parseInt(input.value || "0", 10);
+    const tp = input.parentElement.querySelector(".tp-price")?.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
+    let tpCopper = Number.MAX_SAFE_INTEGER;
+    if (tp) {
+      const [, g, s, c] = tp;
+      tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
+    }
+
+    let best = Number.MAX_SAFE_INTEGER;
+    if (isFinite(uval) && uval > 0) best = uval;
+    if (tpCopper < best) best = tpCopper;
+    if (best === Number.MAX_SAFE_INTEGER && bestGuessMap.has(id)) best = bestGuessMap.get(id);
+
+    total += best;
+
+    const isLeaf = !input.closest(".node")?.querySelector(".children .price-field[data-id]");
+    if (isLeaf && best === Number.MAX_SAFE_INTEGER) missing.push(id);
+  });
+
+  const g = Math.floor(total / 10000);
+  const s = Math.floor((total % 10000) / 100);
+  const c = total % 100;
+  document.getElementById("totalCost").textContent = `${g}g ${s}s ${c}c (${total} copper)`;
+  document.getElementById("missingCostWarning").textContent = missing.length
+    ? `Warning: ${missing.length} base item(s) without TP, coin or subcomponent value.`
+    : "";
+}
+
 
     document.getElementById("loadBtn").addEventListener("click", async () => {
       const id = document.getElementById("itemId").value.trim();
