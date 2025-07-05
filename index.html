@@ -128,16 +128,17 @@
 .filter-button {
   flex: 1;
   padding: 0.5rem;
-  border: none;
-  cursor: pointer;
   background: white;
   color: #333;
   font-weight: bold;
-  border-left: 1px solid #ddd;
+  cursor: pointer;
+  border: none;
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
   transition: background 0.2s, color 0.2s;
 }
-.filter-button:first-child {
-  border-left: none;
+.filter-button:last-child {
+  border-right: none;
 }
 .filter-button.active {
   background: #0066cc;
