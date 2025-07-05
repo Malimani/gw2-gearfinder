@@ -120,6 +120,11 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   background: white;
 }
+    .filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 .filter-button {
   flex: 1;
   padding: 0.5rem;
@@ -142,10 +147,10 @@
   border-left: 6px solid transparent;
 }
 .filter-rarity.ascended {
-  border-left-color: #fb3e8d;
+  box-shadow: inset 6px 0 0 #fb3e8d;
 }
 .filter-rarity.exotic {
-  border-right: 6px solid #ffa405;
+  box-shadow: inset -6px 0 0 #ffa405;
 }
 .filter-weight.light::after {
   content: "🪶";
