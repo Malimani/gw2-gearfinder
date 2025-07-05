@@ -615,6 +615,10 @@ if (currentAttrLabel && gearData[currentSlot] && !isTrinketSlot) {
       if (gearData[currentSlot]) {
         buildAttributeDropdown(currentSlot);
       }
+      if (currentAttrLabel) {
+      renderFilters(gearData[currentSlot]);
+      renderItems();
+      }
     });
 
     attributeSelect.addEventListener("change", () => {
