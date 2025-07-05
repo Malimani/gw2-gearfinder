@@ -91,6 +91,7 @@
   <div id="costBuilder"></div>
   <button id="addGroupBtn" type="button">+ Add Cost Option</button>
   <button id="addTPBtn" type="button">+ Use TP:<Item ID> as cost</button>
+  <button id="addCraftBtn" type="button">+ Use Crafting:&lt;Item ID&gt; as cost</button>
 
   <label for="link">Wiki or Reference Link</label>
   <input type="text" id="link" placeholder="Auto-fetched or enter manually">
@@ -234,6 +235,51 @@
       container.appendChild(groupDiv);
     }
 
+    function addCraftEntry() {
+  const itemId = document.getElementById('itemId').value.trim();
+  if (!itemId) {
+    alert("Enter a valid item ID first.");
+    return;
+  }
+  document.getElementById("costBuilder").innerHTML = '';
+
+  const container = document.getElementById("costBuilder");
+  const groupDiv = document.createElement("div");
+  groupDiv.className = "currency-group";
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "×";
+  removeBtn.className = "remove-group";
+  removeBtn.type = "button";
+  removeBtn.addEventListener("click", () => groupDiv.remove());
+  groupDiv.appendChild(removeBtn);
+
+  const entryDiv = document.createElement("div");
+  entryDiv.className = "currency-entry";
+
+  const input = document.createElement("input");
+  input.className = "currency";
+  input.value = `craft:${itemId}`;
+  input.placeholder = "Currency (e.g. Coin)";
+  entryDiv.appendChild(input);
+
+  const dummy = document.createElement("input");
+  dummy.className = "amount";
+  dummy.type = "number";
+  dummy.value = 0;
+  dummy.placeholder = "Amount";
+  entryDiv.appendChild(dummy);
+
+  const removeCurrencyBtn = document.createElement("button");
+  removeCurrencyBtn.textContent = "×";
+  removeCurrencyBtn.type = "button";
+  removeCurrencyBtn.addEventListener("click", () => entryDiv.remove());
+  entryDiv.appendChild(removeCurrencyBtn);
+
+  groupDiv.appendChild(entryDiv);
+  container.appendChild(groupDiv);
+}
+    
     async function autoFillWikiLink() {
       const itemId = document.getElementById('itemId').value.trim();
       const linkField = document.getElementById('link');
@@ -316,6 +362,7 @@
       document.getElementById("addTPBtn").addEventListener("click", addTPEntry);
       document.getElementById("generateBtn").addEventListener("click", generateJSON);
       document.getElementById("copyBtn").addEventListener("click", copyJSON);
+      document.getElementById("addCraftBtn").addEventListener("click", addCraftEntry);
     });
   </script>
 </body>
