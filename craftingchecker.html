@@ -139,6 +139,7 @@
       const itemData = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).catch(() => ({}));
       const name = itemData.name || `Item ${node.id}`;
       const tp = await fetchTPPrice(node.id);
+      const hasTP = tp !== null;
 
       const row = document.createElement("div");
       row.className = isExisting ? "existing" : "";
@@ -206,9 +207,7 @@
     subInfo.style.color = "#888";
     row.appendChild(subInfo);
   }
-}
-      const hasTP = tp !== null;
-    
+}    
       checkbox.checked = hasTP ? false : (node.children.length === 0);
     }
 
