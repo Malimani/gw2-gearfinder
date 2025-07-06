@@ -255,90 +255,90 @@ row.appendChild(label);
       checkbox.checked = hasTP ? false : (node.children.length === 0);
     }
 
+  function getBestCost(id, visited = new Set()) {
+  if (visited.has(id)) return Number.MAX_SAFE_INTEGER; // Zyklus vermeiden
+  visited.add(id);
+
+  const inputs = document.querySelectorAll(`input.price-field[data-id='${id}']`);
+  if (!inputs.length) return Number.MAX_SAFE_INTEGER;
+
+  const input = inputs[0];
+  const uval = parseInt(input.value, 10);
+  const tpMatch = input.parentElement.querySelector(".tp-price")?.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
+  let tpCopper = Number.MAX_SAFE_INTEGER;
+  if (tpMatch) {
+    const [, g, s, c] = tpMatch;
+    tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
+  }
+
+  let best = Number.MAX_SAFE_INTEGER;
+  if (isFinite(uval)) best = uval;
+  if (tpCopper < best) best = tpCopper;
+
+  // Rekursiv die Subkosten berechnen
+  const node = input.closest(".node");
+  const childFields = node?.querySelectorAll(":scope > .children > .node");
+
+  if (childFields?.length) {
+    let subSum = 0;
+    for (const childNode of childFields) {
+      const childInput = childNode.querySelector("input.price-field");
+      const cid = childInput?.dataset.id;
+      const countSpan = childNode.querySelector("label span");
+      const count = parseInt(countSpan?.textContent.replace(/×/, '').trim() || "1");
+
+      const childCost = getBestCost(cid, new Set(visited));
+      subSum += childCost * count;
+    }
+    if (subSum < best) best = subSum;
+
+    // Zeige Subcost im UI
+    const subInfo = node.querySelector(".subcost-info") || document.createElement("span");
+    subInfo.className = "subcost-info";
+    const g = Math.floor(subSum / 10000);
+    const s = Math.floor((subSum % 10000) / 100);
+    const c = subSum % 100;
+    subInfo.textContent = `Subcost: ${g}g ${s}s ${c}c`;
+    subInfo.style.marginLeft = "0.5em";
+    subInfo.style.color = "#888";
+    const row = input.parentElement;
+    if (!row.contains(subInfo)) row.appendChild(subInfo);
+  }
+
+  return best;
+}
+
 function updateTotalCost() {
   const inputs = [...document.querySelectorAll("input.price-field")];
   let total = 0;
   let missing = [];
 
-  const bestGuessMap = new Map();
-
-  // vorbereiten: geschätzte Werte für Items mit Unterkomponenten berechnen
-  const allNodes = document.querySelectorAll(".node");
-  allNodes.forEach(nodeEl => {
-    const id = nodeEl.querySelector("input.price-field")?.dataset.id;
-    const children = nodeEl.querySelectorAll(`.children .price-field[data-id]`);
-
-    if (id && children.length > 0) {
-      let sum = 0;
-      children.forEach(input => {
-        const cid = input.dataset.id;
-        const uvalRaw = input.value;
-        const uval = parseInt(uvalRaw, 10);
-        const tp = input.parentElement.querySelector(".tp-price")?.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
-        let tpCopper = Number.MAX_SAFE_INTEGER;
-        if (tp) {
-          const [, g, s, c] = tp;
-          tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
-        }
-        const best = Math.min(
-          isFinite(uval) ? uval : Number.MAX_SAFE_INTEGER,
-          tpCopper
-        );
-        sum += best;
-      });
-      bestGuessMap.set(id, sum);
-
-      // Anzeige des Subpreises
-      const subInfo = nodeEl.querySelector(".subcost-info");
-      const g = Math.floor(sum / 10000);
-      const s = Math.floor((sum % 10000) / 100);
-      const c = sum % 100;
-      if (subInfo) {
-        subInfo.textContent = `Subcost: ${g}g ${s}s ${c}c`;
-        subInfo.style.color = "#888";
-      }
-    }
-  });
-
-  // Gesamtkosten berechnen
-  inputs.forEach(input => {
+  for (const input of inputs) {
     const id = input.dataset.id;
-    const uvalRaw = input.value;
-    const uval = parseInt(uvalRaw, 10);
-    const tp = input.parentElement.querySelector(".tp-price")?.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
-    let tpCopper = Number.MAX_SAFE_INTEGER;
-    if (tp) {
-      const [, g, s, c] = tp;
-      tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
-    }
+    const best = getBestCost(id);
 
-    let best = Number.MAX_SAFE_INTEGER;
-    let source = "unknown";
-    if (isFinite(uval)) {
-      best = uval;
-      source = "coin";
-    }
-    if (tpCopper < best) {
-      best = tpCopper;
-      source = "tp";
-    }
-    if (best === Number.MAX_SAFE_INTEGER && bestGuessMap.has(id)) {
-      best = bestGuessMap.get(id);
-      source = "sub";
-    }
-
-    // Färbung je nach Quelle
+    // Quelle bestimmen für Einfärbung
     const label = input.parentElement.querySelector("label");
+    const hasCoin = isFinite(parseInt(input.value));
+    const hasTP = input.parentElement.querySelector(".tp-price");
     if (label) {
       label.style.fontWeight = "normal";
-      label.style.color = source === "coin" ? "black" : source === "tp" ? "green" : source === "sub" ? "blue" : "red";
+      label.style.color = hasCoin
+        ? "black"
+        : hasTP
+        ? "green"
+        : best < Number.MAX_SAFE_INTEGER
+        ? "blue"
+        : "red";
     }
 
     total += best;
 
     const isLeaf = !input.closest(".node")?.querySelector(".children .price-field[data-id]");
-    if (isLeaf && best === Number.MAX_SAFE_INTEGER) missing.push(id);
-  });
+    if (isLeaf && best === Number.MAX_SAFE_INTEGER) {
+      missing.push(id);
+    }
+  }
 
   const g = Math.floor(total / 10000);
   const s = Math.floor((total % 10000) / 100);
@@ -348,6 +348,7 @@ function updateTotalCost() {
     ? `Warning: ${missing.length} base item(s) without TP, coin or subcomponent value.`
     : "";
 }
+
 
 
     document.getElementById("loadBtn").addEventListener("click", async () => {
