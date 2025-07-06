@@ -96,7 +96,6 @@ async function fetchTPPrice(itemId) {
 
     return {
       buy: data.buys.unit_price ?? null,
-      sell: data.sells.unit_price ?? null
     };
   } catch {
     return null;
@@ -211,19 +210,14 @@ async function renderNode(node, container, depth = 0) {
     if (tpData.buy !== null) {
       priceInput.setAttribute("data-buy", tpData.buy);
     }
-    if (tpData.sell !== null) {
-      priceInput.setAttribute("data-sell", tpData.sell);
-    }
-
     const format = (val) => {
       const g = Math.floor(val / 10000);
       const s = Math.floor((val % 10000) / 100);
       const c = val % 100;
       return `${g}g ${s}s ${c}c`;
     };
-    const buyStr = tpData.buy !== null ? `Buy ${format(tpData.buy)}` : "";
-    const sellStr = tpData.sell !== null ? `Sell ${format(tpData.sell)}` : "";
-    tpSpan.textContent = `TP: ${buyStr}${buyStr && sellStr ? " / " : ""}${sellStr}`;
+    const buyStr = tpData.buy !== null ? `TP: Buy ${format(tpData.buy)}` : "";
+    tpSpan.textContent = buyStr;
   }
 
   row.appendChild(toggle);
@@ -282,9 +276,9 @@ function getBestCost(id, type = "buy", visited = new Set()) {
   if (!inputs.length) return Number.MAX_SAFE_INTEGER;
 
   const input = inputs[0];
-  const uval = Number(input.value.replace(",", "."));
+  const rawVal = input.value.trim();
+  const uval = rawVal === "" ? Number.MAX_SAFE_INTEGER : Number(rawVal.replace(",", "."));
 
-  // 💡 Robuste Auswertung des data-buy oder data-sell
   const raw = input.dataset[type];
   const tpVal = raw !== undefined && raw !== "" ? Number(raw) : Number.MAX_SAFE_INTEGER;
 
@@ -376,27 +370,20 @@ function updateTotalCost() {
   }
 
   const buyResult = calcTotal("buy");
-  const sellResult = calcTotal("sell");
-
   const format = (val) => {
     const g = Math.floor(val / 10000);
     const s = Math.floor((val % 10000) / 100);
     const c = val % 100;
     return `${g}g ${s}s ${c}c (${val} copper)`;
   };
-
   document.getElementById("totalCost").innerHTML =
-    `<strong>Buy-based:</strong> ${format(buyResult.total)}<br>` +
-    `<strong>Sell-based:</strong> ${format(sellResult.total)}`;
+    `<strong>Total Cost:</strong> ${format(buyResult.total)}`;
 
   document.getElementById("missingCostWarning").textContent =
     buyResult.missing.length
       ? `Warning: ${buyResult.missing.length} base item(s) without TP, coin or subcomponent value.`
       : "";
 }
-
-
-
 
     document.getElementById("loadBtn").addEventListener("click", async () => {
       const id = document.getElementById("itemId").value.trim();
