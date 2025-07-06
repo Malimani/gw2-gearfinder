@@ -159,113 +159,120 @@ async function buildTree(itemId, depth = 0, visited = new Set()) {
   return node;
 }
 
-    async function renderNode(node, container, depth = 0) {
-      const wrapper = document.createElement("div");
-      wrapper.className = "node";
+async function renderNode(node, container, depth = 0) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "node";
 
-      const isExisting = isAlreadyDefined(node.id);
-      const itemData = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).catch(() => ({}));
-      const name = itemData.name || `Item ${node.id}`;
-      const tpData = await fetchTPPrice(node.id);
-      const hasTP = tpData && (tpData.buy !== null || tpData.sell !== null);
+  const isExisting = isAlreadyDefined(node.id);
+  const itemData = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).catch(() => ({}));
+  const name = itemData.name || `Item ${node.id}`;
+  const tpData = await fetchTPPrice(node.id);
+  const hasTP = tpData && (tpData.buy !== null || tpData.sell !== null);
 
-      const row = document.createElement("div");
-      row.className = isExisting ? "existing" : "";
+  const row = document.createElement("div");
+  row.className = isExisting ? "existing" : "";
 
-      const toggle = document.createElement("span");
-      toggle.textContent = node.children.length ? "+" : " ";
-      toggle.className = "toggle";
-      toggle.addEventListener("click", () => {
-        wrapper.classList.toggle("collapsed");
-        toggle.textContent = wrapper.classList.contains("collapsed") ? "+" : "−";
-      });
-
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.dataset.id = node.id;
-      checkbox.addEventListener("change", () => {
-  document.querySelectorAll(`input[type='checkbox'][data-id='${node.id}']`).forEach(cb => {
-    if (cb !== checkbox) cb.checked = checkbox.checked;
+  const toggle = document.createElement("span");
+  toggle.textContent = node.children.length ? "+" : " ";
+  toggle.className = "toggle";
+  toggle.addEventListener("click", () => {
+    wrapper.classList.toggle("collapsed");
+    toggle.textContent = wrapper.classList.contains("collapsed") ? "+" : "−";
   });
-});
-      
-      const priceInput = document.createElement("input");
-      priceInput.type = "number";
-      priceInput.placeholder = "Coin";
-      priceInput.className = "price-field";
-      priceInput.dataset.id = node.id;
-      priceInput.addEventListener("input", () => {
-      document.querySelectorAll(`input.price-field[data-id='${node.id}']`).forEach(pi => {
-        if (pi !== priceInput) pi.value = priceInput.value;
-      });
-      updateTotalCost();
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.dataset.id = node.id;
+  checkbox.addEventListener("change", () => {
+    document.querySelectorAll(`input[type='checkbox'][data-id='${node.id}']`).forEach(cb => {
+      if (cb !== checkbox) cb.checked = checkbox.checked;
     });
+  });
 
-      const label = document.createElement("label");
-      label.textContent = name;
+  const priceInput = document.createElement("input");
+  priceInput.type = "number";
+  priceInput.placeholder = "Coin";
+  priceInput.className = "price-field";
+  priceInput.dataset.id = node.id;
+  priceInput.addEventListener("input", () => {
+    document.querySelectorAll(`input.price-field[data-id='${node.id}']`).forEach(pi => {
+      if (pi !== priceInput) pi.value = priceInput.value;
+    });
+    updateTotalCost();
+  });
 
-      const tpSpan = document.createElement("span");
-tpSpan.className = "tp-price";
+  const label = document.createElement("label");
+  label.textContent = name;
 
-if (tpData) {
-  priceInput.setAttribute("data-buy", tpData.buy ?? "");
-  priceInput.setAttribute("data-sell", tpData.sell ?? "");
-  const format = (val) => {
-  const g = Math.floor(val / 10000);
-  const s = Math.floor((val % 10000) / 100);
-  const c = val % 100;
-  return `${g}g ${s}s ${c}c`;
-};
-  const buyStr = tpData.buy !== null ? `Buy ${format(tpData.buy)}` : "";
-  const sellStr = tpData.sell !== null ? `Sell ${format(tpData.sell)}` : "";
-  tpSpan.textContent = `TP: ${buyStr}${buyStr && sellStr ? " / " : ""}${sellStr}`;
-}
+  const tpSpan = document.createElement("span");
+  tpSpan.className = "tp-price";
 
-      row.appendChild(toggle);
-      row.appendChild(checkbox);
-if (node.count) {
-  const countSpan = document.createElement("span");
-  countSpan.textContent = ` ×${node.count}`;
-  countSpan.style.marginLeft = "0.5em";
-  countSpan.style.fontWeight = "bold";
-  countSpan.style.color = "#666";
-  label.appendChild(countSpan);
-}
-
-row.appendChild(label);
-      row.appendChild(priceInput);
-      if (hasTP) row.appendChild(tpSpan);
-
-      wrapper.appendChild(row);
-
-      priceInput.addEventListener("input", () => updateTotalCost());
-
-      const childContainer = document.createElement("div");
-      childContainer.className = "children";
-      wrapper.appendChild(childContainer);
-
-      container.appendChild(wrapper);
-
-      for (const child of node.children) {
-        await renderNode(child, childContainer, depth + 1);
-      }
-    if (!hasTP && node.children.length > 0) {
-  const sum = await computeBestSubtreeCost(node);
-  if (isFinite(sum)) {
-    // Nur anzeigen, nicht ins Feld schreiben!
-    const subInfo = document.createElement("span");
-    subInfo.className = "subcost-info";
-    const g = Math.floor(sum / 10000);
-    const s = Math.floor((sum % 10000) / 100);
-    const c = sum % 100;
-    subInfo.textContent = `Subcost: ${g}g ${s}s ${c}c`;
-    subInfo.style.marginLeft = "0.5em";
-    subInfo.style.color = "#888";
-    row.appendChild(subInfo);
-  }
-}    
-      checkbox.checked = hasTP ? false : (node.children.length === 0);
+  if (tpData) {
+    if (tpData.buy !== null) {
+      priceInput.setAttribute("data-buy", tpData.buy);
     }
+    if (tpData.sell !== null) {
+      priceInput.setAttribute("data-sell", tpData.sell);
+    }
+
+    const format = (val) => {
+      const g = Math.floor(val / 10000);
+      const s = Math.floor((val % 10000) / 100);
+      const c = val % 100;
+      return `${g}g ${s}s ${c}c`;
+    };
+    const buyStr = tpData.buy !== null ? `Buy ${format(tpData.buy)}` : "";
+    const sellStr = tpData.sell !== null ? `Sell ${format(tpData.sell)}` : "";
+    tpSpan.textContent = `TP: ${buyStr}${buyStr && sellStr ? " / " : ""}${sellStr}`;
+  }
+
+  row.appendChild(toggle);
+  row.appendChild(checkbox);
+
+  if (node.count) {
+    const countSpan = document.createElement("span");
+    countSpan.textContent = ` ×${node.count}`;
+    countSpan.style.marginLeft = "0.5em";
+    countSpan.style.fontWeight = "bold";
+    countSpan.style.color = "#666";
+    label.appendChild(countSpan);
+  }
+
+  row.appendChild(label);
+  row.appendChild(priceInput);
+  if (hasTP) row.appendChild(tpSpan);
+
+  wrapper.appendChild(row);
+  priceInput.addEventListener("input", () => updateTotalCost());
+
+  const childContainer = document.createElement("div");
+  childContainer.className = "children";
+  wrapper.appendChild(childContainer);
+
+  container.appendChild(wrapper);
+
+  for (const child of node.children) {
+    await renderNode(child, childContainer, depth + 1);
+  }
+
+  // Subcost-Anzeige nur, wenn kein TP, aber Unterkomponenten existieren
+  if (!hasTP && node.children.length > 0) {
+    const sum = getBestCost(node.id, "buy", new Set());
+    if (isFinite(sum)) {
+      const subInfo = document.createElement("span");
+      subInfo.className = "subcost-info";
+      const g = Math.floor(sum / 10000);
+      const s = Math.floor((sum % 10000) / 100);
+      const c = sum % 100;
+      subInfo.textContent = `Subcost: ${g}g ${s}s ${c}c`;
+      subInfo.style.marginLeft = "0.5em";
+      subInfo.style.color = "#888";
+      row.appendChild(subInfo);
+    }
+  }
+
+  checkbox.checked = hasTP ? false : (node.children.length === 0);
+}
 
 function getBestCost(id, type = "buy", visited = new Set()) {
   if (visited.has(id)) return Number.MAX_SAFE_INTEGER;
