@@ -166,6 +166,9 @@ async function renderNode(node, container, depth = 0) {
   const itemData = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).catch(() => ({}));
   const name = itemData.name || `Item ${node.id}`;
   const tpData = await fetchTPPrice(node.id);
+  if (!tpData?.buy && node.children.length > 0) {
+    getBestCost(node.id, "buy", new Set()); // Triggert Anzeige
+  }
   const hasTP = tpData && tpData.buy !== null;
   const row = document.createElement("div");
   row.className = isExisting ? "existing" : "";
@@ -316,20 +319,41 @@ function getBestCost(id, type = "buy", visited = new Set()) {
 }
 
 function updateTotalCost() {
-  function walkAndSum(node, visited = new Set()) {
-    if (!node || visited.has(node.id)) return 0;
-    visited.add(node.id);
+  function walkAndSum(node) {
+    if (!node) return 0;
 
     const best = getBestCost(node.id, "buy", new Set());
     const count = node.count || 1;
     let total = isFinite(best) ? best * count : 0;
-
+  
     for (const child of node.children || []) {
-      total += walkAndSum(child, visited);
+      total += walkAndSum(child);
     }
-
+  
     return total;
   }
+
+  document.querySelectorAll("input.price-field").forEach(input => {
+    const id = input.dataset.id;
+    const label = input.parentElement.querySelector("label");
+    const best = getBestCost(id, "buy", new Set());
+
+    const hasCoin = input.value.trim() !== "" && isFinite(Number(input.value));
+    const hasTP = isFinite(Number(input.dataset.buy));
+    const hasSub = !hasCoin && !hasTP && best < Number.MAX_SAFE_INTEGER;
+    const missing = best === Number.MAX_SAFE_INTEGER;
+
+    if (label) {
+      label.style.fontWeight = "normal";
+      label.style.color = hasCoin
+        ? "black"
+        : hasTP
+        ? "green"
+        : hasSub
+        ? "blue"
+        : "red";
+    }
+  });
 
   const total = Math.round(walkAndSum(treeRoot));
 
