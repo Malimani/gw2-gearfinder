@@ -319,19 +319,13 @@ function getBestCost(id, type = "buy", visited = new Set()) {
 }
 
 function updateTotalCost() {
-  function walkAndSum(node) {
-    if (!node) return 0;
+function walkAndSum(node, visited = new Set()) {
+  if (!node || visited.has(node.id)) return 0;
+  visited.add(node.id);
 
-    const best = getBestCost(node.id, "buy", new Set());
-    const count = node.count || 1;
-    let total = isFinite(best) ? best : 0;
-  
-    for (const child of node.children || []) {
-      total += walkAndSum(child);
-    }
-  
-    return total;
-  }
+  const best = getBestCost(node.id, "buy", new Set());
+  return isFinite(best) ? Math.round(best) : 0;
+}
 
   document.querySelectorAll("input.price-field").forEach(input => {
     const id = input.dataset.id;
