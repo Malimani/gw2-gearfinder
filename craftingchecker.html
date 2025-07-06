@@ -75,19 +75,21 @@
   <script>
     let gearData = {};
     let treeRoot = null;
+    let knownComponents = [];
 
-    async function loadGearData() {
-      const res = await fetch("gearData.json");
-      gearData = await res.json();
-    }
-
-    function isAlreadyDefined(itemId) {
-      for (const slot in gearData) {
-        if (gearData[slot].some(e => e.name === String(itemId))) return true;
-      }
-      return false;
-    }
-
+async function loadComponentData() {
+  try {
+    const res = await fetch("craftcomp.json"); // oder components.json
+    knownComponents = await res.json();
+  } catch (e) {
+    console.warn("Could not load craftcomp.json:", e);
+    knownComponents = [];
+  }
+}
+   function isAlreadyDefined(itemId) {
+    return knownComponents.some(e => e.id === Number(itemId));
+  }
+ 
 async function fetchTPPrice(itemId) {
   try {
     const res = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
@@ -380,7 +382,7 @@ function walkAndSum(node, visited = new Set()) {
     document.getElementById("loadBtn").addEventListener("click", async () => {
       const id = document.getElementById("itemId").value.trim();
       if (!id) return;
-      await loadGearData();
+      await loadComponentData();
       treeRoot = await buildTree(parseInt(id));
       const treeDiv = document.getElementById("tree");
       treeDiv.innerHTML = "";
