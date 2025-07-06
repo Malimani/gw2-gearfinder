@@ -186,6 +186,10 @@ async function renderNode(node, container, depth = 0) {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.dataset.id = node.id;
+  if (isExisting) {
+  checkbox.checked = false;
+  checkbox.disabled = true;
+  }
   checkbox.addEventListener("change", () => {
     document.querySelectorAll(`input[type='checkbox'][data-id='${node.id}']`).forEach(cb => {
       if (cb !== checkbox) cb.checked = checkbox.checked;
@@ -206,6 +210,9 @@ async function renderNode(node, container, depth = 0) {
 
   const label = document.createElement("label");
   label.textContent = name;
+  if (isExisting) {
+    label.style.fontStyle = "italic";
+  }
 
   const tpSpan = document.createElement("span");
   tpSpan.className = "tp-price";
