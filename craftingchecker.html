@@ -88,16 +88,20 @@
       return false;
     }
 
-    async function fetchTPPrice(itemId) {
-      try {
-        const res = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
-        if (!res.ok) return null;
-        const data = await res.json();
-        return data.sells.unit_price;
-      } catch {
-        return null;
-      }
-    }
+async function fetchTPPrice(itemId) {
+  try {
+    const res = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+
+    return {
+      buy: data.buys.unit_price ?? null,
+      sell: data.sells.unit_price ?? null
+    };
+  } catch {
+    return null;
+  }
+}
 
     async function computeBestSubtreeCost(node) {
   if (!node.children.length) return Number.MAX_SAFE_INTEGER;
@@ -162,8 +166,8 @@ async function buildTree(itemId, depth = 0, visited = new Set()) {
       const isExisting = isAlreadyDefined(node.id);
       const itemData = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).catch(() => ({}));
       const name = itemData.name || `Item ${node.id}`;
-      const tp = await fetchTPPrice(node.id);
-      const hasTP = tp !== null;
+      const tpData = await fetchTPPrice(node.id);
+      const hasTP = tpData && (tpData.buy !== null || tpData.sell !== null);
 
       const row = document.createElement("div");
       row.className = isExisting ? "existing" : "";
@@ -201,13 +205,19 @@ async function buildTree(itemId, depth = 0, visited = new Set()) {
       label.textContent = name;
 
       const tpSpan = document.createElement("span");
-      tpSpan.className = "tp-price";
-      if (tp) {
-        const g = Math.floor(tp / 10000);
-        const s = Math.floor((tp % 10000) / 100);
-        const c = tp % 100;
-        tpSpan.textContent = `TP: ${g}g ${s}s ${c}c`;
-      }
+tpSpan.className = "tp-price";
+
+if (tpData?.buy !== null || tpData?.sell !== null) {
+  const format = (val) => {
+    const g = Math.floor(val / 10000);
+    const s = Math.floor((val % 10000) / 100);
+    const c = val % 100;
+    return `${g}g ${s}s ${c}c`;
+  };
+  const buyStr = tpData.buy !== null ? `Buy ${format(tpData.buy)}` : "";
+  const sellStr = tpData.sell !== null ? `Sell ${format(tpData.sell)}` : "";
+  tpSpan.textContent = `TP: ${buyStr}${buyStr && sellStr ? " / " : ""}${sellStr}`;
+}
 
       row.appendChild(toggle);
       row.appendChild(checkbox);
