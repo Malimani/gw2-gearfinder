@@ -282,8 +282,8 @@ function getBestCost(id, type = "buy", visited = new Set()) {
   const tpVal = raw !== undefined && raw !== "" ? Number(raw) : Number.MAX_SAFE_INTEGER;
 
   let best = Number.MAX_SAFE_INTEGER;
-  if (isFinite(uval)) best = uval;
-  if (isFinite(tpVal) && tpVal < best) best = tpVal;
+  if (isFinite(uval)) best = Math.round(uval);
+  if (isFinite(tpVal) && tpVal < best) best = Math.round(tpVal);
 
   const node = input.closest(".node");
   const childFields = node?.querySelectorAll(":scope > .children > .node");
@@ -302,7 +302,7 @@ function getBestCost(id, type = "buy", visited = new Set()) {
 
       const childCost = getBestCost(cid, type, new Set(visited));
       if (isFinite(childCost)) {
-        subSum += childCost * count;
+        subSum += Math.round(childCost * count);
       }
     }
 
@@ -312,7 +312,13 @@ function getBestCost(id, type = "buy", visited = new Set()) {
 
     // UI-Anzeige (nur im Buy-Modus)
     if (type === "buy") {
-      const subInfo = node.querySelector(".subcost-info") || document.createElement("span");
+      let subInfo = node.querySelector(".subcost-info");
+      if (!subInfo) {
+        subInfo = document.createElement("span");
+        subInfo.className = "subcost-info";
+        const row = input.parentElement;
+        row.appendChild(subInfo);
+      }
       subInfo.className = "subcost-info";
       const g = Math.floor(subSum / 10000);
       const s = Math.floor((subSum % 10000) / 100);
@@ -321,8 +327,7 @@ function getBestCost(id, type = "buy", visited = new Set()) {
       subInfo.style.marginLeft = "0.5em";
       subInfo.style.color = "#888";
       const row = input.parentElement;
-      if (!row.contains(subInfo)) row.appendChild(subInfo);
-    }
+      }
   }
 
   return best;
@@ -357,8 +362,7 @@ function updateTotalCost() {
       : "red";
   }
 }
-      total += best;
-
+      total += Math.round(best);
       const isLeaf = !input.closest(".node")?.querySelector(".children .price-field[data-id]");
       if (isLeaf && best === Number.MAX_SAFE_INTEGER) {
         missing.push(id);
@@ -370,11 +374,13 @@ function updateTotalCost() {
 
   const buyResult = calcTotal("buy");
   const format = (val) => {
+    val = Math.round(val);
     const g = Math.floor(val / 10000);
     const s = Math.floor((val % 10000) / 100);
     const c = val % 100;
     return `${g}g ${s}s ${c}c (${val} copper)`;
   };
+
   document.getElementById("totalCost").innerHTML =
     `<strong>Total Cost:</strong> ${format(buyResult.total)}`;
 
