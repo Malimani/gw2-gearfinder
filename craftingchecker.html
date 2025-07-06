@@ -105,15 +105,17 @@ async function computeBestSubtreeCost(node) {
   for (const child of node.children) {
     const priceField = document.querySelector(`input.price-field[data-id='${child.id}']`);
     const userVal = Number(String(priceField?.value || "").replace(',', '.').trim());
+
     const tpElement = document.querySelector(`input[type='checkbox'][data-id='${child.id}']`)?.parentElement.querySelector(".tp-price");
     let tpCopper = Number.MAX_SAFE_INTEGER;
     if (tpElement) {
-      const tpVal = tpElement.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
+      const tpVal = tpElement.textContent.match(/TP: (\\d+)g (\\d+)s (\\d+)c/);
       if (tpVal) {
         const [, g, s, c] = tpVal;
         tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
       }
     }
+
     let best = Number.MAX_SAFE_INTEGER;
     if (isFinite(userVal)) best = userVal;
     if (tpCopper < best) best = tpCopper;
