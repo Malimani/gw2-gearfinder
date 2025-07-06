@@ -390,14 +390,22 @@ function walkAndSum(node, visited = new Set()) {
 
 document.getElementById("generateBtn").addEventListener("click", () => {
   const checked = [...document.querySelectorAll("input[type='checkbox']:checked")];
-  const results = checked.map(box => {
+  const entries = checked.map(box => {
     const id = parseInt(box.dataset.id);
     const priceInput = document.querySelector(`input.price-field[data-id='${id}']`);
     const coin = Math.round(Number(priceInput?.value || "0"));
     return { id, coin };
   });
-  document.getElementById("output").textContent = JSON.stringify(results, null, 2);
+
+  // Deduplizieren: nur erster Eintrag pro ID zählt
+  const deduped = Object.values(entries.reduce((map, entry) => {
+    if (!(entry.id in map)) map[entry.id] = entry;
+    return map;
+  }, {}));
+
+  document.getElementById("output").textContent = JSON.stringify(deduped, null, 2);
 });
+
   </script>
 </body>
 </html>
