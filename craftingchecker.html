@@ -396,7 +396,7 @@ function updateTotalCost() {
         return {
           name: id,
           method: "Vendor",
-          cost: [[{ currency: "Coin", amount: Math.round(Number(price || "0")) }]]
+          cost: [[{ currency: "Coin", amount: Math.round(Number(price || "0")) }]],
           description: "Manually entered via crafting checker"
         };
       });
