@@ -388,20 +388,17 @@ function walkAndSum(node, visited = new Set()) {
       updateTotalCost();
     });
 
-    document.getElementById("generateBtn").addEventListener("click", () => {
-      const checked = [...document.querySelectorAll("input[type='checkbox']:checked")];
-      const results = checked.map(box => {
-        const id = box.dataset.id;
-        const price = document.querySelector(`input.price-field[data-id='${id}']`).value;
-        return {
-          name: id,
-          method: "Vendor",
-          cost: [[{ currency: "Coin", amount: Math.round(Number(price || "0")) }]],
-          description: "Manually entered via crafting checker"
-        };
-      });
-      document.getElementById("output").textContent = JSON.stringify(results, null, 2);
-    });
+document.getElementById("generateBtn").addEventListener("click", () => {
+  const checked = [...document.querySelectorAll("input[type='checkbox']:checked")];
+  const results = checked.map(box => {
+    const id = parseInt(box.dataset.id);
+    const priceInput = document.querySelector(`input.price-field[data-id='${id}']`);
+    const coin = Math.round(Number(priceInput?.value || "0"));
+    return { id, coin };
+  }).filter(entry => entry.coin > 0); // Nur Einträge mit gesetztem Wert
+
+  document.getElementById("output").textContent = JSON.stringify(results, null, 2);
+});
   </script>
 </body>
 </html>
