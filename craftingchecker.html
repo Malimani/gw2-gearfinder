@@ -263,7 +263,7 @@ row.appendChild(label);
   if (!inputs.length) return Number.MAX_SAFE_INTEGER;
 
   const input = inputs[0];
-  const uval = parseInt(input.value, 10);
+  const uval = Number(input.value.replace(",", "."));
   const tpMatch = input.parentElement.querySelector(".tp-price")?.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
   let tpCopper = Number.MAX_SAFE_INTEGER;
   if (tpMatch) {
@@ -370,7 +370,7 @@ function updateTotalCost() {
         return {
           name: id,
           method: "Vendor",
-          cost: [[{ currency: "Coin", amount: parseInt(price || "0", 10) }]],
+          cost: [[{ currency: "Coin", amount: Math.round(Number(price || "0")) }]]
           description: "Manually entered via crafting checker"
         };
       });
