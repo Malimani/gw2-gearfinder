@@ -121,7 +121,8 @@
     if (isFinite(userVal)) best = userVal;
     if (tpCopper < best) best = tpCopper;
 
-    sum += isFinite(best) ? best : 0;
+    const count = child.count || 1;
+    sum += best * count;
   }
   return sum;
 }
@@ -136,7 +137,12 @@
       if (recipeIds.length > 0) {
         const recipe = await fetch(`https://api.guildwars2.com/v2/recipes/${recipeIds[0]}`).then(r => r.json());
         for (const ing of recipe.ingredients) {
-          const child = await buildTree(ing.item_id, depth + 1, new Set(visited));
+  const child = await buildTree(ing.item_id, ...);
+  if (child) {
+    child.count = ing.count;  // 🔧 speichere benötigte Anzahl
+    node.children.push(child);
+  }
+}
           if (child) node.children.push(child);
         }
       }
