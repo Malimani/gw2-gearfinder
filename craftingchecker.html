@@ -316,51 +316,23 @@ function getBestCost(id, type = "buy", visited = new Set()) {
 }
 
 function updateTotalCost() {
-  const inputs = [...document.querySelectorAll("input.price-field")];
+  function walkAndSum(node, visited = new Set()) {
+    if (!node || visited.has(node.id)) return 0;
+    visited.add(node.id);
 
-  function calcTotal(type) {
-    let total = 0;
-    let missing = [];
+    const best = getBestCost(node.id, "buy", new Set());
+    const count = node.count || 1;
+    let total = isFinite(best) ? best * count : 0;
 
-    for (const input of inputs) {
-      const id = input.dataset.id;
-      const best = getBestCost(id, type);
-
-     if (type === "buy") {
-    const label = input.parentElement.querySelector("label");
-    const hasCoin = input.value.trim() !== "" && isFinite(Number(input.value));
-    const hasTP = isFinite(Number(input.dataset[type]));
-    const hasSub = !hasCoin && !hasTP && best < Number.MAX_SAFE_INTEGER;
-    const missing = best === Number.MAX_SAFE_INTEGER;
-
-  if (label) {
-    label.style.fontWeight = "normal";
-    label.style.color = hasCoin
-      ? "black"
-      : hasTP
-      ? "green"
-      : hasSub
-      ? "blue"
-      : "red";
-  }
-}
-      const node = input.closest(".node");
-      const countSpan = node.querySelector("label span");
-      const match = countSpan?.textContent.match(/×\s*(\d+)/);
-      const count = match ? parseInt(match[1]) : 1;
-
-      total += best;
-
-      const isLeaf = !input.closest(".node")?.querySelector(".children .price-field[data-id]");
-      if (isLeaf && best === Number.MAX_SAFE_INTEGER) {
-        missing.push(id);
-      }
+    for (const child of node.children || []) {
+      total += walkAndSum(child, visited);
     }
-    total = Math.round(total);
-    return { total, missing };
+
+    return total;
   }
 
-  const buyResult = calcTotal("buy");
+  const total = Math.round(walkAndSum(treeRoot));
+
   const format = (val) => {
     val = Math.round(val);
     const g = Math.floor(val / 10000);
@@ -370,11 +342,20 @@ function updateTotalCost() {
   };
 
   document.getElementById("totalCost").innerHTML =
-    `<strong>Total Cost:</strong> ${format(buyResult.total)}`;
+    `<strong>Total Cost:</strong> ${format(total)}`;
+
+  // Optional: Hinweis auf fehlende Werte
+  const missingInputs = [...document.querySelectorAll("input.price-field")]
+    .filter(input => {
+      const id = input.dataset.id;
+      const cost = getBestCost(id, "buy", new Set());
+      const isLeaf = !input.closest(".node")?.querySelector(".children .price-field[data-id]");
+      return isLeaf && cost === Number.MAX_SAFE_INTEGER;
+    });
 
   document.getElementById("missingCostWarning").textContent =
-    buyResult.missing.length
-      ? `Warning: ${buyResult.missing.length} base item(s) without TP, coin or subcomponent value.`
+    missingInputs.length
+      ? `Warning: ${missingInputs.length} base item(s) without TP, coin or subcomponent value.`
       : "";
 }
 
