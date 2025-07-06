@@ -326,7 +326,6 @@ function getBestCost(id, type = "buy", visited = new Set()) {
       subInfo.textContent = `Subcost: ${g}g ${s}s ${c}c`;
       subInfo.style.marginLeft = "0.5em";
       subInfo.style.color = "#888";
-      const row = input.parentElement;
       }
   }
 
@@ -362,7 +361,13 @@ function updateTotalCost() {
       : "red";
   }
 }
-      total += Math.round(best);
+      const node = input.closest(".node");
+      const countSpan = node.querySelector("label span");
+      const match = countSpan?.textContent.match(/×\s*(\d+)/);
+      const count = match ? parseInt(match[1]) : 1;
+
+      total += Math.round(best * count);
+
       const isLeaf = !input.closest(".node")?.querySelector(".children .price-field[data-id]");
       if (isLeaf && best === Number.MAX_SAFE_INTEGER) {
         missing.push(id);
