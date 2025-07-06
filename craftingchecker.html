@@ -287,9 +287,8 @@ function getBestCost(id, type = "buy", visited = new Set()) {
       if (isFinite(childCost)) {
         subSum += childCost * count;
       }
-      subSum = Math.round(subSum);
     }
-
+    subSum = Math.round(subSum);
     // Wenn kein Preis von oben gesetzt → subSum als best
     if (!isFinite(best) && isFinite(subSum)) best = subSum;
     else if (isFinite(subSum) && subSum < best) best = subSum;
