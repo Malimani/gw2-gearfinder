@@ -283,11 +283,14 @@ function getBestCost(id, type = "buy", visited = new Set()) {
 
   const input = inputs[0];
   const uval = Number(input.value.replace(",", "."));
-  const tpVal = Number(input.dataset[type] || Number.MAX_SAFE_INTEGER);
+
+  // 💡 Robuste Auswertung des data-buy oder data-sell
+  const raw = input.dataset[type];
+  const tpVal = raw !== undefined && raw !== "" ? Number(raw) : Number.MAX_SAFE_INTEGER;
 
   let best = Number.MAX_SAFE_INTEGER;
   if (isFinite(uval)) best = uval;
-  if (tpVal < best) best = tpVal;
+  if (isFinite(tpVal) && tpVal < best) best = tpVal;
 
   const node = input.closest(".node");
   const childFields = node?.querySelectorAll(":scope > .children > .node");
@@ -304,14 +307,13 @@ function getBestCost(id, type = "buy", visited = new Set()) {
       const match = countText.match(/×\s*(\d+)/);
       const count = match ? parseInt(match[1]) : 1;
 
-      // Rekursiv Kosten holen
       const childCost = getBestCost(cid, type, new Set(visited));
       if (isFinite(childCost)) {
         subSum += childCost * count;
       }
     }
 
-    // Nur setzen, wenn sinnvoll
+    // Wenn kein Preis von oben gesetzt → subSum als best
     if (!isFinite(best) && isFinite(subSum)) best = subSum;
     else if (isFinite(subSum) && subSum < best) best = subSum;
 
@@ -332,7 +334,6 @@ function getBestCost(id, type = "buy", visited = new Set()) {
 
   return best;
 }
-
 
 function updateTotalCost() {
   const inputs = [...document.querySelectorAll("input.price-field")];
