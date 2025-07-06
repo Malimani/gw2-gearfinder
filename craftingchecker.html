@@ -291,7 +291,10 @@ function getBestCost(id, type = "buy", visited = new Set()) {
       const childInput = childNode.querySelector("input.price-field");
       const cid = childInput?.dataset.id;
       const countSpan = childNode.querySelector("label span");
-      const count = parseInt(countSpan?.textContent.replace(/×/, '').trim() || "1");
+      let count = 1;
+const countText = countSpan?.textContent || "";
+const match = countText.match(/×\s*(\d+)/);
+if (match) count = parseInt(match[1]);
       const childCost = getBestCost(cid, type, new Set(visited));
       subSum += childCost * count;
     }
