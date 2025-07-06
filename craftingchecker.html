@@ -265,7 +265,7 @@ function getBestCost(id, type = "buy", visited = new Set()) {
   const tpVal = raw !== undefined && raw !== "" ? Number(raw) : Number.MAX_SAFE_INTEGER;
 
   let best = Number.MAX_SAFE_INTEGER;
-  if (isFinite(uval)) best = Math.round(uval);
+  if (isFinite(uval)) best = uval;
   if (isFinite(tpVal) && tpVal < best) best = Math.round(tpVal);
 
   const node = input.closest(".node");
