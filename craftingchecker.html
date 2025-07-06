@@ -285,8 +285,9 @@ function getBestCost(id, type = "buy", visited = new Set()) {
 
       const childCost = getBestCost(cid, type, new Set(visited));
       if (isFinite(childCost)) {
-        subSum += Math.round(childCost * count);
+        subSum += childCost * count;
       }
+      subSum = Math.round(subSum);
     }
 
     // Wenn kein Preis von oben gesetzt → subSum als best
@@ -327,11 +328,11 @@ function updateTotalCost() {
       const best = getBestCost(id, type);
 
      if (type === "buy") {
-  const label = input.parentElement.querySelector("label");
-  const hasCoin = input.value.trim() !== "" && isFinite(Number(input.value));
-  const hasTP = isFinite(Number(input.dataset[type]));
-  const hasSub = !hasCoin && !hasTP && best < Number.MAX_SAFE_INTEGER;
-  const missing = best === Number.MAX_SAFE_INTEGER;
+    const label = input.parentElement.querySelector("label");
+    const hasCoin = input.value.trim() !== "" && isFinite(Number(input.value));
+    const hasTP = isFinite(Number(input.dataset[type]));
+    const hasSub = !hasCoin && !hasTP && best < Number.MAX_SAFE_INTEGER;
+    const missing = best === Number.MAX_SAFE_INTEGER;
 
   if (label) {
     label.style.fontWeight = "normal";
@@ -349,14 +350,14 @@ function updateTotalCost() {
       const match = countSpan?.textContent.match(/×\s*(\d+)/);
       const count = match ? parseInt(match[1]) : 1;
 
-      total += Math.round(best);
+      total += best;
 
       const isLeaf = !input.closest(".node")?.querySelector(".children .price-field[data-id]");
       if (isLeaf && best === Number.MAX_SAFE_INTEGER) {
         missing.push(id);
       }
     }
-
+    total = Math.round(total);
     return { total, missing };
   }
 
