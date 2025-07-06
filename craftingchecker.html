@@ -99,12 +99,13 @@
       }
     }
 
-async function computeBestSubtreeCost(node) {
+    async function computeBestSubtreeCost(node) {
   if (!node.children.length) return Number.MAX_SAFE_INTEGER;
   let sum = 0;
   for (const child of node.children) {
     const priceField = document.querySelector(`input.price-field[data-id='${child.id}']`);
-    const userVal = Number(String(priceField?.value || "").replace(',', '.').trim());
+    const userValRaw = priceField?.value || "";
+    const userVal = Number(userValRaw.replace(',', '.').trim());
 
     const tpElement = document.querySelector(`input[type='checkbox'][data-id='${child.id}']`)?.parentElement.querySelector(".tp-price");
     let tpCopper = Number.MAX_SAFE_INTEGER;
@@ -119,7 +120,8 @@ async function computeBestSubtreeCost(node) {
     let best = Number.MAX_SAFE_INTEGER;
     if (isFinite(userVal)) best = userVal;
     if (tpCopper < best) best = tpCopper;
-    sum += best;
+
+    sum += isFinite(best) ? best : 0;
   }
   return sum;
 }
