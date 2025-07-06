@@ -290,18 +290,25 @@ function getBestCost(id, type = "buy", visited = new Set()) {
     for (const childNode of childFields) {
       const childInput = childNode.querySelector("input.price-field");
       const cid = childInput?.dataset.id;
-      const countSpan = childNode.querySelector("label span");
-      let count = 1;
-const countText = countSpan?.textContent || "";
-const match = countText.match(/×\s*(\d+)/);
-if (match) count = parseInt(match[1]);
-      const childCost = getBestCost(cid, type, new Set(visited));
-      subSum += childCost * count;
-    }
-    if (!isFinite(best) && isFinite(subSum)) best = subSum;
-else if (isFinite(subSum) && subSum < best) best = subSum;
 
-    // Anzeige im UI (nur 1× für buy-Modus)
+      // Count robust extrahieren
+      const countSpan = childNode.querySelector("label span");
+      const countText = countSpan?.textContent || "";
+      const match = countText.match(/×\s*(\d+)/);
+      const count = match ? parseInt(match[1]) : 1;
+
+      // Rekursiv Kosten holen
+      const childCost = getBestCost(cid, type, new Set(visited));
+      if (isFinite(childCost)) {
+        subSum += childCost * count;
+      }
+    }
+
+    // Nur setzen, wenn sinnvoll
+    if (!isFinite(best) && isFinite(subSum)) best = subSum;
+    else if (isFinite(subSum) && subSum < best) best = subSum;
+
+    // UI-Anzeige (nur im Buy-Modus)
     if (type === "buy") {
       const subInfo = node.querySelector(".subcost-info") || document.createElement("span");
       subInfo.className = "subcost-info";
@@ -318,6 +325,7 @@ else if (isFinite(subSum) && subSum < best) best = subSum;
 
   return best;
 }
+
 
 function updateTotalCost() {
   const inputs = [...document.querySelectorAll("input.price-field")];
