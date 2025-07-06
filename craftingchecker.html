@@ -247,23 +247,6 @@ async function renderNode(node, container, depth = 0) {
   for (const child of node.children) {
     await renderNode(child, childContainer, depth + 1);
   }
-
-  // Subcost-Anzeige nur, wenn kein TP, aber Unterkomponenten existieren
-  if (!hasTP && node.children.length > 0) {
-    const sum = getBestCost(node.id, "buy", new Set());
-    if (isFinite(sum)) {
-      const subInfo = document.createElement("span");
-      subInfo.className = "subcost-info";
-      const g = Math.floor(sum / 10000);
-      const s = Math.floor((sum % 10000) / 100);
-      const c = sum % 100;
-      subInfo.textContent = `Subcost: ${g}g ${s}s ${c}c`;
-      subInfo.style.marginLeft = "0.5em";
-      subInfo.style.color = "#888";
-      row.appendChild(subInfo);
-    }
-  }
-
   checkbox.checked = hasTP ? false : (node.children.length === 0);
 }
 
@@ -366,7 +349,7 @@ function updateTotalCost() {
       const match = countSpan?.textContent.match(/×\s*(\d+)/);
       const count = match ? parseInt(match[1]) : 1;
 
-      total += Math.round(best * count);
+      total += Math.round(best);
 
       const isLeaf = !input.closest(".node")?.querySelector(".children .price-field[data-id]");
       if (isLeaf && best === Number.MAX_SAFE_INTEGER) {
