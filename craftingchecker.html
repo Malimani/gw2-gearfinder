@@ -324,7 +324,7 @@ function updateTotalCost() {
 
     const best = getBestCost(node.id, "buy", new Set());
     const count = node.count || 1;
-    let total = isFinite(best) ? best * count : 0;
+    let total = isFinite(best) ? best : 0;
   
     for (const child of node.children || []) {
       total += walkAndSum(child);
