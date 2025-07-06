@@ -166,8 +166,7 @@ async function renderNode(node, container, depth = 0) {
   const itemData = await fetch(`https://api.guildwars2.com/v2/items/${node.id}`).then(r => r.json()).catch(() => ({}));
   const name = itemData.name || `Item ${node.id}`;
   const tpData = await fetchTPPrice(node.id);
-  const hasTP = tpData && (tpData.buy !== null || tpData.sell !== null);
-
+  const hasTP = tpData && tpData.buy !== null;
   const row = document.createElement("div");
   row.className = isExisting ? "existing" : "";
 
@@ -342,7 +341,7 @@ function updateTotalCost() {
 
      if (type === "buy") {
   const label = input.parentElement.querySelector("label");
-  const hasCoin = isFinite(Number(input.value));
+  const hasCoin = input.value.trim() !== "" && isFinite(Number(input.value));
   const hasTP = isFinite(Number(input.dataset[type]));
   const hasSub = !hasCoin && !hasTP && best < Number.MAX_SAFE_INTEGER;
   const missing = best === Number.MAX_SAFE_INTEGER;
