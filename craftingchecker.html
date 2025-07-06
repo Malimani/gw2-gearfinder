@@ -295,7 +295,8 @@ function getBestCost(id, type = "buy", visited = new Set()) {
       const childCost = getBestCost(cid, type, new Set(visited));
       subSum += childCost * count;
     }
-    if (subSum < best) best = subSum;
+    if (!isFinite(best) && isFinite(subSum)) best = subSum;
+else if (isFinite(subSum) && subSum < best) best = subSum;
 
     // Anzeige im UI (nur 1× für buy-Modus)
     if (type === "buy") {
@@ -326,23 +327,24 @@ function updateTotalCost() {
       const id = input.dataset.id;
       const best = getBestCost(id, type);
 
-      if (type === "buy") {
-        // Einfärbung
-        const label = input.parentElement.querySelector("label");
-        const hasCoin = isFinite(Number(input.value));
-        const hasTP = input.dataset[type];
-        if (label) {
-          label.style.fontWeight = "normal";
-          label.style.color = hasCoin
-            ? "black"
-            : hasTP
-            ? "green"
-            : best < Number.MAX_SAFE_INTEGER
-            ? "blue"
-            : "red";
-        }
-      }
+     if (type === "buy") {
+  const label = input.parentElement.querySelector("label");
+  const hasCoin = isFinite(Number(input.value));
+  const hasTP = isFinite(Number(input.dataset[type]));
+  const hasSub = !hasCoin && !hasTP && best < Number.MAX_SAFE_INTEGER;
+  const missing = best === Number.MAX_SAFE_INTEGER;
 
+  if (label) {
+    label.style.fontWeight = "normal";
+    label.style.color = hasCoin
+      ? "black"
+      : hasTP
+      ? "green"
+      : hasSub
+      ? "blue"
+      : "red";
+  }
+}
       total += best;
 
       const isLeaf = !input.closest(".node")?.querySelector(".children .price-field[data-id]");
