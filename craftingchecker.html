@@ -99,29 +99,28 @@
       }
     }
 
-    async function computeBestSubtreeCost(node) {
-      if (!node.children.length) return Number.MAX_SAFE_INTEGER;
-      let sum = 0;
-      for (const child of node.children) {
-        const priceField = document.querySelector(`input.price-field[data-id='${child.id}']`);
-        const userVal = parseInt(priceField?.value || "0", 10);
-        const tpElement = document.querySelector(`input[type='checkbox'][data-id='${child.id}']`)?.parentElement.querySelector(".tp-price");
-        let tpCopper = Number.MAX_SAFE_INTEGER;
-        if (tpElement) {
-          const tpVal = tpElement.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
-          if (tpVal) {
-            const [, g, s, c] = tpVal;
-            tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
-          }
-        }
-        const best = Math.min(
-        isFinite(userVal) ? userVal : Number.MAX_SAFE_INTEGER,
-        tpCopper
-        );
-        sum += best;
+async function computeBestSubtreeCost(node) {
+  if (!node.children.length) return Number.MAX_SAFE_INTEGER;
+  let sum = 0;
+  for (const child of node.children) {
+    const priceField = document.querySelector(`input.price-field[data-id='${child.id}']`);
+    const userVal = Number(String(priceField?.value || "").replace(',', '.').trim());
+    const tpElement = document.querySelector(`input[type='checkbox'][data-id='${child.id}']`)?.parentElement.querySelector(".tp-price");
+    let tpCopper = Number.MAX_SAFE_INTEGER;
+    if (tpElement) {
+      const tpVal = tpElement.textContent.match(/TP: (\d+)g (\d+)s (\d+)c/);
+      if (tpVal) {
+        const [, g, s, c] = tpVal;
+        tpCopper = parseInt(g)*10000 + parseInt(s)*100 + parseInt(c);
       }
-      return sum;
     }
+    let best = Number.MAX_SAFE_INTEGER;
+    if (isFinite(userVal)) best = userVal;
+    if (tpCopper < best) best = tpCopper;
+    sum += best;
+  }
+  return sum;
+}
 
     async function buildTree(itemId, depth = 0, visited = new Set()) {
       if (depth > 10 || visited.has(itemId)) return null;
