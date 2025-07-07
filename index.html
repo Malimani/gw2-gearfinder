@@ -540,6 +540,7 @@ else if (Array.isArray(entry.cost)) {
   
 async function renderItems(items = gearData[currentSlot]) {
   resultsDiv.innerHTML = "";
+  document.querySelectorAll(".stat-swap-header, .stat-swap-entry").forEach(el => el.remove());
   if (!currentSlot || !gearData[currentSlot]) return;
 
   const attrIds = Object.entries(attributeMap)
@@ -806,12 +807,96 @@ if (
 
 const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
   entry.rarity === "Ascended" &&
-  (!entry.attributes || !entry.attributes.every(id => attrIds.includes(String(id)))) &&
+  (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id)))) &&
   !existingAscendedItems.some(existing =>
-  hasSameCostOption(existing, entry) &&
-  JSON.stringify(existing.attributes || []) === JSON.stringify(entry.attributes || [])
-)
+    hasSameCostOption(existing, entry) &&
+    JSON.stringify(existing.attributes || []) === JSON.stringify(entry.attributes || [])
+  )
 );
+
+let forgeableAscended = [];
+
+if (forgeableAscendedRaw.length > 0) {
+  const seenCosts = new Set();
+
+  const withCost = await Promise.all(forgeableAscendedRaw.map(async item => {
+    let costEstimate = Number.MAX_SAFE_INTEGER;
+    let reason = "";
+    const itemId = parseInt(item.name);
+    const itemName = itemNameCache[itemId] || `Item ${item.name}`;
+
+    if (!item.cost || (Array.isArray(item.cost) && item.cost.length === 0)) {
+      reason = "no cost → keeping as fallback";
+      costEstimate = 0;
+      console.log(`[StatSwap] ${itemName} (${itemId}) – ${reason}`);
+      return { item, costEstimate, costKey: "no-cost" };
+    }
+
+    let costKey = "";
+    if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
+      const id = item.cost.slice(6);
+      costEstimate = await getCraftingCost(id);
+      costKey = "fallback";
+      reason = `craft:${id} → ${formatPrice(costEstimate)}`;
+    } else if (Array.isArray(item.cost)) {
+      const normalized = extractCostVariants(item);
+      const nonCraftKey = normalized.find(k => !k.includes("craft:")) || normalized.sort().join("|");
+      costKey = nonCraftKey;
+
+      const costVariants = await Promise.all(item.cost.map(async variant => {
+        const subCosts = await Promise.all(variant.map(async frag => {
+          if (typeof frag.currency === "string" && frag.currency.startsWith("craft:")) {
+            return await getCraftingCost(frag.currency.slice(6));
+          }
+          return frag.amount ?? Number.MAX_SAFE_INTEGER;
+        }));
+        return subCosts.reduce((a, b) => a + b, 0);
+      }));
+      costEstimate = Math.min(...costVariants);
+      reason = `array cost → ${formatPrice(costEstimate)}`;
+    } else {
+      reason = "unknown cost format";
+      costKey = "unknown";
+    }
+
+    console.log(`[StatSwap] ${itemName} (${itemId}) – ${reason}`);
+    return { item, costEstimate, costKey };
+  }));
+
+  const grouped = new Map();
+
+  for (const entry of withCost) {
+    if (entry.costKey === "no-cost") {
+      forgeableAscended.push(entry.item); // behalten
+      continue;
+    }
+    if (!grouped.has(entry.costKey)) {
+      grouped.set(entry.costKey, entry);
+    } else {
+      const existing = grouped.get(entry.costKey);
+      if (entry.costEstimate < existing.costEstimate) {
+        grouped.set(entry.costKey, entry); // ersetze durch günstigere Variante
+      }
+    }
+  }
+
+  for (const { item } of grouped.values()) {
+    forgeableAscended.push(item);
+  }
+
+  if (forgeableAscended.length) {
+    const h = document.createElement("h2");
+    h.textContent = "Ascended via Stat changing";
+    h.classList.add("stat-swap-header");
+    resultsDiv.appendChild(h);
+
+    forgeableAscended.forEach(entry => {
+      const div = createEntryDiv(entry);
+      div.classList.add("stat-swap-entry");
+      resultsDiv.appendChild(div);
+    });
+  }
+}
 
 let forgeableAscended = [];
 
