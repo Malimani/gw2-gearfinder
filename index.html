@@ -777,11 +777,7 @@ async function renderItems(items = gearData[currentSlot]) {
 
     const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
       entry.rarity === "Ascended" &&
-      (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id)))) &&
-      !existingAscendedItems.some(existing =>
-        hasSameCostOption(existing, entry) &&
-        JSON.stringify(existing.attributes || []) === JSON.stringify(entry.attributes || [])
-      )
+    (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id))))
     );
 
     if (forgeableAscendedRaw.length > 0) {
