@@ -95,7 +95,9 @@
 
   <label for="link">Wiki or Reference Link</label>
   <input type="text" id="link" placeholder="Auto-fetched or enter manually">
-
+  
+  <button id="addEfficiencyLinkBtn" type="button">+ Add gw2efficiency Link</button>
+  
   <button id="generateBtn">Generate JSON</button>
   <button id="copyBtn">Copy to Clipboard</button>
 
@@ -358,6 +360,16 @@
           .catch(() => alert('Failed to copy JSON.'));
       }
     }
+    function addEfficiencyLink() {
+      const itemId = document.getElementById('itemId').value.trim();
+      const linkField = document.getElementById('link');
+      if (!itemId) {
+        alert("Enter a valid item ID first.");
+        return;
+      }
+      linkField.value = `https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-${itemId}!e~0`;
+    }
+
 
     window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("itemId").addEventListener("input", fetchItemData);
@@ -366,6 +378,7 @@
       document.getElementById("generateBtn").addEventListener("click", generateJSON);
       document.getElementById("copyBtn").addEventListener("click", copyJSON);
       document.getElementById("addCraftBtn").addEventListener("click", addCraftEntry);
+      document.getElementById("addEfficiencyLinkBtn").addEventListener("click", addEfficiencyLink);
     });
   </script>
 </body>
