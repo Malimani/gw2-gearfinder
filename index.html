@@ -795,10 +795,11 @@ async function renderItems(items = gearData[currentSlot]) {
       }
 
       // Direkt anzeigen
-      forgeableAscendedRaw.forEach(entry => {
-        const div = createEntryDiv(entry);
-        div.classList.add("stat-swap-entry");
-        resultsDiv.appendChild(div);
+     forgeableAscendedRaw.forEach(entry => {
+      const div = createEntryDiv(entry);
+      div.classList.add("stat-swap-entry");
+      if (entry.method === "Crafting") div.dataset.type = "crafting";
+      resultsDiv.appendChild(div);
       });
 
       const loadingNote = document.createElement("p");
@@ -836,14 +837,18 @@ async function renderItems(items = gearData[currentSlot]) {
           }
         }
 
-        document.querySelectorAll(".stat-swap-entry").forEach(el => el.remove());
+        // Entferne nur die alten Crafting-Einträge
+        document.querySelectorAll(".stat-swap-entry[data-type='crafting']").forEach(el => el.remove());
         document.getElementById("statSwapLoading")?.remove();
 
+        // Zeige die besten Crafting-Optionen
         for (const { item } of grouped.values()) {
-          const div = createEntryDiv(item);
-          div.classList.add("stat-swap-entry");
-          resultsDiv.appendChild(div);
+        const div = createEntryDiv(item);
+        div.classList.add("stat-swap-entry");
+        div.dataset.type = "crafting";
+        resultsDiv.appendChild(div);
         }
+
       })();
     }
   }
