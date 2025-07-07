@@ -918,6 +918,10 @@ async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
 
       if (gearData[currentSlot]) {
         buildAttributeDropdown(currentSlot);
+        // 🧠 Reset weight_class filter if the new slot has no weight_class entries
+        if (!gearData[currentSlot].some(item => !!item.weight_class)) {
+        filters.weight_class.clear();
+        }
       }
       if (currentAttrLabel) {
       renderFilters(gearData[currentSlot]);
