@@ -8124,7 +8124,24 @@
       "icon": "https://render.guildwars2.com/file/2BB4E7CFF01EF2382CACF6E06617F0A948DADF5E/632072.png",
       "rarity": "Ascended",
       "method": "Crafting",
-      "cost": "craft:46854",
+      "cost": [
+        [
+          {
+            "currency": "craft:46854",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46854!e~0",
       "attributes": [
         "153"
