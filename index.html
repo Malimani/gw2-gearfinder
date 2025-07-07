@@ -841,58 +841,8 @@ await renderAscendedViaCrafting(currentSlot);
   const g = Math.floor(copper / 10000);
   return `${g}<img src='assets/gold.png' style='height:1em;'> ${s}<img src='assets/silver.png' style='height:1em;'> ${c}<img src='assets/copper.png' style='height:1em;'>`;
 }
-async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
-  if (depth > 10 || visited.has(itemId)) {
-    console.warn("Too deep or circular crafting chain at", itemId);
-    return Number.MAX_SAFE_INTEGER;
-  }
-  visited.add(itemId);
 
-  try {
-    // 1. Versuche TP-Preis
-    let unitCost = Number.MAX_SAFE_INTEGER;
-    if (tpPriceCache[itemId]) {
-      unitCost = tpPriceCache[itemId].copperValue;
-    } else {
-      try {
-        const priceRes = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
-        const priceData = await priceRes.json();
-        unitCost = priceData.sells.unit_price;
-        tpPriceCache[itemId] = { copperValue: unitCost };
-      } catch {
-        // TP-Preis nicht vorhanden → gehe zu Rezeptprüfung
-      }
-    }
-
-    if (isFinite(unitCost) && unitCost > 0 && unitCost < Number.MAX_SAFE_INTEGER) {
-      return unitCost;
-    }
-
-    // 2. Versuche Crafting-Rezept
-    const recipeSearch = await fetch(`https://api.guildwars2.com/v2/recipes/search?output=${itemId}`);
-    const recipeIds = await recipeSearch.json();
-    if (!recipeIds.length) {
-      console.warn("No TP price and no recipe for", itemId);
-      return Number.MAX_SAFE_INTEGER;
-    }
-
-    const recipeId = recipeIds[0];
-    const recipe = await fetch(`https://api.guildwars2.com/v2/recipes/${recipeId}`).then(r => r.json());
-
-    let totalCost = 0;
-    for (const ing of recipe.ingredients) {
-      const ingCost = await getCraftingCost(ing.item_id, depth + 1, new Set(visited));
-      totalCost += ing.count * ingCost;
-    }
-
-    return totalCost;
-  } catch (e) {
-    console.error("Crafting cost error for item", itemId, e);
-    return Number.MAX_SAFE_INTEGER;
-  }
-}
-
-    const craftCostCache = {}; // 🧠 Caches die berechneten crafting-Kosten
+const craftCostCache = {}; // 🧠 Caches die berechneten crafting-Kosten
 
 async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
   if (craftCostCache[itemId] !== undefined) return craftCostCache[itemId];
@@ -908,7 +858,7 @@ async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
       tpCost = tpPriceCache[itemId].copperValue;
     } else {
       const data = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`).then(res => res.json());
-      tpCost = data?.sells?.unit_price ?? Number.MAX_SAFE_INTEGER;
+      tpCost = data?.buys?.unit_price ?? Number.MAX_SAFE_INTEGER;
       tpPriceCache[itemId] = {
         copperValue: tpCost,
         html: `<strong>Cost:</strong> ${formatPrice(tpCost)}`
