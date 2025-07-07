@@ -8097,11 +8097,21 @@
       "rarity": "Ascended",
       "method": "Crafting",
       "cost": "craft:46759",
-      "link": "https://wiki.guildwars2.com/wiki/Zojja%27s_Reaver",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46759!e~0",
       "attributes": [
         "161"
-      ],
-      "description": "TEST ITEM FOR CRAFTING CALC"
+      ]
+    },
+    {
+      "name": "46854",
+      "icon": "https://render.guildwars2.com/file/2BB4E7CFF01EF2382CACF6E06617F0A948DADF5E/632072.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": "craft:46854",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46854!e~0",
+      "attributes": [
+        "153"
+      ]
     }
   ],
   "Pistol": [
