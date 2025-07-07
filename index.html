@@ -857,40 +857,6 @@ if (forgeableAscendedRaw.length > 0) {
   }
 }
 
-
-let forgeableAscended = [];
-if (forgeableAscendedRaw.length > 0) {
-  const withCost = await Promise.all(forgeableAscendedRaw.map(async item => {
-    let costEstimate = Number.MAX_SAFE_INTEGER;
-
-    if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
-      const id = item.cost.slice(6);
-      costEstimate = await getCraftingCost(id);
-    } else if (Array.isArray(item.cost)) {
-      const costVariants = await Promise.all(item.cost.map(async variant => {
-        const subCosts = await Promise.all(variant.map(async frag => {
-          if (typeof frag.currency === "string" && frag.currency.startsWith("craft:")) {
-            return await getCraftingCost(frag.currency.slice(6));
-          }
-          return frag.amount ?? Number.MAX_SAFE_INTEGER;
-        }));
-        return subCosts.reduce((a, b) => a + b, 0);
-      }));
-      costEstimate = Math.min(...costVariants);
-    }
-
-    return { item, costEstimate };
-  }));
-
-  const best = withCost.reduce((min, curr) =>
-    curr.costEstimate < (min?.costEstimate ?? Number.MAX_SAFE_INTEGER) ? curr : min
-  , null);
-
-  if (best?.item) {
-    forgeableAscended = [best.item];
-  }
-}
-
   if (forgeableAscended.length) {
     const h = document.createElement("h2");
     const a = document.createElement("a");
