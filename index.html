@@ -509,6 +509,9 @@ function createCostElement(entry) {
   return cost;
 }
 async function renderAscendedViaCrafting(slot) {
+  // ❗ Verhindert doppelte Anzeige
+  if (document.querySelector(".ascended-via-crafting")) return;
+
   const items = (gearData[slot] || []).filter(i =>
     i.rarity === "Ascended" &&
     i.method === "Crafting" &&
@@ -530,11 +533,14 @@ async function renderAscendedViaCrafting(slot) {
 
   if (!best || best._estimatedCostCopper === Number.MAX_SAFE_INTEGER) return;
 
+  // 🎯 Markiere DOM-Abschnitt, damit er nicht dupliziert wird
   const h = document.createElement("h2");
   h.textContent = "Ascended via Crafting";
+  h.classList.add("ascended-via-crafting");
   resultsDiv.appendChild(h);
 
   const div = createEntryDiv(best);
+  div.classList.add("ascended-via-crafting");
 
   const costLine = document.createElement("p");
   costLine.innerHTML = `<strong>Estimated Total Cost:</strong> ${formatPrice(best._estimatedCostCopper)}`;
@@ -542,6 +548,7 @@ async function renderAscendedViaCrafting(slot) {
 
   resultsDiv.appendChild(div);
 }
+
   
 async function renderItems(items = gearData[currentSlot]) {
   resultsDiv.innerHTML = "";
