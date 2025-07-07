@@ -707,7 +707,6 @@ warning.style.color = "#664d00";
 warning.style.fontSize = "0.9em";
 tpWrapper.appendChild(warning);
 
-
   // Top TP-Item
   const topEntry = createEntryDiv(tpItems[0]);
   topEntry.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
@@ -884,7 +883,7 @@ if (forgeableAscendedRaw.length > 0) {
     forgeableAscended.push(item);
   }
 
-  if (forgeableAscended.length) {
+if (forgeableAscendedRaw.length > 0) {
   const h = document.createElement("h2");
   const a = document.createElement("a");
   a.href = "https://wiki.guildwars2.com/wiki/Stat_changing#Ascended_weapons_and_armor";
@@ -896,12 +895,65 @@ if (forgeableAscendedRaw.length > 0) {
   h.classList.add("stat-swap-header");
   resultsDiv.appendChild(h);
 
-  forgeableAscended.forEach(entry => {
+  // Sofort alle Roh-Items anzeigen (z. B. ohne Cost)
+  forgeableAscendedRaw.forEach(entry => {
     const div = createEntryDiv(entry);
     div.classList.add("stat-swap-entry");
     resultsDiv.appendChild(div);
   });
+
+  // Hinweis auf spätere Berechnung
+  const loadingNote = document.createElement("p");
+  loadingNote.textContent = "Calculating Crafting Items...";
+  loadingNote.id = "statSwapLoading";
+  loadingNote.style.color = "#888";
+  loadingNote.style.fontSize = "0.9em";
+  loadingNote.style.marginTop = "0.5em";
+  resultsDiv.appendChild(loadingNote);
+
+  // Jetzt: asynchrone Nachberechnung
+  (async () => {
+    const seenCosts = new Set();
+    const withCost = await Promise.all(forgeableAscendedRaw.map(async item => {
+      let costEstimate = Number.MAX_SAFE_INTEGER;
+      let costKey = "unknown";
+
+      if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
+        costKey = item.cost; // "craft:123456"
+        costEstimate = await getCraftingCost(item.cost.slice(6));
+      } else if (Array.isArray(item.cost)) {
+        const craftEntry = item.cost.flat().find(
+          frag => frag.currency?.startsWith("craft:")
+        );
+        if (craftEntry) {
+          costKey = craftEntry.currency;
+          costEstimate = await getCraftingCost(craftEntry.currency.slice(6));
+        }
+      }
+
+      return { item, costEstimate, costKey };
+    }));
+
+    const grouped = new Map();
+    for (const entry of withCost) {
+      if (!grouped.has(entry.costKey) || entry.costEstimate < grouped.get(entry.costKey).costEstimate) {
+        grouped.set(entry.costKey, entry);
+      }
+    }
+
+    // Entferne alte stat-swap-Einträge und Hinweis
+    document.querySelectorAll(".stat-swap-entry").forEach(el => el.remove());
+    document.getElementById("statSwapLoading")?.remove();
+
+    // Neue optimierte Einträge anzeigen
+    for (const { item } of grouped.values()) {
+      const div = createEntryDiv(item);
+      div.classList.add("stat-swap-entry");
+      resultsDiv.appendChild(div);
+    }
+  })();
 }
+
 }
 }
 }
