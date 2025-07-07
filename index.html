@@ -608,137 +608,132 @@ async function renderItems(items = gearData[currentSlot]) {
     Legendary: "#4c139d"
   };
 
-const createEntryDiv = (entry) => {
-  const div = document.createElement("div");
-  div.className = "result";
-  div.style.borderLeftColor = rarityColorMap[entry.rarity] || "#ccc";
+  const createEntryDiv = (entry) => {
+    const div = document.createElement("div");
+    div.className = "result";
+    div.style.borderLeftColor = rarityColorMap[entry.rarity] || "#ccc";
 
-  const title = document.createElement("h3");
+    const title = document.createElement("h3");
 
-  if (entry.icon) {
-    const icon = document.createElement("img");
-    icon.src = entry.icon;
-    icon.className = "icon";
-    title.appendChild(icon);
-  }
-
-  const nameSpan = document.createElement(entry.link ? "a" : "span");
-  nameSpan.textContent = `Loading item name...`;
-  if (entry.link) {
-    nameSpan.href = entry.link;
-    nameSpan.target = "_blank";
-    nameSpan.style.color = "#0066cc";
-    nameSpan.style.textDecoration = "none";
-    nameSpan.style.display = "inline-flex";
-    nameSpan.style.alignItems = "center";
-
-    const extIcon = document.createElement("img");
-    extIcon.src = "assets/external-link.png";
-    extIcon.alt = "(external)";
-    extIcon.style.height = "0.9em";
-    extIcon.style.verticalAlign = "middle";
-    extIcon.style.marginLeft = "0.3em";
-    nameSpan.appendChild(extIcon);
-  }
-  title.appendChild(nameSpan);
-
-  const meta = document.createElement("span");
-  meta.style.fontSize = "0.9em";
-  meta.style.color = "#666";
-  meta.style.marginLeft = "0.5em";
-  meta.textContent = `(${entry.rarity}${entry.weight_class ? ", " + entry.weight_class : ""})`;
-  title.appendChild(meta);
-
-  const itemId = parseInt(entry.name);
-  if (!isNaN(itemId)) {
-    if (itemNameCache[itemId]) {
-      nameSpan.childNodes[0].nodeValue = itemNameCache[itemId];
-    } else {
-      fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
-        .then(res => res.json())
-        .then(data => {
-          const name = data?.name || `Item ID: ${entry.name}`;
-          itemNameCache[itemId] = name;
-          nameSpan.childNodes[0].nodeValue = name;
-        })
-        .catch(() => {
-          nameSpan.childNodes[0].nodeValue = `Item ID: ${entry.name}`;
-        });
+    if (entry.icon) {
+      const icon = document.createElement("img");
+      icon.src = entry.icon;
+      icon.className = "icon";
+      title.appendChild(icon);
     }
-  } else {
-    nameSpan.childNodes[0].nodeValue = entry.name;
-  }
 
-  div.appendChild(title);
+    const nameSpan = document.createElement(entry.link ? "a" : "span");
+    nameSpan.textContent = `Loading item name...`;
+    if (entry.link) {
+      nameSpan.href = entry.link;
+      nameSpan.target = "_blank";
+      nameSpan.style.color = "#0066cc";
+      nameSpan.style.textDecoration = "none";
+      nameSpan.style.display = "inline-flex";
+      nameSpan.style.alignItems = "center";
 
-  const method = document.createElement("p");
-  method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
-  div.appendChild(method);
+      const extIcon = document.createElement("img");
+      extIcon.src = "assets/external-link.png";
+      extIcon.alt = "(external)";
+      extIcon.style.height = "0.9em";
+      extIcon.style.verticalAlign = "middle";
+      extIcon.style.marginLeft = "0.3em";
+      nameSpan.appendChild(extIcon);
+    }
+    title.appendChild(nameSpan);
 
-  if (entry.description) {
-    const desc = document.createElement("p");
-    desc.innerHTML = `<strong>Description:</strong> ${entry.description}`;
-    div.appendChild(desc);
-  }
+    const meta = document.createElement("span");
+    meta.style.fontSize = "0.9em";
+    meta.style.color = "#666";
+    meta.style.marginLeft = "0.5em";
+    meta.textContent = `(${entry.rarity}${entry.weight_class ? ", " + entry.weight_class : ""})`;
+    title.appendChild(meta);
 
-  div.appendChild(createCostElement(entry));
+    const itemId = parseInt(entry.name);
+    if (!isNaN(itemId)) {
+      if (itemNameCache[itemId]) {
+        nameSpan.childNodes[0].nodeValue = itemNameCache[itemId];
+      } else {
+        fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
+          .then(res => res.json())
+          .then(data => {
+            const name = data?.name || `Item ID: ${entry.name}`;
+            itemNameCache[itemId] = name;
+            nameSpan.childNodes[0].nodeValue = name;
+          })
+          .catch(() => {
+            nameSpan.childNodes[0].nodeValue = `Item ID: ${entry.name}`;
+          });
+      }
+    } else {
+      nameSpan.childNodes[0].nodeValue = entry.name;
+    }
 
-  return div;
-};
+    div.appendChild(title);
+
+    const method = document.createElement("p");
+    method.innerHTML = `<strong>Method:</strong> ${entry.method}`;
+    div.appendChild(method);
+
+    if (entry.description) {
+      const desc = document.createElement("p");
+      desc.innerHTML = `<strong>Description:</strong> ${entry.description}`;
+      div.appendChild(desc);
+    }
+
+    div.appendChild(createCostElement(entry));
+
+    return div;
+  };
 
   if (tpItems.length) {
-  const h = document.createElement("h2");
-  h.textContent = "Exotic (TP, sorted by price)";
-  resultsDiv.appendChild(h);
+    const h = document.createElement("h2");
+    h.textContent = "Exotic (TP, sorted by price)";
+    resultsDiv.appendChild(h);
 
-  // Wrapper für alle TP-Einträge
-  const tpWrapper = document.createElement("div");
-  tpWrapper.style.position = "relative";
+    const tpWrapper = document.createElement("div");
+    tpWrapper.style.position = "relative";
 
-  // ⚠️ Warnhinweis
-const warning = document.createElement("p");
-warning.innerHTML = "⚠️ <strong>Warning:</strong> not a full TP search! Use ingame TP and filters to see it all! ⚠️";
-warning.style.background = "#fffbe6";
-warning.style.border = "1px solid #ffcc00";
-warning.style.borderRadius = "0.5rem";
-warning.style.padding = "0.5rem 1rem";
-warning.style.margin = "0.5rem 0 1rem 0";
-warning.style.color = "#664d00";
-warning.style.fontSize = "0.9em";
-tpWrapper.appendChild(warning);
+    const warning = document.createElement("p");
+    warning.innerHTML = "⚠️ <strong>Warning:</strong> not a full TP search! Use ingame TP and filters to see it all! ⚠️";
+    warning.style.background = "#fffbe6";
+    warning.style.border = "1px solid #ffcc00";
+    warning.style.borderRadius = "0.5rem";
+    warning.style.padding = "0.5rem 1rem";
+    warning.style.margin = "0.5rem 0 1rem 0";
+    warning.style.color = "#664d00";
+    warning.style.fontSize = "0.9em";
+    tpWrapper.appendChild(warning);
 
-  // Top TP-Item
-  const topEntry = createEntryDiv(tpItems[0]);
-  topEntry.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
-  topEntry.style.marginBottom = "0.5rem";
-  tpWrapper.appendChild(topEntry);
+    const topEntry = createEntryDiv(tpItems[0]);
+    topEntry.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
+    topEntry.style.marginBottom = "0.5rem";
+    tpWrapper.appendChild(topEntry);
 
-  // Collapsible Container
-  const collapseDiv = document.createElement("div");
-  collapseDiv.style.display = "none";
-  tpItems.slice(1).forEach(entry => collapseDiv.appendChild(createEntryDiv(entry)));
-  tpWrapper.appendChild(collapseDiv);
+    const collapseDiv = document.createElement("div");
+    collapseDiv.style.display = "none";
+    tpItems.slice(1).forEach(entry => collapseDiv.appendChild(createEntryDiv(entry)));
+    tpWrapper.appendChild(collapseDiv);
 
-  // Toggle Button
-  const toggleBtn = document.createElement("button");
-  toggleBtn.textContent = "Show more options";
-  toggleBtn.style.background = "#fff";
-  toggleBtn.style.border = "1px solid #ccc";
-  toggleBtn.style.borderRadius = "0.5rem";
-  toggleBtn.style.padding = "0.5rem 1rem";
-  toggleBtn.style.cursor = "pointer";
-  toggleBtn.style.margin = "0 auto 1rem auto";
-  toggleBtn.style.display = "block";
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = "Show more options";
+    toggleBtn.style.background = "#fff";
+    toggleBtn.style.border = "1px solid #ccc";
+    toggleBtn.style.borderRadius = "0.5rem";
+    toggleBtn.style.padding = "0.5rem 1rem";
+    toggleBtn.style.cursor = "pointer";
+    toggleBtn.style.margin = "0 auto 1rem auto";
+    toggleBtn.style.display = "block";
 
-  toggleBtn.addEventListener("click", () => {
-    const isHidden = collapseDiv.style.display === "none";
-    collapseDiv.style.display = isHidden ? "block" : "none";
-    toggleBtn.textContent = isHidden ? "Hide extra options" : "Show more options";
-  });
+    toggleBtn.addEventListener("click", () => {
+      const isHidden = collapseDiv.style.display === "none";
+      collapseDiv.style.display = isHidden ? "block" : "none";
+      toggleBtn.textContent = isHidden ? "Hide extra options" : "Show more options";
+    });
 
-  tpWrapper.appendChild(toggleBtn);
-  resultsDiv.appendChild(tpWrapper);
-}
+    tpWrapper.appendChild(toggleBtn);
+    resultsDiv.appendChild(tpWrapper);
+  }
 
   const exoticGroups = {};
   otherExotics.forEach(entry => {
@@ -768,194 +763,94 @@ tpWrapper.appendChild(warning);
     legendaryItems.forEach(entry => resultsDiv.appendChild(createEntryDiv(entry)));
   }
 
-function normalizeCostOption(option) {
-  return option
-    .map(c => typeof c === "string" ? c : `${c.currency}:${c.amount}`)
-    .sort()
-    .join("|");
-}
+  // STAT SWAP
+  const isTrinketSlot = slotTypeMap[currentSlot]?.toLowerCase() === "trinkets";
+  if (
+    currentAttrLabel &&
+    gearData[currentSlot] &&
+    !isTrinketSlot &&
+    (!filters.rarity.size || filters.rarity.has("Ascended"))
+  ) {
+    const existingAscendedItems = filteredItems.filter(
+      item => item.rarity === "Ascended"
+    );
 
-function extractCostVariants(entry) {
-  if (typeof entry.cost === "string") {
-    return [entry.cost];
-  }
-  if (Array.isArray(entry.cost)) {
-    return entry.cost.map(normalizeCostOption);
-  }
-  return [];
-}
+    const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
+      entry.rarity === "Ascended" &&
+      (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id)))) &&
+      !existingAscendedItems.some(existing =>
+        hasSameCostOption(existing, entry) &&
+        JSON.stringify(existing.attributes || []) === JSON.stringify(entry.attributes || [])
+      )
+    );
 
-function hasSameCostOption(entryA, entryB) {
-  const costA = new Set(extractCostVariants(entryA));
-  const costB = extractCostVariants(entryB);
-  return costB.some(variant => costA.has(variant));
-}
+    if (forgeableAscendedRaw.length > 0) {
+      if (!document.querySelector(".stat-swap-header")) {
+        const h = document.createElement("h2");
+        const a = document.createElement("a");
+        a.href = "https://wiki.guildwars2.com/wiki/Stat_changing#Ascended_weapons_and_armor";
+        a.target = "_blank";
+        a.style.color = "#0066cc";
+        a.style.textDecoration = "none";
+        a.innerHTML = `Ascended via Stat changing <img src="assets/external-link.png" style="height:0.9em; vertical-align:middle; margin-left:0.3em;">`;
+        h.appendChild(a);
+        h.classList.add("stat-swap-header");
+        resultsDiv.appendChild(h);
+      }
 
-const isTrinketSlot = slotTypeMap[currentSlot]?.toLowerCase() === "trinkets";
-const rarityFilter = filters.rarity;
+      // Direkt anzeigen
+      forgeableAscendedRaw.forEach(entry => {
+        const div = createEntryDiv(entry);
+        div.classList.add("stat-swap-entry");
+        resultsDiv.appendChild(div);
+      });
 
-if (
-  currentAttrLabel &&
-  gearData[currentSlot] &&
-  !isTrinketSlot &&
-  (!rarityFilter.size || rarityFilter.has("Ascended"))
-) {
-  const existingAscendedItems = filteredItems.filter(
-    item => item.rarity === "Ascended"
-  );
+      const loadingNote = document.createElement("p");
+      loadingNote.textContent = "Calculating Crafting Items...";
+      loadingNote.id = "statSwapLoading";
+      loadingNote.style.color = "#888";
+      loadingNote.style.fontSize = "0.9em";
+      loadingNote.style.marginTop = "0.5em";
+      resultsDiv.appendChild(loadingNote);
 
-const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
-  entry.rarity === "Ascended" &&
-  (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id)))) &&
-  !existingAscendedItems.some(existing =>
-    hasSameCostOption(existing, entry) &&
-    JSON.stringify(existing.attributes || []) === JSON.stringify(entry.attributes || [])
-  )
-);
+      (async () => {
+        const withCost = await Promise.all(forgeableAscendedRaw.map(async item => {
+          let costEstimate = Number.MAX_SAFE_INTEGER;
+          let costKey = null;
 
-let forgeableAscended = [];
-
-if (forgeableAscendedRaw.length > 0) {
-  const seenCosts = new Set();
-
-  const withCost = await Promise.all(forgeableAscendedRaw.map(async item => {
-    let costEstimate = Number.MAX_SAFE_INTEGER;
-    let reason = "";
-    const itemId = parseInt(item.name);
-    const itemName = itemNameCache[itemId] || `Item ${item.name}`;
-
-    if (!item.cost || (Array.isArray(item.cost) && item.cost.length === 0)) {
-      reason = "no cost → keeping as fallback";
-      costEstimate = 0;
-      console.log(`[StatSwap] ${itemName} (${itemId}) – ${reason}`);
-      return { item, costEstimate, costKey: "no-cost" };
-    }
-
-    let costKey = "";
-    if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
-      const id = item.cost.slice(6);
-      costEstimate = await getCraftingCost(id);
-      costKey = "fallback";
-      reason = `craft:${id} → ${formatPrice(costEstimate)}`;
-    } else if (Array.isArray(item.cost)) {
-      const normalized = extractCostVariants(item);
-      const nonCraftKey = normalized.find(k => !k.includes("craft:")) || normalized.sort().join("|");
-      costKey = nonCraftKey;
-
-      const costVariants = await Promise.all(item.cost.map(async variant => {
-        const subCosts = await Promise.all(variant.map(async frag => {
-          if (typeof frag.currency === "string" && frag.currency.startsWith("craft:")) {
-            return await getCraftingCost(frag.currency.slice(6));
+          if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
+            costKey = item.cost;
+            costEstimate = await getCraftingCost(item.cost.slice(6));
+          } else if (Array.isArray(item.cost)) {
+            const craftEntry = item.cost.flat().find(frag => frag.currency?.startsWith("craft:"));
+            if (craftEntry) {
+              costKey = craftEntry.currency;
+              costEstimate = await getCraftingCost(craftEntry.currency.slice(6));
+            }
           }
-          return frag.amount ?? Number.MAX_SAFE_INTEGER;
+
+          return { item, costEstimate, costKey };
         }));
-        return subCosts.reduce((a, b) => a + b, 0);
-      }));
-      costEstimate = Math.min(...costVariants);
-      reason = `array cost → ${formatPrice(costEstimate)}`;
-    } else {
-      reason = "unknown cost format";
-      costKey = "unknown";
-    }
 
-    console.log(`[StatSwap] ${itemName} (${itemId}) – ${reason}`);
-    return { item, costEstimate, costKey };
-  }));
-
-  const grouped = new Map();
-
-  for (const entry of withCost) {
-    if (entry.costKey === "no-cost") {
-      forgeableAscended.push(entry.item); // behalten
-      continue;
-    }
-    if (!grouped.has(entry.costKey)) {
-      grouped.set(entry.costKey, entry);
-    } else {
-      const existing = grouped.get(entry.costKey);
-      if (entry.costEstimate < existing.costEstimate) {
-        grouped.set(entry.costKey, entry); // ersetze durch günstigere Variante
-      }
-    }
-  }
-
-  for (const { item } of grouped.values()) {
-    forgeableAscended.push(item);
-  }
-
-if (forgeableAscendedRaw.length > 0) {
-  const h = document.createElement("h2");
-  const a = document.createElement("a");
-  a.href = "https://wiki.guildwars2.com/wiki/Stat_changing#Ascended_weapons_and_armor";
-  a.target = "_blank";
-  a.style.color = "#0066cc";
-  a.style.textDecoration = "none";
-  a.innerHTML = `Ascended via Stat changing <img src="assets/external-link.png" style="height:0.9em; vertical-align:middle; margin-left:0.3em;">`;
-  h.appendChild(a);
-  h.classList.add("stat-swap-header");
-  resultsDiv.appendChild(h);
-
-  // Sofort alle Roh-Items anzeigen (z. B. ohne Cost)
-  forgeableAscendedRaw.forEach(entry => {
-    const div = createEntryDiv(entry);
-    div.classList.add("stat-swap-entry");
-    resultsDiv.appendChild(div);
-  });
-
-  // Hinweis auf spätere Berechnung
-  const loadingNote = document.createElement("p");
-  loadingNote.textContent = "Calculating Crafting Items...";
-  loadingNote.id = "statSwapLoading";
-  loadingNote.style.color = "#888";
-  loadingNote.style.fontSize = "0.9em";
-  loadingNote.style.marginTop = "0.5em";
-  resultsDiv.appendChild(loadingNote);
-
-  // Jetzt: asynchrone Nachberechnung
-  (async () => {
-    const seenCosts = new Set();
-    const withCost = await Promise.all(forgeableAscendedRaw.map(async item => {
-      let costEstimate = Number.MAX_SAFE_INTEGER;
-      let costKey = "unknown";
-
-      if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
-        costKey = item.cost; // "craft:123456"
-        costEstimate = await getCraftingCost(item.cost.slice(6));
-      } else if (Array.isArray(item.cost)) {
-        const craftEntry = item.cost.flat().find(
-          frag => frag.currency?.startsWith("craft:")
-        );
-        if (craftEntry) {
-          costKey = craftEntry.currency;
-          costEstimate = await getCraftingCost(craftEntry.currency.slice(6));
+        const grouped = new Map();
+        for (const entry of withCost) {
+          if (!entry.costKey || entry.costEstimate === Number.MAX_SAFE_INTEGER) continue;
+          if (!grouped.has(entry.costKey) || entry.costEstimate < grouped.get(entry.costKey).costEstimate) {
+            grouped.set(entry.costKey, entry);
+          }
         }
-      }
 
-      return { item, costEstimate, costKey };
-    }));
+        document.querySelectorAll(".stat-swap-entry").forEach(el => el.remove());
+        document.getElementById("statSwapLoading")?.remove();
 
-    const grouped = new Map();
-    for (const entry of withCost) {
-      if (!grouped.has(entry.costKey) || entry.costEstimate < grouped.get(entry.costKey).costEstimate) {
-        grouped.set(entry.costKey, entry);
-      }
+        for (const { item } of grouped.values()) {
+          const div = createEntryDiv(item);
+          div.classList.add("stat-swap-entry");
+          resultsDiv.appendChild(div);
+        }
+      })();
     }
-
-    // Entferne alte stat-swap-Einträge und Hinweis
-    document.querySelectorAll(".stat-swap-entry").forEach(el => el.remove());
-    document.getElementById("statSwapLoading")?.remove();
-
-    // Neue optimierte Einträge anzeigen
-    for (const { item } of grouped.values()) {
-      const div = createEntryDiv(item);
-      div.classList.add("stat-swap-entry");
-      resultsDiv.appendChild(div);
-    }
-  })();
-}
-
-}
-}
+  }
 }
 
     function formatPrice(copper) {
