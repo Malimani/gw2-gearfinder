@@ -236,6 +236,18 @@ body {
     let currentAttrLabel = "";
     let slotTypeMap = {};
     let currencyIconMap = {};
+    let craftComponentsMap = {};
+    
+async function loadCraftComponents() {
+  try {
+    const compData = await fetch("craftcomp.json").then(r => r.json());
+    for (const e of compData) {
+      craftComponentsMap[e.id] = e.coin;
+    }
+  } catch (e) {
+    console.warn("craftcomp.json missing", e);
+  }
+}
 
     async function loadSlotTypeMap() {
       try {
@@ -263,6 +275,7 @@ body {
       } catch (err) {
         console.error("Initialization error:", err);
       }
+      await loadCraftComponents();
     }
 
     function updateItemCounter() {
@@ -495,7 +508,40 @@ function createCostElement(entry) {
 
   return cost;
 }
+async function renderAscendedViaCrafting(slot) {
+  const items = (gearData[slot] || []).filter(i =>
+    i.rarity === "Ascended" &&
+    i.method === "Crafting" &&
+    typeof i.cost === "string" &&
+    i.cost.startsWith("craft:")
+  );
 
+  if (items.length === 0) return;
+
+  const enriched = await Promise.all(items.map(async item => {
+    const id = item.cost.slice(6);
+    const copper = await getCraftingCost(id);
+    return { ...item, _estimatedCostCopper: copper };
+  }));
+
+  const best = enriched.reduce((min, item) => {
+    return (item._estimatedCostCopper < (min?._estimatedCostCopper ?? Number.MAX_SAFE_INTEGER)) ? item : min;
+  }, null);
+
+  if (!best || best._estimatedCostCopper === Number.MAX_SAFE_INTEGER) return;
+
+  const h = document.createElement("h2");
+  h.textContent = "Ascended via Crafting";
+  resultsDiv.appendChild(h);
+
+  const div = createEntryDiv(best);
+
+  const costLine = document.createElement("p");
+  costLine.innerHTML = `<strong>Estimated Total Cost:</strong> ${formatPrice(best._estimatedCostCopper)}`;
+  div.appendChild(costLine);
+
+  resultsDiv.appendChild(div);
+}
   
 async function renderItems(items = gearData[currentSlot]) {
   resultsDiv.innerHTML = "";
@@ -785,7 +831,7 @@ if (
     });
   }
 }
-
+await renderAscendedViaCrafting(currentSlot);
   
 }
 
@@ -844,6 +890,53 @@ async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
     console.error("Crafting cost error for item", itemId, e);
     return Number.MAX_SAFE_INTEGER;
   }
+}
+
+    const craftCostCache = {}; // 🧠 Caches die berechneten crafting-Kosten
+
+async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
+  if (craftCostCache[itemId] !== undefined) return craftCostCache[itemId];
+  if (depth > 10 || visited.has(itemId)) {
+    return Number.MAX_SAFE_INTEGER;
+  }
+  visited.add(itemId);
+
+  // Erst TP-Preis holen
+  let tpCost = Number.MAX_SAFE_INTEGER;
+  try {
+    if (tpPriceCache[itemId]) {
+      tpCost = tpPriceCache[itemId].copperValue;
+    } else {
+      const data = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`).then(res => res.json());
+      tpCost = data?.sells?.unit_price ?? Number.MAX_SAFE_INTEGER;
+      tpPriceCache[itemId] = {
+        copperValue: tpCost,
+        html: `<strong>Cost:</strong> ${formatPrice(tpCost)}`
+      };
+    }
+  } catch {}
+
+  // Dann schauen ob Coin-Wert in craftcomp.json existiert
+  let coinCost = craftComponentsMap?.[itemId] ?? Number.MAX_SAFE_INTEGER;
+
+  // Dann versuchen: Crafting-Rezept
+  let craftCost = Number.MAX_SAFE_INTEGER;
+  try {
+    const recipeIds = await fetch(`https://api.guildwars2.com/v2/recipes/search?output=${itemId}`).then(r => r.json());
+    if (recipeIds?.length > 0) {
+      const recipe = await fetch(`https://api.guildwars2.com/v2/recipes/${recipeIds[0]}`).then(r => r.json());
+      let sum = 0;
+      for (const ing of recipe.ingredients) {
+        const subCost = await getCraftingCost(ing.item_id, depth + 1, new Set(visited));
+        sum += subCost * ing.count;
+      }
+      craftCost = sum;
+    }
+  } catch {}
+
+  const best = Math.min(tpCost, coinCost, craftCost);
+  craftCostCache[itemId] = best;
+  return best;
 }
 
     slotSelect.addEventListener("change", () => {
