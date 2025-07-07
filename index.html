@@ -804,11 +804,59 @@ if (
     item => item.rarity === "Ascended"
   );
 
-  const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
+const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
   entry.rarity === "Ascended" &&
   (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id)))) &&
   !existingAscendedItems.some(existing => hasSameCostOption(existing, entry))
 );
+
+let forgeableAscended = [];
+if (forgeableAscendedRaw.length > 0) {
+  const withCost = await Promise.all(forgeableAscendedRaw.map(async item => {
+    let costEstimate = Number.MAX_SAFE_INTEGER;
+    let reason = "";
+    const itemId = parseInt(item.name);
+    const itemName = itemNameCache[itemId] || `Item ${item.name}`;
+
+    if (!item.cost) {
+      reason = "no cost → keeping as fallback";
+      costEstimate = 0;
+    } else if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
+      const id = item.cost.slice(6);
+      costEstimate = await getCraftingCost(id);
+      reason = `craft:${id} → ${formatPrice(costEstimate)}`;
+    } else if (Array.isArray(item.cost)) {
+      const costVariants = await Promise.all(item.cost.map(async variant => {
+        const subCosts = await Promise.all(variant.map(async frag => {
+          if (typeof frag.currency === "string" && frag.currency.startsWith("craft:")) {
+            return await getCraftingCost(frag.currency.slice(6));
+          }
+          return frag.amount ?? Number.MAX_SAFE_INTEGER;
+        }));
+        return subCosts.reduce((a, b) => a + b, 0);
+      }));
+      costEstimate = Math.min(...costVariants);
+      reason = `array cost → ${formatPrice(costEstimate)}`;
+    } else {
+      reason = "unknown cost format";
+    }
+
+    console.log(`[StatSwap] ${itemName} (${itemId}) – ${reason}`);
+    return { item, costEstimate };
+  }));
+
+  const best = withCost.reduce((min, curr) =>
+    curr.costEstimate < (min?.costEstimate ?? Number.MAX_SAFE_INTEGER) ? curr : min
+  , null);
+
+  if (best?.item) {
+    const bestId = parseInt(best.item.name);
+    const bestName = itemNameCache[bestId] || `Item ${best.item.name}`;
+    console.log(`[StatSwap] → selected: ${bestName}`);
+    forgeableAscended = [best.item];
+  }
+}
+
 
 let forgeableAscended = [];
 if (forgeableAscendedRaw.length > 0) {
