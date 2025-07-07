@@ -811,21 +811,33 @@ const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
 );
 
 let forgeableAscended = [];
+
 if (forgeableAscendedRaw.length > 0) {
+  const seenCosts = new Set();
+
   const withCost = await Promise.all(forgeableAscendedRaw.map(async item => {
     let costEstimate = Number.MAX_SAFE_INTEGER;
     let reason = "";
     const itemId = parseInt(item.name);
     const itemName = itemNameCache[itemId] || `Item ${item.name}`;
 
-    if (!item.cost) {
+    if (!item.cost || (Array.isArray(item.cost) && item.cost.length === 0)) {
       reason = "no cost → keeping as fallback";
       costEstimate = 0;
-    } else if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
+      console.log(`[StatSwap] ${itemName} (${itemId}) – ${reason}`);
+      return { item, costEstimate, costKey: "no-cost" };
+    }
+
+    let costKey = "";
+    if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
       const id = item.cost.slice(6);
       costEstimate = await getCraftingCost(id);
+      costKey = `craft:${id}`;
       reason = `craft:${id} → ${formatPrice(costEstimate)}`;
     } else if (Array.isArray(item.cost)) {
+      const normalized = extractCostVariants(item);
+      costKey = normalized.sort().join("|");
+
       const costVariants = await Promise.all(item.cost.map(async variant => {
         const subCosts = await Promise.all(variant.map(async frag => {
           if (typeof frag.currency === "string" && frag.currency.startsWith("craft:")) {
@@ -839,21 +851,33 @@ if (forgeableAscendedRaw.length > 0) {
       reason = `array cost → ${formatPrice(costEstimate)}`;
     } else {
       reason = "unknown cost format";
+      costKey = "unknown";
     }
 
     console.log(`[StatSwap] ${itemName} (${itemId}) – ${reason}`);
-    return { item, costEstimate };
+    return { item, costEstimate, costKey };
   }));
 
-  const best = withCost.reduce((min, curr) =>
-    curr.costEstimate < (min?.costEstimate ?? Number.MAX_SAFE_INTEGER) ? curr : min
-  , null);
+  const grouped = new Map();
 
-  if (best?.item) {
-    const bestId = parseInt(best.item.name);
-    const bestName = itemNameCache[bestId] || `Item ${best.item.name}`;
-    console.log(`[StatSwap] → selected: ${bestName}`);
-    forgeableAscended = [best.item];
+  for (const entry of withCost) {
+    if (entry.costKey === "no-cost") {
+      forgeableAscended.push(entry.item); // immer behalten
+      continue;
+    }
+    if (!grouped.has(entry.costKey)) {
+      grouped.set(entry.costKey, entry);
+    } else {
+      const existing = grouped.get(entry.costKey);
+      if (entry.costEstimate < existing.costEstimate) {
+        grouped.set(entry.costKey, entry); // ersetze durch günstigere Variante
+      }
+    }
+  }
+
+  // alle günstigsten Varianten pro Cost-Cluster anhängen
+  for (const { item } of grouped.values()) {
+    forgeableAscended.push(item);
   }
 }
 
