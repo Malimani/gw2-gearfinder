@@ -497,12 +497,41 @@ function createCostElement(entry) {
     }
   });
 }
-  else if (Array.isArray(entry.cost)) {
-    const formattedOptions = entry.cost.map(optionArr =>
-      optionArr.map(fragment => formatCurrency(fragment)).join(" + ")
-    );
-    cost.innerHTML = `<strong>Cost:</strong> ${formattedOptions.join(" <span style='color:#666;'>/</span> ")}`;
-  } else {
+else if (Array.isArray(entry.cost)) {
+  const optionBlocks = [];
+
+  for (const optionArr of entry.cost) {
+    const formattedFragments = [];
+
+    let isCraftOnly = false;
+    for (const fragment of optionArr) {
+      if (typeof fragment === "object" && fragment.currency?.startsWith("craft:")) {
+        isCraftOnly = true;
+        const craftId = fragment.currency.slice(6);
+        formattedFragments.push(`<span data-crafting-cost="loading" data-id="${craftId}">calculating...</span>`);
+      } else {
+        formattedFragments.push(formatCurrency(fragment));
+      }
+    }
+
+    optionBlocks.push(formattedFragments.join(" + "));
+  }
+
+  cost.innerHTML = `<strong>Cost:</strong> ${optionBlocks.join(" <span style='color:#666;'>/</span> ")}`;
+
+  // nachträglich alle craft: Einträge berechnen und ersetzen
+  const spanElements = cost.querySelectorAll("span[data-crafting-cost]");
+  spanElements.forEach(async span => {
+    const id = span.getAttribute("data-id");
+    const copper = await getCraftingCost(id);
+    if (copper < Number.MAX_SAFE_INTEGER) {
+      span.innerHTML = formatPrice(copper);
+    } else {
+      span.innerHTML = "Unknown";
+    }
+  });
+}
+  else {
     cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
   }
 
