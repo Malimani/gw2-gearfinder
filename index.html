@@ -147,6 +147,10 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
+    .result:first-child.exotic-tp {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
   .result:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -640,13 +644,47 @@ const createEntryDiv = (entry) => {
   return div;
 };
 
-
   if (tpItems.length) {
-    const h = document.createElement("h2");
-    h.textContent = "Exotic (TP, sorted by price)";
-    resultsDiv.appendChild(h);
-    tpItems.forEach(entry => resultsDiv.appendChild(createEntryDiv(entry)));
-  }
+  const h = document.createElement("h2");
+  h.textContent = "Exotic (TP, sorted by price)";
+  resultsDiv.appendChild(h);
+
+  // Wrapper für alle TP-Einträge
+  const tpWrapper = document.createElement("div");
+  tpWrapper.style.position = "relative";
+
+  // Top TP-Item
+  const topEntry = createEntryDiv(tpItems[0]);
+  topEntry.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
+  topEntry.style.marginBottom = "0.5rem";
+  tpWrapper.appendChild(topEntry);
+
+  // Collapsible Container
+  const collapseDiv = document.createElement("div");
+  collapseDiv.style.display = "none";
+  tpItems.slice(1).forEach(entry => collapseDiv.appendChild(createEntryDiv(entry)));
+  tpWrapper.appendChild(collapseDiv);
+
+  // Toggle Button
+  const toggleBtn = document.createElement("button");
+  toggleBtn.textContent = "Show more options";
+  toggleBtn.style.background = "#fff";
+  toggleBtn.style.border = "1px solid #ccc";
+  toggleBtn.style.borderRadius = "0.5rem";
+  toggleBtn.style.padding = "0.5rem 1rem";
+  toggleBtn.style.cursor = "pointer";
+  toggleBtn.style.margin = "0 auto 1rem auto";
+  toggleBtn.style.display = "block";
+
+  toggleBtn.addEventListener("click", () => {
+    const isHidden = collapseDiv.style.display === "none";
+    collapseDiv.style.display = isHidden ? "block" : "none";
+    toggleBtn.textContent = isHidden ? "Hide extra options" : "Show more options";
+  });
+
+  tpWrapper.appendChild(toggleBtn);
+  resultsDiv.appendChild(tpWrapper);
+}
 
   const exoticGroups = {};
   otherExotics.forEach(entry => {
