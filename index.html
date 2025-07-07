@@ -884,35 +884,27 @@ if (forgeableAscendedRaw.length > 0) {
     forgeableAscended.push(item);
   }
 
-  if (forgeableAscended.length) {
-    const h = document.createElement("h2");
-    h.textContent = "Ascended via Stat changing";
-    h.classList.add("stat-swap-header");
-    resultsDiv.appendChild(h);
+ if (forgeableAscended.length) {
+  const h = document.createElement("h2");
+  h.classList.add("stat-swap-header");
 
-    forgeableAscended.forEach(entry => {
-      const div = createEntryDiv(entry);
-      div.classList.add("stat-swap-entry");
-      resultsDiv.appendChild(div);
-    });
-  }
+  const a = document.createElement("a");
+  a.href = "https://wiki.guildwars2.com/wiki/Stat_changing#Ascended_weapons_and_armor";
+  a.target = "_blank";
+  a.style.color = "#0066cc";
+  a.style.textDecoration = "none";
+  a.innerHTML = `Ascended via Stat changing <img src="assets/external-link.png" style="height:0.9em; vertical-align:middle; margin-left:0.3em;">`;
+
+  h.appendChild(a);
+  resultsDiv.appendChild(h);
+
+  forgeableAscended.forEach(entry => {
+    const div = createEntryDiv(entry);
+    div.classList.add("stat-swap-entry");
+    resultsDiv.appendChild(div);
+  });
 }
 
-  if (forgeableAscended.length) {
-    const h = document.createElement("h2");
-    const a = document.createElement("a");
-    a.href = "https://wiki.guildwars2.com/wiki/Stat_changing#Ascended_weapons_and_armor";
-    a.target = "_blank";
-    a.style.color = "#0066cc";
-    a.style.textDecoration = "none";
-    a.innerHTML = `Ascended via Stat changing <img src="assets/external-link.png" style="height:0.9em; vertical-align:middle; margin-left:0.3em;">`;
-    h.appendChild(a);
-    resultsDiv.appendChild(h);
-
-    forgeableAscended.forEach(entry => {
-      resultsDiv.appendChild(createEntryDiv(entry));
-    });
-  }
 }
  
 }
