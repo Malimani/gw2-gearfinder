@@ -775,9 +775,11 @@ async function renderItems(items = gearData[currentSlot]) {
       item => item.rarity === "Ascended"
     );
 
+//---> Filter
     const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
       entry.rarity === "Ascended" &&
-    (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id))))
+      (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id)))) &&
+      (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class)))
     );
 
     if (forgeableAscendedRaw.length > 0) {
