@@ -653,6 +653,19 @@ const createEntryDiv = (entry) => {
   const tpWrapper = document.createElement("div");
   tpWrapper.style.position = "relative";
 
+  // ⚠️ Warnhinweis
+const warning = document.createElement("p");
+warning.innerHTML = "⚠️ <strong>Warning:</strong> not a full TP search! Use ingame TP and filters to see it all! ⚠️";
+warning.style.background = "#fffbe6";
+warning.style.border = "1px solid #ffcc00";
+warning.style.borderRadius = "0.5rem";
+warning.style.padding = "0.5rem 1rem";
+warning.style.margin = "0.5rem 0 1rem 0";
+warning.style.color = "#664d00";
+warning.style.fontSize = "0.9em";
+tpWrapper.appendChild(warning);
+
+
   // Top TP-Item
   const topEntry = createEntryDiv(tpItems[0]);
   topEntry.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
