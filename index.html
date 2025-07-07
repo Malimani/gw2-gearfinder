@@ -840,11 +840,12 @@ if (forgeableAscendedRaw.length > 0) {
 
       const costVariants = await Promise.all(item.cost.map(async variant => {
         const subCosts = await Promise.all(variant.map(async frag => {
-          if (typeof frag.currency === "string" && frag.currency.startsWith("craft:")) {
-            return await getCraftingCost(frag.currency.slice(6));
-          }
-          return frag.amount ?? Number.MAX_SAFE_INTEGER;
-        }));
+  if (typeof frag.currency === "string" && frag.currency.startsWith("craft:")) {
+    return await getCraftingCost(frag.currency.slice(6));
+  }
+  return frag.amount ?? Number.MAX_SAFE_INTEGER;
+}));
+
         return subCosts.reduce((a, b) => a + b, 0);
       }));
       costEstimate = Math.min(...costVariants);
