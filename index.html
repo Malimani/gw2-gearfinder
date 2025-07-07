@@ -806,7 +806,7 @@ if (
 
 const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
   entry.rarity === "Ascended" &&
-  (!entry.attributes || !entry.attributes.some(id => attrIds.includes(String(id)))) &&
+  (!entry.attributes || !entry.attributes.every(id => attrIds.includes(String(id)))) &&
   !existingAscendedItems.some(existing => hasSameCostOption(existing, entry))
 );
 
