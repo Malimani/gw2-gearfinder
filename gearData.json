@@ -4463,6 +4463,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46931",
+      "icon": "https://render.guildwars2.com/file/02709A0F455AE8C8F8CCFC6FDAA30E0C28E43BEA/631814.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46931",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46931!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Scepter": [
@@ -5015,6 +5043,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46940",
+      "icon": "https://render.guildwars2.com/file/27B2EC259158279200A1A3E70CDBBB1949CB6528/631868.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46940",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46940!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Shield": [
@@ -5542,6 +5598,34 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46827!e~0",
       "attributes": [
         "158"
+      ]
+    },
+    {
+      "name": "46941",
+      "icon": "https://render.guildwars2.com/file/432E9122D5FF51581C05E4F73B1DD56C4DAD1216/631874.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46941",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46941!e~0",
+      "attributes": [
+        "616"
       ]
     }
   ],
@@ -6132,6 +6216,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46945",
+      "icon": "https://render.guildwars2.com/file/A2E91301E72812391BDFB6FB9507661CA2CBF975/631898.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46945",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46945!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Greatsword": [
@@ -6673,6 +6785,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46933",
+      "icon": "https://render.guildwars2.com/file/AC957EB52ECD0DC50C3904DA06EB194B9647F2FE/631826.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46933",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46933!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Focus": [
@@ -7162,6 +7302,34 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46818!e~0",
       "attributes": [
         "158"
+      ]
+    },
+    {
+      "name": "46932",
+      "icon": "https://render.guildwars2.com/file/F1C5FB735A4265C2E8F602FC0A95AC0D7A4BCD80/631820.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46932",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46932!e~0",
+      "attributes": [
+        "616"
       ]
     }
   ],
@@ -7655,6 +7823,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46946",
+      "icon": "https://render.guildwars2.com/file/74451D125154D031C9C7EC1AF241D43D45DA467A/631904.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46946",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46946!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Mace": [
@@ -8147,6 +8343,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46937",
+      "icon": "https://render.guildwars2.com/file/B8640BAE300B49647F1F0C3860E7F20FB43A51F1/631850.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46937",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46937!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "LongBow": [
@@ -8626,6 +8850,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46936",
+      "icon": "https://render.guildwars2.com/file/EFA732A52693F00C4F0EB8FDEE01D93E02BEFD3B/631844.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46936",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46936!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Speargun": [
@@ -8976,6 +9228,34 @@
       ],
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46821!e~0",
       "attributes": []
+    },
+    {
+      "name": "46943",
+      "icon": "https://render.guildwars2.com/file/D2DF65E0B9CBB568D6D6F302C513240FB27A025B/631886.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46943",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46943!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Warhorn": [
@@ -9455,6 +9735,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46948",
+      "icon": "https://render.guildwars2.com/file/3DD7E0C50E6069990DA2F14D3BA793BBA7BA4EA7/631917.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46948",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46948!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Harpoon": [
@@ -9822,6 +10130,34 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-47049!e~0",
       "attributes": [
         "753"
+      ]
+    },
+    {
+      "name": "46935",
+      "icon": "https://render.guildwars2.com/file/BF791251B24AD60BDF1809597CBED004B0C0B344/631838.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46935",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46935!e~0",
+      "attributes": [
+        "616"
       ]
     }
   ],
@@ -10325,6 +10661,34 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46825!e~0",
       "attributes": [
         "158"
+      ]
+    },
+    {
+      "name": "46939",
+      "icon": "https://render.guildwars2.com/file/722CD10F29D50556BBEDA013141B21DC56D89FED/631862.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46939",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46939!e~0",
+      "attributes": [
+        "616"
       ]
     }
   ],
@@ -10859,6 +11223,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46930",
+      "icon": "https://render.guildwars2.com/file/1CE674BA480BDC5BBF0749030E9B1E410BCE12C6/631808.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46930",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46930!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Pistol": [
@@ -11364,6 +11756,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46938",
+      "icon": "https://render.guildwars2.com/file/C574FB106404E2F701F927E7607E095F0B7A93B6/631856.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46938",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 250
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46938!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "ShortBow": [
@@ -11856,6 +12276,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46942",
+      "icon": "https://render.guildwars2.com/file/C811E4520A7FC4F2AC6EA03D2C9E12D3CFDF92E6/631880.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46942",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46942!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Staff": [
@@ -12335,6 +12783,34 @@
       "attributes": [
         "158"
       ]
+    },
+    {
+      "name": "46944",
+      "icon": "https://render.guildwars2.com/file/5861FBE81FC36A086AC91F0F4809AD2BEAF75339/631892.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46944",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46944!e~0",
+      "attributes": [
+        "616"
+      ]
     }
   ],
   "Trident": [
@@ -12659,6 +13135,34 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46833!e~0",
       "attributes": [
         "158"
+      ]
+    },
+    {
+      "name": "46947",
+      "icon": "https://render.guildwars2.com/file/B90E6D63A60D053ED61593900CFD7A0A0F3B6F51/631911.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46947",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46947!e~0",
+      "attributes": [
+        "616"
       ]
     }
   ],
@@ -13164,6 +13668,34 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46820!e~0",
       "attributes": [
         "158"
+      ]
+    },
+    {
+      "name": "46934",
+      "icon": "https://render.guildwars2.com/file/32BFCF7BE4383620D6A372022CEE15FCE2550105/631832.png",
+      "rarity": "Ascended",
+      "method": "Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:46934",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Blue_Prophet_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-46934!e~0",
+      "attributes": [
+        "616"
       ]
     }
   ],
