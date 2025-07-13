@@ -237,6 +237,47 @@ body {
     let slotTypeMap = {};
     let currencyIconMap = {};
     let craftComponentsMap = {};
+
+    const apiQueue = [];
+let tokens = 300;
+const maxTokens = 300;
+
+setInterval(() => {
+  tokens = Math.min(tokens + 5, maxTokens);
+  processQueue();
+}, 1000);
+
+function processQueue() {
+  while (tokens > 0 && apiQueue.length > 0) {
+    const { url, resolve, reject, retries } = apiQueue.shift();
+    tokens--;
+
+    fetch(url).then(res => {
+      if (res.status === 429) {
+        if (retries > 0) {
+          // Warte 500ms und versuch es nochmal
+          setTimeout(() => {
+            apiQueue.push({ url, resolve, reject, retries: retries - 1 });
+            processQueue();
+          }, 500);
+        } else {
+          reject(new Error("Rate limit exceeded (429)"));
+        }
+      } else if (!res.ok) {
+        reject(new Error(`HTTP Error: ${res.status}`));
+      } else {
+        res.json().then(resolve).catch(reject);
+      }
+    }).catch(reject);
+  }
+}
+
+function rateLimitedFetch(url, maxRetries = 3) {
+  return new Promise((resolve, reject) => {
+    apiQueue.push({ url, resolve, reject, retries: maxRetries });
+    processQueue();
+  });
+}
     
 async function loadCraftComponents() {
   try {
@@ -649,23 +690,18 @@ async function renderItems(items = gearData[currentSlot]) {
     meta.textContent = `(${entry.rarity}${entry.weight_class ? ", " + entry.weight_class : ""})`;
     title.appendChild(meta);
 
-    const itemId = parseInt(entry.name);
-    if (!isNaN(itemId)) {
-      if (itemNameCache[itemId]) {
-        nameSpan.childNodes[0].nodeValue = itemNameCache[itemId];
-      } else {
-        fetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`)
-          .then(res => res.json())
-          .then(data => {
-            const name = data?.name || `Item ID: ${entry.name}`;
-            itemNameCache[itemId] = name;
-            nameSpan.childNodes[0].nodeValue = name;
-          })
-          .catch(() => {
-            nameSpan.childNodes[0].nodeValue = `Item ID: ${entry.name}`;
-          });
-      }
-    } else {
+const itemId = parseInt(entry.name);
+if (!isNaN(itemId)) {
+  if (itemNameCache[itemId]) {
+    nameSpan.childNodes[0].nodeValue = itemNameCache[itemId];
+  } else {
+    fetchItemName(itemId).then(name => {
+      nameSpan.childNodes[0].nodeValue = name;
+    });
+  }
+}
+ 
+    else {
       nameSpan.childNodes[0].nodeValue = entry.name;
     }
 
@@ -865,6 +901,19 @@ async function renderItems(items = gearData[currentSlot]) {
 
 const craftCostCache = {}; // 🧠 Caches die berechneten crafting-Kosten
 
+async function fetchItemName(itemId) {
+  if (itemNameCache[itemId]) return itemNameCache[itemId];
+
+  try {
+    const data = await rateLimitedFetch(`https://api.guildwars2.com/v2/items/${itemId}?lang=en`);
+    const name = data?.name || `Item ID: ${itemId}`;
+    itemNameCache[itemId] = name;
+    return name;
+  } catch {
+    return `Item ID: ${itemId}`;
+  }
+}
+    
 async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
   if (craftCostCache[itemId] !== undefined) return craftCostCache[itemId];
   if (depth > 10 || visited.has(itemId)) {
@@ -878,7 +927,7 @@ async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
     if (tpPriceCache[itemId]) {
       tpCost = tpPriceCache[itemId].copperValue;
     } else {
-      const data = await fetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`).then(res => res.json());
+      const data = await rateLimitedFetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
       tpCost = data?.buys?.unit_price ?? Number.MAX_SAFE_INTEGER;
       tpPriceCache[itemId] = {
         copperValue: tpCost,
@@ -887,15 +936,15 @@ async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
     }
   } catch {}
 
-  // Dann schauen ob Coin-Wert in craftcomp.json existiert
+  // Coin-Wert (manuell gepflegt)
   let coinCost = craftComponentsMap?.[itemId] ?? Number.MAX_SAFE_INTEGER;
 
-  // Dann versuchen: Crafting-Rezept
+  // Crafting-Rezept
   let craftCost = Number.MAX_SAFE_INTEGER;
   try {
-    const recipeIds = await fetch(`https://api.guildwars2.com/v2/recipes/search?output=${itemId}`).then(r => r.json());
+    const recipeIds = await rateLimitedFetch(`https://api.guildwars2.com/v2/recipes/search?output=${itemId}`);
     if (recipeIds?.length > 0) {
-      const recipe = await fetch(`https://api.guildwars2.com/v2/recipes/${recipeIds[0]}`).then(r => r.json());
+      const recipe = await rateLimitedFetch(`https://api.guildwars2.com/v2/recipes/${recipeIds[0]}`);
       let sum = 0;
       for (const ing of recipe.ingredients) {
         const subCost = await getCraftingCost(ing.item_id, depth + 1, new Set(visited));
