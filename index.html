@@ -922,19 +922,26 @@ async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
   visited.add(itemId);
 
   // Erst TP-Preis holen
-  let tpCost = Number.MAX_SAFE_INTEGER;
-  try {
-    if (tpPriceCache[itemId]) {
-      tpCost = tpPriceCache[itemId].copperValue;
-    } else {
-      const data = await rateLimitedFetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
-      tpCost = data?.buys?.unit_price ?? Number.MAX_SAFE_INTEGER;
-      tpPriceCache[itemId] = {
-        copperValue: tpCost,
-        html: `<strong>Cost:</strong> ${formatPrice(tpCost)}`
-      };
-    }
-  } catch {}
+ let tpCost = Number.MAX_SAFE_INTEGER;
+try {
+  if (tpPriceCache[itemId]) {
+    tpCost = tpPriceCache[itemId].copperValue;
+  } else {
+    const data = await rateLimitedFetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
+    tpCost = data?.buys?.unit_price ?? Number.MAX_SAFE_INTEGER;
+    tpPriceCache[itemId] = {
+      copperValue: tpCost,
+      html: `<strong>Cost:</strong> ${formatPrice(tpCost)}`
+    };
+  }
+} catch (e) {
+  // 404 oder andere Fehler – Item nicht handelbar → cache mit Unknown
+  tpCost = Number.MAX_SAFE_INTEGER;
+  tpPriceCache[itemId] = {
+    copperValue: tpCost,
+    html: `<strong>Cost:</strong> Unknown`
+  };
+}
 
   // Coin-Wert (manuell gepflegt)
   let coinCost = craftComponentsMap?.[itemId] ?? Number.MAX_SAFE_INTEGER;
