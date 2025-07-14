@@ -10071,6 +10071,193 @@
       "attributes": [
         "1686"
       ]
+    },
+    {
+      "name": "85651",
+      "icon": "https://render.guildwars2.com/file/33A36BE506586D709D2FF5C7581B65D9B26EF961/632311.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Claymore",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "85680",
+      "icon": "https://render.guildwars2.com/file/33A36BE506586D709D2FF5C7581B65D9B26EF961/632311.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Claymore",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "85992",
+      "icon": "https://render.guildwars2.com/file/33A36BE506586D709D2FF5C7581B65D9B26EF961/632311.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Claymore",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "86368",
+      "icon": "https://render.guildwars2.com/file/33A36BE506586D709D2FF5C7581B65D9B26EF961/632311.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Claymore",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
     }
   ],
   "Focus": [
@@ -14713,6 +14900,193 @@
       "attributes": [
         "1686"
       ]
+    },
+    {
+      "name": "86234",
+      "icon": "https://render.guildwars2.com/file/62F520F89F42B82B2606BE31450D2022507F8077/632329.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Greatbow",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "86138",
+      "icon": "https://render.guildwars2.com/file/62F520F89F42B82B2606BE31450D2022507F8077/632329.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Greatbow",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "86135",
+      "icon": "https://render.guildwars2.com/file/62F520F89F42B82B2606BE31450D2022507F8077/632329.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Greatbow",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "85753",
+      "icon": "https://render.guildwars2.com/file/62F520F89F42B82B2606BE31450D2022507F8077/632329.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Greatbow",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
     }
   ],
   "Speargun": [
@@ -15624,6 +15998,193 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-97180!e~0",
       "attributes": [
         "1686"
+      ]
+    },
+    {
+      "name": "85986",
+      "icon": "https://render.guildwars2.com/file/E1A1923F0AE8740E35060E57305C0EF39874EB13/632371.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Harpoon_Gun",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "86032",
+      "icon": "https://render.guildwars2.com/file/E1A1923F0AE8740E35060E57305C0EF39874EB13/632371.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Harpoon_Gun",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "85941",
+      "icon": "https://render.guildwars2.com/file/E1A1923F0AE8740E35060E57305C0EF39874EB13/632371.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Harpoon_Gun",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "86362",
+      "icon": "https://render.guildwars2.com/file/E1A1923F0AE8740E35060E57305C0EF39874EB13/632371.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Harpoon_Gun",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
       ]
     }
   ],
@@ -17743,6 +18304,193 @@
       "attributes": [
         "1686"
       ]
+    },
+    {
+      "name": "85976",
+      "icon": "https://render.guildwars2.com/file/3E0C2B4067E476034C2D5E6EFF4DC3A6450464EF/632323.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Impaler",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "85952",
+      "icon": "https://render.guildwars2.com/file/3E0C2B4067E476034C2D5E6EFF4DC3A6450464EF/632323.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Impaler",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "85966",
+      "icon": "https://render.guildwars2.com/file/3E0C2B4067E476034C2D5E6EFF4DC3A6450464EF/632323.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Impaler",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "85931",
+      "icon": "https://render.guildwars2.com/file/3E0C2B4067E476034C2D5E6EFF4DC3A6450464EF/632323.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Impaler",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
     }
   ],
   "Rifle": [
@@ -18807,6 +19555,193 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-97531!e~0",
       "attributes": [
         "1686"
+      ]
+    },
+    {
+      "name": "86380",
+      "icon": "https://render.guildwars2.com/file/EEEEA9B831DF5E50D17C0A5D07084F75CDD8CDDD/632347.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Musket",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "86187",
+      "icon": "https://render.guildwars2.com/file/EEEEA9B831DF5E50D17C0A5D07084F75CDD8CDDD/632347.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Musket",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "86005",
+      "icon": "https://render.guildwars2.com/file/EEEEA9B831DF5E50D17C0A5D07084F75CDD8CDDD/632347.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Musket",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "85940",
+      "icon": "https://render.guildwars2.com/file/EEEEA9B831DF5E50D17C0A5D07084F75CDD8CDDD/632347.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Musket",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
       ]
     }
   ],
@@ -22279,6 +23214,193 @@
       "attributes": [
         "1686"
       ]
+    },
+    {
+      "name": "85714",
+      "icon": "https://render.guildwars2.com/file/051EBCEBE5A6D00B19DCC167ACE26399CEB79644/632365.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Short_Bow",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "85729",
+      "icon": "https://render.guildwars2.com/file/051EBCEBE5A6D00B19DCC167ACE26399CEB79644/632365.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Short_Bow",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "85932",
+      "icon": "https://render.guildwars2.com/file/051EBCEBE5A6D00B19DCC167ACE26399CEB79644/632365.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Short_Bow",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "85698",
+      "icon": "https://render.guildwars2.com/file/051EBCEBE5A6D00B19DCC167ACE26399CEB79644/632365.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Short_Bow",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
     }
   ],
   "Staff": [
@@ -23320,6 +24442,193 @@
       "attributes": [
         "1686"
       ]
+    },
+    {
+      "name": "85697",
+      "icon": "https://render.guildwars2.com/file/400DB5354831059EDE4B0798165E16CBA45B7318/632377.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Spire",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "86365",
+      "icon": "https://render.guildwars2.com/file/400DB5354831059EDE4B0798165E16CBA45B7318/632377.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Spire",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "85816",
+      "icon": "https://render.guildwars2.com/file/400DB5354831059EDE4B0798165E16CBA45B7318/632377.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Spire",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "85703",
+      "icon": "https://render.guildwars2.com/file/400DB5354831059EDE4B0798165E16CBA45B7318/632377.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Spire",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
+      ]
     }
   ],
   "Trident": [
@@ -24206,6 +25515,193 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-97555!e~0",
       "attributes": [
         "1686"
+      ]
+    },
+    {
+      "name": "85766",
+      "icon": "https://render.guildwars2.com/file/C84199EC557036E5DF42E20BF3D75C750A9CC058/632396.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Trident",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "86164",
+      "icon": "https://render.guildwars2.com/file/C84199EC557036E5DF42E20BF3D75C750A9CC058/632396.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Trident",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "85954",
+      "icon": "https://render.guildwars2.com/file/C84199EC557036E5DF42E20BF3D75C750A9CC058/632396.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Trident",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "86270",
+      "icon": "https://render.guildwars2.com/file/C84199EC557036E5DF42E20BF3D75C750A9CC058/632396.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Trident",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
       ]
     }
   ],
@@ -25273,6 +26769,193 @@
       "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-96691!e~0",
       "attributes": [
         "1686"
+      ]
+    },
+    {
+      "name": "85661",
+      "icon": "https://render.guildwars2.com/file/A21C2A3AA930CD6F245AC248C0A5F5362833626C/632317.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Assaulter%27s_Warhammer",
+      "attributes": [
+        "753",
+        "161",
+        "559",
+        "616",
+        "158",
+        "159",
+        "1067",
+        "162",
+        "157",
+        "799",
+        "1227",
+        "1232",
+        "1231",
+        "1228",
+        "1224",
+        "1225",
+        "1539",
+        "1379",
+        "1377",
+        "1378",
+        "1687",
+        "1826"
+      ]
+    },
+    {
+      "name": "86029",
+      "icon": "https://render.guildwars2.com/file/A21C2A3AA930CD6F245AC248C0A5F5362833626C/632317.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Defender%27s_Warhammer",
+      "attributes": [
+        "616",
+        "559",
+        "754",
+        "628",
+        "158",
+        "1026",
+        "686",
+        "700",
+        "153",
+        "162",
+        "1232",
+        "1226",
+        "1229",
+        "1228",
+        "1225",
+        "1377",
+        "1484"
+      ]
+    },
+    {
+      "name": "85749",
+      "icon": "https://render.guildwars2.com/file/A21C2A3AA930CD6F245AC248C0A5F5362833626C/632317.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Healer%27s_Warhammer",
+      "attributes": [
+        "605",
+        "559",
+        "155",
+        "628",
+        "156",
+        "1226",
+        "1230",
+        "1539",
+        "1377",
+        "1378",
+        "1484"
+      ]
+    },
+    {
+      "name": "86289",
+      "icon": "https://render.guildwars2.com/file/A21C2A3AA930CD6F245AC248C0A5F5362833626C/632317.png",
+      "rarity": "Ascended",
+      "method": "Raids",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 150000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ],
+        [
+          {
+            "currency": "Coin",
+            "amount": 300000
+          },
+          {
+            "currency": "Magnetite_Shard",
+            "amount": 500
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Malicious_Warhammer",
+      "attributes": [
+        "1032",
+        "160",
+        "559",
+        "754",
+        "154",
+        "153",
+        "1067",
+        "1230",
+        "1229",
+        "1224",
+        "1379",
+        "1484",
+        "1717"
       ]
     }
   ],
