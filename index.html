@@ -495,7 +495,7 @@ function formatCurrency(input) {
 
       let parts = [];
       if (g > 0) parts.push(`${g}<img src='assets/gold.png' style='height:1em;'>`);
-      if (s > 0 || g > 0) parts.push(`${s}<img src='assets/silver.png' style='height:1em;'>`);
+      if (s > 0) parts.push(`${s}<img src='assets/silver.png' style='height:1em;'>`);
       if (c > 0 || (g === 0 && s === 0)) parts.push(`${c}<img src='assets/copper.png' style='height:1em;'>`);
 
       return parts.join(" ");
