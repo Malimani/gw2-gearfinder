@@ -913,6 +913,37 @@ async function fetchItemName(itemId) {
     return `Item ID: ${itemId}`;
   }
 }
+
+const recipeStructureCache = new Map(); // struktur -> cost
+
+// ✨ Gruppenzuweisung für strukturähnliche Komponenten
+const componentGroupMap = {
+  // Inscriptions
+  46742: "INSCRIPTION", // Zojja's
+  47020: "INSCRIPTION", // Wupwup
+  // Haft / Blades
+  19685: "AXE_BLADE",
+  46740: "AXE_HAFT",
+  // Gemeinsame Aufwertungen
+  19976: "VISION_CRYSTAL",
+  // Imbued Inscriptions
+  46735: "IMBUED_INSCRIPTION",
+  46733: "STEEL_PLATED_DOWEL",
+  // Beispiele für Ectos, Dust, Quartz
+  19721: "GLOB_OF_ECTO",
+  24277: "CRYSTALLINE_DUST",
+  43773: "CHARGED_QUARTZ",
+  19702: "VIAL_OF_BLOOD"
+};
+
+    function buildNormalizedRecipeKey(recipe) {
+  const parts = recipe.ingredients.map(ing => {
+    const group = componentGroupMap[ing.item_id] || ing.item_id;
+    return `${ing.count}x${group}`;
+  });
+
+  return parts.sort().join("|");
+}
     
 async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
   if (craftCostCache[itemId] !== undefined) return craftCostCache[itemId];
@@ -923,7 +954,7 @@ async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
   let coinCost = Number.MAX_SAFE_INTEGER;
   let craftCost = Number.MAX_SAFE_INTEGER;
 
-  // 1. TP-Preis
+  // 1. TP
   try {
     if (tpPriceCache[itemId]) {
       tpCost = tpPriceCache[itemId].copperValue;
@@ -943,28 +974,34 @@ async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
     };
   }
 
-  // 2. Vendor-Wert
+  // 2. Vendor
   if (craftComponentsMap?.[itemId] !== undefined) {
     coinCost = craftComponentsMap[itemId];
   }
 
-  // 3. Crafting aus Subkomponenten
+  // 3. Crafting mit strukturbasierter Memoisierung
   try {
     const recipeIds = await rateLimitedFetch(`https://api.guildwars2.com/v2/recipes/search?output=${itemId}`);
     if (Array.isArray(recipeIds) && recipeIds.length > 0) {
       const recipe = await rateLimitedFetch(`https://api.guildwars2.com/v2/recipes/${recipeIds[0]}`);
-      let sum = 0;
-      for (const ing of recipe.ingredients) {
-        const subCost = await getCraftingCost(ing.item_id, depth + 1, new Set(visited));
-        sum += subCost * ing.count;
+
+      const structureKey = buildNormalizedRecipeKey(recipe);
+      if (recipeStructureCache.has(structureKey)) {
+        craftCost = recipeStructureCache.get(structureKey);
+      } else {
+        let sum = 0;
+        for (const ing of recipe.ingredients) {
+          const subCost = await getCraftingCost(ing.item_id, depth + 1, new Set(visited));
+          sum += subCost * ing.count;
+        }
+        craftCost = sum;
+        recipeStructureCache.set(structureKey, craftCost);
       }
-      craftCost = sum;
     }
   } catch {
-    // kein Rezept → craftCost bleibt MAX_SAFE_INTEGER
+    // kein Rezept
   }
 
-  // 4. Günstigsten Pfad wählen
   const best = Math.min(tpCost, coinCost, craftCost);
   if (best === Number.MAX_SAFE_INTEGER) {
     console.warn(`⚠️ No valid cost for item ${itemId}`);
