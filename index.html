@@ -819,11 +819,24 @@ if (!isNaN(itemId)) {
     );
 
 //---> Filter
-    const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
-      entry.rarity === "Ascended" &&
-      (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id)))) &&
-      (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class)))
-    );
+    function costsAreEqual(costA, costB) {
+  return JSON.stringify(costA) === JSON.stringify(costB);
+}
+
+const existingAscendedItems = filteredItems.filter(
+  item => item.rarity === "Ascended"
+);
+
+const existingCosts = new Set(
+  existingAscendedItems.map(item => JSON.stringify(item.cost))
+);
+
+const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
+  entry.rarity === "Ascended" &&
+  (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id)))) &&
+  (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class))) &&
+  !existingCosts.has(JSON.stringify(entry.cost))
+);
 
     if (forgeableAscendedRaw.length > 0) {
       if (!document.querySelector(".stat-swap-header")) {
