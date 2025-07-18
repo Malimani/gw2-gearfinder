@@ -515,8 +515,11 @@ async function getGw2EfficiencyCraftingCost(itemId) {
       gw2effCostCache[itemId] = cost;
       return cost;
     }
-  } catch (e) {
+  } 
+console.log(`🔍 Fetching gw2efficiency cost for ${itemId}...`);
+catch (e) {
     console.warn(`⚠️ Failed to fetch gw2efficiency cost for ${itemId}`, e);
+console.warn(`❌ Error fetching cost for ${itemId}`);
   }
 
   gw2effCostCache[itemId] = Number.MAX_SAFE_INTEGER;
