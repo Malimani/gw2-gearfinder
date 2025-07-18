@@ -536,52 +536,49 @@ function createCostElement(entry) {
     const tpId = entry.cost.slice(3);
     cost.innerHTML = tpPriceCache[tpId]?.html || `<strong>Cost:</strong> loading...`;
   } else if (typeof entry.cost === "string" && entry.cost.startsWith("craft:")) {
-  const craftId = entry.cost.slice(6);
-  cost.innerHTML = `<strong>Cost:</strong> calculating...`;
+    const craftId = entry.cost.slice(6);
+    cost.innerHTML = `<strong>Cost:</strong> calculating...`;
 
-  getGw2EfficiencyCraftingCost(craftId).then(copper => {
-    if (copper < Number.MAX_SAFE_INTEGER) {
-      cost.innerHTML = `<strong>Cost:</strong> ${formatPrice(copper)}`;
-    } else {
-      cost.innerHTML = `<strong>Cost:</strong> Unknown`;
-    }
-  });
-}
-else if (Array.isArray(entry.cost)) {
-  const optionBlocks = [];
-
-  for (const optionArr of entry.cost) {
-    const formattedFragments = [];
-
-    let isCraftOnly = false;
-    for (const fragment of optionArr) {
-      if (typeof fragment === "object" && fragment.currency?.startsWith("craft:")) {
-        isCraftOnly = true;
-        const craftId = fragment.currency.slice(6);
-        formattedFragments.push(`<span data-crafting-cost="loading" data-id="${craftId}">calculating...</span>`);
+    getGw2EfficiencyCraftingCost(craftId).then(copper => {
+      if (copper < Number.MAX_SAFE_INTEGER) {
+        cost.innerHTML = `<strong>Cost:</strong> ${formatPrice(copper)}`;
       } else {
-        formattedFragments.push(formatCurrency(fragment));
+        cost.innerHTML = `<strong>Cost:</strong> Not available`;
       }
+    });
+
+  } else if (Array.isArray(entry.cost)) {
+    const optionBlocks = [];
+
+    for (const optionArr of entry.cost) {
+      const formattedFragments = [];
+
+      for (const fragment of optionArr) {
+        if (
+          (typeof fragment === "object" && fragment.currency?.startsWith("craft:")) ||
+          (typeof fragment === "string" && fragment.startsWith("craft:"))
+        ) {
+          const craftId = (typeof fragment === "string") ? fragment.slice(6) : fragment.currency.slice(6);
+          formattedFragments.push(`<span data-crafting-cost="loading" data-id="${craftId}">calculating...</span>`);
+        } else {
+          formattedFragments.push(formatCurrency(fragment));
+        }
+      }
+
+      optionBlocks.push(formattedFragments.join(" + "));
     }
 
-    optionBlocks.push(formattedFragments.join(" + "));
-  }
+    cost.innerHTML = `<strong>Cost:</strong> ${optionBlocks.join(" <span style='color:#666;'>/</span> ")}`;
 
-  cost.innerHTML = `<strong>Cost:</strong> ${optionBlocks.join(" <span style='color:#666;'>/</span> ")}`;
+    const spanElements = cost.querySelectorAll("span[data-crafting-cost]");
+    spanElements.forEach(async span => {
+      const id = span.getAttribute("data-id");
+      console.log("Replacing span with craft ID:", id);
+      const copper = await getGw2EfficiencyCraftingCost(id);
+      span.innerHTML = copper < Number.MAX_SAFE_INTEGER ? formatPrice(copper) : "Not available";
+    });
 
-  // nachträglich alle craft: Einträge berechnen und ersetzen
-  const spanElements = cost.querySelectorAll("span[data-crafting-cost]");
-  spanElements.forEach(async span => {
-  const id = span.getAttribute("data-id");
-  const copper = await getGw2EfficiencyCraftingCost(id);
-    if (copper < Number.MAX_SAFE_INTEGER) {
-      span.innerHTML = formatPrice(copper);
-    } else {
-      span.innerHTML = "Unknown";
-    }
-  });
-}
-  else {
+  } else {
     cost.innerHTML = `<strong>Cost:</strong> ${entry.cost}`;
   }
 
