@@ -511,6 +511,7 @@ async function getGw2EfficiencyCraftingCost(itemId) {
   try {
 console.log(`🔍 Fetching gw2efficiency cost for ${itemId}...`);
     const data = await rateLimitedFetch(`https://api.gw2efficiency.com/items?id=${itemId}`);
+console.log("📦 gw2eff raw data:", data);
     const cost = data?.[0]?.crafting?.buy;
     if (typeof cost === "number") {
       gw2effCostCache[itemId] = cost;
