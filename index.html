@@ -228,6 +228,7 @@ body {
     const attributeSelect = document.getElementById("attributeSelect");
     const filtersDiv = document.getElementById("filters");
     const resultsDiv = document.getElementById("results");
+    const gw2effCostCache = {};
 
     let gearData = {};
     let attributeMap = {};
@@ -530,7 +531,7 @@ function createCostElement(entry) {
   const craftId = entry.cost.slice(6);
   cost.innerHTML = `<strong>Cost:</strong> calculating...`;
 
-  getCraftingCost(craftId).then(copper => {
+  getGw2EfficiencyCraftingCost(craftId).then(copper => {
     if (copper < Number.MAX_SAFE_INTEGER) {
       cost.innerHTML = `<strong>Cost:</strong> ${formatPrice(copper)}`;
     } else {
@@ -577,6 +578,24 @@ else if (Array.isArray(entry.cost)) {
   }
 
   return cost;
+}
+
+    async function getGw2EfficiencyCraftingCost(itemId) {
+  if (gw2effCostCache[itemId] !== undefined) return gw2effCostCache[itemId];
+
+  try {
+    const data = await rateLimitedFetch(`https://api.gw2efficiency.com/items?id=${itemId}`);
+    const cost = data?.[0]?.crafting?.buy;
+    if (typeof cost === "number") {
+      gw2effCostCache[itemId] = cost;
+      return cost;
+    }
+  } catch (e) {
+    console.warn(`⚠️ Failed to fetch gw2efficiency cost for ${itemId}:`, e);
+  }
+
+  gw2effCostCache[itemId] = Number.MAX_SAFE_INTEGER;
+  return Number.MAX_SAFE_INTEGER;
 }
   
 async function renderItems(items = gearData[currentSlot]) {
@@ -921,66 +940,6 @@ async function fetchItemName(itemId) {
   }
 }
     
-async function getCraftingCost(itemId, depth = 0, visited = new Set()) {
-  if (craftCostCache[itemId] !== undefined) return craftCostCache[itemId];
-  if (depth > 10 || visited.has(itemId)) return Number.MAX_SAFE_INTEGER;
-  visited.add(itemId);
-
-  let tpCost = Number.MAX_SAFE_INTEGER;
-  let coinCost = Number.MAX_SAFE_INTEGER;
-  let craftCost = Number.MAX_SAFE_INTEGER;
-
-  // 1. TP-Preis
-  try {
-    if (tpPriceCache[itemId]) {
-      tpCost = tpPriceCache[itemId].copperValue;
-    } else {
-      const data = await rateLimitedFetch(`https://api.guildwars2.com/v2/commerce/prices/${itemId}`);
-      tpCost = data?.buys?.unit_price ?? Number.MAX_SAFE_INTEGER;
-      tpPriceCache[itemId] = {
-        copperValue: tpCost,
-        html: tpCost < Number.MAX_SAFE_INTEGER ? `<strong>Cost:</strong> ${formatPrice(tpCost)}` : `<strong>Cost:</strong> Unknown`
-      };
-    }
-  } catch {
-    tpCost = Number.MAX_SAFE_INTEGER;
-    tpPriceCache[itemId] = {
-      copperValue: tpCost,
-      html: `<strong>Cost:</strong> Unknown`
-    };
-  }
-
-  // 2. Vendor-Wert
-  if (craftComponentsMap?.[itemId] !== undefined) {
-    coinCost = craftComponentsMap[itemId];
-  }
-
-  // 3. Crafting aus Subkomponenten
-  try {
-    const recipeIds = await rateLimitedFetch(`https://api.guildwars2.com/v2/recipes/search?output=${itemId}`);
-    if (Array.isArray(recipeIds) && recipeIds.length > 0) {
-      const recipe = await rateLimitedFetch(`https://api.guildwars2.com/v2/recipes/${recipeIds[0]}`);
-      let sum = 0;
-      for (const ing of recipe.ingredients) {
-        const subCost = await getCraftingCost(ing.item_id, depth + 1, new Set(visited));
-        sum += subCost * ing.count;
-      }
-      craftCost = sum;
-    }
-  } catch {
-    // kein Rezept → craftCost bleibt MAX_SAFE_INTEGER
-  }
-
-  // 4. Günstigsten Pfad wählen
-  const best = Math.min(tpCost, coinCost, craftCost);
-  if (best === Number.MAX_SAFE_INTEGER) {
-    console.warn(`⚠️ No valid cost for item ${itemId}`);
-  }
-
-  craftCostCache[itemId] = best;
-  return best;
-}
-
     slotSelect.addEventListener("change", () => {
       currentSlot = slotSelect.value;
       attributeSelect.innerHTML = '';
