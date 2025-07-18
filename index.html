@@ -806,37 +806,40 @@ if (!isNaN(itemId)) {
     legendaryItems.forEach(entry => resultsDiv.appendChild(createEntryDiv(entry)));
   }
 
-  // STAT SWAP
-  const isTrinketSlot = slotTypeMap[currentSlot]?.toLowerCase() === "trinkets";
-  if (
-    currentAttrLabel &&
-    gearData[currentSlot] &&
-    !isTrinketSlot &&
-    (!filters.rarity.size || filters.rarity.has("Ascended"))
-  ) {
-    const existingAscendedItems = filteredItems.filter(
-      item => item.rarity === "Ascended"
-    );
+// STAT SWAP
+const isTrinketSlot = slotTypeMap[currentSlot]?.toLowerCase() === "trinkets";
+if (
+  currentAttrLabel &&
+  gearData[currentSlot] &&
+  !isTrinketSlot &&
+  (!filters.rarity.size || filters.rarity.has("Ascended"))
+) {
+  const attrIds = Object.entries(attributeMap)
+    .filter(([, label]) => label.trim() === currentAttrLabel.trim())
+    .map(([id]) => id);
 
-//---> Filter
-    function costsAreEqual(costA, costB) {
-  return JSON.stringify(costA) === JSON.stringify(costB);
-}
+  function costsAreEqual(costA, costB) {
+    return JSON.stringify(costA) === JSON.stringify(costB);
+  }
 
-const existingAscendedItems = filteredItems.filter(
-  item => item.rarity === "Ascended"
-);
+  const existingAscendedItems = gearData[currentSlot].filter(
+    item =>
+      item.rarity === "Ascended" &&
+      item.attributes &&
+      item.attributes.some(id => attrIds.includes(String(id))) &&
+      (!filters.weight_class.size || (item.weight_class && filters.weight_class.has(item.weight_class)))
+  );
 
-const existingCosts = new Set(
-  existingAscendedItems.map(item => JSON.stringify(item.cost))
-);
+  const existingCosts = new Set(
+    existingAscendedItems.map(item => JSON.stringify(item.cost))
+  );
 
-const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
-  entry.rarity === "Ascended" &&
-  (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id)))) &&
-  (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class))) &&
-  !existingCosts.has(JSON.stringify(entry.cost))
-);
+  const forgeableAscendedRaw = gearData[currentSlot].filter(entry =>
+    entry.rarity === "Ascended" &&
+    (!entry.attributes || entry.attributes.every(id => !attrIds.includes(String(id)))) &&
+    (!filters.weight_class.size || (entry.weight_class && filters.weight_class.has(entry.weight_class))) &&
+    !existingCosts.has(JSON.stringify(entry.cost))
+  );
 
     if (forgeableAscendedRaw.length > 0) {
       if (!document.querySelector(".stat-swap-header")) {
