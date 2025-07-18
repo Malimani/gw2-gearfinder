@@ -912,9 +912,6 @@ function formatPrice(copper) {
   return parts.join(" ");
 }
 
-
-const craftCostCache = {}; // 🧠 Caches die berechneten crafting-Kosten
-
 async function fetchItemName(itemId) {
   if (itemNameCache[itemId]) return itemNameCache[itemId];
 
