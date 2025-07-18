@@ -899,12 +899,20 @@ if (
         document.getElementById("statSwapLoading")?.remove();
 
         // Zeige die besten Crafting-Optionen
-        for (const { item } of grouped.values()) {
-        const div = createEntryDiv(item);
-        div.classList.add("stat-swap-entry");
-        div.dataset.type = "crafting";
-        resultsDiv.appendChild(div);
-        }
+let cheapest = null;
+for (const { item, costEstimate } of grouped.values()) {
+  if (!cheapest || costEstimate < cheapest.costEstimate) {
+    cheapest = { item, costEstimate };
+  }
+}
+
+if (cheapest) {
+  const div = createEntryDiv(cheapest.item);
+  div.classList.add("stat-swap-entry");
+  div.dataset.type = "crafting";
+  resultsDiv.appendChild(div);
+}
+
 
       })();
     }
