@@ -509,15 +509,14 @@ async function getGw2EfficiencyCraftingCost(itemId) {
   if (gw2effCostCache[itemId] !== undefined) return gw2effCostCache[itemId];
 
   try {
+console.log(`🔍 Fetching gw2efficiency cost for ${itemId}...`);
     const data = await rateLimitedFetch(`https://api.gw2efficiency.com/items?id=${itemId}`);
     const cost = data?.[0]?.crafting?.buy;
     if (typeof cost === "number") {
       gw2effCostCache[itemId] = cost;
       return cost;
     }
-  } 
-console.log(`🔍 Fetching gw2efficiency cost for ${itemId}...`);
-catch (e) {
+  } catch (e) {
     console.warn(`⚠️ Failed to fetch gw2efficiency cost for ${itemId}`, e);
 console.warn(`❌ Error fetching cost for ${itemId}`);
   }
