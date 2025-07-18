@@ -228,7 +228,6 @@ body {
     const attributeSelect = document.getElementById("attributeSelect");
     const filtersDiv = document.getElementById("filters");
     const resultsDiv = document.getElementById("results");
-    const gw2effCostCache = {};
 
     let gearData = {};
     let attributeMap = {};
@@ -237,16 +236,15 @@ body {
     let currentAttrLabel = "";
     let slotTypeMap = {};
     let currencyIconMap = {};
-    let craftComponentsMap = {};
 
     const apiQueue = [];
-let tokens = 300;
-const maxTokens = 300;
+    let tokens = 300;
+    const maxTokens = 300;
 
-setInterval(() => {
-  tokens = Math.min(tokens + 5, maxTokens);
-  processQueue();
-}, 1000);
+    setInterval(() => {
+    tokens = Math.min(tokens + 5, maxTokens);
+    processQueue();
+    }, 1000);
 
 function processQueue() {
   while (tokens > 0 && apiQueue.length > 0) {
@@ -280,17 +278,6 @@ function rateLimitedFetch(url, maxRetries = 3) {
   });
 }
     
-async function loadCraftComponents() {
-  try {
-    const compData = await fetch("craftcomp.json").then(r => r.json());
-    for (const e of compData) {
-      craftComponentsMap[e.id] = e.coin;
-    }
-  } catch (e) {
-    console.warn("craftcomp.json missing", e);
-  }
-}
-
     async function loadSlotTypeMap() {
       try {
         const res = await fetch("slotTypeMap.json");
@@ -317,7 +304,6 @@ async function loadCraftComponents() {
       } catch (err) {
         console.error("Initialization error:", err);
       }
-      await loadCraftComponents();
     }
 
     function updateItemCounter() {
@@ -517,6 +503,26 @@ function formatCurrency(input) {
   return String(input);
 }
 
+const gw2effCostCache = {};
+
+async function getGw2EfficiencyCraftingCost(itemId) {
+  if (gw2effCostCache[itemId] !== undefined) return gw2effCostCache[itemId];
+
+  try {
+    const data = await rateLimitedFetch(`https://api.gw2efficiency.com/items?id=${itemId}`);
+    const cost = data?.[0]?.crafting?.buy;
+    if (typeof cost === "number") {
+      gw2effCostCache[itemId] = cost;
+      return cost;
+    }
+  } catch (e) {
+    console.warn(`⚠️ Failed to fetch gw2efficiency cost for ${itemId}`, e);
+  }
+
+  gw2effCostCache[itemId] = Number.MAX_SAFE_INTEGER;
+  return Number.MAX_SAFE_INTEGER;
+}
+    
 function createCostElement(entry) {
   const cost = document.createElement("p");
 
@@ -564,8 +570,8 @@ else if (Array.isArray(entry.cost)) {
   // nachträglich alle craft: Einträge berechnen und ersetzen
   const spanElements = cost.querySelectorAll("span[data-crafting-cost]");
   spanElements.forEach(async span => {
-    const id = span.getAttribute("data-id");
-    const copper = await getCraftingCost(id);
+  const id = span.getAttribute("data-id");
+  const copper = await getGw2EfficiencyCraftingCost(id);
     if (copper < Number.MAX_SAFE_INTEGER) {
       span.innerHTML = formatPrice(copper);
     } else {
@@ -578,24 +584,6 @@ else if (Array.isArray(entry.cost)) {
   }
 
   return cost;
-}
-
-    async function getGw2EfficiencyCraftingCost(itemId) {
-  if (gw2effCostCache[itemId] !== undefined) return gw2effCostCache[itemId];
-
-  try {
-    const data = await rateLimitedFetch(`https://api.gw2efficiency.com/items?id=${itemId}`);
-    const cost = data?.[0]?.crafting?.buy;
-    if (typeof cost === "number") {
-      gw2effCostCache[itemId] = cost;
-      return cost;
-    }
-  } catch (e) {
-    console.warn(`⚠️ Failed to fetch gw2efficiency cost for ${itemId}:`, e);
-  }
-
-  gw2effCostCache[itemId] = Number.MAX_SAFE_INTEGER;
-  return Number.MAX_SAFE_INTEGER;
 }
   
 async function renderItems(items = gearData[currentSlot]) {
@@ -874,12 +862,12 @@ if (!isNaN(itemId)) {
 
           if (typeof item.cost === "string" && item.cost.startsWith("craft:")) {
             costKey = item.cost;
-            costEstimate = await getCraftingCost(item.cost.slice(6));
+            costEstimate = await getGw2EfficiencyCraftingCost(item.cost.slice(6));
           } else if (Array.isArray(item.cost)) {
             const craftEntry = item.cost.flat().find(frag => frag.currency?.startsWith("craft:"));
             if (craftEntry) {
               costKey = craftEntry.currency;
-              costEstimate = await getCraftingCost(craftEntry.currency.slice(6));
+              costEstimate = await getGw2EfficiencyCraftingCost(craftEntry.currency.slice(6));
             }
           }
 
@@ -940,6 +928,7 @@ async function fetchItemName(itemId) {
   }
 }
     
+
     slotSelect.addEventListener("change", () => {
       currentSlot = slotSelect.value;
       attributeSelect.innerHTML = '';
