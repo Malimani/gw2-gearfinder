@@ -3111,6 +3111,412 @@
         "1687",
         "1826"
       ]
+    },
+    {
+      "name": "39485",
+      "icon": "https://render.guildwars2.com/file/589DF55AB0A3BF0B26133E2A9B7A49BF00045FFD/65743.png",
+      "rarity": "Exotic",
+      "method": "Vendor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 50000
+          },
+          {
+            "currency": "Guild_Commendation",
+            "amount": 5
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Guild_Assassin_Backpack",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "39484",
+      "icon": "https://render.guildwars2.com/file/589DF55AB0A3BF0B26133E2A9B7A49BF00045FFD/65743.png",
+      "rarity": "Exotic",
+      "method": "Vendor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 50000
+          },
+          {
+            "currency": "Guild_Commendation",
+            "amount": 5
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Guild_Caretaker_Backpack",
+      "attributes": [
+        "156"
+      ]
+    },
+    {
+      "name": "39486",
+      "icon": "https://render.guildwars2.com/file/589DF55AB0A3BF0B26133E2A9B7A49BF00045FFD/65743.png",
+      "rarity": "Exotic",
+      "method": "Vendor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 50000
+          },
+          {
+            "currency": "Guild_Commendation",
+            "amount": 5
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Guild_Defender_Backpack",
+      "attributes": [
+        "162"
+      ]
+    },
+    {
+      "name": "62922",
+      "icon": "https://render.guildwars2.com/file/0AF07504F023BE2DB7551527B2F95CB1DDB6DA6C/866456.png",
+      "rarity": "Exotic",
+      "method": "Crafting",
+      "cost": "craft:62922",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-62922!e~0",
+      "attributes": [
+        "1052",
+        "1042",
+        "1044",
+        "1043",
+        "1046",
+        "1048",
+        "1047",
+        "1041",
+        "1050",
+        "1051"
+      ],
+      "description": "Lvl 78! BUT has an INFUSION Slot."
+    },
+    {
+      "name": "62890",
+      "icon": "https://render.guildwars2.com/file/5893AD0A6C6CB94E66CE0C1613E45172EE9996CD/866528.png",
+      "rarity": "Exotic",
+      "method": "Crafting",
+      "cost": "craft:62890",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-62890!e~0",
+      "attributes": [
+        "1052",
+        "1042",
+        "1044",
+        "1043",
+        "1046",
+        "1048",
+        "1047",
+        "1041",
+        "1050",
+        "1051"
+      ],
+      "description": "Lvl 78! BUT has an INFUSION Slot."
+    },
+    {
+      "name": "62898",
+      "icon": "https://render.guildwars2.com/file/D9B9B714FE0142CCE427135DA3E342086B211A06/866566.png",
+      "rarity": "Exotic",
+      "method": "Crafting",
+      "cost": "craft:62898",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-62898!e~0",
+      "attributes": [
+        "1052",
+        "1042",
+        "1044",
+        "1043",
+        "1046",
+        "1048",
+        "1047",
+        "1041",
+        "1050",
+        "1051"
+      ],
+      "description": "Lvl 78! BUT has an INFUSION Slot."
+    },
+    {
+      "name": "62905",
+      "icon": "https://render.guildwars2.com/file/2E01DFA01448FB305D9D3903D0965108394C056B/866608.png",
+      "rarity": "Exotic",
+      "method": "Crafting",
+      "cost": "craft:62905",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-62905!e~0",
+      "attributes": [
+        "1052",
+        "1042",
+        "1044",
+        "1043",
+        "1046",
+        "1048",
+        "1047",
+        "1041",
+        "1050",
+        "1051"
+      ],
+      "description": "Lvl 78! BUT has an INFUSION Slot."
+    },
+    {
+      "name": "62913",
+      "icon": "https://render.guildwars2.com/file/D2C862B40806561E2EDD4BCDE3F8C6DB7607F721/866648.png",
+      "rarity": "Exotic",
+      "method": "Crafting",
+      "cost": "craft:62913",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-62913!e~0",
+      "attributes": [
+        "1052",
+        "1042",
+        "1044",
+        "1043",
+        "1046",
+        "1048",
+        "1047",
+        "1041",
+        "1050",
+        "1051"
+      ],
+      "description": "Lvl 78! BUT has an INFUSION Slot."
+    },
+    {
+      "name": "62929",
+      "icon": "https://render.guildwars2.com/file/470AE1BB53D892CDD37395EC1643B86DF8143303/866684.png",
+      "rarity": "Exotic",
+      "method": "Crafting",
+      "cost": "craft:62929",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-62929!e~0",
+      "attributes": [
+        "1052",
+        "1042",
+        "1044",
+        "1043",
+        "1046",
+        "1048",
+        "1047",
+        "1041",
+        "1050",
+        "1051"
+      ],
+      "description": "Lvl 78! BUT has an INFUSION Slot."
+    },
+    {
+      "name": "76328",
+      "icon": "https://render.guildwars2.com/file/49EFAB012D90A3260128CF2C90530CAE6CA47B2B/1200656.png",
+      "rarity": "Exotic",
+      "method": "Crafting",
+      "cost": "craft:76328",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-76328!e~0",
+      "attributes": [
+        "1052",
+        "1042",
+        "1044",
+        "1043",
+        "1046",
+        "1048",
+        "1047",
+        "1041",
+        "1050",
+        "1051"
+      ],
+      "description": "Lvl 78! BUT has an INFUSION Slot."
+    },
+    {
+      "name": "62932",
+      "icon": "https://render.guildwars2.com/file/42249A5922C123E4F94FEC6AC04E097F7D7AA00F/866676.png",
+      "rarity": "Exotic",
+      "method": "Crafting",
+      "cost": "craft:62932",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-62932!e~0",
+      "attributes": [
+        "1052",
+        "1042",
+        "1044",
+        "1043",
+        "1046",
+        "1048",
+        "1047",
+        "1041",
+        "1050",
+        "1051"
+      ],
+      "description": "Lvl 78! BUT has an INFUSION Slot."
+    },
+    {
+      "name": "62933",
+      "icon": "https://render.guildwars2.com/file/04A8516BC34FADBE46DAEA26D0BD685597C47AEB/866688.png",
+      "rarity": "Exotic",
+      "method": "Crafting",
+      "cost": "craft:62933",
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-62933!e~0",
+      "attributes": [
+        "1052",
+        "1042",
+        "1044",
+        "1043",
+        "1046",
+        "1048",
+        "1047",
+        "1041",
+        "1050",
+        "1051"
+      ],
+      "description": "Lvl 78! BUT has an INFUSION Slot."
+    },
+    {
+      "name": "37050",
+      "icon": "https://render.guildwars2.com/file/DC1D512B917D1C01B34BC5279ED12571730F7635/511805.png",
+      "rarity": "Exotic",
+      "method": "Vendor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 2112
+          },
+          {
+            "currency": "Fractal_Relic",
+            "amount": 1350
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Prototype_Fractal_Capacitor",
+      "attributes": [
+        "162"
+      ]
+    },
+    {
+      "name": "37052",
+      "icon": "https://render.guildwars2.com/file/DC1D512B917D1C01B34BC5279ED12571730F7635/511805.png",
+      "rarity": "Exotic",
+      "method": "Vendor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 2112
+          },
+          {
+            "currency": "Fractal_Relic",
+            "amount": 1350
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Prototype_Fractal_Capacitor",
+      "attributes": [
+        "616"
+      ]
+    },
+    {
+      "name": "37053",
+      "icon": "https://render.guildwars2.com/file/DC1D512B917D1C01B34BC5279ED12571730F7635/511805.png",
+      "rarity": "Exotic",
+      "method": "Vendor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 2112
+          },
+          {
+            "currency": "Fractal_Relic",
+            "amount": 1350
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Prototype_Fractal_Capacitor",
+      "attributes": [
+        "154"
+      ]
+    },
+    {
+      "name": "37054",
+      "icon": "https://render.guildwars2.com/file/DC1D512B917D1C01B34BC5279ED12571730F7635/511805.png",
+      "rarity": "Exotic",
+      "method": "Vendor",
+      "cost": [
+        [
+          {
+            "currency": "Coin",
+            "amount": 2112
+          },
+          {
+            "currency": "Fractal_Relic",
+            "amount": 1350
+          }
+        ]
+      ],
+      "link": "https://wiki.guildwars2.com/wiki/Prototype_Fractal_Capacitor",
+      "attributes": [
+        "161"
+      ]
+    },
+    {
+      "name": "104158",
+      "icon": "https://render.guildwars2.com/file/0948B79A417257CC71B5F4C803AF72F34E21FB03/3576357.png",
+      "rarity": "Exotic",
+      "method": "TP, Crafting",
+      "cost": [
+        [
+          {
+            "currency": "craft:104158",
+            "amount": 0
+          }
+        ],
+        [
+          {
+            "currency": "TP:104158",
+            "amount": 0
+          }
+        ]
+      ],
+      "link": "https://gw2efficiency.com/crafting/calculator/a~0!b~1!c~0!d~1-104158!e~0",
+      "attributes": [
+        "161",
+        "155",
+        "159",
+        "157",
+        "158",
+        "160",
+        "153",
+        "605",
+        "700",
+        "616",
+        "154",
+        "156",
+        "162",
+        "686",
+        "559",
+        "754",
+        "753",
+        "799",
+        "1026",
+        "1067",
+        "628",
+        "1032",
+        "1231",
+        "1232",
+        "1226",
+        "1225",
+        "1229",
+        "1224",
+        "1228",
+        "1227",
+        "1230",
+        "1379",
+        "1377",
+        "1378",
+        "1484",
+        "1539",
+        "1717",
+        "1687",
+        "1826"
+      ],
+      "description": "Cheapest during Lunar New Year"
     }
   ],
   "Ring": [
