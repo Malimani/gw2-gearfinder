@@ -773,20 +773,20 @@ if (!isNaN(itemId)) {
     tpItems.slice(1).forEach(entry => collapseDiv.appendChild(createEntryDiv(entry)));
     tpWrapper.appendChild(collapseDiv);
 
-    const toggleBtn = document.createElement("button");
-    toggleBtn.textContent = "Show more options";
-    toggleBtn.style.background = "#fff";
-    toggleBtn.style.border = "1px solid #ccc";
-    toggleBtn.style.borderRadius = "0.5rem";
-    toggleBtn.style.padding = "0.5rem 1rem";
-    toggleBtn.style.cursor = "pointer";
-    toggleBtn.style.margin = "0 auto 1rem auto";
-    toggleBtn.style.display = "block";
+    const toggleLink = document.createElement("span");
+    toggleLink.textContent = "Show more ▾";
+    toggleLink.style.color = "#0066cc";
+    toggleLink.style.cursor = "pointer";
+    toggleLink.style.fontSize = "0.9em";
+    toggleLink.style.float = "right";
+    toggleLink.style.marginTop = "-0.5em";
+    toggleLink.style.marginBottom = "0.5em";
+    toggleLink.style.textDecoration = "underline";
 
-    toggleBtn.addEventListener("click", () => {
+    toggleLink.addEventListener("click", () => {
       const isHidden = collapseDiv.style.display === "none";
       collapseDiv.style.display = isHidden ? "block" : "none";
-      toggleBtn.textContent = isHidden ? "Hide extra options" : "Show more options";
+      toggleLink.textContent = isHidden ? "Hide ▴" : "Show more ▾";
     });
 
     tpWrapper.appendChild(toggleBtn);
